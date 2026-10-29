@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:intf="http://action.gov.cgg.in" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:impl="http://action.gov.cgg.in" targetNamespace="http://action.gov.cgg.in" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://action.gov.cgg.in">
+      <xsd:element name="notEmpty">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="s" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="notEmptyResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="notEmptyReturn" type="xsd:boolean" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="notZero">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="s" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="notZeroResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="notZeroReturn" type="xsd:boolean" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getInsepectionDetails">
+        <xsd:complexType />
+      </xsd:element>
+      <xsd:element name="getInsepectionDetailsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="getInsepectionDetailsReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAppProgressDetails">
+        <xsd:complexType />
+      </xsd:element>
+      <xsd:element name="getAppProgressDetailsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="getAppProgressDetailsReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAppProgressQuery">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="asondate" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAppProgressQueryResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="getAppProgressQueryReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getBoilersAppProgressReport">
+        <xsd:complexType />
+      </xsd:element>
+      <xsd:element name="getBoilersAppProgressReportResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="getBoilersAppProgressReportReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getLabourFreshRegistration">
+        <xsd:complexType />
+      </xsd:element>
+      <xsd:element name="getLabourFreshRegistrationResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="getLabourFreshRegistrationReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getLabourInspections">
+        <xsd:complexType />
+      </xsd:element>
+      <xsd:element name="getLabourInspectionsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="getLabourInspectionsReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getLabourRenewalRegistration">
+        <xsd:complexType />
+      </xsd:element>
+      <xsd:element name="getLabourRenewalRegistrationResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="getLabourRenewalRegistrationReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getBoilerInspectionDetails">
+        <xsd:complexType />
+      </xsd:element>
+      <xsd:element name="getBoilerInspectionDetailsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="getBoilerInspectionDetailsReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getAppProgressQueryResponse">
+    <wsdl:part name="parameters" element="impl:getAppProgressQueryResponse" />
+  </wsdl:message>
+  <wsdl:message name="notEmptyRequest">
+    <wsdl:part name="parameters" element="impl:notEmpty" />
+  </wsdl:message>
+  <wsdl:message name="notZeroRequest">
+    <wsdl:part name="parameters" element="impl:notZero" />
+  </wsdl:message>
+  <wsdl:message name="getBoilersAppProgressReportResponse">
+    <wsdl:part name="parameters" element="impl:getBoilersAppProgressReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="getLabourRenewalRegistrationRequest">
+    <wsdl:part name="parameters" element="impl:getLabourRenewalRegistration" />
+  </wsdl:message>
+  <wsdl:message name="getInsepectionDetailsResponse">
+    <wsdl:part name="parameters" element="impl:getInsepectionDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="getInsepectionDetailsRequest">
+    <wsdl:part name="parameters" element="impl:getInsepectionDetails" />
+  </wsdl:message>
+  <wsdl:message name="notZeroResponse">
+    <wsdl:part name="parameters" element="impl:notZeroResponse" />
+  </wsdl:message>
+  <wsdl:message name="getLabourInspectionsResponse">
+    <wsdl:part name="parameters" element="impl:getLabourInspectionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAppProgressDetailsRequest">
+    <wsdl:part name="parameters" element="impl:getAppProgressDetails" />
+  </wsdl:message>
+  <wsdl:message name="getLabourFreshRegistrationRequest">
+    <wsdl:part name="parameters" element="impl:getLabourFreshRegistration" />
+  </wsdl:message>
+  <wsdl:message name="getLabourRenewalRegistrationResponse">
+    <wsdl:part name="parameters" element="impl:getLabourRenewalRegistrationResponse" />
+  </wsdl:message>
+  <wsdl:message name="getLabourInspectionsRequest">
+    <wsdl:part name="parameters" element="impl:getLabourInspections" />
+  </wsdl:message>
+  <wsdl:message name="getBoilersAppProgressReportRequest">
+    <wsdl:part name="parameters" element="impl:getBoilersAppProgressReport" />
+  </wsdl:message>
+  <wsdl:message name="getBoilerInspectionDetailsRequest">
+    <wsdl:part name="parameters" element="impl:getBoilerInspectionDetails" />
+  </wsdl:message>
+  <wsdl:message name="notEmptyResponse">
+    <wsdl:part name="parameters" element="impl:notEmptyResponse" />
+  </wsdl:message>
+  <wsdl:message name="getLabourFreshRegistrationResponse">
+    <wsdl:part name="parameters" element="impl:getLabourFreshRegistrationResponse" />
+  </wsdl:message>
+  <wsdl:message name="getBoilerInspectionDetailsResponse">
+    <wsdl:part name="parameters" element="impl:getBoilerInspectionDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAppProgressQueryRequest">
+    <wsdl:part name="parameters" element="impl:getAppProgressQuery" />
+  </wsdl:message>
+  <wsdl:message name="getAppProgressDetailsResponse">
+    <wsdl:part name="parameters" element="impl:getAppProgressDetailsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ProgressReport">
+    <wsdl:operation name="notEmpty">
+      <wsdl:input name="notEmptyRequest" message="impl:notEmptyRequest" />
+      <wsdl:output name="notEmptyResponse" message="impl:notEmptyResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="notZero">
+      <wsdl:input name="notZeroRequest" message="impl:notZeroRequest" />
+      <wsdl:output name="notZeroResponse" message="impl:notZeroResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getInsepectionDetails">
+      <wsdl:input name="getInsepectionDetailsRequest" message="impl:getInsepectionDetailsRequest" />
+      <wsdl:output name="getInsepectionDetailsResponse" message="impl:getInsepectionDetailsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getAppProgressDetails">
+      <wsdl:input name="getAppProgressDetailsRequest" message="impl:getAppProgressDetailsRequest" />
+      <wsdl:output name="getAppProgressDetailsResponse" message="impl:getAppProgressDetailsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getAppProgressQuery">
+      <wsdl:input name="getAppProgressQueryRequest" message="impl:getAppProgressQueryRequest" />
+      <wsdl:output name="getAppProgressQueryResponse" message="impl:getAppProgressQueryResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getBoilersAppProgressReport">
+      <wsdl:input name="getBoilersAppProgressReportRequest" message="impl:getBoilersAppProgressReportRequest" />
+      <wsdl:output name="getBoilersAppProgressReportResponse" message="impl:getBoilersAppProgressReportResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getLabourFreshRegistration">
+      <wsdl:input name="getLabourFreshRegistrationRequest" message="impl:getLabourFreshRegistrationRequest" />
+      <wsdl:output name="getLabourFreshRegistrationResponse" message="impl:getLabourFreshRegistrationResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getLabourInspections">
+      <wsdl:input name="getLabourInspectionsRequest" message="impl:getLabourInspectionsRequest" />
+      <wsdl:output name="getLabourInspectionsResponse" message="impl:getLabourInspectionsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getLabourRenewalRegistration">
+      <wsdl:input name="getLabourRenewalRegistrationRequest" message="impl:getLabourRenewalRegistrationRequest" />
+      <wsdl:output name="getLabourRenewalRegistrationResponse" message="impl:getLabourRenewalRegistrationResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getBoilerInspectionDetails">
+      <wsdl:input name="getBoilerInspectionDetailsRequest" message="impl:getBoilerInspectionDetailsRequest" />
+      <wsdl:output name="getBoilerInspectionDetailsResponse" message="impl:getBoilerInspectionDetailsResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ProgressReportSoapBinding" type="impl:ProgressReport">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="notEmpty">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="notEmptyRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="notEmptyResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="notZero">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="notZeroRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="notZeroResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getInsepectionDetails">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getInsepectionDetailsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getInsepectionDetailsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAppProgressDetails">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getAppProgressDetailsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getAppProgressDetailsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAppProgressQuery">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getAppProgressQueryRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getAppProgressQueryResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBoilersAppProgressReport">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getBoilersAppProgressReportRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getBoilersAppProgressReportResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLabourFreshRegistration">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getLabourFreshRegistrationRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getLabourFreshRegistrationResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLabourInspections">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getLabourInspectionsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getLabourInspectionsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLabourRenewalRegistration">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getLabourRenewalRegistrationRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getLabourRenewalRegistrationResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBoilerInspectionDetails">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getBoilerInspectionDetailsRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getBoilerInspectionDetailsResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProgressReportService">
+    <wsdl:port name="ProgressReport" binding="impl:ProgressReportSoapBinding">
+      <wsdlsoap:address location="http://tsfws.cgg.gov.in/services/ProgressReport" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

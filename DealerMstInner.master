@@ -1,0 +1,115 @@
+﻿<%@ Master Language="VB" CodeFile="DealerMstInner.master.vb" Inherits="DealerMstInner" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <script type="text/javascript" src="../../JqueryScripts/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="../../JqueryScripts/jquery-ui-1.8.24.custom.min.js"></script>
+    <link rel="stylesheet" title="text/css" href="css/jquery-ui-1.8.24.custom.css" media="all" />
+    <link rel="stylesheet" title="text/css" href="css/innerPage.css" media="all" />
+    <link rel="stylesheet" title="text/css" href="css/officers.css" media="all" />
+    <link rel="stylesheet" title="text/css" href="css/ctd.css" media="all" />
+    <link rel="stylesheet" title="text/css" href="css/print.css" media="print" />
+    <link rel="stylesheet" title="text/css" href="css/officers.css" media="print" />
+    <script type="text/javascript" language="JavaScript">        history.forward();</script>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td align="left" valign="middle" class="topTdDealers">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td align="right" class="title">
+                            COMMERCIAL TAXES DEPARTMENT&nbsp;&nbsp;&nbsp;&nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right" class="title1">
+                            Government of Telangana&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td height="30" align="left" valign="middle" class="menuBgDealers">
+                <asp:Menu ID="Menu1" runat="server" Font-Bold="True" Font-Names="Arial" ForeColor="white"
+                    Font-Size="10pt" Orientation="Horizontal" StaticEnableDefaultPopOutImage="False"
+                    StaticDisplayLevels="1">
+                    <DynamicHoverStyle Font-Bold="True" Font-Names="Arial" Font-Size="10pt" ForeColor="Black"
+                        BackColor="#FEC89C" />
+                    <DynamicMenuItemStyle BackColor="#C87436" ForeColor="White" HorizontalPadding="6px"
+                        VerticalPadding="2px" />
+                    <DynamicSelectedStyle Font-Bold="True" Font-Names="Arial" Font-Size="10pt" ForeColor="White" />
+                    <DynamicMenuStyle VerticalPadding="4px" />
+                    <StaticHoverStyle Font-Bold="True" Font-Names="Arial" Font-Size="10pt" ForeColor="#CCFFFF" />
+                    <StaticMenuItemStyle VerticalPadding="5px" HorizontalPadding="9px" />
+                </asp:Menu>
+            </td>
+        </tr>
+        <tr>
+            <td align="center" valign="top">
+                <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td align="left" valign="top">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td bgcolor="#FFFCF4">
+                                        <table width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <td align="left">
+                                                    <asp:Image ImageUrl="~/images/Dealers/shadowLeft.jpg" Width="300" Height="23" runat="server"
+                                                        ID="Image2" />
+                                                </td>
+                                                <td align="right">
+                                                    <asp:Image ID="Image3" ImageUrl="~/images/Dealers/shadowRight.jpg" Width="300" Height="23"
+                                                        runat="server" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="middle" bgcolor="#FFFCF4" align="right" height="35">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="400" valign="top" bgcolor="#FFFCF4">
+                                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                        </asp:ContentPlaceHolder>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td align="center" valign="middle" bgcolor="#C57135" height="1">
+            </td>
+        </tr>
+        <tr>
+            <td align="center" valign="middle" class="footerBgDlrs">
+                <table width="100%" border="0" align="center" cellpadding="4" cellspacing="0">
+                    <tr>
+                        <td align="center" class="copy">
+                            :: <a href="../Disclaimer.aspx" id="Disclaimer" class="copyBlue">Website Disclaimer</a>
+                            :: Copyright &copy; 2014 Government of Telangana. All rights reserved
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" class="copy">
+                            Designed &amp; Developed by <a href="http://www.lgsglobal.com" target="_blank" class="copyBlue">
+                                LGS Global Ltd</a>. Hyderabad, INDIA.
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    </form>
+</body>
+</html>

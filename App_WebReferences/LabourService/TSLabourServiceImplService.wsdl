@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tslabourws.cgg.gov.in/" name="TSLabourServiceImplService" targetNamespace="http://tslabourws.cgg.gov.in/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="https://cfewstslabour.cgg.gov.in:443/tsLabour?xsd=1" namespace="http://tslabourws.cgg.gov.in/" />
+    </xsd:schema>
+  </types>
+  <message name="actSelected">
+    <part name="parameters" element="tns:actSelected" />
+  </message>
+  <message name="actSelectedResponse">
+    <part name="parameters" element="tns:actSelectedResponse" />
+  </message>
+  <portType name="TSLabourService">
+    <operation name="actSelected">
+      <input message="tns:actSelected" />
+      <output message="tns:actSelectedResponse" />
+    </operation>
+  </portType>
+  <binding name="TSLabourServiceImplPortBinding" type="tns:TSLabourService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="actSelected">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="TSLabourServiceImplService">
+    <port name="TSLabourServiceImplPort" binding="tns:TSLabourServiceImplPortBinding">
+      <soap:address location="https://cfewstslabour.cgg.gov.in:443/tsLabour" />
+    </port>
+  </service>
+</definitions>

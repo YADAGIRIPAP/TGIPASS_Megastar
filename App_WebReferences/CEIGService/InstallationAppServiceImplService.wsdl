@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tsceigws.cgg.gov.in/" name="InstallationAppServiceImplService" targetNamespace="http://tsceigws.cgg.gov.in/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://tsceigws.cgg.gov.in:80/ceigWebServiceCFE?xsd=1" namespace="http://tsceigws.cgg.gov.in/" />
+    </xsd:schema>
+  </types>
+  <message name="updateQueryReply">
+    <part name="parameters" element="tns:updateQueryReply" />
+  </message>
+  <message name="updateQueryReplyResponse">
+    <part name="parameters" element="tns:updateQueryReplyResponse" />
+  </message>
+  <message name="updatePayment">
+    <part name="parameters" element="tns:updatePayment" />
+  </message>
+  <message name="updatePaymentResponse">
+    <part name="parameters" element="tns:updatePaymentResponse" />
+  </message>
+  <message name="insertIntoInstallationApproval">
+    <part name="parameters" element="tns:insertIntoInstallationApproval" />
+  </message>
+  <message name="insertIntoInstallationApprovalResponse">
+    <part name="parameters" element="tns:insertIntoInstallationApprovalResponse" />
+  </message>
+  <portType name="InstallationAppService">
+    <operation name="updateQueryReply">
+      <input message="tns:updateQueryReply" />
+      <output message="tns:updateQueryReplyResponse" />
+    </operation>
+    <operation name="updatePayment">
+      <input message="tns:updatePayment" />
+      <output message="tns:updatePaymentResponse" />
+    </operation>
+    <operation name="insertIntoInstallationApproval">
+      <input message="tns:insertIntoInstallationApproval" />
+      <output message="tns:insertIntoInstallationApprovalResponse" />
+    </operation>
+  </portType>
+  <binding name="InstallationAppServiceImplPortBinding" type="tns:InstallationAppService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="updateQueryReply">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="updatePayment">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertIntoInstallationApproval">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="InstallationAppServiceImplService">
+    <port name="InstallationAppServiceImplPort" binding="tns:InstallationAppServiceImplPortBinding">
+      <soap:address location="http://tsceigws.cgg.gov.in:80/ceigWebServiceCFE" />
+    </port>
+  </service>
+</definitions>

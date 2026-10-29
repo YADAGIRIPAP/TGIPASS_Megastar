@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns="http://services.webservice.tsiic.com" xmlns:ns1="http://org.apache.axis2/xsd" targetNamespace="http://services.webservice.tsiic.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation>
+		It provides vacant plots, fee particulars info based on district and industrial parks.
+	</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://services.webservice.tsiic.com">
+      <xs:element name="getVacantPlots">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="industrialPark" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getVacantPlotsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getPlotPrice">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="dist" type="xs:int" />
+            <xs:element name="industrialPark" type="xs:int" />
+            <xs:element name="plot_id" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getPlotPriceResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:double" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getPlotArea">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="dist" type="xs:int" />
+            <xs:element name="industrialPark" type="xs:int" />
+            <xs:element name="plot" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getPlotAreaResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:double" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getIndustrialParks">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="district" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getIndustrialParksResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getDistricts">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getDistrictsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getDistrictsRequest">
+    <wsdl:part name="parameters" element="ns:getDistricts" />
+  </wsdl:message>
+  <wsdl:message name="getDistrictsResponse">
+    <wsdl:part name="parameters" element="ns:getDistrictsResponse" />
+  </wsdl:message>
+  <wsdl:message name="getVacantPlotsRequest">
+    <wsdl:part name="parameters" element="ns:getVacantPlots" />
+  </wsdl:message>
+  <wsdl:message name="getVacantPlotsResponse">
+    <wsdl:part name="parameters" element="ns:getVacantPlotsResponse" />
+  </wsdl:message>
+  <wsdl:message name="getIndustrialParksRequest">
+    <wsdl:part name="parameters" element="ns:getIndustrialParks" />
+  </wsdl:message>
+  <wsdl:message name="getIndustrialParksResponse">
+    <wsdl:part name="parameters" element="ns:getIndustrialParksResponse" />
+  </wsdl:message>
+  <wsdl:message name="getPlotPriceRequest">
+    <wsdl:part name="parameters" element="ns:getPlotPrice" />
+  </wsdl:message>
+  <wsdl:message name="getPlotPriceResponse">
+    <wsdl:part name="parameters" element="ns:getPlotPriceResponse" />
+  </wsdl:message>
+  <wsdl:message name="getPlotAreaRequest">
+    <wsdl:part name="parameters" element="ns:getPlotArea" />
+  </wsdl:message>
+  <wsdl:message name="getPlotAreaResponse">
+    <wsdl:part name="parameters" element="ns:getPlotAreaResponse" />
+  </wsdl:message>
+  <wsdl:portType name="TSPlotDetailsServicePortType">
+    <wsdl:operation name="getDistricts">
+      <wsdl:input wsaw:Action="urn:getDistricts" message="ns:getDistrictsRequest" />
+      <wsdl:output wsaw:Action="urn:getDistrictsResponse" message="ns:getDistrictsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getVacantPlots">
+      <wsdl:input wsaw:Action="urn:getVacantPlots" message="ns:getVacantPlotsRequest" />
+      <wsdl:output wsaw:Action="urn:getVacantPlotsResponse" message="ns:getVacantPlotsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getIndustrialParks">
+      <wsdl:input wsaw:Action="urn:getIndustrialParks" message="ns:getIndustrialParksRequest" />
+      <wsdl:output wsaw:Action="urn:getIndustrialParksResponse" message="ns:getIndustrialParksResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getPlotPrice">
+      <wsdl:input wsaw:Action="urn:getPlotPrice" message="ns:getPlotPriceRequest" />
+      <wsdl:output wsaw:Action="urn:getPlotPriceResponse" message="ns:getPlotPriceResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getPlotArea">
+      <wsdl:input wsaw:Action="urn:getPlotArea" message="ns:getPlotAreaRequest" />
+      <wsdl:output wsaw:Action="urn:getPlotAreaResponse" message="ns:getPlotAreaResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TSPlotDetailsServiceSoap11Binding" type="ns:TSPlotDetailsServicePortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getDistricts">
+      <soap:operation soapAction="urn:getDistricts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getVacantPlots">
+      <soap:operation soapAction="urn:getVacantPlots" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getIndustrialParks">
+      <soap:operation soapAction="urn:getIndustrialParks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPlotPrice">
+      <soap:operation soapAction="urn:getPlotPrice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPlotArea">
+      <soap:operation soapAction="urn:getPlotArea" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TSPlotDetailsServiceSoap12Binding" type="ns:TSPlotDetailsServicePortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getDistricts">
+      <soap12:operation soapAction="urn:getDistricts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getVacantPlots">
+      <soap12:operation soapAction="urn:getVacantPlots" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getIndustrialParks">
+      <soap12:operation soapAction="urn:getIndustrialParks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPlotPrice">
+      <soap12:operation soapAction="urn:getPlotPrice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPlotArea">
+      <soap12:operation soapAction="urn:getPlotArea" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TSPlotDetailsServiceHttpBinding" type="ns:TSPlotDetailsServicePortType">
+    <http:binding verb="POST" />
+    <wsdl:operation name="getDistricts">
+      <http:operation location="getDistricts" />
+      <wsdl:input>
+        <mime:content part="parameters" type="application/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="application/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getVacantPlots">
+      <http:operation location="getVacantPlots" />
+      <wsdl:input>
+        <mime:content part="parameters" type="application/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="application/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getIndustrialParks">
+      <http:operation location="getIndustrialParks" />
+      <wsdl:input>
+        <mime:content part="parameters" type="application/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="application/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPlotPrice">
+      <http:operation location="getPlotPrice" />
+      <wsdl:input>
+        <mime:content part="parameters" type="application/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="application/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPlotArea">
+      <http:operation location="getPlotArea" />
+      <wsdl:input>
+        <mime:content part="parameters" type="application/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="application/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TSPlotDetailsService">
+    <wsdl:port name="TSPlotDetailsServiceHttpSoap11Endpoint" binding="ns:TSPlotDetailsServiceSoap11Binding">
+      <soap:address location="http://tsiicwebservices.cgg.gov.in:8080/services/TSPlotDetailsService.TSPlotDetailsServiceHttpSoap11Endpoint/" />
+    </wsdl:port>
+    <wsdl:port name="TSPlotDetailsServiceHttpsSoap11Endpoint" binding="ns:TSPlotDetailsServiceSoap11Binding">
+      <soap:address location="https://tsiicwebservices.cgg.gov.in:8443/services/TSPlotDetailsService.TSPlotDetailsServiceHttpsSoap11Endpoint/" />
+    </wsdl:port>
+    <wsdl:port name="TSPlotDetailsServiceHttpSoap12Endpoint" binding="ns:TSPlotDetailsServiceSoap12Binding">
+      <soap12:address location="http://tsiicwebservices.cgg.gov.in:8080/services/TSPlotDetailsService.TSPlotDetailsServiceHttpSoap12Endpoint/" />
+    </wsdl:port>
+    <wsdl:port name="TSPlotDetailsServiceHttpsSoap12Endpoint" binding="ns:TSPlotDetailsServiceSoap12Binding">
+      <soap12:address location="https://tsiicwebservices.cgg.gov.in:8443/services/TSPlotDetailsService.TSPlotDetailsServiceHttpsSoap12Endpoint/" />
+    </wsdl:port>
+    <wsdl:port name="TSPlotDetailsServiceHttpEndpoint" binding="ns:TSPlotDetailsServiceHttpBinding">
+      <http:address location="http://tsiicwebservices.cgg.gov.in:8080/services/TSPlotDetailsService.TSPlotDetailsServiceHttpEndpoint/" />
+    </wsdl:port>
+    <wsdl:port name="TSPlotDetailsServiceHttpsEndpoint" binding="ns:TSPlotDetailsServiceHttpBinding">
+      <http:address location="https://tsiicwebservices.cgg.gov.in:8443/services/TSPlotDetailsService.TSPlotDetailsServiceHttpsEndpoint/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

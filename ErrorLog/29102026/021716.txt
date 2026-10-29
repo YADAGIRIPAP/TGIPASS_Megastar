@@ -1,0 +1,21 @@
+Error Message:A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+User:Session Expired
+Form Name:IncentiveRegistrationViewDocsNew.aspx
+Date:29-Oct-26
+Time:02:17:16
+IP Address:10.0.0.206
+HostName: TG-IPASS-APP
+InnerException: System.ComponentModel.Win32Exception (0x80004005): The network path was not found
+StatckTrace:    at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at DataAccessLayer.SqlHelper.PrepareCommand(SqlCommand command, SqlConnection connection, SqlTransaction transaction, CommandType commandType, String commandText, SqlParameter[] commandParameters, Boolean& mustCloseConnection)
+   at DataAccessLayer.SqlHelper.ExecuteDataset(SqlConnection connection, CommandType commandType, String commandText, SqlParameter[] commandParameters)
+   at DataAccessLayer.SqlHelper.ExecuteDataset(SqlConnection connection, CommandType commandType, String commandText)
+   at DataAccessLayer.SqlHelper.ExecuteDataset(SqlConnection connection, String spName, Object[] parameterValues)
+   at BusinessLogic.Fetch.FetchCategory()
+   at IncentiveRegistrationViewDocsNew.Page_Load(Object sender, EventArgs e)

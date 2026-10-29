@@ -1,0 +1,1272 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using BusinessLogic;
+using System.Data;
+
+public partial class UI_TSiPASS_IncetivesNewForm : System.Web.UI.Page
+{
+    int delete = 0;
+    comFunctions cmf = new comFunctions();
+    General Gen = new General();
+    Fetch objFetch = new Fetch();
+
+    DataTable dtorg = new DataTable();
+    DataSet dsdorg = new DataSet();
+
+    DataRow dtrdr;
+    DataTable myDtNewRecdr = new DataTable();
+
+    static DataTable dtMyTable;
+
+    DataRow dtr;
+    static DataTable dtMyTablepr;
+    static DataTable dtMyTableCertificate;
+
+    DataRow dtrdr1;
+    DataTable myDtNewRecdr1 = new DataTable();
+
+    DataRow dtrdr2;
+    DataTable myDtNewRecdr2 = new DataTable();
+
+    DataRow dtrdr3;
+    DataTable myDtNewRecdr3 = new DataTable();
+
+    DataRow dtrdr4;
+    DataTable myDtNewRecdr4 = new DataTable();
+
+    static DataTable dtMyTable1;
+
+    DataRow dtr1;
+    static DataTable dtMyTablepr1;
+    static DataTable dtMyTableCertificate1;
+    static DataTable dtMyTableCertificate2;
+    static DataTable dtMyTableCertificate3;
+    static DataTable dtMyTableCertificate5;
+
+    IncentivesVOs objvo = new IncentivesVOs();
+    IncentiveVosA objvoA = new IncentiveVosA();
+    int orgtypevalue = 0;
+    string orgtypetext = "";
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (Session["uid"] != null)
+        {
+            if (Request.QueryString["intApplicationId"] != null)
+            {
+                hdfFlagID.Value = Request.QueryString["intApplicationId"];
+            }
+            objvo.User_Id = Session["uid"].ToString();
+            string uname = Session["username"].ToString();
+            if (!IsPostBack)
+            {
+                trfalse.Visible = false;
+                MainView.ActiveViewIndex = 0;
+                DataSet ds = new DataSet();
+                //objvo1.edp = gvCertificate.Rows[0].Cells[0].Text;
+                BindConstitutionUnit();
+                BindDistricts();
+                BindDistricts1();
+
+
+                cmf.BindCtlto(true, ddlBank, objFetch.FetchBankMst(), 1, 0, false);
+                cmf.BindCtlto(true, ddlCategory, objFetch.FetchCategory(), 1, 0, false);
+                cmf.BindCtlto(true, ddlintLineofActivity, objFetch.FetchLineofActivity(), 1, 0, false);
+                //cmf.BindCtlto(true, ddlOrgType, objFetch.FetchConstitutionUnit(), 1, 0, false);               
+
+                //orgtypevalue = dtconstitution.Rows[i]["CunitId"].ToString();
+                //orgtypetext = dtconstitution.Rows[i]["ConstitutionUnit"].ToString();
+
+                //DataSet dsaap = new DataSet();
+                //dsaap = Gen.GetNatureofAssets();
+                //gvapproval.DataSource = dsaap;
+                //gvapproval.DataBind();
+
+                AssignValuesAndSetValuesifExists(objvo.User_Id);
+
+                dtMyTableCertificate = createtablecrtificate1();
+                Session["CertificateTb2"] = dtMyTableCertificate;
+
+                //dtMyTableCertificate1 = createtablecrtificate1();
+                //Session["CertificateTb1"] = dtMyTableCertificate1;
+
+                //dtMyTableCertificate2 = createtablecrtificate1();
+                //Session["CertificateTb3"] = dtMyTableCertificate2;
+
+                dtMyTableCertificate3 = createtablecrtificate1();
+                Session["CertificateTb4"] = dtMyTableCertificate3;
+
+                //dtMyTableCertificate5 = createtablecrtificate1();
+                //Session["CertificateTb5"] = dtMyTableCertificate5;
+
+                txtschema.Text = Convert.ToInt32("0").ToString();
+                txtamount.Text = Convert.ToInt32("0").ToString();
+
+                txtsecondhndmachine.Text = Convert.ToInt32("0").ToString();
+                txtnewmachine.Text = Convert.ToInt32("0").ToString();
+                txtTotalvalue12.Text = Convert.ToInt32("0").ToString();
+                txtpercentage12.Text = Convert.ToInt32("0").ToString();
+                txtmachinepucr.Text = Convert.ToInt32("0").ToString();
+                txttotal25.Text = Convert.ToInt32("0").ToString();
+            }
+        }
+    }
+    protected void ddlPower_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddlPower.SelectedIndex == 0)
+        {
+            powertr.Visible = false;
+        }
+        else
+        {
+            powertr.Visible = true;
+        }
+    }
+    protected void btnInstalledcap_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            if ((hdfID.Value.Trim() == "" && hdfFlagID.Value == "0") || (hdfID.Value.Trim() == "" && hdfFlagID.Value == "0") || (hdfID.Value.Trim() == "" && hdfFlagID.Value == "0") || (hdfID.Value.Trim() == "" && hdfFlagID.Value == ""))
+            {
+                AddDataToTableCeertificate(txtLOActivity.Text, txtunit.Text, txtinstalledccap.Text, txtvalue.Text, Session["uid"].ToString(), "", "", (DataTable)Session["CertificateTb2"]);
+
+                this.gvInstalledCap.DataSource = ((DataTable)Session["CertificateTb2"]).DefaultView;
+                this.gvInstalledCap.DataBind();
+                ClearTxt();
+            }
+            else
+                if (hdfID.Value.Trim() != "" && hdfFlagID.Value == "2")
+            {
+                AddDataToTableCeertificate(txtLOActivity.Text, txtunit.Text, txtinstalledccap.Text, txtvalue.Text, Session["uid"].ToString(), "", "", (DataTable)Session["CertificateTb2"]);
+                this.gvInstalledCap.DataSource = ((DataTable)Session["CertificateTb2"]).DefaultView;
+                this.gvInstalledCap.DataBind();
+                ClearTxt();
+            }
+        }
+        catch (Exception ee)
+        {
+            throw ee;
+        }
+    }
+    protected void ddlindustryStatus_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        try
+        {
+            if (ddlIndustryStatus.SelectedItem.ToString() == "New Industry")
+            {
+                trNewIndustry.Visible = true;
+                trexpansion.Visible = false;
+            }
+            else if (ddlIndustryStatus.SelectedItem.ToString() == "Expansion")
+            {
+                trNewIndustry.Visible = false;
+                trexpansion.Visible = true;
+                lblexpan1.Text = "";
+                lblexpan2.Text = "";
+                lblexpan3.Text = "";
+                lblexpan1.Text = "EXPANSION";
+                lblexpan2.Text = "Expansion";
+                lblexpan3.Text = "Expansion";
+            }
+            else if (ddlIndustryStatus.SelectedItem.ToString() == "Diversification")
+            {
+                trNewIndustry.Visible = false;
+                trexpansion.Visible = true;
+                lblexpan1.Text = "";
+                lblexpan2.Text = "";
+                lblexpan3.Text = "";
+                lblexpan1.Text = "DIVERSIFICATION";
+                lblexpan2.Text = "Diversification";
+                lblexpan3.Text = "Diversification";
+            }
+            else
+            {
+                trNewIndustry.Visible = false;
+                trexpansion.Visible = false;
+            }
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+    protected void gvInstalledCap_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        try
+        {
+            if ((hdfFlagID.Value.Trim() == "" && hdfFlagID.Value == "0") || (hdfFlagID.Value.Trim() == "" && hdfFlagID.Value == "0") || (hdfFlagID.Value.Trim() == "" && hdfFlagID.Value == "0") || (hdfFlagID.Value.Trim() == "" && hdfFlagID.Value == ""))
+            {
+                ((DataTable)Session["CertificateTb2"]).Rows.RemoveAt(e.RowIndex);
+
+                this.gvInstalledCap.DataSource = ((DataTable)Session["CertificateTb2"]).DefaultView;
+                this.gvInstalledCap.DataBind();
+            }
+            else
+            {
+                if (hdfFlagID.Value.Trim() != "")
+                {
+                    try
+                    {
+                        string traineetradesnames = gvInstalledCap.DataKeys[e.RowIndex].Values["intLineofActivityMid"].ToString();
+                        DataSet dsna = new DataSet();
+                        int i1 = Gen.deleteGroupSavingData1(traineetradesnames);
+
+                        ((DataTable)Session["CertificateTb2"]).Rows.RemoveAt(e.RowIndex);
+                        this.gvInstalledCap.DataSource = ((DataTable)Session["CertificateTb2"]).DefaultView;
+                        this.gvInstalledCap.DataBind();
+                    }
+                    catch (Exception eee)
+                    {
+                        throw eee;
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+    protected void gvInstalledCap_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+
+    }
+    protected DataTable createtablecrtificate1()
+    {
+        dtMyTable1 = new DataTable("CertificateTb1");
+
+        dtMyTable1.Columns.Add("new", typeof(string));
+        dtMyTable1.Columns.Add("Column1", typeof(string));
+        dtMyTable1.Columns.Add("Column2", typeof(string));
+        dtMyTable1.Columns.Add("Column3", typeof(string));
+        dtMyTable1.Columns.Add("Column4", typeof(string));
+        dtMyTable1.Columns.Add("Column5", typeof(string));
+        dtMyTable1.Columns.Add("Column6", typeof(string));
+        dtMyTable1.Columns.Add("Column7", typeof(string));
+        dtMyTable1.Columns.Add("Created_by", typeof(string));
+
+        dtMyTable1.Columns.Add("intLineofActivityMid", typeof(string));
+
+        return dtMyTable1;
+    }
+    private void AddDataToTableCeertificate(string intQuessionaireid, string intCFEEnterpid, string Manf_ItemName, string Manf_Item_Quantity, string Manf_Item_Quantity_In, string Manf_Item_Quantity_Per, string OtherItemName, DataTable myTable)
+    {
+        try
+        {
+            DataRow Row;
+            Row = myTable.NewRow();
+
+            dtMyTable = new DataTable("CertificateTb2");
+
+            Row["new"] = "0";
+            Row["Column1"] = intQuessionaireid;
+            Row["Column2"] = intCFEEnterpid;
+            Row["Column3"] = Manf_ItemName;
+            Row["Column4"] = Manf_Item_Quantity;
+            Row["Column5"] = Manf_Item_Quantity_In;
+            Row["Column6"] = Manf_Item_Quantity_Per;
+            Row["Column7"] = OtherItemName;
+            Row["Created_by"] = Session["uid"].ToString().Trim();
+
+            Row["intLineofActivityMid"] = "0";
+
+            myTable.Rows.Add(Row);
+        }
+        catch (Exception ee)
+        {
+            throw ee;
+        }
+    }
+    protected void GridView3_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+
+    }
+    protected void GridView3_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        try
+        {
+            if ((hdfFlagID.Value.Trim() == "" && hdfFlagID.Value == "0") || (hdfFlagID.Value.Trim() == "" && hdfFlagID.Value == "0") || (hdfFlagID.Value.Trim() == "" && hdfFlagID.Value == "0") || (hdfFlagID.Value.Trim() == "" && hdfFlagID.Value == ""))
+            {
+                ((DataTable)Session["CertificateTb4"]).Rows.RemoveAt(e.RowIndex);
+
+                this.GridView3.DataSource = ((DataTable)Session["CertificateTb4"]).DefaultView;
+                this.GridView3.DataBind();
+            }
+            else
+            {
+                if (hdfFlagID.Value.Trim() != "")
+                {
+                    try
+                    {
+                        string traineetradesnames = GridView3.DataKeys[e.RowIndex].Values["intLineofActivityMid"].ToString();
+                        DataSet dsna = new DataSet();
+                        int i1 = Gen.deleteGroupSavingData1(traineetradesnames);
+
+                        ((DataTable)Session["CertificateTb4"]).Rows.RemoveAt(e.RowIndex);
+                        this.GridView3.DataSource = ((DataTable)Session["CertificateTb4"]).DefaultView;
+                        this.GridView3.DataBind();
+                    }
+                    catch (Exception eee)
+                    {
+                        throw eee;
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+    protected void Button5_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            if ((hdfID.Value.Trim() == "" && hdfFlagID.Value == "0") || (hdfID.Value.Trim() == "" && hdfFlagID.Value == "0") || (hdfID.Value.Trim() == "" && hdfFlagID.Value == "0") || (hdfID.Value.Trim() == "" && hdfFlagID.Value == ""))
+            {
+                AddDataToTableCeertificate(txtnamedparter.Text, txtcommunity.Text, txtshare.Text, txtpercentage.Text, "", "", "", (DataTable)Session["CertificateTb4"]);
+
+                this.GridView3.DataSource = ((DataTable)Session["CertificateTb4"]).DefaultView;
+                this.GridView3.DataBind();
+                ClearTxt();
+            }
+            else if (hdfID.Value.Trim() != "" && hdfFlagID.Value == "2")
+            {
+                AddDataToTableCeertificate(txtnamedparter.Text, txtcommunity.Text, txtshare.Text, txtpercentage.Text, "", "", "", (DataTable)Session["CertificateTb4"]);
+                this.GridView3.DataSource = ((DataTable)Session["CertificateTb4"]).DefaultView;
+                this.GridView3.DataBind();
+                ClearTxt();
+            }
+        }
+        catch (Exception ee)
+        {
+            throw ee;
+        }
+    }
+    public void ClearTxt()
+    {
+        txtLOActivity.Text = "";
+        txtunit.Text = "";
+        txtinstalledccap.Text = "";
+        txtvalue.Text = "";
+
+        //ddlExpansionList.SelectedValue = "0";
+        //txtinstalledCap.Text = "";
+        //txtpercentageExp.Text = "";
+        //txtlineactivity.Text = "";
+
+        //ddlAssets.SelectedValue = "0";
+        //txtExpDivers.Text = "";
+        //txtExEntr.Text = "";
+        //txtpercentageDivr.Text = "";
+
+        txtnamedparter.Text = "";
+        txtcommunity.Text = "";
+        txtshare.Text = "";
+        txtpercentage.Text = "";
+
+        //ddlasstsname.SelectedValue = "0";
+        //txtLnSactionedApproval.Text = "";
+        //txtlnAmntrels.Text = "";
+        //txtvaluesets.Text = "";
+        //txtprojectcost.Text = "";
+        //txtlnsactionedEquity.Text = "";
+        //txtValueFinInst.Text = "";
+    }
+    public void BindDistricts()
+    {
+        try
+        {
+            DataSet dsd = new DataSet();
+            ddlUnitDIst.Items.Clear();
+            dsd = Gen.GetDistrictsWithoutHYD();
+            if (dsd != null && dsd.Tables.Count > 0 && dsd.Tables[0].Rows.Count > 0)
+            {
+                ddlUnitDIst.DataSource = dsd.Tables[0];
+                ddlUnitDIst.DataValueField = "District_Id";
+                ddlUnitDIst.DataTextField = "District_Name";
+                ddlUnitDIst.DataBind();
+                ddlUnitDIst.Items.Insert(0, "--District--");
+            }
+            else
+            {
+                ddlUnitDIst.Items.Insert(0, "--District--");
+            }
+        }
+        catch (Exception ex)
+        {
+            //lblerror.Text = ex.Message;
+            //lblerror.CssClass = "errormsg";
+        }
+    }
+    public void BindDistricts1()
+    {
+        try
+        {
+            DataSet dsd = new DataSet();
+            ddlOffcDIst.Items.Clear();
+            dsd = Gen.GetDistrictsWithoutHYD();
+            if (dsd != null && dsd.Tables.Count > 0 && dsd.Tables[0].Rows.Count > 0)
+            {
+                ddlOffcDIst.DataSource = dsd.Tables[0];
+                ddlOffcDIst.DataValueField = "District_Id";
+                ddlOffcDIst.DataTextField = "District_Name";
+                ddlOffcDIst.DataBind();
+                ddlOffcDIst.Items.Insert(0, "--District--");
+            }
+            else
+            {
+                ddlOffcDIst.Items.Insert(0, "--District--");
+            }
+        }
+        catch (Exception ex)
+        {
+            //lblerror.Text = ex.Message;
+            //lblerror.CssClass = "errormsg";
+        }
+    }
+
+    protected void ddldistrictunit_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddlUnitDIst.SelectedIndex == 0)
+        {
+            ddlUnitMandal.Items.Clear();
+            ddlUnitMandal.Items.Insert(0, "--Mandal--");
+            //ChkWater_reg_from.Items.Clear();
+            //ChkWater_reg_from.Items.Insert(0, new ListItem("New Bore well", "New Bore well"));
+            //ChkWater_reg_from.Items.Insert(1, new ListItem("HMWS & SB", "HMWS & SB"));
+            //ChkWater_reg_from.Items.Insert(2, new ListItem("Rivers/Canals", "Rivers/Canals"));
+        }
+        else
+        {
+            ddlUnitMandal.Items.Clear();
+            DataSet dsm = new DataSet();
+            // added newly for testing only 
+            if (ddlUnitDIst.SelectedValue == "Medchal")
+            {
+                ddlUnitDIst.SelectedValue = "20";
+            }
+
+            dsm = Gen.GetMandals(ddlUnitDIst.SelectedValue);
+            if (dsm.Tables[0].Rows.Count > 0)
+            {
+                ddlUnitMandal.DataSource = dsm.Tables[0];
+                ddlUnitMandal.DataValueField = "Mandal_Id";
+                ddlUnitMandal.DataTextField = "Manda_lName";
+                ddlUnitMandal.DataBind();
+                ddlUnitMandal.Items.Insert(0, "--Mandal--");
+            }
+            else
+            {
+                ddlUnitMandal.Items.Clear();
+                ddlUnitMandal.Items.Insert(0, "--Mandal--");
+            }
+        }
+    }
+    protected void ddlUnitMandal_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddlUnitMandal.SelectedIndex == 0)
+        {
+
+            ddlVillageunit.Items.Clear();
+            ddlVillageunit.Items.Insert(0, "--Village--");
+        }
+        else
+        {
+            ddlVillageunit.Items.Clear();
+            DataSet dsv = new DataSet();
+            dsv = Gen.GetVillages(ddlUnitMandal.SelectedValue);
+            if (dsv.Tables[0].Rows.Count > 0)
+            {
+                ddlVillageunit.DataSource = dsv.Tables[0];
+                ddlVillageunit.DataValueField = "Village_Id";
+                ddlVillageunit.DataTextField = "Village_Name";
+                ddlVillageunit.DataBind();
+                ddlVillageunit.Items.Insert(0, "--Village--");
+            }
+            else
+            {
+                ddlVillageunit.Items.Clear();
+                ddlVillageunit.Items.Insert(0, "--Village--");
+            }
+        }
+    }
+    protected void ddldistrictoffc_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddlOffcDIst.SelectedIndex == 0)
+        {
+            ddlOffcMandal.Items.Clear();
+            ddlOffcMandal.Items.Insert(0, "--Mandal--");
+            //ChkWater_reg_from.Items.Clear();
+            //ChkWater_reg_from.Items.Insert(0, new ListItem("New Bore well", "New Bore well"));
+            //ChkWater_reg_from.Items.Insert(1, new ListItem("HMWS & SB", "HMWS & SB"));
+            //ChkWater_reg_from.Items.Insert(2, new ListItem("Rivers/Canals", "Rivers/Canals"));
+        }
+        else
+        {
+            ddlOffcMandal.Items.Clear();
+            DataSet dsm = new DataSet();
+            dsm = Gen.GetMandals(ddlOffcDIst.SelectedValue);
+            if (dsm.Tables[0].Rows.Count > 0)
+            {
+                ddlOffcMandal.DataSource = dsm.Tables[0];
+                ddlOffcMandal.DataValueField = "Mandal_Id";
+                ddlOffcMandal.DataTextField = "Manda_lName";
+                ddlOffcMandal.DataBind();
+                ddlOffcMandal.Items.Insert(0, "--Mandal--");
+            }
+            else
+            {
+                ddlOffcMandal.Items.Clear();
+                ddlOffcMandal.Items.Insert(0, "--Mandal--");
+            }
+        }
+    }
+    protected void ddloffcmandal_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddlOffcMandal.SelectedIndex == 0)
+        {
+
+            ddlUnitMandal.Items.Clear();
+            ddlUnitMandal.Items.Insert(0, "--Village--");
+        }
+        else
+        {
+            ddlOffcVil.Items.Clear();
+            DataSet dsv = new DataSet();
+            dsv = Gen.GetVillages(ddlOffcMandal.SelectedValue);
+            if (dsv.Tables[0].Rows.Count > 0)
+            {
+                ddlOffcVil.DataSource = dsv.Tables[0];
+                ddlOffcVil.DataValueField = "Village_Id";
+                ddlOffcVil.DataTextField = "Village_Name";
+                ddlOffcVil.DataBind();
+                ddlOffcVil.Items.Insert(0, "--Village--");
+            }
+            else
+            {
+                ddlOffcVil.Items.Clear();
+                ddlOffcVil.Items.Insert(0, "--Village--");
+            }
+        }
+    }
+    protected void GetNewRectoInsertdr()
+    {
+        myDtNewRecdr = (DataTable)Session["CertificateTb2"];
+        DataView dvdr = new DataView(myDtNewRecdr);
+        myDtNewRecdr = dvdr.ToTable();
+    }
+    protected void GetNewRectoInsertdr1()
+    {
+        myDtNewRecdr1 = (DataTable)Session["CertificateTb4"];
+        DataView dvdr1 = new DataView(myDtNewRecdr1);
+        myDtNewRecdr1 = dvdr1.ToTable();
+
+    }
+    protected void GetNewRectoInsertdr2()
+    {
+        myDtNewRecdr2 = (DataTable)Session["CertificateTb3"];
+        DataView dvdr2 = new DataView(myDtNewRecdr2);
+        myDtNewRecdr2 = dvdr2.ToTable();
+    }
+    protected void GetNewRectoInsertdr3()
+    {
+        myDtNewRecdr3 = (DataTable)Session["CertificateTb4"];
+        DataView dvdr3 = new DataView(myDtNewRecdr3);
+        myDtNewRecdr3 = dvdr3.ToTable();
+    }
+    protected void GetNewRectoInsertdr4()
+    {
+        myDtNewRecdr4 = (DataTable)Session["CertificateTb5"];
+        DataView dvdr4 = new DataView(myDtNewRecdr4);
+        myDtNewRecdr4 = dvdr4.ToTable();
+    }
+    public void SetValuesToControls()
+    {
+        try
+        {
+            if (objvo.UnitName != "")
+            {
+                txtUser_Id.Text = objvo.UnitName;
+                txtUser_Id.Enabled = false;
+            }
+            if (objvo.ApplciantName != "")
+            {
+                txtApplciantName.Text = objvo.ApplciantName;
+                txtApplciantName.Enabled = false;
+            }
+            if (objvo.PanNo != "")
+            {
+                txtPanNo.Text = objvo.PanNo;
+                txtPanNo.Enabled = false;
+            }
+
+            if (objvo.UnitDIst != "")
+            {
+                ddlUnitDIst.SelectedItem.Text = objvo.UnitDIst;
+                ddlUnitDIst.SelectedValue = Session["unitdistid"].ToString();
+                ddlUnitDIst.Enabled = false;
+            }
+            if (objvo.UnitMandal != "")
+            {
+                ddlUnitMandal.SelectedItem.Text = objvo.UnitMandal;
+                ddlUnitMandal.SelectedValue = Session["unitmandalid"].ToString();
+                ddlUnitMandal.Enabled = false;
+            }
+            if (objvo.UnitVill != "")
+            {
+                ddlVillageunit.SelectedItem.Text = objvo.UnitVill;
+                ddlVillageunit.SelectedValue = Session["unitvillageid"].ToString();
+                ddlVillageunit.Enabled = false;
+            }
+            if (objvo.Category != "")
+            {
+                ddlCategory.SelectedValue = objvo.Category;
+                ddlCategory.Enabled = false;
+            }
+            // added newly 
+            if (objvo.OrgType != "")
+            {
+                ddlOrgType.SelectedItem.Text = objvo.OrgType;
+                //ddlOrgType.Enabled = false;
+            }
+
+            if (objvo.SocialStatus != "")
+            {
+                rblCaste.SelectedValue = objvo.SocialStatus;
+                rblCaste.Enabled = true;
+            }
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+    public void AssignValuesAndSetValuesifExists(string userid)
+    {
+        DataSet ds = new DataSet();
+        try
+        {
+            ds = Gen.GetIncentivesdata(userid);
+
+            if (ds.Tables != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                objvo.UnitName = ds.Tables[0].Rows[0]["NameofIndustrialUnder"].ToString();
+                objvo.ApplciantName = ds.Tables[0].Rows[0]["NameofthePromoter"].ToString();
+                objvo.PanNo = ds.Tables[0].Rows[0]["PANcardno"].ToString();
+                objvo.UnitDIst = ds.Tables[0].Rows[0]["District_Name"].ToString();
+                objvo.UnitDIstId = ds.Tables[0].Rows[0]["District_Id"].ToString();
+                Session["unitdistid"] = objvo.UnitDIstId;
+                objvo.UnitMandal = ds.Tables[0].Rows[0]["Manda_lName"].ToString();
+                objvo.UnitMandalId = ds.Tables[0].Rows[0]["Mandal_Id"].ToString();
+                Session["unitmandalid"] = objvo.UnitMandalId;
+                objvo.UnitVill = ds.Tables[0].Rows[0]["Village_Name"].ToString();
+                objvo.UnitVillId = ds.Tables[0].Rows[0]["Village_Id"].ToString();
+                Session["unitvillageid"] = objvo.UnitVillId;
+                //objvo1.unithno = ds.Tables[0].Rows[0]["HNO"].ToString();
+                //objvo1.unitstreet = ds.Tables[0].Rows[0]["StreetName"].ToString();
+                objvo.Category = ds.Tables[0].Rows[0]["Category"].ToString();
+                //objvo1.ostatus = ds.Tables[0].Rows[0]["constitutionUnit"].ToString();
+                //objvo1.istatus = ds.Tables[0].Rows[0]["ProposalFor"].ToString();
+                objvo.SocialStatus = ds.Tables[0].Rows[0]["caste"].ToString();
+
+                // added newly on 15.05.2015
+                objvo.OrgType = ds.Tables[0].Rows[0]["constitutionUnit"].ToString();
+
+                SetValuesToControls();
+            }
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+    //Deepak
+    protected void BtnSave_Click(object sender, EventArgs e)
+    {
+        //if (((DataTable)Session["CertificateTb2"]).Rows.Count == 0 || gvInstalledCap.Rows.Count == 0)
+        //{
+        //    lblmsg0.Text = "<font color=red> Please Enter Line Of Acitvity</font>";
+
+        //    success.Visible = false;
+        //    Failure.Visible = true;
+        //    return;
+        //}
+
+        //if (((DataTable)Session["CertificateTb1"]).Rows.Count == 0 || GridView3.Rows.Count == 0)
+        //{
+        //    lblmsg0.Text = "<font color=red> Please Enter Line Of Acitvity</font>";
+
+        //    success.Visible = false;
+        //    Failure.Visible = true;
+        //    return;
+        //}
+
+        if (save())
+        {
+            lblmsg.Text = "<font color=Black>Application Submitted Sucessfully</font>";
+            success.Visible = true;
+            btnNext.Visible = true;
+            btnNext.PostBackUrl = "../../UI/Tsipass/TypeOfIncentivesNew.aspx";
+        }
+
+
+    }
+    public void AssignValuestoVosFromcontrols()
+    {
+        try
+        {
+            //section 1
+            objvo.User_Id = Session["uid"].ToString();
+            objvo.UnitName = txtUser_Id.Text;
+            objvo.ApplciantName = txtApplciantName.Text;
+
+            // added newly
+            objvo.TinNO = txtTinNO.Text;
+            //objvo.tinno = "TinNumber";
+            objvo.PanNo = txtPanNo.Text;
+
+            objvo.UnitDIst = ddlUnitDIst.SelectedItem.Text.ToString();
+            objvo.UnitDIstId = Session["unitdistid"].ToString();
+            objvo.UnitMandal = ddlUnitMandal.SelectedItem.Text.ToString();
+            objvo.UnitMandalId = Session["unitmandalid"].ToString();
+            objvo.UnitVill = ddlVillageunit.SelectedItem.Text.ToString();
+            objvo.UnitVillId = Session["unitvillageid"].ToString();
+            objvo.UnitHNO = txtUnitHNO.Text;
+            objvo.UnitStreet = txtUnitStreet.Text;
+
+            objvo.OffcDIst = ddlOffcDIst.SelectedValue;
+            objvo.OffcMandal = ddlOffcMandal.SelectedValue;
+            objvo.OffcVil = ddlOffcVil.SelectedValue;
+            objvo.OffcHNO = txtoffaddhnno.Text;
+            objvo.OffcStreet = txtOffcStreet.Text;
+
+            //section 2            
+            //objvo.OrgType = ddlOrgType.SelectedValue;
+            objvo.IdsustryStatus = ddlIndustryStatus.SelectedValue;
+
+            // 3.4 Date of Commencement of Production:
+            // 3.5 EM Part - II/IEM/IL No:
+
+            if (ddlIndustryStatus.SelectedItem.Text == "New Industry")
+            {
+                objvo.ExistingEnterpriseLOA = "0";
+                objvo.ExistingInstalledCapacityinEnter = "0";
+                objvo.ExistingPercentageincreaseunderExpansionORDiversification = "0";
+
+                objvo.ExpansionDiversificationLOA = "0";
+                objvo.ExpanORDiversInstalledCapacityinEnter = "0";
+                objvo.ExpanORDiversPercentIncreaseunderExpansionORDiversification = "0";
+            }
+            else
+            {
+                objvo.ExistingEnterpriseLOA = txteeploa.Text;
+                objvo.ExistingInstalledCapacityinEnter = txteepinscap.Text;
+                objvo.ExistingPercentageincreaseunderExpansionORDiversification = txteeppercentage.Text;
+
+                objvo.ExpansionDiversificationLOA = txtedploa.Text;
+                objvo.ExpanORDiversInstalledCapacityinEnter = txtedpinscap.Text;
+                objvo.ExpanORDiversPercentIncreaseunderExpansionORDiversification = txtedppercentage.Text;
+
+            }
+            objvo.ExistEnterpriseLand = txtlandexisting.Text;
+            objvo.ExpansionDiversificationLand = txtlandcapacity.Text;
+            objvo.LandFixedCapitalInvestPercentage = txtlandpercentage.Text;
+
+            objvo.ExistEnterpriseBuilding = txtbuildingexisting.Text;
+            objvo.ExpDiversBuilding = txtbuildingcapacity.Text;
+            objvo.BuildingFixedCapitalInvestPercentage = txtbuildingpercentage.Text;
+
+            objvo.ExistEnterprisePlantMachinery = txtplantexisting.Text;
+            objvo.ExpDiversPlantMachinery = txtplantcapacity.Text;
+            objvo.PlantMachFixedCapitalInvestPercentage = txtplantpercentage.Text;
+
+            //section 3
+            objvo.PowerReleaseDate = txtpowerdate.Text;
+            objvo.ConnectedLoad = txtcontractedload.Text;
+            objvo.ContractedLoad = txtconnectedload.Text;
+
+            objvo.ManagementStaffMale = txtstaffMale.Text;
+            objvo.ManagementStaffFemale = txtfemale.Text;
+            objvo.SupervisoryMale = txtsupermalecount.Text;
+            objvo.SupervisoryFemale = txtsuperfemalecount.Text;
+            objvo.WorkersMale = txtworkermalecount.Text;
+            objvo.WorkersFemale = txtworkerfemalecount.Text;
+
+            //Section 4
+            objvo.ProjectFinance = txtprjfinance.Text;
+            objvo.TermLoanApplDate = txttermload.Text;
+            objvo.InstitutionName = txtnmofinstitution.Text;
+            objvo.TermLoanSancRefNo = txtsactionedloan.Text;
+            // objvo.date = txtdatesome.Text;
+
+
+            //Section 5
+            objvoA.User_id = Session["uid"].ToString();
+            objvoA.LandApprovedProjectCost = txtLand2.Text;
+            objvoA.LandLoanSactioned = txtLand3.Text;
+            objvoA.LandPromotersEquity = txtLand4.Text;
+            objvoA.LandLoanAmountReleased = txtLand5.Text;
+            objvoA.LandAssetsValuebyFinInstitution = txtLand6.Text;
+            objvoA.LandAssetsValuebyCA = txtLand7.Text;
+
+            objvoA.BuildingApprovedProjectCost = txtBuilding2.Text;
+            objvoA.BuildingLoanSactioned = txtBuilding3.Text;
+            objvoA.BuildingPromotersEquity = txtBuilding4.Text;
+            objvoA.BuildingLoanAmountReleased = txtBuilding5.Text;
+            objvoA.BuildingAssetsValuebyFinInstitution = txtBuilding6.Text;
+            objvoA.BuildingAssetsValuebyCA = txtBuilding7.Text;
+
+            objvoA.PlantMachineryApprovedProjectCost = txtPM2.Text;
+            objvoA.PlantMachineryLoanSactioned = txtPM3.Text;
+            objvoA.PlantMachineryPromotersEquity = txtPM4.Text;
+            objvoA.PlantMachineryLoanAmountReleased = txtPM5.Text;
+            objvoA.PlantMachineryAssetsValuebyFinInstitution = txtPM6.Text;
+            objvoA.PlantMachineryAssetsValuebyCA = txtPM7.Text;
+
+            objvoA.MachineryContingenciesApprovedProjectCost = txtMCont2.Text;
+            objvoA.MachineryContingenciesLoanSactioned = txtMCont3.Text;
+            objvoA.MachineryContingenciesPromotersEquity = txtMCont4.Text;
+            objvoA.MachineryContingenciesLoanAmountReleased = txtMCont5.Text;
+            objvoA.MachineryContingenciesAssetsValuebyFinInstitution = txtMCont6.Text;
+            objvoA.MachineryContingenciesAssetsValuebyCA = txtMCont7.Text;
+
+            objvoA.ErectionApprovedProjectCost = txtErec2.Text;
+            objvoA.ErectionLoanSactioned = txtErec3.Text;
+            objvoA.ErectionPromotersEquity = txtErec4.Text;
+            objvoA.ErectionLoanAmountReleased = txtErec5.Text;
+            objvoA.ErectionAssetsValuebyFinInstitution = txtErec6.Text;
+            objvoA.ErectionAssetsValuebyCA = txtErec7.Text;
+
+            objvoA.TechnicalfeasibilityApprovedProjectCost = txtTFS2.Text;
+            objvoA.TechnicalfeasibilityLoanSactioned = txtTFS3.Text;
+            objvoA.TechnicalfeasibilityPromotersEquity = txtTFS4.Text;
+            objvoA.TechnicalfeasibilityLoanAmountReleased = txtTFS5.Text;
+            objvoA.TechnicalfeasibilityAssetsValuebyFinInstitution = txtTFS6.Text;
+            objvoA.TechnicalfeasibilityAssetsValuebyCA = txtTFS7.Text;
+
+            objvoA.WorkingCapitalApprovedProjectCost = txtWC2.Text;
+            objvoA.WorkingCapitalLoanSactioned = txtWC3.Text;
+            objvoA.WorkingCapitalPromotersEquity = txtWC4.Text;
+            objvoA.WorkingCapitalLoanAmountReleased = txtWC5.Text;
+            objvoA.WorkingCapitalAssetsValuebyFinInstitution = txtWC6.Text;
+            objvoA.WorkingCapitalAssetsValuebyCA = txtWC7.Text;
+
+            objvoA.created_by = "";
+            objvoA.created_dt = "";
+            objvoA.Modified_by = "";
+            objvoA.Modified_dt = "";
+
+            objvo.AvailedSubsidyEarlier = ddlsubsidy.SelectedItem.Text;
+            objvo.TotalSubsidyAlreadyAvailedScheme = txtschema.Text;
+            objvo.TotalSubsidyAlreadyAvailedAmount = txtamount.Text;
+
+            objvo.SecondHandMachVal = txtsecondhndmachine.Text;
+            objvo.NewMachVal = txtnewmachine.Text;
+            objvo.Newand2ndlMachTotVal = txtTotalvalue12.Text;
+            objvo.PercentageSHMValinTotMachVal = txtpercentage12.Text;
+            objvo.MachValPrchasedfromAPIDCorAPSFCBank = txtmachinepucr.Text;
+            objvo.TotalMachVal = txttotal25.Text;
+
+            // 11.0 VAT No.
+            // CST NO
+
+            objvo.InvestimentSubsidy = txtinvestmentsubsidy.Text;
+            objvo.AdditionalInvSubsidyForWomen = txtinvestmentsubsidywomen.Text;
+            objvo.AdditionalInvSubsidyForSCORST = txtinvestmentsubsidySCST.Text;
+            objvo.AdditionalInvSubsidyForWomenInScheduledAreas = txtinvestmentsubsidyareas.Text;
+            objvo.TotalAppliedIncetives = txttotall.Text;
+
+            // Bank Details
+
+            objvo.BankName = ddlBank.SelectedValue;
+            objvo.BranchName = txtBranchName.Text;
+            objvo.AccNo = txtAccNumber.Text;
+            objvo.IFSCCode = txtIfscCode.Text;
+            objvo.WhetherPower = ddlPower.SelectedItem.Text;
+            objvo.RequesttoDept = TxtRequesttoDepartment.Text;
+
+            // 
+            objvo.EMiUdyogAadhar = txtudyogAadharNo.Text;
+            objvo.natureOfAct = ddlintLineofActivity.SelectedValue;
+            objvo.sector = rblSector.SelectedValue;
+            objvo.NatureofBussiness = txtBussinessActivity.Text;
+            if (rblGHMC.SelectedIndex > -1)
+            { objvo.IsGHMCandOtherMuncpOrp = (rblGHMC.SelectedValue == "0" ? true : false); }
+
+            //objvo.IsGHMCandOtherMuncpOrp = Convert.ToBoolean(Convert.ToInt32(rblGHMC.SelectedValue));
+            //objvo.IsDifferentlyAbled = null;
+            objvo.isVehicleIncentive = (rblVeh.SelectedValue == "0" ? true : false);
+            //objvo.isVehicleIncentive =Convert.ToBoolean(Convert.ToInt32(rblVeh.SelectedValue)); 
+            objvo.Category = ddlCategory.SelectedValue;
+            objvo.SocialStatus = rblCaste.SelectedValue;
+            objvo.DateOfComm = txtDateofCommencement.Text;
+            objvo.Vatno = txtvatno.Text;
+            objvo.Cstno = txtcstno.Text;
+            objvo.MobileNo = txtMobileNo.Text;
+            objvo.EmailID = txtEmail.Text;
+            objvo.Gender = ddlgender.SelectedValue.ToString();
+            objvo.TypeofOrg = ddlOrgType.SelectedValue;
+            string TypeofOrg = ddlOrgType.SelectedItem.Text;
+
+
+            bool PHtest0 = Convert.ToBoolean(0);
+            bool PHtest1 = Convert.ToBoolean(1);
+
+            Session["Incentive_DateOfCommencement"] = objvo.DateOfComm;
+            Session["Incentive_isVehicle"] = objvo.isVehicleIncentive;
+            Session["Incentive_GHMC"] = objvo.IsGHMCandOtherMuncpOrp;
+            Session["Incentive_Caste"] = Convert.ToInt32(objvo.SocialStatus);
+            Session["Incentive_Sector"] = objvo.sector;
+            Session["Incentive_PHC"] = Convert.ToBoolean(0);
+            Session["Incentive_Category"] = Convert.ToInt32(objvo.Category);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+    public int SaveIncentiveDetailsFromGridViewToTable(string incentiveId)
+    {
+        int Value = 0;
+        int statuspr = 0;
+
+        if (((DataTable)Session["CertificateTb2"]).Rows.Count > 0)
+        {
+            GetNewRectoInsertdr();
+            statuspr = Gen.bulkInsertNewEnterPrise(myDtNewRecdr, incentiveId);
+        }
+        if (statuspr == 1)
+        {
+            statuspr = 0;
+            if (((DataTable)Session["CertificateTb4"]).Rows.Count > 0)
+            {
+                GetNewRectoInsertdr1();
+                statuspr = Gen.bulkInsertDirectorPartner(myDtNewRecdr1, incentiveId);
+
+            }
+        }
+        return statuspr;
+    }
+
+    protected void rblSector_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        try
+        {
+            ddlintLineofActivity.Visible = true;
+            txtBussinessActivity.Visible = false;
+            //trSectorVeh.Visible = false;
+            rblVeh.Items[0].Enabled = false;
+            //rblVeh.SelectedValue = "1";
+            //txtPlantandMachinery.Enabled = txtEquipment.Enabled = false;
+
+            switch (rblSector.SelectedValue)
+            {
+                case "1":
+                    txtBussinessActivity.Visible = true;
+                    ddlintLineofActivity.Visible = false;
+                    lblNatureofActitvity.Text = "Nature of Service Activity";
+                    rfvLineOfAct.ControlToValidate = "txtBussinessActivity";
+                    rfvLineOfAct.ErrorMessage = "Please Enter Nature of Service Activity";
+                    rfvLineOfAct.InitialValue = "";
+                    //txtEquipment.Enabled = trSectorVeh.Visible = true;
+                    //txtPlantandMachinery.Text = "0";
+                    if (rblCaste.SelectedValue == "3" || rblCaste.SelectedValue == "4" || cbDiffAbled.Checked)
+                    {
+                        rblVeh.Visible = true;
+                        trrblVeh.Visible = true;
+                        rblVeh.Items[0].Enabled = true;
+                    }
+                    break;
+                default:
+                    lblNatureofActitvity.Text = "Nature of Activity";
+                    rfvLineOfAct.ControlToValidate = "ddlintLineofActivity";
+                    rfvLineOfAct.InitialValue = "-- SELECT --";
+                    rblVeh.Visible = true; //= txtPlantandMachinery.Enabled
+                    trrblVeh.Visible = true;
+                    //txtEquipment.Text = "0";
+                    break;
+            }
+        }
+        catch (Exception ex) { Errors.ErrorLog(ex); }
+    }
+
+    protected void cbDiffAbled_CheckedChanged(object sender, EventArgs e)
+    {
+        try { rblSector_SelectedIndexChanged(sender, e); }
+        catch (Exception ex) { Errors.ErrorLog(ex); }
+    }
+    protected void btnNext_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            if (save())
+                Response.Redirect(btnNext.PostBackUrl, false);
+        }
+        catch (Exception ex)
+        { Errors.ErrorLog(ex); }
+    }
+
+    public bool save()
+    {
+        AssignValuestoVosFromcontrols();
+
+        string incentiveId = Gen.InsertCommonData(objvo);
+        Session["EntprIncentive"] = incentiveId;
+        if (incentiveId != "")
+        {
+            int valid = 0;
+            valid = SaveIncentiveDetailsFromGridViewToTable(incentiveId);
+            if (valid == 1)
+            {
+                objvoA.Incentive_id = incentiveId;
+                string out2 = Gen.SaveNameofAssets(objvoA);
+            }
+
+        }
+        return true;
+    }
+
+    protected void txtDateofCommencement_TextChanged(object sender, EventArgs e)
+    {
+        try
+        {
+            DateTime dat = Convert.ToDateTime(txtDateofCommencement.Text);
+            if (dat > DateTime.Now)
+            {
+                txtDateofCommencement.Focus();
+                lblmsg0.Text = "Future Date cannot be selected.";
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "AlertBox", "alert('Future Date cannot be selected');", true);
+            }
+        }
+        catch (Exception ex)
+        {
+            Errors.ErrorLog(ex);
+            txtDateofCommencement.Focus();
+            lblmsg0.Text = "Please Select Valid Date(dd-MMM-yyyy).";
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "AlertBox", "alert('Please Select Valid Date(dd-MMM-yyyy)');", true);
+        }
+    }
+    protected void BtnClear_Click(object sender, EventArgs e)
+    {
+        try { cmf.ClearControls(this.Page); }
+        catch (Exception ex) { Errors.ErrorLog(ex); }
+    }
+
+    protected void rblVeh_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        try
+        {
+
+        }
+        catch (Exception ex) { throw ex; }
+    }
+
+    protected void btntab1next_Click(object sender, EventArgs e)
+    {
+        Tab1.Attributes.Add("class", "");
+        Tab2.Attributes.Add("class", "active");
+        Tab3.Attributes.Add("class", "");
+        Tab4.Attributes.Add("class", "");
+        Tab5.Attributes.Add("class", "");
+        //Tab6.Attributes.Add("class", "");
+        MainView.ActiveViewIndex = 1;
+    }
+
+    protected void btntab2previous_Click(object sender, EventArgs e)
+    {
+        Tab1.Attributes.Add("class", "active");
+        Tab2.Attributes.Add("class", "");
+        Tab3.Attributes.Add("class", "");
+        Tab4.Attributes.Add("class", "");
+        Tab5.Attributes.Add("class", "");
+        //Tab6.Attributes.Add("class", "");
+        MainView.ActiveViewIndex = 0;
+    }
+
+    protected void btntab2next_Click(object sender, EventArgs e)
+    {
+        if (gvInstalledCap.Visible == false)
+        {
+            //if (txtLOActivity.Text != "" && txtunit.Text != "" && txtinstalledccap.Text != "" && txtvalue.Text != "")
+            //{
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "AlertBox", "alert('Please enter New Enterprise Details and click on Add button');", true);
+                return;
+            //}
+        }
+
+        Tab1.Attributes.Add("class", "");
+        Tab2.Attributes.Add("class", "");
+        Tab3.Attributes.Add("class", "active");
+        Tab4.Attributes.Add("class", "");
+        Tab5.Attributes.Add("class", "");
+        //Tab6.Attributes.Add("class", "");
+        MainView.ActiveViewIndex = 2;
+    }
+
+    protected void btntab3previous_Click(object sender, EventArgs e)
+    {
+        Tab1.Attributes.Add("class", "");
+        Tab2.Attributes.Add("class", "active");
+        Tab3.Attributes.Add("class", "");
+        Tab4.Attributes.Add("class", "");
+        Tab5.Attributes.Add("class", "");
+        //Tab6.Attributes.Add("class", "");
+        MainView.ActiveViewIndex = 1;
+    }
+
+    protected void btntab3next_Click(object sender, EventArgs e)
+    {
+        if (GridView3.Visible == false)
+        {
+            if (txtnamedparter.Text != "" && txtcommunity.Text != "" && txtshare.Text != "" && txtpercentage.Text != "")
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "AlertBox", "alert('Please enter Details of the Director(s)/ Partner(s) and click on Add button');", true);
+                return;
+            }
+        }
+
+        Tab1.Attributes.Add("class", "");
+        Tab2.Attributes.Add("class", "");
+        Tab3.Attributes.Add("class", "");
+        Tab4.Attributes.Add("class", "active");
+        Tab5.Attributes.Add("class", "");
+        //Tab6.Attributes.Add("class", "");
+        MainView.ActiveViewIndex = 3;
+    }
+
+    protected void btntab4previous_Click(object sender, EventArgs e)
+    {
+        Tab1.Attributes.Add("class", "");
+        Tab2.Attributes.Add("class", "");
+        Tab3.Attributes.Add("class", "active");
+        Tab4.Attributes.Add("class", "");
+        Tab5.Attributes.Add("class", "");
+        //Tab6.Attributes.Add("class", "");
+        MainView.ActiveViewIndex = 2;
+    }
+
+    protected void btntab4next_Click(object sender, EventArgs e)
+    {
+        Tab1.Attributes.Add("class", "");
+        Tab2.Attributes.Add("class", "");
+        Tab3.Attributes.Add("class", "");
+        Tab4.Attributes.Add("class", "");
+        Tab5.Attributes.Add("class", "active");
+        //Tab6.Attributes.Add("class", "");
+        MainView.ActiveViewIndex = 4;
+    }
+
+    //protected void btntab5previous_Click(object sender, EventArgs e)
+    //{
+    //    Tab1.Attributes.Add("class", "");
+    //    Tab2.Attributes.Add("class", "");
+    //    Tab3.Attributes.Add("class", "");
+    //    Tab4.Attributes.Add("class", "active");
+    //    Tab5.Attributes.Add("class", "");
+    //    Tab6.Attributes.Add("class", "");
+    //    MainView.ActiveViewIndex = 3;
+    //}
+
+    //protected void btntab5next_Click(object sender, EventArgs e)
+    //{
+    //    Tab1.Attributes.Add("class", "");
+    //    Tab2.Attributes.Add("class", "");
+    //    Tab3.Attributes.Add("class", "");
+    //    Tab4.Attributes.Add("class", "");
+    //    Tab5.Attributes.Add("class", "");
+    //    Tab6.Attributes.Add("class", "active");
+    //    MainView.ActiveViewIndex = 5;
+    //}
+
+    protected void btntab6previous_Click(object sender, EventArgs e)
+    {
+        Tab1.Attributes.Add("class", "");
+        Tab2.Attributes.Add("class", "");
+        Tab3.Attributes.Add("class", "");
+        Tab4.Attributes.Add("class", "active");
+        Tab5.Attributes.Add("class", "");
+        //Tab6.Attributes.Add("class", "");
+        MainView.ActiveViewIndex = 3;
+    }
+
+    protected void ddlHvuInstalledScndhndMech_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddlHvuInstalledScndhndMech.SelectedItem.Text == "Yes")
+        {
+            trSecondhandmachinery.Visible = true;
+            txtsecondhndmachine.Text = "";
+            txtnewmachine.Text = "";
+            txtTotalvalue12.Text = "";
+            txtpercentage12.Text = "";
+            txtmachinepucr.Text = "";
+            txttotal25.Text = "";
+        }
+        else
+        {
+            trSecondhandmachinery.Visible = false;
+            txtsecondhndmachine.Text = "0";
+            txtnewmachine.Text = "0";
+            txtTotalvalue12.Text = "0";
+            txtpercentage12.Text = "0";
+            txtmachinepucr.Text = "0";
+            txttotal25.Text = "0";
+        }
+    }
+
+    protected void ddlsubsidy_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        try
+        {
+            if (ddlsubsidy.SelectedItem.Text == "Yes")
+            {
+                trsubidy1.Visible = true;
+                trsubidy2.Visible = true;
+                txtschema.Text = "";
+                txtamount.Text = "";
+            }
+            else
+            {
+                trsubidy1.Visible = false;
+                trsubidy2.Visible = false;
+                txtschema.Text = "0";
+                txtamount.Text = "0";
+            }
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    //constitution DataTable dtconstitution = objFetch.FetchConstitutionUnit();
+    public void BindConstitutionUnit()
+    {
+        try
+        {
+            dsdorg = objFetch.FetchConstitutionUnit();
+            //dsdorg.Tables.Add(dtorg);
+            //dsdorg.Tables.Remove(dtorg);
+            if (dsdorg != null && dsdorg.Tables.Count > 0 && dsdorg.Tables[0].Rows.Count > 0)
+            {
+                ddlOrgType.DataSource = dsdorg.Tables[0];
+                ddlOrgType.DataValueField = "CunitId";
+                ddlOrgType.DataTextField = "ConstitutionUnit";
+                ddlOrgType.DataBind();
+                ddlOrgType.Items.Insert(0, "--Select--");
+            }
+            else
+            {
+                ddlOrgType.Items.Insert(0, "--Select--");
+            }
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+}

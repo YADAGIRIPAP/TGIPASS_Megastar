@@ -1,0 +1,3248 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using BusinessLogic;
+using System.IO;
+using System.Net;
+using System.Data.SqlClient;
+using System.Net.Security;
+using System.Net.Mail;
+
+public partial class UI_TSiPASS_ApplicantIncentiveDetailsView_new : System.Web.UI.Page
+{
+    General Gen = new General();
+    DataSet ds = new DataSet();
+    DataSet Gds = new DataSet();
+    comFunctions cmf = new comFunctions();
+    comFunctions obcmf = new comFunctions();
+    Fetch objFetch = new Fetch();
+    static DataTable dtMyTable;
+    static DataTable dtMyTableCertificate;
+    static DataTable dtMyTableAmount;
+    static DataTable dtMyTableReject;
+    static DataTable dtMyTableCertificateAmount;
+    List<officerRemarks> lstremarks = new List<officerRemarks>();
+    List<officerRemarks> lstremarksamount = new List<officerRemarks>();
+    List<officerForwarded> lstincentives = new List<officerForwarded>();
+    static DataTable dtMyTable1;
+    DataSet dsCAF = new DataSet();
+    string Incids = "";
+
+
+    public DataSet GenericFillDs(string procedurename, SqlParameter[] sp)
+    {
+        DB.DB con = new DB.DB();
+        con.OpenConnection();
+        SqlDataAdapter da;
+        DataSet ds = new DataSet();
+        try
+        {
+            da = new SqlDataAdapter(procedurename, con.GetConnection);
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            da.SelectCommand.Parameters.AddRange(sp);
+
+            da.Fill(ds);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        finally
+        {
+            con.CloseConnection();
+        }
+
+    }
+
+
+    public string GetRoleCode(string type)
+    {
+        return (type == "1") ? "GM" : (type == "2") ? "IPO" : (type == "3") ? "GM" : (type == "4") ? "GM" : (type == "1") ? "JD" : (type == "2") ? "ADDL" : (type == "3") ? "ADDL" : (type == "4") ? "ADDL" : "ADDL";
+    }
+
+    public int GetIncentiveId(string IncName)
+    {
+        return (IncName == "Pavalla vaddi") ? 1 : (IncName == "Application For Transport Vehicle Under T-Pride") ? 2 : (IncName == "Power Cost Reimbursement") ? 3 : (IncName == "Specific Cleaner Production measures") ? 4 : (IncName == "Sales TAX(VAT/GST/SGST) Reimbursement") ? 5 : (IncName == "Investment Subsidy") ? 6 : (IncName == "Industrial Infrastructure Development Fund(IIDF)") ? 7 : (IncName == "Reimbursement of cost involved in skill upgradation and training") ? 8 : (IncName == "Reimbursement of stamp Duty/Transfer Duty/Mortgage/Land Conversion/Land Cost") ? 9 : (IncName == "Seed Capital Assistance for 1st generation Entrepreneur for Micro Enterprise") ? 10 : (IncName == "Reimbursement of all expenses incurred for Quality Certification/Patent Registration") ? 11 : (IncName == "Advance Subsidy before DCP for SC/ST Enterprises") ? 12 : 0;
+    }
+    //21345   addl
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        try
+        {
+            if (Session["uid"] != null)
+            {
+                Page.Form.Attributes.Add("enctype", "multipart/form-data");
+                try
+                {
+                    if (!IsPostBack)
+                    {
+                        //if (Session["uid"].ToString() == "21345")
+                        //    lblStatus.Text = "Additional Director";
+                        //else
+                        //    lblStatus.Text = "JD";
+                        string Applicantinid = "";
+                        string Status = "";
+                        string SentFrom = "";
+                        if (!IsPostBack)
+                        {
+                            dtMyTableCertificate = createtablecrtificate();
+                            Session["CertificateTb2"] = dtMyTableCertificate;
+
+                            dtMyTableCertificateAmount = createtablecrtificateAmount();
+                            Session["CertificateTbAmount"] = dtMyTableCertificateAmount;
+
+                            dtMyTableReject = createtablerejection();
+                            Session["CertificateTbReject"] = dtMyTableReject;
+
+                        }
+
+                        string Role_Code = GetRoleCode(Request.QueryString["Role"].ToString());
+
+                        Applicantinid = Request.QueryString[0].ToString();
+                        Status = Request.QueryString[1].ToString();
+                        if (Request.QueryString.ToString().Contains("IncIds"))
+                        {
+                            Incids = Request.QueryString["IncIds"].ToString();
+                        }
+                        Session["querystring"] = "EntrpId=" + Applicantinid + "&Sts=" + Status;
+                        SentFrom = Session["User_Code"].ToString();
+                        string Userid = "";
+
+                        string DisignationLoad = "";
+
+                        string usercode = "";
+                        if (Role_Code == "COI-AD" || Role_Code == "COI-DD")
+                        {
+                            Userid = "3377";
+                        }
+                        else
+                            if (Role_Code == "JD")
+                            {
+                                Userid = "3377";
+                            }
+                            else
+                            {
+                                Userid = "21345";
+                            }
+
+
+                        ds = Gen.GetIncetiveDetailsdept(Applicantinid, Status, Userid, Userid,null);
+
+                        SqlParameter[] sp = new SqlParameter[] {
+                        new SqlParameter("@EntrpId",SqlDbType.VarChar),
+                        new SqlParameter("@MstIncentiveID",SqlDbType.VarChar)
+                    };
+                        sp[0].Value = Applicantinid;
+                        sp[1].Value = 0;
+
+                        Gds = GenericFillDs("USP_IncentiveApplicationStatus", sp);
+
+
+                        try
+                        {
+
+                            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                            {
+                                // string mstincentiveid = ds.Tables[0].Rows[i]["IncentiveID"].ToString();  // tm_Incentive --> Master table
+
+                                if (ds.Tables[0].Rows[0]["ApplliedDate"].ToString() != null && ds.Tables[0].Rows[0]["ApplliedDate"].ToString() != "")
+                                {
+                                    lblapplicationdate.Text = ds.Tables[0].Rows[0]["ApplliedDate"].ToString();
+                                }
+                                if (ds.Tables[0].Rows[0]["applicationno"].ToString() != null && ds.Tables[0].Rows[0]["applicationno"].ToString() != "")
+                                {
+                                    lblApplicationNo.Text = ds.Tables[0].Rows[0]["applicationno"].ToString();
+                                }
+                                if (ds.Tables[0].Rows[0]["SectorNew"].ToString() != null && ds.Tables[0].Rows[0]["SectorNew"].ToString() != "")
+                                {
+                                    lblsector.Text = ds.Tables[0].Rows[0]["SectorNew"].ToString();
+                                }
+                                if (ds.Tables[0].Rows[0]["VehicleNumber"].ToString() != null && ds.Tables[0].Rows[0]["VehicleNumber"].ToString() != "")
+                                {
+                                    lblvehno.Text = ds.Tables[0].Rows[0]["VehicleNumber"].ToString();
+                                }
+                                else
+                                {
+                                    lblvehno.Text = "";
+                                    lblisvehicle.Text = "";
+                                }
+
+
+                                txtudyogAadharNo.Text = ds.Tables[0].Rows[0]["EMiUdyogAadhar"].ToString();
+                                txtUnitname.Text = ds.Tables[0].Rows[0]["UnitName"].ToString();
+                                txtApplicantName.Text = ds.Tables[0].Rows[0]["ApplciantName"].ToString();
+                                txtPanNumber.Text = ds.Tables[0].Rows[0]["PanNo"].ToString();
+                                txtTinNumber.Text = ds.Tables[0].Rows[0]["TinNO"].ToString();
+
+                                ddlCategory.Text = ds.Tables[0].Rows[0]["Category"].ToString();
+                                ddltypeofOrg.Text = ds.Tables[0].Rows[0]["OrgType2"].ToString();
+
+                                ddlindustryStatus.Text = ds.Tables[0].Rows[0]["IdsustryStatus"].ToString();
+
+                                txtDateofCommencement.Text = ds.Tables[0].Rows[0]["DCP"].ToString();
+
+                                rblCaste.Text = ds.Tables[0].Rows[0]["Caste"].ToString();
+                                rblCaste.Text = ds.Tables[0].Rows[0]["SocialStatus"].ToString();
+
+
+                                if (ds.Tables[0].Rows[0]["IsDifferentlyAbled"].ToString() != "")
+                                    if (ds.Tables[0].Rows[0]["IsDifferentlyAbled"].ToString() == "Y")
+                                        lblPhc.Text = "YES";
+                                    else
+                                        lblPhc.Text = "NO";
+
+
+                                ddldistrictunit.Text = ds.Tables[0].Rows[0]["UnitDistName"].ToString();
+                                ddlUnitMandal.Text = ds.Tables[0].Rows[0]["UNITMANDAL"].ToString();
+                                ddlVillageunit.Text = ds.Tables[0].Rows[0]["UNITVILLAGE"].ToString(); ;
+                                txtunitaddhno.Text = ds.Tables[0].Rows[0]["UnitHNO"].ToString();
+                                txtstreetunit.Text = ds.Tables[0].Rows[0]["UnitStreet"].ToString();
+                                txtunitmobileno.Text = ds.Tables[0].Rows[0]["UnitMObileNo"].ToString();
+                                txtunitemailid.Text = ds.Tables[0].Rows[0]["UnitEmail"].ToString();
+
+                                ddldistrictoffc.Text = ds.Tables[0].Rows[0]["OFFCDISTNAME"].ToString();
+                                ddloffcmandal.Text = ds.Tables[0].Rows[0]["OFFCMANDAL"].ToString();
+                                ddlvilloffc.Text = ds.Tables[0].Rows[0]["OFFCVILLAGE"].ToString();
+                                txtoffaddhnno.Text = ds.Tables[0].Rows[0]["OffcHNO"].ToString();
+                                txtstreetoffice.Text = ds.Tables[0].Rows[0]["OffcStreet"].ToString();
+                                txtOffcMobileNO.Text = ds.Tables[0].Rows[0]["OffcMobileNO"].ToString();
+                                txtOffcEmail.Text = ds.Tables[0].Rows[0]["OffcEmail"].ToString();
+
+                                //AnchorView.NavigateUrl = "Show_AttachmentsNew.aspx?EntrpId=" + ds.Tables[0].Rows[0]["IncentveID"].ToString();
+                                //HyperLink1.NavigateUrl = "IncetivesDraft.aspx?EntrpId=" + ds.Tables[0].Rows[0]["IncentveID"].ToString();
+                                //HyperLink3.NavigateUrl = "FinalPage.aspx?EntrpId=" + ds.Tables[0].Rows[0]["IncentveID"].ToString();
+
+
+                                //Show_AttachmentsNew.aspx?EntrpId=<%# Eval("EnterperIncentiveID") %>
+                                ViewState["IncentveID"] = ds.Tables[0].Rows[0]["IncentveID"].ToString();
+                                Officers(ds.Tables[0].Rows[0]["District_Id"].ToString());
+
+                                // added by chh on 17.10.2017  for IO query history
+                                DataSet dsIOQuery = new DataSet();
+                                dsIOQuery = Gen.GetIOQueryHistory(Applicantinid, Role_Code,null);
+                                GVIOQueryStatus.DataSource = null;
+                                GVIOQueryStatus.DataBind();
+                                if (dsIOQuery != null && dsIOQuery.Tables.Count > 0 && dsIOQuery.Tables[0].Rows.Count > 0)
+                                {
+                                    GVIOQueryStatus.DataSource = dsIOQuery.Tables[0];
+                                    GVIOQueryStatus.DataBind();
+                                    //trqueryDtls1IO.Visible = true;
+                                }
+                            }
+
+
+
+                            if (Gds != null && Gds.Tables.Count > 0 && Gds.Tables[2].Rows.Count > 0)
+                            {
+                                tr4.Visible = true;
+                                GVIOQueryStatus.DataSource = Gds.Tables[2];
+                                GVIOQueryStatus.DataBind();
+
+                            }
+
+
+
+
+
+
+
+                            //if (Role_Code == "GM")
+                            //{
+                            //    if (ds != null && ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+                            //    {
+                            //        DisignationLoad = ds.Tables[1].Rows[0]["DesignationLoad"].ToString();
+                            //        ViewState["DisignationLoad"] = DisignationLoad;
+
+                            //    }
+                            //    if (ds != null && ds.Tables.Count > 2 && ds.Tables[2].Rows.Count > 0)
+                            //    {
+
+                            //    }
+
+                            //    if (ds != null && ds.Tables.Count > 3 && ds.Tables[3].Rows.Count > 0)
+                            //    {
+                            //        for (int i = 0; i < ds.Tables[3].Rows.Count; i++)
+                            //        {
+
+                            //        }
+
+
+                            //    }
+                            //    DataSet daquerie = new DataSet();
+                            //    daquerie = Gen.GetIncetiveDetailsdeptOfficerRemarksGM(Applicantinid, Status, SentFrom, "AD");
+                            //    if (daquerie != null && daquerie.Tables.Count > 0 && daquerie.Tables[0].Rows.Count > 0)
+                            //    {
+
+                            //    }
+                            //    else
+                            //    {
+
+                            //    }
+                            //    if (ds != null && ds.Tables.Count > 4 && ds.Tables[4].Rows.Count > 0)
+                            //    {
+                            //        BindingGmRecommendedIncentives(ds.Tables[4]);
+                            //    }
+                            //    if (gvinspectionOfficer.Rows.Count < 1)
+                            //    {
+                            //    }
+
+                            //    // added by chh on 17.10.2017
+                            //    DataSet daquerieIO = new DataSet();
+                            //    daquerieIO = Gen.GetIncetiveDetailsdeptOfficerRemarksGMbyIO(Applicantinid, Status, SentFrom, "AD");
+                            //    if (daquerieIO != null && daquerieIO.Tables.Count > 0 && daquerieIO.Tables[0].Rows.Count > 0)
+                            //    {
+                            //        // trqueryDtlsIO.Visible = true;
+
+
+                            //        //int indexing = ((GridViewRow)((Control)sender).NamingContainer).RowIndex;
+                            //        //Label lblIOQuerySts = (Label)gvquerygmtbyIO.Rows[indexing].FindControl("lblIoQuerySts");
+                            //        //if (lblIOQuerySts.Text == "1")
+                            //        //{
+                            //        //    Button btnIOqueryfwdtoApplicant = (Button)gvquerygmtbyIO.Rows[indexing].FindControl("btnsendcoiIO");
+                            //        //    btnIOqueryfwdtoApplicant.Enabled = false;
+
+                            //        //    Button btnIOQueryResponsebyGMtoIO = (Button)gvquerygmtbyIO.Rows[indexing].FindControl("btnsendIOQuerybyGM");
+                            //        //    btnIOQueryResponsebyGMtoIO.Enabled = false;
+                            //        //}
+                            //        //else
+                            //        //{
+                            //        //    Button btnIOqueryfwdtoApplicant = (Button)gvquerygmtbyIO.Rows[indexing].FindControl("btnsendcoiIO");
+                            //        //    btnIOqueryfwdtoApplicant.Enabled = true;
+
+                            //        //    Button btnIOQueryResponsebyGMtoIO = (Button)gvquerygmtbyIO.Rows[indexing].FindControl("btnsendIOQuerybyGM");
+                            //        //    btnIOQueryResponsebyGMtoIO.Enabled = true;
+                            //        //}
+                            //        //  HyperLink4.NavigateUrl = "ProformaQueryRaiseShortFallLetter.aspx?incentiveid=" + ds.Tables[0].Rows[0]["IncentveID"].ToString();
+                            //    }
+                            //    else
+                            //    {
+
+                            //    }
+                            //}
+                            //if (Role_Code.Trim() == "IPO" || Role_Code.Trim() == "AD" || Role_Code.Trim() == "DD")
+                            //{
+                            //    DisignationLoad = Role_Code.Trim();
+                            //    ViewState["DisignationLoad"] = DisignationLoad;
+                            //    //  trYettobeassign.Visible = false;
+
+                            //    //trbuttoninspection.Visible = false;
+                            //    //trInspectionReport.Visible = false;
+                            //    //  trInspectionReportNEW.Visible = false;
+
+                            //    //trInspectionReport3.Visible = false;
+
+
+                            //    //  trRemarks2.Visible = false;
+                            //    // tripo.Visible = true;
+                            //    // tripoinsp1button.Visible = true;
+                            //    // trSubmitinspectionReport.Visible = true;
+
+
+                            //    // txtinspectiondate.Text = ds.Tables[1].Rows[0]["TobeinspectedDate"].ToString();
+
+                            //    //DataSet dsinspection = new DataSet();
+                            //    //dsinspection = Gen.GetIncentiveDeptDetails(ViewState["IncentveID"].ToString());
+                            //    //FillDetails(dsinspection);
+
+                            //    //DataSet dsnewre = new DataSet();
+                            //    //dsnewre = Gen.GetIncetiveDetailsdeptAttachementsIpo(Applicantinid);
+                            //    //if (dsnewre != null && dsnewre.Tables.Count > 0 && dsnewre.Tables[0].Rows.Count > 0)
+                            //    //{
+                            //    //    GridView3att.DataSource = dsnewre.Tables[0];
+                            //    //    GridView3att.DataBind();
+                            //    //}
+                            //    if (ds != null && ds.Tables.Count > 2 && ds.Tables[2].Rows.Count > 0)
+                            //    {
+                            //        trUpdateInspectionReport.Visible = true;
+                            //        trUpdateInspectionReport1.Visible = true;
+
+                            //        gvinspectionReport.DataSource = ds.Tables[2];
+                            //        gvinspectionReport.DataBind();
+                            //    }
+                            //}
+                            //if (Role_Code == "JD" || Role_Code == "COI-AD" || Role_Code == "COI-DD" || Role_Code == "COI-SUPDT")
+                            //{
+
+                            //    if (ds != null && ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+                            //    {
+                            //        if (Incids != "")
+                            //        {
+                            //            int result;
+                            //            DataTable dt = FilterDataTableBasedOnIncentiveIds(ds, Incids, 1, "IncentiveID", out result);
+                            //            ds.Tables.Add(dt);
+                            //        }
+                            //    }
+
+                            //    if (ds != null && ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+                            //    {
+                            //        BindingGmRecommendedIncentives(ds.Tables[1]);
+                            //    }
+                            //    divnewattachemts.Visible = true;
+                            //    divlastattachemntold.Visible = false;
+                            //    trinspectionname.InnerHtml = "Recommended by GM-DIC(" + ds.Tables[0].Rows[0]["UnitDistName"].ToString() + ")";
+                            //    //  trInspectionReportNEW.Visible = true;
+                            //    // Button4.Visible = true;
+
+                            //    DataSet dsince = new DataSet();
+                            //    dsince = Gen.GetIncetiveDropDownList(Applicantinid, "JD", "JD");
+                            //    if (dsince != null && dsince.Tables.Count > 0 && dsince.Tables["Table"].Rows.Count > 0)
+                            //    {
+                            //        if (Incids != "")
+                            //        {
+                            //            int result;
+                            //            DataTable dt = FilterDataTableBasedOnIncentiveIds(dsince, Incids, 0, "MstIncentiveId", out result);
+                            //            dsince.Tables.Add(dt);
+                            //        }
+
+
+                            //    }
+
+
+                            //    DataSet daquerie = new DataSet();
+                            //    daquerie = Gen.GetIncetiveDetailsdeptOfficerRemarks(Applicantinid, Status, SentFrom, "JD", "");
+
+                            //    if (daquerie != null && daquerie.Tables.Count > 0 && daquerie.Tables["Table"].Rows.Count > 0)
+                            //    {
+                            //        string ids = "0";
+                            //        if (Incids != "")
+                            //        {
+                            //            int result;
+                            //            DataTable dt = FilterDataTableBasedOnIncentiveIds(daquerie, Incids, 0, "MstIncentiveId", out result);
+                            //            daquerie.Tables.Add(dt);
+                            //            ids = (result == 1) ? Incids : "0";
+                            //        }
+
+                            //    }
+
+                            //    if (daquerie != null && daquerie.Tables.Count > 1 && daquerie.Tables["Table1"].Rows.Count > 0)
+                            //    {
+                            //        //if (Incids != "")
+                            //        //{
+                            //        //    DataTable dt = FilterDataTableBasedOnIncentiveIds(daquerie, Incids, 1, "MstIncentiveId");
+                            //        //    daquerie.Tables.Add(dt);
+                            //        //}
+
+                            //    }
+
+                            //    if (daquerie != null && daquerie.Tables.Count > 2 && daquerie.Tables["Table2"].Rows.Count > 0)
+                            //    {
+
+                            //        //if (Incids != "")
+                            //        //{
+                            //        //    DataTable dt = FilterDataTableBasedOnIncentiveIds(daquerie, Incids, 2, "MstIncentiveId");
+                            //        //    daquerie.Tables.Add(dt);
+                            //        //}
+
+                            //    }
+                            //}
+                            //if (Role_Code == "ADDL")
+                            //{
+                            //    if (ds != null && ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+                            //    {
+                            //        BindingGmRecommendedIncentives(ds.Tables[1]);
+                            //    }
+                            //    DataSet dsince = new DataSet();
+                            //    dsince = Gen.GetIncetiveDropDownList(Applicantinid, "ADDL", Request.QueryString["SVCStatus"].ToString());
+                            //    if (dsince != null && dsince.Tables.Count > 0 && dsince.Tables[0].Rows.Count > 0)
+                            //    {
+                            //    }
+
+                            //    System.Web.UI.WebControls.ListItem LIadd = new System.Web.UI.WebControls.ListItem("Select", "0");
+
+                            //    divnewattachemts.Visible = true;
+                            //    divlastattachemntold.Visible = false;
+
+                            //    // trYettobeassign.Visible = false;
+
+                            //    //  trbuttoninspection.Visible = false;
+                            //    // trinspectionname.InnerHtml = "Recomanded From Joint Director";
+                            //    trinspectionname.InnerHtml = "Recommended by GM-DIC(" + ds.Tables[0].Rows[0]["UnitDistName"].ToString() + ")";
+                            //    //gvinspectionOfficer.Columns[8].Visible = false;
+                            //    //trInspectionReport.Visible = false;
+                            //    // trInspectionReportNEW.Visible = true;
+
+
+                            //    if (Request.QueryString["SVCStatus"] != null && Request.QueryString["SVCStatus"].ToString() == "POSTSVC")
+                            //    {
+
+
+                            //    }
+                            //    if (Request.QueryString["SVCStatus"] != null && Request.QueryString["SVCStatus"].ToString() == "POSTSLC")
+                            //    {
+
+                            //    }
+
+
+
+                            //    string SVCStatus = "";
+                            //    if (Request.QueryString["SVCStatus"] != null)
+                            //    {
+                            //        SVCStatus = Request.QueryString["SVCStatus"].ToString();
+                            //    }
+
+                            //    DataSet daquerie = new DataSet();
+                            //    // daquerie = Gen.GetIncetiveDetailsdeptOfficerRemarks(Applicantinid, Status, SentFrom, "JD", "");
+                            //    daquerie = Gen.GetIncetiveDetailsdeptOfficerRemarks(Applicantinid, Status, SentFrom, "ADDL", SVCStatus);
+
+
+
+                            //    //DataSet daquerie = new DataSet();
+                            //    //daquerie = Gen.GetIncetiveDetailsdeptOfficerRemarks(Applicantinid, Status, SentFrom, "ADDL", SVCStatus);
+                            //    //if (daquerie != null && daquerie.Tables.Count > 0 && daquerie.Tables[0].Rows.Count > 0)
+                            //    //{
+                            //    //    gvremarks.DataSource = daquerie.Tables[0];
+                            //    //    gvremarks.DataBind();
+                            //    //    trnotinfullshap.Visible = true;
+                            //    //}
+                            //    //if (daquerie != null && daquerie.Tables.Count > 1 && daquerie.Tables[1].Rows.Count > 0)
+                            //    //{
+                            //    //    gvresponcegmgv.DataSource = daquerie.Tables[1];
+                            //    //    gvresponcegmgv.DataBind();
+                            //    //    tr1gmresponce.Visible = true;
+                            //    //    tr1gmresponce2.Visible = true;
+                            //    //    foreach (GridViewRow rown in gvremarks.Rows)
+                            //    //    {
+                            //    //        DataControlFieldCell editable = (DataControlFieldCell)rown.Controls[1];
+                            //    //        editable.Enabled = false;
+                            //    //    }
+                            //    //}
+                            //    //if (daquerie != null && daquerie.Tables.Count > 2 && daquerie.Tables[2].Rows.Count > 0)
+                            //    //{
+                            //    //    GridView3.DataSource = daquerie.Tables[2];
+                            //    //    GridView3.DataBind();
+                            //    //    trfullshap.Visible = true;
+                            //    //    //  Session["CertificateTbAmount"] = daquerie.Tables[2];
+                            //    //    foreach (GridViewRow rown in GridView3.Rows)
+                            //    //    {
+                            //    //        string name = ((Label)rown.FindControl("lblCreatedByid")).Text.ToString();
+                            //    //        if (Session["uid"].ToString() != name)
+                            //    //        {
+                            //    //            DataControlFieldCell editable = (DataControlFieldCell)rown.Controls[1];
+                            //    //            editable.Enabled = false;
+                            //    //        }
+                            //    //    }
+                            //    //}
+                            //    if (daquerie != null && daquerie.Tables.Count > 3 && daquerie.Tables[3].Rows.Count > 0)
+                            //    {
+                            //    }
+                            //    if (daquerie != null && daquerie.Tables.Count > 4 && daquerie.Tables[4].Rows.Count > 0)
+                            //    {
+
+                            //    }
+                            //    if (daquerie != null && daquerie.Tables.Count > 5 && daquerie.Tables[5].Rows.Count > 0)
+                            //    {
+
+                            //    }
+                            //}
+
+                            //if (DisignationLoad == "ADDL")
+                            //{
+
+                            //}
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+
+                        //DataSet dsnew = new DataSet();
+                        //dsnew = Gen.GetIncetiveDetailsdept(Applicantinid);
+                        //if (dsnew != null && dsnew.Tables.Count > 0 && dsnew.Tables[0].Rows.Count > 0)
+                        //{
+                        //    gvquery.DataSource = dsnew.Tables[0];
+                        //    gvquery.DataBind();
+                        //    gvquery.Visible = true;
+                        //}
+                        //if (gvquery.Rows.Count < 1)
+                        //{
+                        //    trgmhistory.Visible = false;
+                        //}
+
+
+                        DataSet dsnew1 = new DataSet();
+                        dsnew1 = Gen.GetIncetiveDetailsdeptAttachements(Applicantinid);
+                        if (dsnew1 != null && dsnew1.Tables.Count > 0 && dsnew1.Tables[0].Rows.Count > 0)
+                        {
+                            gvSubsidy.DataSource = dsnew1.Tables[0];
+                            gvSubsidy.DataBind();
+
+                            gvfinalgrid.DataSource = dsnew1.Tables[0];
+                            gvfinalgrid.DataBind();
+
+                            if (dsnew1 != null && dsnew1.Tables.Count > 1 && dsnew1.Tables[0].Rows.Count > 1)
+                            {
+                                trQueryResponceAttachments.Visible = true;
+                                gvqquryresponceattachment.DataSource = dsnew1.Tables[1];
+                                gvqquryresponceattachment.DataBind();
+
+                                trattachemntslastgrid.Visible = true;
+                                gvlastattachments.DataSource = dsnew1.Tables[1];
+                                gvlastattachments.DataBind();
+                            }
+                        }
+
+
+                        //DataSet dsnew1 = new DataSet();
+                        //dsnew1 = Gen.GetIncetiveDetailsdeptCOI(incentiveid);
+                        //if (dsnew1 != null && dsnew1.Tables.Count > 0 && dsnew1.Tables[0].Rows.Count > 0)
+                        //{
+                        //    gvsenttocoi.DataSource = dsnew1.Tables[0];
+                        //    gvsenttocoi.DataBind();
+
+                        //}
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+
+                string userid = "";
+
+                if (Session["Role_Code"].ToString() == "COI-AD" || Session["Role_Code"].ToString() == "COI-DD" || Session["Role_Code"].ToString() == "COI-SUPDT")
+                {
+                    userid = "3377";
+                }
+                else if (Session["Role_Code"].ToString() == "JD")
+                {
+                    userid = "3377";
+                }
+                else
+                {
+                    userid = "21345"; ;
+                }
+                if (Session["uid"] != null)
+                {
+                    string uname = Session["username"].ToString();
+                    // 
+                    string incentiveID;
+                    if (Session["EntprIncentive"] != null)
+                    {
+
+                        incentiveID = Session["EntprIncentive"].ToString();
+                    }
+                    else
+                    {
+                        incentiveID = Request.QueryString["EntrpId"].ToString();
+                    }
+                    //dsCAF = Gen.GetAllIncentives(Session["uid"].ToString().Trim());            
+                    dsCAF = Gen.GetAllIncentivesDeptView(incentiveID);
+                    string IncentiveId = dsCAF.Tables[0].Rows[0]["EnterperIncentiveID"].ToString();
+                    if (IncentiveId != null)
+                    {
+                        if (!IsPostBack)
+                        {
+                            string useridnew = "";
+
+                            if (Session["Role_Code"].ToString() == "COI-AD" || Session["Role_Code"].ToString() == "COI-DD" || Session["Role_Code"].ToString() == "COI-SUPDT")
+                            {
+                                useridnew = "3377";
+                            }
+                            else if (Session["Role_Code"].ToString() == "JD")
+                            {
+                                userid = "3377";
+                            }
+                            else
+                            {
+                                useridnew = "21345";
+                            }
+
+                            string IncentveID = incentiveID;
+                            DataSet dscaste = new DataSet();
+                            dscaste = Gen.GetIncentivesCaste(useridnew, IncentveID);
+                            if (dscaste != null && dscaste.Tables.Count > 0 && dscaste.Tables[0].Rows.Count > 0)
+                            {
+                                if (ds.Tables[0].Rows[0]["IsDifferentlyAbled"].ToString() != "")
+                                    if (ds.Tables[0].Rows[0]["IsDifferentlyAbled"].ToString() == "Y")
+                                        lblheadTPRIDE.Text = "T-PRIDE(PHC)";  //ADDED..
+
+                                    else if (dscaste.Tables[0].Rows[0]["Scheme"].ToString() == "TIDEA")
+                                    {
+                                        lblheadTPRIDE.Text = "TIDEA, 2014";
+
+                                        if (dscaste.Tables[0].Rows[0]["TSCPflag"].ToString() == "Y") //   if (caste == "3" || caste == "4")   //SC, ST
+                                        {
+                                            lblheadTPRIDE.Visible = true;
+
+                                            lblheadTPRIDE.Text = "T-PRIDE ";
+                                            //lblheadTPRIDE.ForeColor = System.Drawing.Color.White;
+                                        }
+                                        else if (dscaste.Tables[0].Rows[0]["TSPflag"].ToString() == "Y")
+                                        {
+                                            lblheadTPRIDE.Visible = true;
+
+                                            lblheadTPRIDE.Text = "T-PRIDE ";
+                                        }
+                                        else if (dscaste.Tables[0].Rows[0]["TIDEAflag"].ToString() == "Y")
+                                        {
+                                            lblheadTPRIDE.Visible = true;
+
+                                            lblheadTPRIDE.Text = "T-IDEA";
+                                        }
+
+                                    }
+                                    else if (dscaste.Tables[0].Rows[0]["Scheme"].ToString() == "IIPP SCHEME 2005-10")
+                                    {
+                                        lblheadTPRIDE.Text = "IIPP Scheme 2005 - 2010";
+                                    }
+                                    else if (dscaste.Tables[0].Rows[0]["Scheme"].ToString() == "IIPP SCHEME 2010-15")
+                                    {
+                                        lblheadTPRIDE.Text = "IIPP Scheme 2010 - 2015";   // IIPP 2010-15
+                                    }
+
+                                string caste = dscaste.Tables[0].Rows[0]["caste"].ToString();
+
+                                if (dscaste.Tables[0].Rows[0]["IdsustryStatus"].ToString() == "2" || dscaste.Tables[0].Rows[0]["IdsustryStatus"].ToString() == "3")
+                                {
+                                    trexpansion.Visible = true;
+                                    trexpansionhead.Visible = true;
+                                    tblpower.Visible = true;
+
+                                    tr1.Visible = false;
+                                    tr3.Visible = true;
+                                }
+                                else
+                                {
+                                    trexpansion.Visible = false;
+                                    trexpansionhead.Visible = false;
+                                    tblpower.Visible = false;
+
+                                    tr1.Visible = true;
+                                    tr3.Visible = false;
+                                }
+                            }
+                            if (Request.QueryString.Count > 0 && Request.QueryString["q"] != null)
+                            {
+                                int str = Convert.ToInt32(Request.QueryString["q"]);
+                                if (str == 3)
+                                {
+                                    ds = Gen.GetIncentiveDeptDetails(IncentiveId);
+                                    FillDetailsabc(ds);
+                                    //BtnNext.Visible = true;
+                                    // BtnPrevious.Visible = true;
+                                    return;
+                                }
+                            }
+                            else
+                            {
+                                // BtnNext.Visible = false;
+                            }
+
+
+                            ds = Gen.GetIncentiveDeptDetails(IncentiveId);
+                            FillDetailsabc(ds);
+                            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                            {
+                                if (dsCAF != null && dsCAF.Tables.Count > 0 && dsCAF.Tables[0].Rows.Count > 0)
+                                {
+                                    BindForms(dsCAF, IncentiveId);
+                                }
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        if (!IsPostBack)
+                        {
+                            ds = Gen.GetIncentiveDeptDetailsCreatedBy(userid);
+                            string IncentID = FillDetailsabc(ds);
+
+                            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                            {
+                                if (dsCAF != null && dsCAF.Tables.Count > 0 && dsCAF.Tables[0].Rows.Count > 0)
+                                {
+                                    BindForms(dsCAF, IncentID);
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+            else
+            {
+                Response.Redirect("~/IpassLogin.aspx");
+            }
+
+            EnableDisableForm(Page.Controls, false);
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+
+    public DataTable FilterDataTableBasedOnIncentiveIds(DataSet ds, string Incids, int index, string SearchText, out int result)
+    {
+        string table = (index == 0) ? "Table" : (index == 1) ? "Table1" : (index == 2) ? "Table2" : (index == 3) ? "Table3" : "";
+        DataTable dt = new DataTable();
+        DataTable dt1 = new DataTable();
+        DataTable dt2 = new DataTable();
+        dt = ds.Tables[table];
+        dt1 = ds.Tables[table].Clone();//IncentiveID
+        DataRow[] dw = dt.Select("" + SearchText + " in (" + Incids + ")");
+        ds.Tables.Remove(table);
+        dt1.Rows.Clear();
+        foreach (DataRow dr in dw)
+        {
+            dt1.ImportRow(dr);
+        }
+        if (dt1.Rows.Count > 0)
+        {
+            dt2 = dt1;
+            result = 1;
+        }
+        else
+        {
+            dt2 = dt;
+            result = 0;
+        }
+        return dt2;
+    }
+
+    public void BindingGmRecommendedIncentives(DataTable ds)
+    {
+        try
+        {
+            if (ds != null && ds.Rows.Count > 0)
+            {
+                gvinspectionOfficer.DataSource = ds;
+                gvinspectionOfficer.DataBind();
+                //   gvinspectionOfficer.Columns[11].Visible = false;
+
+                gvinspectionOfficer.Columns[10].Visible = true;
+
+                if (gvinspectionOfficer.Rows.Count < 1)
+                {
+
+                    //trInspectionReport3.Visible = false;
+                }
+                else
+                {
+                    // trInspectionReportNEW.Visible = true;
+                }
+
+                for (int i = 0; i < ds.Rows.Count; i++)
+                {
+                    //TextBox txtinspectiondate = (TextBox)grdDetails.Rows[i].FindControl("txtinspectiondate");
+                    DropDownList ddlapprove = (DropDownList)gvinspectionOfficer.Rows[i].FindControl("ddlapprove");
+                    ddlapprove.SelectedValue = ds.Rows[i]["GMStatusid"].ToString();
+                    TextBox txtIncQueryFnl2 = (TextBox)gvinspectionOfficer.Rows[i].FindControl("txtIncQueryFnl2");
+                    Label enterid = (Label)gvinspectionOfficer.Rows[i].FindControl("lblIncentiveID");
+                    Label lblMstIncentiveId = (Label)gvinspectionOfficer.Rows[i].FindControl("lblMstIncentiveId");
+                    if (ddlapprove.SelectedValue == "1")
+                    {
+                        txtIncQueryFnl2.Visible = true;
+                        // ddlapprove_SelectedIndexChanged(sender, e);
+                        txtIncQueryFnl2.Text = ds.Rows[i]["QueryDescription"].ToString();
+                        ddlapprove.Enabled = false;
+                        Button Button1 = (Button)gvinspectionOfficer.Rows[i].FindControl("Button1");
+                        Button Button2 = (Button)gvinspectionOfficer.Rows[i].FindControl("Button2");
+
+                        Button2.Visible = false;
+                        Button1.Visible = false;
+
+                        Label lblcois = (Label)gvinspectionOfficer.Rows[i].FindControl("lblcois");
+                        lblcois.Visible = true;
+
+                        lblcois.Text = "Query Submitted";
+
+                        // gvinspectionOfficer.Columns[11].Visible = false;
+                        (gvinspectionOfficer.Rows[i].FindControl("anchortagGMCertificate") as HyperLink).ForeColor = System.Drawing.Color.Red;
+                        (gvinspectionOfficer.Rows[i].FindControl("anchortagGMCertificate") as HyperLink).Text = "Query Letter";
+                        (gvinspectionOfficer.Rows[i].FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaQueryRaiseShortFallLetterGMtoApplicantApproval.aspx?incentiveid=" + enterid.Text.Trim() + "&MstIncentiveId=" + lblMstIncentiveId.Text.Trim();
+                    }
+                    else
+                    {
+                        txtIncQueryFnl2.Visible = false;
+                    }
+                    //if (ds.Tables[2].Rows[i]["QueryStatusFinalApproval"].ToString() == "1")
+                    //{
+                    //    ddlapprove.Enabled = false;
+                    //    txtIncQueryFnl2.Visible = true;
+                    //}
+
+                    if (ddlapprove.SelectedValue == "2")
+                    {
+                        ddlapprove.Enabled = false;
+                    }
+                    if (ddlapprove.SelectedValue == "0")
+                    {
+                        (gvinspectionOfficer.Rows[i].FindControl("anchortagGMCertificate") as HyperLink).Visible = false;
+                    }
+                    if (ds.Rows[i]["GMApprovalSentTo"].ToString() != "" && ds.Rows[i]["GMStatusid"].ToString() == "2")
+                    {
+
+                        if (lblMstIncentiveId.Text == "6")
+                        {
+                            (gvinspectionOfficer.Rows[i].FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaInvestmentSubsidy.aspx?EntrpId=" + enterid.Text.Trim();
+                        }
+                        if (lblMstIncentiveId.Text == "1")
+                        {
+                            (gvinspectionOfficer.Rows[i].FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaPavalavaddi.aspx?incentiveid=" + enterid.Text.Trim();
+                        }
+                        if (lblMstIncentiveId.Text == "3")
+                        {
+                            (gvinspectionOfficer.Rows[i].FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaPowerTariff.aspx?incentiveid=" + enterid.Text.Trim();
+                        }
+                        if (lblMstIncentiveId.Text == "5")
+                        {
+                            (gvinspectionOfficer.Rows[i].FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaSalesTax.aspx?incentiveid=" + enterid.Text.Trim();
+                        }
+
+                        (gvinspectionOfficer.Rows[i].FindControl("anchortagGMCertificate") as HyperLink).ForeColor = System.Drawing.Color.Green;
+                        (gvinspectionOfficer.Rows[i].FindControl("anchortagGMCertificate") as HyperLink).Text = "Recommendation Letter";
+
+                        Button btnsubmit = (Button)gvinspectionOfficer.Rows[i].FindControl("Button1");
+                        btnsubmit.Visible = false;
+                        Button btnButton2 = (Button)gvinspectionOfficer.Rows[i].FindControl("Button2");
+                        btnButton2.Visible = false;
+                        Label lblcois = (Label)gvinspectionOfficer.Rows[i].FindControl("lblcois");
+                        lblcois.Visible = true;
+                        if (ds.Rows[i]["DIPCFlag"].ToString().Trim() == "Y")
+                        {
+                            lblcois.Text = "Sent to DIPC";
+                            //object sender;
+                            EventArgs e = new EventArgs();
+                            ddlapplicationto_SelectedIndexChanged(this, e);
+                            btnButton2.Visible = false;//added by lavanya on 06.09.2017
+
+                        }
+                        else
+                        {
+                            lblcois.Text = "Sent to COI";
+                        }
+                        // gvinspectionOfficer.Columns[11].Visible = true;
+                    }
+
+                    //if (ds.Rows[i]["DIPCFlag"].ToString() == "Y")
+                    //{
+                    //    CheckBoxList1.Items[0].Text = "Sanction Amount";
+                    //    CheckBoxList1.Items[1].Text = "Reject";
+                    //    Label6.Text = "Sanctioned Amount";
+                    //    // trpostsvc.Visible = false;
+                    //    tradditional.Visible = true;
+                    //    Button3.Text = "Submit Application";
+                    //    trRemarks1.Visible = true;
+                    //    DataSet dsince = new DataSet();
+                    //    dsince = Gen.GetIncetiveDropDownList(ViewState["IncentveID"].ToString(), "DIPC", "DIPC");
+                    //    if (dsince != null && dsince.Tables.Count > 0 && dsince.Tables[0].Rows.Count > 0)
+                    //    {
+                    //        ddlstaire.DataSource = dsince.Tables[0];
+                    //        ddlstaire.DataValueField = "MstIncentiveId";
+                    //        ddlstaire.DataTextField = "IncentiveName";
+                    //        ddlstaire.DataBind();
+                    //    }
+
+                    //    System.Web.UI.WebControls.ListItem LI = new System.Web.UI.WebControls.ListItem("Select", "0");
+                    //    ddlstaire.Items.Insert(0, LI);
+
+                    //    tdslcno.InnerHtml = "DLC No";
+                    //    tdslcndate.InnerHtml = "DLC Date";
+
+                    //    ViewState["DIPCFlag"] = "Y";
+                    //}
+                }
+            }
+
+            if (gvinspectionOfficer.Rows.Count < 1)
+            {
+            }
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+
+    public void Officers(string DistID)
+    {
+        try
+        {
+            DataSet dsnew = new DataSet();
+
+            dsnew = Gen.GetDepartmentINcentiveNew(DistID);//distid    DistID
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+
+    protected void grdDetails_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        //if (e.Row.RowType == DataControlRowType.DataRow)
+        //{
+
+        //    DropDownList ddlDeptname = (e.Row.FindControl("ddlDeptname") as DropDownList);
+
+        //    DataSet dsnew = new DataSet();
+
+        //    dsnew = Gen.GetDepartmentINcentiveNew(Convert.ToString(DataBinder.Eval(e.Row.DataItem, "DistID")).Trim());//distid    DistID
+        //    ddlDeptname.DataSource = dsnew.Tables[0];
+        //    ddlDeptname.DataTextField = "Dept_Name";
+        //    ddlDeptname.DataValueField = "Dept_Id";
+        //    ddlDeptname.DataBind();
+        //    ddlDeptname.Items.Insert(0, "--Select--");
+        //    // ddlDeptname.Items.Insert(1, "Raise Query");
+
+        //    //Label enterid = (e.Row.FindControl("lblIncentiveID") as Label);
+        //    //Label MstIncentiveId = (e.Row.FindControl("lblMstIncentiveId") as Label);
+        //    //(e.Row.FindControl("anchortaglink") as HyperLink).NavigateUrl = "InspectionRprt.aspx?EntrpId=" + enterid.Text.Trim() + "&Inctypeid=" + MstIncentiveId.Text;
+        //}
+    }
+    protected void ddlDeptname_SelectedIndexChanged1(object sender, EventArgs e)
+    {
+        try
+        {
+            DropDownList ddlDeptnameFnl = (DropDownList)sender;
+
+            GridViewRow row = (GridViewRow)ddlDeptnameFnl.NamingContainer;
+            TextBox txtIncQuery = (TextBox)row.FindControl("txtIncQueryFnl");
+            DropDownList ddlDeptname = (DropDownList)row.FindControl("ddlDeptname");
+
+            if (ddlDeptnameFnl.SelectedValue == "Raise Query")
+            {
+                txtIncQuery.Visible = true;
+                ddlDeptname.Visible = false;
+                txtIncQuery.Focus();
+            }
+            else if (ddlDeptnameFnl.SelectedValue == "1")
+            {
+                txtIncQuery.Visible = false;
+                ddlDeptname.Visible = true;
+                ddlDeptnameFnl.Focus();
+            }
+            else
+            {
+                txtIncQuery.Visible = false;
+                ddlDeptname.Visible = false;
+
+            }
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+    protected void BtnSave1_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void btnsubmitqueryins_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            int indexing = ((GridViewRow)((Control)sender).NamingContainer).RowIndex;
+            string lblMstIncentiveId = ((Label)gvinspectionReport.Rows[indexing].FindControl("lblMstIncentiveId")).Text;
+            string lblIncentiveID = ((Label)gvinspectionReport.Rows[indexing].FindControl("lblIncentiveID")).Text;
+            string txtIncQueryFnl2 = ((TextBox)gvinspectionReport.Rows[indexing].FindControl("txtIncQueryFnl2ins")).Text;
+            DropDownList ddlapprove = (DropDownList)gvinspectionReport.Rows[indexing].FindControl("ddlinspector");
+            HyperLink anchortagIPOCertificate = (HyperLink)gvinspectionReport.Rows[indexing].FindControl("anchortagIPOCertificate");
+            HyperLink anchortaglinkView = (HyperLink)gvinspectionReport.Rows[indexing].FindControl("anchortaglinkView");
+            anchortagIPOCertificate.ForeColor = System.Drawing.Color.Red;
+            anchortagIPOCertificate.Visible = true;
+            anchortaglinkView.Visible = false;
+            int incRtrVal = Gen.InsertIOqueryDtls(lblIncentiveID, txtIncQueryFnl2, Session["uid"].ToString(), lblMstIncentiveId, getclientIP());
+            anchortagIPOCertificate.NavigateUrl = "QueryRaiseShortFallLetterinspectortoApplicantApproval.aspx?incentiveid=" + lblIncentiveID + "&MstIncentiveId=" + lblMstIncentiveId;
+            try
+            {
+                string IncentiveName = gvinspectionReport.Rows[indexing].Cells[1].Text;
+                SendSmsEmail(txtIncQueryFnl2, IncentiveName);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            string message = "alert('Query Submitted Successfully')";
+            ScriptManager.RegisterClientScriptBlock((sender as Control), this.GetType(), "alert", message, true);
+
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+    protected void ddlinspector_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        try
+        {
+            DropDownList ddlDeptnameFnl2 = (DropDownList)sender;
+            GridViewRow row = (GridViewRow)ddlDeptnameFnl2.NamingContainer;
+            TextBox txtIncQuery = (TextBox)row.FindControl("txtIncQueryFnl2ins");
+            Button Button1 = (Button)row.FindControl("btnsubmitqueryins");
+            if (ddlDeptnameFnl2.SelectedValue == "2")
+            {
+                (row.FindControl("anchortaglink") as HyperLink).Visible = false;
+                txtIncQuery.Visible = true;
+                Button1.Visible = true;
+                txtIncQuery.Focus();
+            }
+            else
+            {
+                (row.FindControl("anchortaglink") as HyperLink).Visible = true;
+                txtIncQuery.Visible = false;
+                Button1.Visible = false;
+            }
+            //btnsubmitqueryins_Click
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            int indexing = ((GridViewRow)((Control)sender).NamingContainer).RowIndex;
+
+            // added by chh           
+            string txtGMRecommendedRemarks = "";
+            if (Button1.Text == "Send to COI" || gvinspectionOfficer.Columns[10].Visible == true)
+            {
+                if (gvinspectionOfficer.Columns[10].Visible == true)
+                {
+                    txtGMRecommendedRemarks = ((TextBox)gvinspectionOfficer.Rows[indexing].FindControl("txtGMRecommendedRemarks")).Text;
+                }
+                else
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "AlertBox", "alert('GM Recommended Remarks cannot be empty');", true);
+                    return;
+                }
+            }
+
+            string lblMstIncentiveId = ((Label)gvinspectionOfficer.Rows[indexing].FindControl("lblMstIncentiveId")).Text;
+            string lblIncentiveID = ((Label)gvinspectionOfficer.Rows[indexing].FindControl("lblIncentiveID")).Text;
+            string txtIncQueryFnl2 = ((TextBox)gvinspectionOfficer.Rows[indexing].FindControl("txtIncQueryFnl2")).Text;
+            string txtrecomandedamount = ((TextBox)gvinspectionOfficer.Rows[indexing].FindControl("txtrecomandedamount")).Text;
+            DropDownList ddlapprove = (DropDownList)gvinspectionOfficer.Rows[indexing].FindControl("ddlapprove");
+            if (ddlapprove.SelectedValue == "2" || ddlapprove.SelectedValue == "3")
+            {
+                int statusapp = Gen.GMCertificateInsertUploadNew(lblIncentiveID, Session["uid"].ToString(), "", ddlapprove.SelectedValue, txtIncQueryFnl2, lblMstIncentiveId, txtrecomandedamount, getclientIP(), txtGMRecommendedRemarks);
+            }
+            else if (ddlapprove.SelectedValue == "1")
+            {
+                int incRtrVal = Gen.insertInctveQueryResponsedataNewatApproval(lblIncentiveID, txtIncQueryFnl2, Session["uid"].ToString(), lblMstIncentiveId, getclientIP());
+
+                try
+                {
+                    string IncentiveName = gvinspectionOfficer.Rows[indexing].Cells[1].Text;
+                    SendSmsEmail(txtIncQueryFnl2, IncentiveName);
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+
+            Button btnsubmit = (Button)gvinspectionOfficer.Rows[indexing].FindControl("Button1");
+            btnsubmit.Visible = false;
+            Button btnButton2 = (Button)gvinspectionOfficer.Rows[indexing].FindControl("Button2");
+            btnButton2.Visible = false;
+            Label lblcois = (Label)gvinspectionOfficer.Rows[indexing].FindControl("lblcois");
+            lblcois.Visible = true;
+            lblcois.Text = "Sent to COI";
+
+            // added newly on 20.07.2017
+            Button ddlDeptnameFnl2 = (Button)sender;
+            GridViewRow row = (GridViewRow)ddlDeptnameFnl2.NamingContainer;
+            (row.FindControl("anchortagGMCertificate") as HyperLink).ForeColor = System.Drawing.Color.Green;
+            (row.FindControl("anchortagGMCertificate") as HyperLink).Text = "Recommendation Letter";
+            (row.FindControl("anchortagGMCertificate") as HyperLink).Visible = true;
+            if (btnsubmit.Text == "Submit Query")  // ppppp
+            {
+                lblcois.Text = "Query Raised";
+                (row.FindControl("anchortagGMCertificate") as HyperLink).ForeColor = System.Drawing.Color.Red;
+                (row.FindControl("anchortagGMCertificate") as HyperLink).Text = "Query Letter";
+                (row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaQueryRaiseShortFallLetterGMtoApplicantApproval.aspx?incentiveid=" + lblIncentiveID + "&MstIncentiveId=" + lblMstIncentiveId;
+            }
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            int indexing = ((GridViewRow)((Control)sender).NamingContainer).RowIndex;
+            string lblMstIncentiveId = ((Label)gvinspectionOfficer.Rows[indexing].FindControl("lblMstIncentiveId")).Text;
+            string lblIncentiveID = ((Label)gvinspectionOfficer.Rows[indexing].FindControl("lblIncentiveID")).Text;
+            DropDownList ddlapprove = (DropDownList)gvinspectionOfficer.Rows[indexing].FindControl("ddlapprove");
+            string txtrecomandedamount = ((TextBox)gvinspectionOfficer.Rows[indexing].FindControl("txtrecomandedamount")).Text;
+            if (ddlapprove.SelectedValue == "2" || ddlapprove.SelectedValue == "3")
+            {
+                int statusapp = Gen.GMCertificateInsertUploadNewDIPC(lblIncentiveID, Session["uid"].ToString(), Session["uid"].ToString(), ddlapprove.SelectedValue, ddlapprove.SelectedValue, lblMstIncentiveId, txtrecomandedamount, getclientIP());
+            }
+            //else if (ddlapprove.SelectedValue == "1")
+            //{
+            //    int statusapp = Gen.GMCertificateInsertUploadNew(lblIncentiveID, Session["uid"].ToString(), "", ddlapprove.SelectedValue, ddlapprove.SelectedValue, lblMstIncentiveId, txtrecomandedamount);
+            //}
+            Button btnsubmit = (Button)gvinspectionOfficer.Rows[indexing].FindControl("Button1");
+            btnsubmit.Visible = false;
+            Button btnButton2 = (Button)gvinspectionOfficer.Rows[indexing].FindControl("Button2");
+            btnButton2.Visible = false;
+            Label lblcois = (Label)gvinspectionOfficer.Rows[indexing].FindControl("lblcois");
+            lblcois.Visible = true;
+            lblcois.Text = "Sent to DIPC";
+
+            Button ddlDeptnameFnl2 = (Button)sender;
+            GridViewRow row = (GridViewRow)ddlDeptnameFnl2.NamingContainer;
+            (row.FindControl("anchortagGMCertificate") as HyperLink).ForeColor = System.Drawing.Color.Green;
+            (row.FindControl("anchortagGMCertificate") as HyperLink).Text = "Recommendation Letter";
+            (row.FindControl("anchortagGMCertificate") as HyperLink).Visible = true;
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+
+
+    protected void ddlapprove_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        try
+        {
+            DropDownList ddlDeptnameFnl2 = (DropDownList)sender;
+
+            GridViewRow row = (GridViewRow)ddlDeptnameFnl2.NamingContainer;
+            TextBox txtIncQuery = (TextBox)row.FindControl("txtIncQueryFnl2");
+            Label enterid = (Label)row.FindControl("lblIncentiveID");
+            Label lblMstIncentiveId = (Label)row.FindControl("lblMstIncentiveId");
+            TextBox txtrecomandedamount = (TextBox)row.FindControl("txtrecomandedamount");
+
+            Button Button1 = (Button)row.FindControl("Button1");
+            Button Button2 = (Button)row.FindControl("Button2");
+
+            if (ddlDeptnameFnl2.SelectedValue == "1")
+            {
+                txtIncQuery.Visible = true;
+                Button1.Visible = true;
+                txtIncQuery.Focus();
+                Button1.Text = "Submit Query";
+                Button2.Visible = false;
+                txtrecomandedamount.Enabled = false;
+                //txtGMRecommendedRemarks.Enabled = false;
+                gvinspectionOfficer.Columns[10].Visible = false;
+                //gvinspectionOfficer.Columns[11].Visible = false;
+                (row.FindControl("anchortagGMCertificate") as HyperLink).ForeColor = System.Drawing.Color.Red;
+                (row.FindControl("anchortagGMCertificate") as HyperLink).Text = "Query Letter";
+                (row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaQueryRaiseShortFallLetterGMtoApplicantApproval.aspx?incentiveid=" + enterid.Text.Trim() + "&MstIncentiveId=" + lblMstIncentiveId.Text.Trim();
+            }
+            else
+            {
+                txtrecomandedamount.Enabled = true;
+                gvinspectionOfficer.Columns[10].Visible = true;
+                txtIncQuery.Visible = false;
+                ddlDeptnameFnl2.Focus();
+
+                // added on 11.10.2017
+
+
+
+                if (Button1.Visible == true)
+                {
+                    Button1.Text = "Send to COI";
+                }
+                //else
+                //{
+                //    Button2.Visible = true;
+                //}
+
+                // 
+
+                if (ddlDeptnameFnl2.SelectedValue == "2")
+                {
+                    //  gvinspectionOfficer.Columns[11].Visible = true;
+                }
+                else
+                {
+                    //gvinspectionOfficer.Columns[11].Visible = false;
+                }
+                if (lblMstIncentiveId.Text == "6")
+                {
+                    (row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaInvestmentSubsidy.aspx?EntrpId=" + enterid.Text.Trim();
+                }
+                if (lblMstIncentiveId.Text == "1")
+                {
+                    (row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaPavalavaddi.aspx?incentiveid=" + enterid.Text.Trim();
+                }
+                if (lblMstIncentiveId.Text == "3")
+                {
+                    (row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaPowerTariff.aspx?incentiveid=" + enterid.Text.Trim();
+                }
+                if (lblMstIncentiveId.Text == "5")
+                {
+                    (row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaSalesTax.aspx?incentiveid=" + enterid.Text.Trim();
+                }
+
+                (row.FindControl("anchortagGMCertificate") as HyperLink).ForeColor = System.Drawing.Color.Green;
+                (row.FindControl("anchortagGMCertificate") as HyperLink).Text = "Recommendation Letter";
+            }
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+    protected void BtnAddremarks_Click(object sender, EventArgs e)
+    {
+
+    }
+    private void AddDataToTableCeertificate(string Incentive, string Remarks, string CreatedBy, string CreatedDate, string MstIncentiveId, string EnterperIncentiveID, string CreatedByid, DataTable myTable)
+    {//totStartDate, string totEndDate, string totSummary,
+        try
+        {
+            DataRow Row;
+            Row = myTable.NewRow();
+
+            dtMyTable = new DataTable("CertificateTb2");
+            Row["Incentive"] = Incentive;
+            //Row["status"] = status;
+            Row["Remarks"] = Remarks;
+            Row["CreatedBy"] = CreatedBy;
+            Row["CreatedDate"] = CreatedDate;
+            Row["MstIncentiveId"] = MstIncentiveId;
+            Row["EnterperIncentiveID"] = EnterperIncentiveID;
+            Row["CreatedByid"] = CreatedByid;
+            Row["id"] = "0";
+            myTable.Rows.Add(Row);
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+
+    protected DataTable createtablecrtificate()
+    {
+        try
+        {
+            dtMyTable = new DataTable("CertificateTb2");
+
+            // dtMyTable.Columns.Add("new", typeof(string));
+            dtMyTable.Columns.Add("Incentive", typeof(string));
+            //dtMyTable.Columns.Add("status", typeof(string));
+            dtMyTable.Columns.Add("Remarks", typeof(string));
+            dtMyTable.Columns.Add("CreatedBy", typeof(string));
+            dtMyTable.Columns.Add("CreatedDate", typeof(string));
+            dtMyTable.Columns.Add("MstIncentiveId", typeof(string));
+            dtMyTable.Columns.Add("EnterperIncentiveID", typeof(string));
+            dtMyTable.Columns.Add("CreatedByid", typeof(string));
+            dtMyTable.Columns.Add("id", typeof(string));
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+        return dtMyTable;
+    }
+
+    private void AddDataToTablereject(string Incentive, string rejectMsg, string rejectedBy, string CreatedDate, string MstIncentiveId, string EnterperIncentiveID, string CreatedByid, DataTable myTable)
+    {//totStartDate, string totEndDate, string totSummary,
+        try
+        {
+            DataRow Row;
+            Row = myTable.NewRow();
+
+            dtMyTable = new DataTable("rejectTable");
+            Row["Incentive"] = Incentive;
+            //Row["status"] = status;
+            Row["RejectMsg"] = rejectMsg;
+            Row["RejectedBy"] = rejectedBy;
+            Row["CreatedDate"] = CreatedDate;
+            Row["MstIncentiveId"] = MstIncentiveId;
+            Row["EnterperIncentiveID"] = EnterperIncentiveID;
+            Row["CreatedByid"] = CreatedByid;
+            Row["id"] = "0";
+            myTable.Rows.Add(Row);
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+
+    protected DataTable createtablerejection()
+    {
+        dtMyTable = new DataTable("rejectTable");
+
+        // dtMyTable.Columns.Add("new", typeof(string));
+        dtMyTable.Columns.Add("Incentive", typeof(string));
+        //dtMyTable.Columns.Add("status", typeof(string));
+        dtMyTable.Columns.Add("RejectMsg", typeof(string));
+        dtMyTable.Columns.Add("RejectedBy", typeof(string));
+        dtMyTable.Columns.Add("CreatedDate", typeof(string));
+        dtMyTable.Columns.Add("MstIncentiveId", typeof(string));
+        dtMyTable.Columns.Add("EnterperIncentiveID", typeof(string));
+        dtMyTable.Columns.Add("CreatedByid", typeof(string));
+        dtMyTable.Columns.Add("id", typeof(string));
+
+        return dtMyTable;
+    }
+
+
+
+    private void AddDataToTableCeertificateAmount(string Incentive, string Remarks, string CreatedBy, string CreatedDate, string MstIncentiveId, string EnterperIncentiveID, string CreatedByid, DataTable myTableAmount)
+    {//totStartDate, string totEndDate, string totSummary,
+        try
+        {
+            DataRow Row;
+            Row = myTableAmount.NewRow();
+
+            dtMyTableAmount = new DataTable("CertificateTbAmount");
+            Row["Incentive"] = Incentive;
+            //Row["status"] = status;
+            Row["RecomendedAmount"] = Remarks;
+            Row["CreatedBy"] = CreatedBy;
+            Row["CreatedDate"] = CreatedDate;
+            Row["MstIncentiveId"] = MstIncentiveId;
+            Row["EnterperIncentiveID"] = EnterperIncentiveID;
+            Row["CreatedByid"] = CreatedByid;
+            Row["id"] = "0";
+            myTableAmount.Rows.Add(Row);
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+    protected DataTable createtablecrtificateAmount()
+    {
+        dtMyTableAmount = new DataTable("CertificateTbAmount");
+
+        // dtMyTable.Columns.Add("new", typeof(string));
+        dtMyTableAmount.Columns.Add("Incentive", typeof(string));
+        //dtMyTable.Columns.Add("status", typeof(string));
+        dtMyTableAmount.Columns.Add("RecomendedAmount", typeof(string));
+        dtMyTableAmount.Columns.Add("CreatedBy", typeof(string));
+        dtMyTableAmount.Columns.Add("CreatedDate", typeof(string));
+        dtMyTableAmount.Columns.Add("MstIncentiveId", typeof(string));
+        dtMyTableAmount.Columns.Add("EnterperIncentiveID", typeof(string));
+        dtMyTableAmount.Columns.Add("CreatedByid", typeof(string));
+        dtMyTableAmount.Columns.Add("id", typeof(string));
+
+        return dtMyTableAmount;
+    }
+
+    protected void gvremarks_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+
+    }
+
+    protected void gvRejected_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+
+    }
+
+
+    protected void Button3_Click(object sender, EventArgs e)
+    {
+
+    }
+    protected void Button4_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            foreach (GridViewRow gvrow in gvinspectionOfficer.Rows)
+            {
+                officerForwarded frmvo = new officerForwarded();
+                string lblMstIncentiveId = ((Label)gvrow.FindControl("lblMstIncentiveId")).Text;
+                string lblIncentiveID = ((Label)gvrow.FindControl("lblIncentiveID")).Text;
+
+                frmvo.EnterperIncentiveID = lblIncentiveID;
+                frmvo.MstIncentiveId = lblMstIncentiveId;
+                frmvo.CreatedByid = Session["uid"].ToString();
+                frmvo.ApplicationFrom = Session["User_Code"].ToString();
+                lstincentives.Add(frmvo);
+            }
+            Session["lstincentives"] = lstincentives;
+            Response.Redirect("ProformaQueryRaiseShortFallLetter.aspx?incentiveid=" + ViewState["IncentveID"].ToString());
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+    protected void btnupdatestatus_Click(object sender, EventArgs e)
+    {
+
+    }
+    //protected void Button5_Click(object sender, EventArgs e)
+    //{
+
+    //    Response.Redirect("InspectionReport.aspx?incentiveid=" + ViewState["IncentveID"].ToString());
+    //}
+    protected void btnsendcoi_Click(object sender, EventArgs e)
+    {
+
+    }
+    public void DeleteFile(string strFileName)
+    {
+        try
+        {
+            if (strFileName.Trim().Length > 0)
+            {
+                FileInfo fi = new FileInfo(strFileName);
+                if (fi.Exists)
+                {
+                    fi.Delete();
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+    public static string getclientIP()
+    {
+        string result = string.Empty;
+        string ip = HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+        if (!string.IsNullOrEmpty(ip))
+        {
+            string[] ipRange = ip.Split(',');
+            int le = ipRange.Length - 1;
+            result = ipRange[0];
+        }
+        else
+        {
+            result = HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
+        }
+
+        return result;
+    }
+    protected void CheckBoxList1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+    protected void Button6_Click(object sender, EventArgs e)
+    {
+
+    }
+    protected void btnsaveinspectingofficer_Click(object sender, EventArgs e)
+    {
+
+    }
+    protected void Button7_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    public void SendSmsEmail(string querydesc, string incentivename)
+    {
+
+
+    }
+
+    public string FillDetailsabc(DataSet ds)
+    {
+        string IncentID = "";
+        try
+        {
+
+            if (ds != null)
+            {
+                if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                {
+                    divCommonAppli.Visible = true;
+                    IncentID = ds.Tables[0].Rows[0]["IncentveID"].ToString();
+
+                    txtudyogAadharNo1.Text = ds.Tables[0].Rows[0]["EMiUdyogAadhar"].ToString();
+                    txtUnitname1.Text = ds.Tables[0].Rows[0]["UnitName"].ToString();
+                    txtApplicantName1.Text = ds.Tables[0].Rows[0]["ApplciantName"].ToString();
+                    txtPanNumber1.Text = ds.Tables[0].Rows[0]["PanNo"].ToString();
+                    txtTinNumber1.Text = ds.Tables[0].Rows[0]["TinNO"].ToString();
+
+                    ddlCategory1.Text = ds.Tables[0].Rows[0]["Category"].ToString();
+                    ddltypeofOrg1.Text = ds.Tables[0].Rows[0]["OrgType2"].ToString();
+
+                    ddlindustryStatus1.Text = ds.Tables[0].Rows[0]["IdsustryStatus"].ToString();
+
+                    txtDateofCommencement1.Text = ds.Tables[0].Rows[0]["DCP"].ToString();
+
+                    rblCaste1.Text = ds.Tables[0].Rows[0]["Caste"].ToString();
+                    rblCaste1.Text = ds.Tables[0].Rows[0]["SocialStatus"].ToString();
+
+                    ddldistrictunit1.Text = ds.Tables[0].Rows[0]["UnitDistName"].ToString();
+                    ddlUnitMandal1.Text = ds.Tables[0].Rows[0]["UNITMANDAL"].ToString();
+                    ddlVillageunit1.Text = ds.Tables[0].Rows[0]["UNITVILLAGE"].ToString(); ;
+                    txtunitaddhno1.Text = ds.Tables[0].Rows[0]["UnitHNO"].ToString();
+                    txtstreetunit1.Text = ds.Tables[0].Rows[0]["UnitStreet"].ToString();
+                    txtunitmobileno1.Text = ds.Tables[0].Rows[0]["UnitMObileNo"].ToString();
+                    txtunitemailid1.Text = ds.Tables[0].Rows[0]["UnitEmail"].ToString();
+
+                    ddldistrictoffc1.Text = ds.Tables[0].Rows[0]["OFFCDISTNAME"].ToString();
+                    ddloffcmandal1.Text = ds.Tables[0].Rows[0]["OFFCMANDAL"].ToString();
+                    ddlvilloffc1.Text = ds.Tables[0].Rows[0]["OFFCVILLAGE"].ToString();
+                    txtoffaddhnno1.Text = ds.Tables[0].Rows[0]["OffcHNO"].ToString();
+                    txtstreetoffice1.Text = ds.Tables[0].Rows[0]["OffcStreet"].ToString();
+                    txtOffcMobileNO1.Text = ds.Tables[0].Rows[0]["OffcMobileNO"].ToString();
+                    txtOffcEmail1.Text = ds.Tables[0].Rows[0]["OffcEmail"].ToString();
+
+                    gvLOA.DataSource = null;
+                    gvLOA.DataBind();
+                    gvLOA.DataSource = ds.Tables[1];
+                    gvLOA.DataBind();
+                    if (ds.Tables[0].Rows[0]["IdsustryStatus1"].ToString() == "1")
+                    {
+                        tr1.Visible = true;
+                        tr3.Visible = false;
+                        txtlandexistingNew.Text = ds.Tables[0].Rows[0]["ExistEnterpriseLand"].ToString();
+                        txtbuildingexistingNew.Text = ds.Tables[0].Rows[0]["ExistEnterpriseBuilding"].ToString();
+                        txtplantexistingNew.Text = ds.Tables[0].Rows[0]["ExistEnterprisePlantMachinery"].ToString();
+                    }
+                    if (ds.Tables[0].Rows[0]["IdsustryStatus1"].ToString() == "2" || ds.Tables[0].Rows[0]["IdsustryStatus1"].ToString() == "3")
+                    {
+                        tr3.Visible = true;
+                        tr1.Visible = false;
+
+                        txteeploa.Text = ds.Tables[0].Rows[0]["ExistingEnterpriseLOA"].ToString();
+                        txteepinscap.Text = ds.Tables[0].Rows[0]["ExistingInstalledCapacityinEnter"].ToString();
+                        ddleepinscap.Text = ds.Tables[0].Rows[0]["eepinscapUnit"].ToString();
+                        txteeppercentage.Text = ds.Tables[0].Rows[0]["ExistingPercentageincreaseunderExpansionORDiversification"].ToString();
+                        txtedploa.Text = ds.Tables[0].Rows[0]["ExpansionDiversificationLOA"].ToString();
+                        txtedpinscap.Text = ds.Tables[0].Rows[0]["ExpanORDiversInstalledCapacityinEnter"].ToString();
+                        ddledpinscap.Text = ds.Tables[0].Rows[0]["edpinscapUnit"].ToString();
+                        txtedppercentage.Text = ds.Tables[0].Rows[0]["ExpanORDiversPercentIncreaseunderExpansionORDiversification"].ToString();
+
+                        txtlandexisting.Text = ds.Tables[0].Rows[0]["ExistEnterpriseLand"].ToString();
+                        txtlandexpandiver.Text = ds.Tables[0].Rows[0]["ExpansionDiversificationLand"].ToString();
+                        txtlandpercentage.Text = ds.Tables[0].Rows[0]["LandFixedCapitalInvestPercentage"].ToString();
+
+                        txtbuildingexisting.Text = ds.Tables[0].Rows[0]["ExistEnterpriseBuilding"].ToString();
+                        txtbuildingexpandiver.Text = ds.Tables[0].Rows[0]["ExpDiversBuilding"].ToString();
+                        txtbuildingpercentage.Text = ds.Tables[0].Rows[0]["BuildingFixedCapitalInvestPercentage"].ToString();
+
+                        txtplantexisting.Text = ds.Tables[0].Rows[0]["ExistEnterprisePlantMachinery"].ToString();
+                        txtplantexpandiver.Text = ds.Tables[0].Rows[0]["ExpDiversPlantMachinery"].ToString();
+                        txtplantpercentage.Text = ds.Tables[0].Rows[0]["PlantMachFixedCapitalInvestPercentage"].ToString();
+                    }
+                    // grid view code binding  // for directors/ proprietors
+                    GridViewdirectors.DataSource = null;
+                    GridViewdirectors.DataBind();
+                    GridViewdirectors.DataSource = ds.Tables[2];
+                    GridViewdirectors.DataBind();
+
+                    ddlPowerStatus.Text = ds.Tables[0].Rows[0]["PowerType"].ToString();
+
+                    if (ddlPowerStatus.Text == "New Industry")
+                    {
+                        //trpower1.Visible = true;
+                        //trpower2.Visible = false;
+                        txtNewPowerReleaseDate.Text = ds.Tables[0].Rows[0]["PowerReleaseDate"].ToString();
+                        txtNewContractedLoad.Text = ds.Tables[0].Rows[0]["NewConnectedLoad"].ToString();
+                        txtNewConnectedLoad.Text = ds.Tables[0].Rows[0]["NewContractedLoad"].ToString();
+                        txtServiceConnectionNumberNew.Text = ds.Tables[0].Rows[0]["ServiceConnectionNO"].ToString();
+                    }
+                    if (ddlPowerStatus.Text == "Expansion/Diversification")
+                    {
+                        //trpower1.Visible = false;
+                        //trpower2.Visible = true;
+                        lblexistingpower.Text = "Existing Enterprise production details";
+                        lblexpandiverpower.Text = "Expansion / Diversification details";
+
+                        txtExistPowerReleaseDate.Text = ds.Tables[0].Rows[0]["ExistingPowerReleaseDate"].ToString();
+                        txtExistContractedLoad.Text = ds.Tables[0].Rows[0]["ExistingContractedLoad"].ToString();
+                        txtExistConnectedLoad.Text = ds.Tables[0].Rows[0]["ExistingConnectedLoad"].ToString();
+                        txtServiceConnectionNumberExist.Text = ds.Tables[0].Rows[0]["ExistingServiceConnectionNO"].ToString();
+                        txtExpanPowerReleaseDate.Text = ds.Tables[0].Rows[0]["ExpanDiverPowerReleaseDate"].ToString();
+                        txtExpanContractedLoad.Text = ds.Tables[0].Rows[0]["ExpanDiverContractedLoad"].ToString();
+                        txtExpanConnectedLoad.Text = ds.Tables[0].Rows[0]["ExpanDiverConnectedLoad"].ToString();
+                        txtServiceConnectionNumberExpan.Text = ds.Tables[0].Rows[0]["ExpanDiverServiceConnectionNO"].ToString();
+                    }
+
+                    txtstaffMale.Text = ds.Tables[0].Rows[0]["ManagementStaffMale"].ToString();
+                    txtStaffFemale.Text = ds.Tables[0].Rows[0]["ManagementStaffFemale"].ToString();
+                    txtSuprMale.Text = ds.Tables[0].Rows[0]["SupervisoryMale"].ToString();
+                    txtSuperFemale.Text = ds.Tables[0].Rows[0]["SupervisoryFemale"].ToString();
+                    txtSkilledWorkersMale.Text = ds.Tables[0].Rows[0]["SkilledWorkersFemale"].ToString();
+                    txtSkilledWorkersFemale.Text = ds.Tables[0].Rows[0]["SkilledWorkersFemale"].ToString();
+                    txtSemiSkilledWorkersMale.Text = ds.Tables[0].Rows[0]["SkilledWorkersFemale"].ToString();
+                    txtSemiSkilledWorkersFemale.Text = ds.Tables[0].Rows[0]["SkilledWorkersFemale"].ToString();
+
+                    //txtprjfinance.Text = ds.Tables[0].Rows[0]["ProjectFinance"].ToString();
+                    txtTermloan.Text = ds.Tables[0].Rows[0]["TermLoanApplDate"].ToString();
+                    txtnmofinstitution.Text = ds.Tables[0].Rows[0]["InstitutionName"].ToString();
+                    txtsactionedloan.Text = ds.Tables[0].Rows[0]["TermLoanSancRefNo"].ToString();
+                    txtdatesanctioned.Text = ds.Tables[0].Rows[0]["TermLoanApplDate"].ToString();
+
+                    // Name of Assets binding
+                    if (ds.Tables[3].Rows[0]["LandApprovedProjectCost"].ToString() != "")
+                        txtLand2.Text = ds.Tables[3].Rows[0]["LandApprovedProjectCost"].ToString();
+                    else
+                        txtLand2.Text = "0.00";
+                    if (ds.Tables[3].Rows[0]["LandLoanSactioned"].ToString() != "")
+                        txtLand3.Text = ds.Tables[3].Rows[0]["LandLoanSactioned"].ToString();
+                    else
+                        txtLand3.Text = "0.00";
+                    if (ds.Tables[3].Rows[0]["LandPromotersEquity"].ToString() != "")
+                        txtLand4.Text = ds.Tables[3].Rows[0]["LandPromotersEquity"].ToString();
+                    else
+                        txtLand4.Text = "0.00";
+                    if (ds.Tables[3].Rows[0]["LandLoanAmountReleased"].ToString() != "")
+                        txtLand5.Text = ds.Tables[3].Rows[0]["LandLoanAmountReleased"].ToString();
+                    else
+                        txtLand5.Text = "0.00";
+                    if (ds.Tables[3].Rows[0]["LandAssetsValuebyFinInstitution"].ToString() != "")
+                        txtLand6.Text = ds.Tables[3].Rows[0]["LandAssetsValuebyFinInstitution"].ToString();
+                    else
+                        txtLand6.Text = "0.00";
+                    if (ds.Tables[3].Rows[0]["LandAssetsValuebyCA"].ToString() != "")
+                        txtLand7.Text = ds.Tables[3].Rows[0]["LandAssetsValuebyCA"].ToString();
+                    else
+                        txtLand7.Text = "0.00";
+
+
+                    if (ds.Tables[3].Rows[0]["BuildingApprovedProjectCost"].ToString() != "")
+                        txtBuilding2.Text = ds.Tables[3].Rows[0]["BuildingApprovedProjectCost"].ToString();
+                    else
+                        txtBuilding2.Text = "0.00";
+                    if (ds.Tables[3].Rows[0]["BuildingLoanSactioned"].ToString() != "")
+                        txtBuilding3.Text = ds.Tables[3].Rows[0]["BuildingLoanSactioned"].ToString();
+                    else
+                        txtBuilding3.Text = "0.00";
+                    if (ds.Tables[3].Rows[0]["BuildingPromotersEquity"].ToString() != "")
+                        txtBuilding4.Text = ds.Tables[3].Rows[0]["BuildingPromotersEquity"].ToString();
+                    else
+                        txtBuilding4.Text = "0.00";
+                    if (ds.Tables[3].Rows[0]["BuildingLoanAmountReleased"].ToString() != "")
+                        txtBuilding5.Text = ds.Tables[3].Rows[0]["BuildingLoanAmountReleased"].ToString();
+                    else
+                        txtBuilding5.Text = "0.00";
+                    if (ds.Tables[3].Rows[0]["BuildingAssetsValuebyFinInstitution"].ToString() != "")
+                        txtBuilding6.Text = ds.Tables[3].Rows[0]["BuildingAssetsValuebyFinInstitution"].ToString();
+                    else
+                        txtBuilding6.Text = "0.00";
+                    if (ds.Tables[3].Rows[0]["BuildingAssetsValuebyCA"].ToString() != "")
+                        txtBuilding7.Text = ds.Tables[3].Rows[0]["BuildingAssetsValuebyCA"].ToString();
+                    else
+                        txtBuilding7.Text = "0.00";
+
+
+                    if (ds.Tables[3].Rows[0]["PlantMachineryApprovedProjectCost"].ToString() != "")
+                        txtPM2.Text = ds.Tables[3].Rows[0]["PlantMachineryApprovedProjectCost"].ToString();
+                    else
+                        txtPM2.Text = "0.00";
+                    if (ds.Tables[3].Rows[0]["PlantMachineryLoanSactioned"].ToString() != "")
+                        txtPM3.Text = ds.Tables[3].Rows[0]["PlantMachineryLoanSactioned"].ToString();
+                    else
+                        txtPM3.Text = "0.00";
+                    if (ds.Tables[3].Rows[0]["PlantMachineryPromotersEquity"].ToString() != "")
+                        txtPM4.Text = ds.Tables[3].Rows[0]["PlantMachineryPromotersEquity"].ToString();
+                    else
+                        txtPM4.Text = "0.00";
+                    if (ds.Tables[3].Rows[0]["PlantMachineryLoanAmountReleased"].ToString() != "")
+                        txtPM5.Text = ds.Tables[3].Rows[0]["PlantMachineryLoanAmountReleased"].ToString();
+                    else
+                        txtPM5.Text = "0.00";
+                    if (ds.Tables[3].Rows[0]["PlantMachineryAssetsValuebyFinInstitution"].ToString() != "")
+                        txtPM6.Text = ds.Tables[3].Rows[0]["PlantMachineryAssetsValuebyFinInstitution"].ToString();
+                    else
+                        txtPM6.Text = "0.00";
+                    if (ds.Tables[3].Rows[0]["PlantMachineryAssetsValuebyCA"].ToString() != "")
+                        txtPM7.Text = ds.Tables[3].Rows[0]["PlantMachineryAssetsValuebyCA"].ToString();
+                    else
+                        txtPM7.Text = "0.00";
+
+                    if (ds.Tables[3].Rows[0]["MachineryContingenciesApprovedProjectCost"].ToString() != "")
+                        txtMCont2.Text = ds.Tables[3].Rows[0]["MachineryContingenciesApprovedProjectCost"].ToString();
+                    else
+                        txtMCont2.Text = "0.00";
+                    if (ds.Tables[3].Rows[0]["MachineryContingenciesLoanSactioned"].ToString() != "")
+                        txtMCont3.Text = ds.Tables[3].Rows[0]["MachineryContingenciesLoanSactioned"].ToString();
+                    else
+                        txtMCont3.Text = "0.00";
+                    if (ds.Tables[3].Rows[0]["MachineryContingenciesPromotersEquity"].ToString() != "")
+                        txtMCont4.Text = ds.Tables[3].Rows[0]["MachineryContingenciesPromotersEquity"].ToString();
+                    else
+                        txtMCont4.Text = "0.00";
+                    if (ds.Tables[3].Rows[0]["MachineryContingenciesLoanAmountReleased"].ToString() != "")
+                        txtMCont5.Text = ds.Tables[3].Rows[0]["MachineryContingenciesLoanAmountReleased"].ToString();
+                    else
+                        txtMCont5.Text = "0.00";
+                    if (ds.Tables[3].Rows[0]["MachineryContingenciesAssetsValuebyFinInstitution"].ToString() != "")
+                        txtMCont6.Text = ds.Tables[3].Rows[0]["MachineryContingenciesAssetsValuebyFinInstitution"].ToString();
+                    else
+                        txtMCont6.Text = "0.00";
+                    if (ds.Tables[3].Rows[0]["MachineryContingenciesAssetsValuebyCA"].ToString() != "")
+                        txtMCont7.Text = ds.Tables[3].Rows[0]["MachineryContingenciesAssetsValuebyCA"].ToString();
+                    else
+                        txtMCont7.Text = "0.00";
+
+
+                    txtErec2.Text = ds.Tables[3].Rows[0]["ErectionApprovedProjectCost"].ToString();
+                    txtErec3.Text = ds.Tables[3].Rows[0]["ErectionLoanSactioned"].ToString();
+                    txtErec4.Text = ds.Tables[3].Rows[0]["ErectionPromotersEquity"].ToString();
+                    txtErec5.Text = ds.Tables[3].Rows[0]["ErectionLoanAmountReleased"].ToString();
+                    txtErec6.Text = ds.Tables[3].Rows[0]["ErectionAssetsValuebyFinInstitution"].ToString();
+                    txtErec7.Text = ds.Tables[3].Rows[0]["ErectionAssetsValuebyCA"].ToString();
+
+                    txtTFS2.Text = ds.Tables[3].Rows[0]["TechnicalfeasibilityApprovedProjectCost"].ToString();
+                    txtTFS3.Text = ds.Tables[3].Rows[0]["TechnicalfeasibilityLoanSactioned"].ToString();
+                    txtTFS4.Text = ds.Tables[3].Rows[0]["TechnicalfeasibilityPromotersEquity"].ToString();
+                    txtTFS5.Text = ds.Tables[3].Rows[0]["TechnicalfeasibilityLoanAmountReleased"].ToString();
+                    txtTFS6.Text = ds.Tables[3].Rows[0]["TechnicalfeasibilityAssetsValuebyFinInstitution"].ToString();
+                    txtTFS7.Text = ds.Tables[3].Rows[0]["TechnicalfeasibilityAssetsValuebyCA"].ToString();
+
+                    txtWC2.Text = ds.Tables[3].Rows[0]["WorkingCapitalApprovedProjectCost"].ToString();
+                    txtWC3.Text = ds.Tables[3].Rows[0]["WorkingCapitalLoanSactioned"].ToString();
+                    txtWC4.Text = ds.Tables[3].Rows[0]["WorkingCapitalPromotersEquity"].ToString();
+                    txtWC5.Text = ds.Tables[3].Rows[0]["WorkingCapitalLoanAmountReleased"].ToString();
+                    txtWC6.Text = ds.Tables[3].Rows[0]["WorkingCapitalAssetsValuebyFinInstitution"].ToString();
+                    txtWC7.Text = ds.Tables[3].Rows[0]["WorkingCapitalAssetsValuebyCA"].ToString();
+
+                    txtsecondhndmachine.Text = ds.Tables[0].Rows[0]["SecondHandMachVal"].ToString();
+                    txtnewmachine.Text = ds.Tables[0].Rows[0]["NewMachVal"].ToString();
+                    txtTotalvalue12.Text = ds.Tables[0].Rows[0]["Newand2ndlMachTotVal"].ToString();
+                    txtpercentage12.Text = ds.Tables[0].Rows[0]["PercentageSHMValinTotMachVal"].ToString();
+                    txtmachinepucr.Text = ds.Tables[0].Rows[0]["MachValPrchasedfromAPIDCorAPSFCBank"].ToString();
+                    txttotal25.Text = ds.Tables[0].Rows[0]["TotalMachVal"].ToString();
+
+
+                    txtAvldSubsidyScheme.Text = ds.Tables[0].Rows[0]["TotalSubsidyAlreadyAvailedScheme"].ToString();
+                    txtAvldSubsidyAmt.Text = ds.Tables[0].Rows[0]["TotalSubsidyAlreadyAvailedAmount"].ToString();
+                    txtSchemeEligible.Text = "";
+                    txtAppldInvestSubsidy.Text = ds.Tables[0].Rows[0]["InvestimentSubsidy"].ToString();
+                    txtAppldAddlAmtWomen.Text = ds.Tables[0].Rows[0]["AdditionalInvSubsidyForWomen"].ToString();
+                    //txtAppldAddlAmtSCST.Text = ds.Tables[0].Rows[0]["AdditionalInvSubsidyForSCORST"].ToString();
+                    //  txtAppldAddlAmtScheduldAreas.Text = ds.Tables[0].Rows[0]["AdditionalInvSubsidyForWomenInScheduledAreas"].ToString();
+                    txtAppldTotInvestSubsidy.Text = ds.Tables[0].Rows[0]["TotalAppliedIncetives"].ToString();
+
+
+                    if (ds.Tables[0].Rows[0]["AvailedSubsidyEarlier"].ToString() == "Y")
+                    {
+                        // ddlsubsidy.Text = "Yes";
+                    }
+                    else if (ds.Tables[0].Rows[0]["AvailedSubsidyEarlier"].ToString() == "N")
+                    {
+                        // ddlsubsidy.Text = "No";
+                    }
+
+                    //ddlBank.Text = ds.Tables[4].Rows[0]["BankName"].ToString();
+                    //txtAccNumber.Text = ds.Tables[4].Rows[0]["AccNo"].ToString();
+                    //txtBranchName.Text = ds.Tables[4].Rows[0]["BranchName"].ToString();
+                    //txtIfscCode.Text = ds.Tables[4].Rows[0]["IFSCCode"].ToString();
+                    //ddlPower.Text = ds.Tables[4].Rows[0]["WhetherPower"].ToString();
+
+                    txtvatno.Text = ds.Tables[0].Rows[0]["VATNo"].ToString();
+                    txtcstno.Text = ds.Tables[0].Rows[0]["CSTNo"].ToString();
+                    txtCSTRegDate.Text = ds.Tables[0].Rows[0]["CSTRegDate"].ToString();
+                    txtCSTRegAuthority.Text = ds.Tables[0].Rows[0]["CSTRegAuthority"].ToString();
+                    txtCSTRegAuthAddress.Text = ds.Tables[0].Rows[0]["CSTRegAuthAddress"].ToString();
+                    lblEMPartNo.Text = ds.Tables[0].Rows[0]["EMPartNo"].ToString();
+
+                    return IncentID;
+                }
+
+            }
+
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+        return IncentID;
+    }
+
+    public void BindForms(DataSet ds, string incentiveID)
+    {
+
+        try
+        {
+            if (ds != null)
+            {
+                if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                {
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    {
+
+                        string MasterIncentiveId = ds.Tables[0].Rows[i]["IncentiveID"].ToString();
+
+                        if (MasterIncentiveId == "6")  //IS
+                        {
+                            DataSet ds6 = new DataSet();
+                            ds6 = Gen.GetIncentivesISdata(incentiveID, "6");
+                            FilldataIS(ds6);
+                            divInvestmenSubsidy.Visible = true;
+                        }
+
+                        if (MasterIncentiveId == "9") //STAMP DUTY
+                        {
+                            DataSet ds9 = new DataSet();
+                            ds9 = Gen.GetIncentivesStampDutydata(incentiveID);
+                            FilldataStampDuty(ds9);
+                            divStampDuty.Visible = true;
+                        }
+
+                        if (MasterIncentiveId == "3")  // pOWER
+                        {
+                            DataSet ds3 = new DataSet();
+                            ds3 = Gen.GetFormIIIIncentives(Convert.ToInt32(incentiveID));
+                            FillDetailsPower(ds3);
+                            divPowerCost.Visible = true;
+                        }
+
+                        if (MasterIncentiveId == "1")  // PV
+                        {
+                            DataSet ds1 = new DataSet();
+                            ds1 = Gen.GetFormIVIncentives(Convert.ToInt32(incentiveID));
+                            FillDetailsPavalaVaddi(ds1);
+                            divPavalaVaddi.Visible = true;
+                        }
+
+                        if (MasterIncentiveId == "5")  // SALES TAX
+                        {
+                            DataSet ds5 = new DataSet();
+                            ds5 = Gen.GetFormVIncentives(Convert.ToInt32(incentiveID));
+                            FillDetailsSalesTax(ds5);
+                            divSalesTax.Visible = true;
+
+                        }
+
+                        if (MasterIncentiveId == "11")  // qc
+                        {
+                            DataSet ds11 = new DataSet();
+                            ds11 = Gen.GetIncentivesfrom4data(incentiveID);
+                            FillDetailsQualityCertification(ds11);
+                            divQualityCertification.Visible = true;
+                        }
+
+                        if (MasterIncentiveId == "10")  // seed cap
+                        {
+
+                        }
+
+                        if (MasterIncentiveId == "4")
+                        {
+                            DataSet ds4 = new DataSet();
+                            ds4 = Gen.GetIncentivesfrom8data(incentiveID);
+                            FillDetailsCleanerProduction(ds4);
+                            divCleanerProduction.Visible = true;
+
+                        }
+
+                        if (MasterIncentiveId == "8")
+                        {
+                            DataSet ds8 = new DataSet();
+                            ds8 = Gen.GetIncentivesfrom9data(incentiveID);
+                            FillDetailsSkillUpgradation(ds8);
+                            divSkillupgradation.Visible = true;
+
+                        }
+
+                        if (MasterIncentiveId == "7")
+                        {
+                            DataSet ds7 = new DataSet();
+                            ds7 = Gen.GetIncentivesIIDFunddata(incentiveID);
+                            FilldataIIDFund(ds7);
+
+                        }
+                        if (MasterIncentiveId == "12")
+                        {
+                            DataSet ds12 = new DataSet();
+                            ds12 = Gen.GetIncentivesAdvSubsidySCST(incentiveID);
+                            FilldataSCSCT(ds12);
+                        }
+                    }
+                }
+
+            }
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+
+    // bind forms methods
+    private void FilldataIS(DataSet ds)
+    {
+        try
+        {
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                txtAppldAddlAmtWomen.Text = ds.Tables[0].Rows[0]["AppldAddlAmtWomen"].ToString();
+                txtAppldInvestSubsidy.Text = ds.Tables[0].Rows[0]["AppldInvestSubsidy"].ToString();
+                txtAppldTotInvestSubsidy.Text = ds.Tables[0].Rows[0]["AppldTotInvestSubsidy"].ToString();
+                txtAvldSubsidyAmt.Text = ds.Tables[0].Rows[0]["AvldSubsidyAmt"].ToString();
+                txtAvldSubsidyScheme.Text = ds.Tables[0].Rows[0]["AvldSubsidyScheme"].ToString();
+                txtSchemeEligible.Text = ds.Tables[0].Rows[0]["SchemeEligible"].ToString();
+
+                #region fileuploadbinding IS
+                //if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+                //{
+                //    int c = ds.Tables[1].Rows.Count;
+                //    string sen, sen1, sen2;
+                //    int i = 0;
+
+                //    while (i < c)
+                //    {
+                //        sen2 = ds.Tables[1].Rows[i][0].ToString();
+                //        sen1 = sen2.Replace(@"\", @"/");
+                //        sen = sen1.Replace(@"D:/TS-iPASSFinal/", "~/");
+
+                //        if (sen.Contains("62"))
+                //        {
+                //            lblUpload1.NavigateUrl = sen;
+                //            lblUpload1.Text = ds.Tables[1].Rows[i][1].ToString();
+                //            lblAttachedFileName1.Text = ds.Tables[1].Rows[i][1].ToString();
+                //            //HyperLink1.NavigateUrl = sen;
+                //            //HyperLink1.Text = 
+                //        }
+                //        if (sen.Contains("63"))
+                //        {
+                //            lblUpload2.NavigateUrl = sen;
+                //            lblUpload2.Text = ds.Tables[1].Rows[i][1].ToString();
+                //            lblAttachedFileName2.Text = ds.Tables[1].Rows[i][1].ToString();
+                //            //HyperLink1.NavigateUrl = sen;
+                //            //HyperLink1.Text = 
+                //        }
+                //        i++;
+                //    }
+                //}
+                #endregion
+
+            }
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+
+    private void FilldataStampDuty(DataSet ds)
+    {
+        try
+        {
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                txtAreaRegdSaledeed.Text = ds.Tables[0].Rows[0]["AreaRegdSaledeed"].ToString();
+                txtPlnthAreaBuild.Text = ds.Tables[0].Rows[0]["PlnthAreaBuild"].ToString();
+                txtFivePlnthAreaBuild.Text = ds.Tables[0].Rows[0]["FivePlnthAreaBuild"].ToString();
+                txtAreaReqdAppraisal.Text = ds.Tables[0].Rows[0]["AreaReqdAppraisal"].ToString();
+                txtAreaReqdTSPCB.Text = ds.Tables[0].Rows[0]["AreaReqdTSPCB"].ToString();
+                txtNatureofTrans.Text = ds.Tables[0].Rows[0]["NatureofTrans"].ToString();
+
+                txtSubRegOffc.Text = ds.Tables[0].Rows[0]["SubRegOffc"].ToString();
+                txtRegdDeedNo.Text = ds.Tables[0].Rows[0]["RegdDeedNo"].ToString();
+                txtRegDate.Text = Convert.ToDateTime(ds.Tables[0].Rows[0]["RegnDate"].ToString()).ToString("dd/MM/yyyy");
+                txtStampTranfrDutyAP.Text = ds.Tables[0].Rows[0]["StampTranfrDutyAP"].ToString();
+                txtMortgageHypothDutyAP.Text = ds.Tables[0].Rows[0]["MortgageHypothDutyAP"].ToString();
+                txtLandConvrChrgAP.Text = ds.Tables[0].Rows[0]["LandConvrChrgAP"].ToString();
+
+                txtLandCostIeIdaIpAP.Text = ds.Tables[0].Rows[0]["LandCostIeIdaIpAP"].ToString();
+                txtStampTranfrDutyAC.Text = ds.Tables[0].Rows[0]["StampTranfrDutyAC"].ToString();
+                txtMortgageHypothDutyAC.Text = ds.Tables[0].Rows[0]["MortgageHypothDutyAC"].ToString();
+                txtLandConvrChrgAC.Text = ds.Tables[0].Rows[0]["LandConvrChrgAC"].ToString();
+                txtLandCostIeIdaIpAC.Text = ds.Tables[0].Rows[0]["LandCostIeIdaIpAC"].ToString();
+
+                #region fileuploadbinding StampDuty
+                //if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+                //{
+                //    int c = ds.Tables[1].Rows.Count;
+                //    string sen, sen1, sen2;
+                //    int i = 0;
+
+                //    while (i < c)
+                //    {
+                //        sen2 = ds.Tables[1].Rows[i][0].ToString();
+                //        sen1 = sen2.Replace(@"\", @"/");
+                //        sen = sen1.Replace(@"D:/TS-iPASSFinal/", "~/");
+
+                //        if (sen.Contains("60"))
+                //        {
+                //            lblupload1.NavigateUrl = sen;
+                //            lblupload1.Text = ds.Tables[1].Rows[i][1].ToString();
+                //            lblAttachedFileName1.Text = ds.Tables[1].Rows[i][1].ToString();
+                //            //HyperLink1.NavigateUrl = sen;
+                //            //HyperLink1.Text = 
+                //        }
+                //        if (sen.Contains("61"))
+                //        {
+                //            lblUpload2.NavigateUrl = sen;
+                //            lblUpload2.Text = ds.Tables[1].Rows[i][1].ToString();
+                //            lblAttachedFileName2.Text = ds.Tables[1].Rows[i][1].ToString();
+                //            //HyperLink1.NavigateUrl = sen;
+                //            //HyperLink1.Text = 
+                //        }
+                //        i++;
+                //    }
+                //}
+                #endregion
+
+            }
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+
+    private void FillDetailsPower(DataSet ds)
+    {
+        try
+        {
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                txtClaimedAmount.Text = ds.Tables[0].Rows[0]["AmountClaimed"].ToString();
+                if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+                {
+                    ViewState["dtPowerIncentives"] = ds.Tables[1];
+                    gvPowerIncentives.DataSource = ds.Tables[1];
+                    gvPowerIncentives.DataBind();
+                }
+                if (ds.Tables.Count > 2 && ds.Tables[2].Rows.Count > 0)
+                {
+                    ViewState["dtEnergy"] = ds.Tables[2];
+                    gvEnergy.DataSource = ds.Tables[2];
+                    gvEnergy.DataBind();
+                }
+
+                #region FileUploading Power
+                //if (ds.Tables.Count > 3 && ds.Tables[3].Rows.Count > 0)
+                //{
+                //    DataTable table = ds.Tables[3];
+                //    string sen, sen1, sen2;
+
+                //    foreach (DataRow dr in table.Rows)
+                //    {
+                //        string AttcahmentId = dr["AttachmentId"].ToString();
+                //        sen2 = dr["link"].ToString();
+                //        sen1 = sen2.Replace(@"\", @"/");
+                //        sen = sen1.Replace(@"D:/TS-iPASSFinal/", "~/");
+
+                //        if (AttcahmentId == "49")
+                //        {
+                //            lblFileName.NavigateUrl = sen;
+                //            lblFileName.Text = dr["FileNm"].ToString();
+                //            Label444.Text = dr["FileNm"].ToString();
+                //        }
+                //        if (AttcahmentId == "50")
+                //        {
+                //            HyperLink1.NavigateUrl = sen;
+                //            HyperLink1.Text = dr["FileNm"].ToString();
+                //            Label4.Text = dr["FileNm"].ToString();
+                //        }
+                //        if (AttcahmentId == "51")
+                //        {
+                //            HyperLink2.NavigateUrl = sen;
+                //            HyperLink2.Text = dr["FileNm"].ToString();
+                //            Label5.Text = dr["FileNm"].ToString();
+                //        }
+                //        if (AttcahmentId == "52")
+                //        {
+                //            HyperLink3.NavigateUrl = sen;
+                //            HyperLink3.Text = dr["FileNm"].ToString();
+                //            Label6.Text = dr["FileNm"].ToString();
+                //        }
+                //        if (AttcahmentId == "53")
+                //        {
+                //            HyperLink4.NavigateUrl = sen;
+                //            HyperLink4.Text = dr["FileNm"].ToString();
+                //            Label7.Text = dr["FileNm"].ToString();
+                //        }
+                //        if (AttcahmentId == "54")
+                //        {
+                //            HyperLink5.NavigateUrl = sen;
+                //            HyperLink5.Text = dr["FileNm"].ToString();
+                //            Label7.Text = dr["FileNm"].ToString();
+                //        }
+                //    }
+
+                //}
+                #endregion
+            }
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+
+    private void FillDetailsPavalaVaddi(DataSet ds)
+    {
+        try
+        {
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                {
+                    ViewState["dtDCP"] = ds.Tables[0];
+                    gvInterestDCP.DataSource = ds.Tables[0];
+                    gvInterestDCP.DataBind();
+                }
+
+                #region  FileUploading Pavala Vaddi
+                //if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+                //{
+                //    DataTable table = ds.Tables[1];
+                //    string sen, sen1, sen2;
+
+                //    foreach (DataRow dr in table.Rows)
+                //    {
+                //        string AttcahmentId = dr["AttachmentId"].ToString();
+
+                //        sen2 = dr["FilePath"].ToString();
+                //        sen1 = sen2.Replace(@"\", @"/");
+                //        sen = sen1.Replace(@"D:/TS-iPASSFinal/", "~/");
+
+                //        if (AttcahmentId == "58")
+                //        {
+                //            lblFileName.NavigateUrl = sen;
+                //            lblFileName.Text = dr["FileNm"].ToString();
+                //            Label444.Text = dr["FileNm"].ToString();
+                //        }
+                //        if (AttcahmentId == "59")
+                //        {
+                //            HyperLink1.Text = sen;
+                //            HyperLink1.Text = dr["FileNm"].ToString();
+                //            Label2.Text = dr["FileNm"].ToString();
+                //        }
+                //        if (AttcahmentId == "64")
+                //        {
+                //            HyperLink2.Text = sen;
+                //            HyperLink2.Text = dr["link"].ToString();
+                //            Label2.Text = dr["FileNm"].ToString();
+                //        }
+                //    }
+                //}
+                #endregion
+            }
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+
+    private void FillDetailsSalesTax(DataSet ds)
+    {
+        try
+        {
+            if (ds != null && ds.Tables.Count > 0)  //  && ds.Tables[0].Rows.Count > 0)
+            {
+                if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                {
+                    ViewState["dtProductiondtls"] = ds.Tables[0];
+                    gvProductiondtls.DataSource = ds.Tables[0];
+                    gvProductiondtls.DataBind();
+                }
+                if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+                {
+                    ViewState["dtSalesTax"] = ds.Tables[1];
+                    gvSalesTax.DataSource = ds.Tables[1];
+                    gvSalesTax.DataBind();
+                }
+
+                #region  File Uploading Sales Tax
+                //if (ds.Tables.Count > 2 && ds.Tables[2].Rows.Count > 0)
+                //{
+                //    DataTable table = ds.Tables[2];
+                //    string sen, sen1, sen2;
+
+                //    foreach (DataRow dr in table.Rows)
+                //    {
+                //        string AttcahmentId = dr["AttachmentId"].ToString();
+
+                //        sen2 = dr["FilePath"].ToString();
+                //        sen1 = sen2.Replace(@"\", @"/");
+                //        sen = sen1.Replace(@"D:/TS-iPASSFinal/", "~/");
+
+                //        if (AttcahmentId == "55")
+                //        {
+                //            lblFileName.NavigateUrl = sen;
+                //            lblFileName.Text = dr["FileNm"].ToString();
+                //            Label444.Text = dr["FileNm"].ToString();
+                //        }
+                //        if (AttcahmentId == "57")
+                //        {
+                //            HyperLink1.NavigateUrl = sen;
+                //            HyperLink1.Text = dr["FileNm"].ToString();
+                //            Label4.Text = dr["FileNm"].ToString();
+                //        }
+                //        if (AttcahmentId == "58")
+                //        {
+                //            HyperLink2.NavigateUrl = sen;
+                //            HyperLink2.Text = dr["FileNm"].ToString();
+                //            Label5.Text = dr["FileNm"].ToString();
+                //        }
+                //    }
+                //}
+                #endregion
+
+            }
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+
+    private void FillDetailsQualityCertification(DataSet ds)
+    {
+        try
+        {
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                txtagencyName.Text = ds.Tables[0].Rows[0]["Nameofagency"].ToString();
+                txtCertificatNumber.Text = ds.Tables[0].Rows[0]["CertificateNumber"].ToString();
+                txtDateofIssue.Text = Convert.ToDateTime(ds.Tables[0].Rows[0]["DateofIssue"].ToString()).ToString("dd/MM/yyyy");
+                txtPeriodofValidity.Text = Convert.ToDateTime(ds.Tables[0].Rows[0]["periodofvalidity"].ToString()).ToString("dd/MM/yyyy");
+                txtAmountspentinacquiringthecertification.Text = ds.Tables[0].Rows[0]["Amountspentinacquiringthecertification"].ToString();
+                txtFromCentralGovernment.Text = ds.Tables[0].Rows[0]["FromCentralGovernment"].ToString();
+                txtFromStateGovernment.Text = ds.Tables[0].Rows[0]["FromStateGovernment"].ToString();
+                txtFinancingInstitution.Text = ds.Tables[0].Rows[0]["Fromfinancinginstitution"].ToString();
+
+                ddlstate.Text = ds.Tables[0].Rows[0]["intStateid"].ToString();
+
+                if (ds.Tables[0].Rows[0]["intStateid"].ToString() == "31")
+                {
+                    ddlDistrict.Text = ds.Tables[0].Rows[0]["intDistrictid"].ToString();
+                    ddlmandal.Text = ds.Tables[0].Rows[0]["intMandalid"].ToString();
+                    ddlvillage.Text = ds.Tables[0].Rows[0]["intVillageid"].ToString();
+                }
+                else
+                {
+                    ddlDistrict.Text = ds.Tables[0].Rows[0]["DistrictName"].ToString();
+                    ddlmandal.Text = ds.Tables[0].Rows[0]["Mandalname"].ToString();
+                    ddlvillage.Text = ds.Tables[0].Rows[0]["VillageName"].ToString();
+                }
+
+                txtdoorno.Text = ds.Tables[0].Rows[0]["Door_No"].ToString();
+                txtpincode.Text = ds.Tables[0].Rows[0]["Pincode"].ToString();
+            }
+
+            #region File Uploading Quality Certification
+            //if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+            //{
+            //    DataTable table = ds.Tables[1];
+            //    string sen, sen1, sen2;
+
+            //    foreach (DataRow dr in table.Rows)
+            //    {
+            //        string AttcahmentId = dr["AttachmentId"].ToString();
+            //        sen2 = dr["link"].ToString();
+            //        sen1 = sen2.Replace(@"\", @"/");
+            //        sen = sen1.Replace(@"D:/TS-iPASSFinal/", "~/");
+
+            //        if (AttcahmentId == "9014")
+            //        {
+            //            Label453.NavigateUrl = sen;
+            //            Label453.Text = dr["FileNm"].ToString();
+            //            Label454.Text = dr["FileNm"].ToString();
+            //        }
+            //        if (AttcahmentId == "9015")
+            //        {
+            //            HyperLink1.NavigateUrl = sen;
+            //            HyperLink1.Text = dr["FileNm"].ToString();
+            //            Label8.Text = dr["FileNm"].ToString();
+            //        }
+            //        if (AttcahmentId == "9016")
+            //        {
+            //            HyperLink3.NavigateUrl = sen;
+            //            HyperLink3.Text = dr["FileNm"].ToString();
+            //            Label14.Text = dr["FileNm"].ToString();
+            //        }
+            //    }
+            //}
+            #endregion
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+
+    private void FillDetailsCleanerProduction(DataSet ds)
+    {
+        try
+        {
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                gvCertificate.DataSource = ds.Tables[0];
+                gvCertificate.DataBind();
+                txtsubsidyclaimed.Text = ds.Tables[0].Rows[0]["subsidyclaimed"].ToString();
+            }
+
+            #region  File Uploading Cleaner Production
+            //if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+            //{
+            //    DataTable table = ds.Tables[1];
+            //    string sen, sen1, sen2;
+
+            //    foreach (DataRow dr in table.Rows)
+            //    {
+            //        string AttcahmentId = dr["AttachmentId"].ToString();
+            //        sen2 = dr["link"].ToString();
+            //        sen1 = sen2.Replace(@"\", @"/");
+            //        sen = sen1.Replace(@"D:/TS-iPASSFinal/", "~/");
+
+            //        if (AttcahmentId == "9022")
+            //        {
+            //            Label453.NavigateUrl = sen;
+            //            Label453.Text = dr["FileNm"].ToString();
+            //            Label454.Text = dr["FileNm"].ToString();
+            //        }
+            //        if (AttcahmentId == "9023")
+            //        {
+            //            HyperLink1.NavigateUrl = sen;
+            //            HyperLink1.Text = dr["FileNm"].ToString();
+            //            Label8.Text = dr["FileNm"].ToString();
+            //        }
+            //        if (AttcahmentId == "9024")
+            //        {
+            //            HyperLink3.NavigateUrl = sen;
+            //            HyperLink3.Text = dr["FileNm"].ToString();
+            //            Label14.Text = dr["FileNm"].ToString();
+            //        }
+            //    }
+            //}
+            #endregion
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+
+    private void FillDetailsSkillUpgradation(DataSet ds)
+    {
+        try
+        {
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                txtagencyName.Text = ds.Tables[0].Rows[0]["Nameofthetraininginstitute"].ToString();
+                txtNameoftheskilldevelopmentprogramme.Text = ds.Tables[0].Rows[0]["Nameoftheskilldevelopmentprogramme"].ToString();
+                txtNumberskilledemployees.Text = ds.Tables[0].Rows[0]["Numberskilledemployees"].ToString();
+                txtExpenditureincurredfortrainingprogramme.Text = ds.Tables[0].Rows[0]["Expenditureincurredtrainingprogramme"].ToString();
+                txtAmountclaimedinRs.Text = ds.Tables[0].Rows[0]["Amountclaimed"].ToString();
+                txtDurationoftraining.Text = ds.Tables[0].Rows[0]["Durationoftraining"].ToString();
+            }
+
+            #region File Uploading Skill Upgradation
+            //if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+            //{
+            //    DataTable table = ds.Tables[1];
+            //    string sen, sen1, sen2;
+
+            //    foreach (DataRow dr in table.Rows)
+            //    {
+            //        string AttcahmentId = dr["AttachmentId"].ToString();
+            //        sen2 = dr["link"].ToString();
+            //        sen1 = sen2.Replace(@"\", @"/");
+            //        sen = sen1.Replace(@"D:/TS-iPASSFinal/", "~/");
+
+            //        if (AttcahmentId == "9018")
+            //        {
+            //            Label453.NavigateUrl = sen;
+            //            Label453.Text = dr["FileNm"].ToString();
+            //            Label454.Text = dr["FileNm"].ToString();
+            //        }
+            //        if (AttcahmentId == "9019")
+            //        {
+            //            HyperLink1.NavigateUrl = sen;
+            //            HyperLink1.Text = dr["FileNm"].ToString();
+            //            Label8.Text = dr["FileNm"].ToString();
+            //        }
+            //        if (AttcahmentId == "9020")
+            //        {
+            //            HyperLink3.NavigateUrl = sen;
+            //            HyperLink3.Text = dr["FileNm"].ToString();
+            //            Label14.Text = dr["FileNm"].ToString();
+            //        }
+            //    }
+            //}
+            #endregion
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+
+    private void FilldataIIDFund(DataSet ds)
+    {
+        try
+        {
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                txtUnitLocatedinIndustArea.Text = ds.Tables[0].Rows[0]["UnitLocatedinIndustArea"].ToString();
+                txtJustLocation.Text = ds.Tables[0].Rows[0]["JustLocation"].ToString();
+                txtFinanceSource.Text = ds.Tables[0].Rows[0]["FinanceSource"].ToString();
+                txtReqdInfraFacilities.Text = ds.Tables[0].Rows[0]["ReqdInfraFacilities"].ToString();
+                txtProposedInfraCritical.Text = ds.Tables[0].Rows[0]["ProposedInfraCritical"].ToString();
+
+                txtEstimatesInfra.Text = ds.Tables[0].Rows[0]["EstimatesInfra"].ToString();
+                txtCAName.Text = ds.Tables[0].Rows[0]["CAName"].ToString();
+                txtProjDuration.Text = ds.Tables[0].Rows[0]["ProjDuration"].ToString();
+                txtMaintanCostAnnum.Text = ds.Tables[0].Rows[0]["MaintanCostAnnum"].ToString();
+                txtAmtClaimed.Text = ds.Tables[0].Rows[0]["AmtClaimed"].ToString();
+
+                #region File Uploading IIDF
+                //if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+                //{
+                //    int c = ds.Tables[1].Rows.Count;
+                //    string sen, sen1, sen2;
+                //    int i = 0;
+
+                //    while (i < c)
+                //    {
+                //        sen2 = ds.Tables[1].Rows[i][0].ToString();
+                //        sen1 = sen2.Replace(@"\", @"/");
+                //        sen = sen1.Replace(@"D:/TS-iPASSFinal/", "~/");
+
+                //        if (sen.Contains("66"))
+                //        {
+                //            lblUpload1.NavigateUrl = sen;
+                //            lblUpload1.Text = ds.Tables[1].Rows[i][1].ToString();
+                //            lblAttachedFileName1.Text = ds.Tables[1].Rows[i][1].ToString();
+                //            //HyperLink1.NavigateUrl = sen;
+                //            //HyperLink1.Text = 
+                //        }
+                //        i++;
+                //    }
+                //}
+                #endregion
+
+            }
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+
+    private void FilldataSCSCT(DataSet ds)
+    {
+        try
+        {
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                txtTotalEquity.Text = ds.Tables[0].Rows[0]["TotalEquity"].ToString();
+                txtOwnCapital.Text = ds.Tables[0].Rows[0]["OwnCapital"].ToString();
+                txtBorrowed.Text = ds.Tables[0].Rows[0]["Borrowed"].ToString();
+                txtAdvSubClaimed.Text = ds.Tables[0].Rows[0]["AdvSubClaimed"].ToString();
+
+                #region File Uploading Advanced Subsidy for SC/ST
+                //if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+                //{
+                //    int c = ds.Tables[1].Rows.Count;
+                //    string sen, sen1, sen2;
+                //    int i = 0;
+
+                //    while (i < c)
+                //    {
+                //        sen2 = ds.Tables[1].Rows[i][0].ToString();
+                //        sen1 = sen2.Replace(@"\", @"/");
+                //        sen = sen1.Replace(@"D:/TS-iPASSFinal/", "~/");
+
+                //        if (sen.Contains("80"))
+                //        {
+                //            lblupload1.NavigateUrl = sen;
+                //            lblupload1.Text = ds.Tables[1].Rows[i][1].ToString();
+                //            lblAttachedFileName1.Text = ds.Tables[1].Rows[i][1].ToString();
+                //            //HyperLink1.NavigateUrl = sen;
+                //            //HyperLink1.Text = 
+                //        }
+                //        if (sen.Contains("81"))
+                //        {
+                //            lblupload2.NavigateUrl = sen;
+                //            lblupload2.Text = ds.Tables[1].Rows[i][1].ToString();
+                //            lblAttachedFileName2.Text = ds.Tables[1].Rows[i][1].ToString();
+                //            //HyperLink1.NavigateUrl = sen;
+                //            //HyperLink1.Text = 
+                //        }
+                //        if (sen.Contains("82"))
+                //        {
+                //            lblupload3.NavigateUrl = sen;
+                //            lblupload3.Text = ds.Tables[1].Rows[i][1].ToString();
+                //            lblAttachedFileName3.Text = ds.Tables[1].Rows[i][1].ToString();
+                //            //HyperLink1.NavigateUrl = sen;
+                //            //HyperLink1.Text = 
+                //        }
+                //        if (sen.Contains("83"))
+                //        {
+                //            lblupload4.NavigateUrl = sen;
+                //            lblupload4.Text = ds.Tables[1].Rows[i][1].ToString();
+                //            lblAttachedFileName4.Text = ds.Tables[1].Rows[i][1].ToString();
+                //            //HyperLink1.NavigateUrl = sen;
+                //            //HyperLink1.Text = 
+                //        }
+                //        i++;
+                //    }
+                //}
+                #endregion
+
+            }
+            else
+            {
+
+            }
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+    protected void BtnNext_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("frmIncentiveCAFDetails.aspx");
+    }
+    protected void BtnPrevious_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    //protected void lbtAttachments_Click(object sender, EventArgs e)
+    //{
+    //    try
+    //    {
+    //        GridViewRow gr = (((LinkButton)sender).Parent.Parent as GridViewRow);
+    //        obcmf.FillGrid(objFetch.FetchIncetiveUploadsViewNewINCType(Convert.ToInt32((gr.FindControl("lblEntrpId") as Label).Text), 0), gvAttachments, false);
+    //    }
+    //    catch (Exception ex) { Errors.ErrorLog(ex); }
+    //}
+
+    //protected void lbtVwatt_Click(object sender, EventArgs e)
+    //{
+    //    try
+    //    {
+    //        GridViewRow gr = (((LinkButton)sender).Parent.Parent as GridViewRow);
+    //        obcmf.FillGrid(objFetch.FetchIncetiveUploadsViewNewINCType(Convert.ToInt32((gr.FindControl("lblEntrpId") as Label).Text),
+    //                                                            Convert.ToInt32((gr.FindControl("lblEntrpId") as Label).ToolTip)),
+    //                        gvAttachments, false);
+    //        //tblAttachments.Visible = true;
+    //    }
+    //    catch (Exception ex) { Errors.ErrorLog(ex); }
+    //}
+    protected void btnPrint_Click(object sender, EventArgs e)
+    {
+
+    }
+    protected void GridView3_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+
+    }
+    protected void gvinspectionOfficer_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        try
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                DropDownList ddlstatus = (e.Row.FindControl("ddlapprove") as DropDownList);
+                Label enterid = (e.Row.FindControl("lblIncentiveID") as Label);
+                Label MstIncentiveId = (e.Row.FindControl("lblMstIncentiveId") as Label);
+
+
+                //if (MstIncentiveId.Text == "6")
+                //{
+                //    (e.Row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaInvestmentSubsidy.aspx?EntrpId=" + enterid.Text.Trim();
+                //}
+                //if (MstIncentiveId.Text == "1")
+                //{
+                //    (e.Row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaPavalavaddi.aspx?incentiveid=" + enterid.Text.Trim();
+                //}
+                //if (MstIncentiveId.Text == "3")
+                //{
+                //    (e.Row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaPowerTariff.aspx?incentiveid=" + enterid.Text.Trim();
+                //}
+                //if (MstIncentiveId.Text == "5")
+                //{
+                //    (e.Row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaSalesTax.aspx?incentiveid=" + enterid.Text.Trim();
+                //}
+
+                if (MstIncentiveId.Text == "6")  // investment subsidy
+                {
+                    (e.Row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaInvestmentSubsidy.aspx?EntrpId=" + enterid.Text.Trim();
+                }
+                if (MstIncentiveId.Text == "1") // pavala vaddi
+                {
+                    (e.Row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaPavalavaddi.aspx?incentiveid=" + enterid.Text.Trim();
+                }
+                if (MstIncentiveId.Text == "3") // power
+                {
+                    (e.Row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaPowerTariff.aspx?incentiveid=" + enterid.Text.Trim();
+                }
+                if (MstIncentiveId.Text == "5")  // sales tax
+                {
+                    (e.Row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaSalesTax.aspx?incentiveid=" + enterid.Text.Trim();
+                }
+                if (MstIncentiveId.Text == "9")   // stamp duty
+                {
+                    (e.Row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaStampDuty.aspx?incentiveid=" + enterid.Text.Trim();
+                }
+                if (MstIncentiveId.Text == "10")   // seed cap
+                {
+                    (e.Row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaSeedCap.aspx?incentiveid=" + enterid.Text.Trim();
+                }
+                if (MstIncentiveId.Text == "11")   // quality certification
+                {
+                    (e.Row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaQualityCertification.aspx?incentiveid=" + enterid.Text.Trim();
+                }
+                if (MstIncentiveId.Text == "4")   // cleaner production
+                {
+                    (e.Row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaCleanerProduction.aspx?incentiveid=" + enterid.Text.Trim();
+                }
+                if (MstIncentiveId.Text == "8")   // skill upgradation
+                {
+                    (e.Row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaSkillUpgradation.aspx?incentiveid=" + enterid.Text.Trim();
+                }
+                if (MstIncentiveId.Text == "7")   // IIDF
+                {
+                    (e.Row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaIIDFFundaspx.aspx?incentiveid=" + enterid.Text.Trim();
+                }
+                if (MstIncentiveId.Text == "12")   // advanced subsidy
+                {
+                    (e.Row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaAdvancedSubsidyforSCST.aspx?incentiveid=" + enterid.Text.Trim();
+                }
+
+                if (ddlstatus.SelectedValue == "1")
+                {
+                    (e.Row.FindControl("anchortagGMCertificate") as HyperLink).ForeColor = System.Drawing.Color.Red;
+                    (e.Row.FindControl("anchortagGMCertificate") as HyperLink).Text = "Query Letter";
+                    (e.Row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaQueryRaiseShortFallLetterGMtoApplicantApproval.aspx?incentiveid=" + enterid.Text.Trim() + "&MstIncentiveId=" + MstIncentiveId.Text.Trim();
+
+                    // hplink.NavigateUrl = "ProformaQueryRaiseShortFallLetterGMtoApplicant.aspx?incentiveid=" + intApplicationidtop;
+                }
+                else if (ddlstatus.SelectedValue == "2")
+                {
+
+                }
+                else if (ddlstatus.SelectedValue == "3")
+                {
+
+                }
+
+                //LAVANYA
+                HiddenField hdnStageID = (e.Row.FindControl("hdfStatusId") as HiddenField);
+                if (MstIncentiveId.Text.ToString() == "6")
+                {
+                    //  (e.Row.FindControl("anchortaglink") as HyperLink).NavigateUrl = "InspectionReport.aspx?EntrpId=" + enterid.Text.Trim() + "&Inctypeid=" + MstIncentiveId.Text;
+                    //
+                    if (hdnStageID != null && Convert.ToInt32(hdnStageID.Value) >= 5)
+                    {
+
+                        (e.Row.FindControl("anchortaglinkView") as HyperLink).Visible = true;
+                        //(e.Row.FindControl("anchortaglinkView") as HyperLink).NavigateUrl = "frmInspRepDrft.aspx?EntrpId=" + enterid.Text.Trim() + "&Inctypeid=" + MstIncentiveId.Text;
+                        (e.Row.FindControl("anchortaglinkView") as HyperLink).NavigateUrl = "InspectionReportNew.aspx?EntrpId=" + enterid.Text.Trim() + "&Inctypeid=" + MstIncentiveId.Text;
+                    }
+                    else
+                    {
+                        (e.Row.FindControl("anchortaglinkView") as HyperLink).Visible = false;
+                    }
+                }
+                else if (MstIncentiveId.Text.ToString() == "9")
+                {
+                    // (e.Row.FindControl("anchortaglink") as HyperLink).NavigateUrl = "IPORptStampDutySubsidy.aspx?EntrpId=" + enterid.Text.Trim() + "&Inctypeid=" + MstIncentiveId.Text;
+                    if (hdnStageID != null && Convert.ToInt32(hdnStageID.Value) >= 5)
+                    {
+                        (e.Row.FindControl("anchortaglinkView") as HyperLink).Visible = true;
+                        (e.Row.FindControl("anchortaglinkView") as HyperLink).NavigateUrl = "IPORptStampDutySubsidyDraft.aspx?EntrpId=" + enterid.Text.Trim() + "&Inctypeid=" + MstIncentiveId.Text;
+                    }
+                    else
+                    {
+                        (e.Row.FindControl("anchortaglinkView") as HyperLink).Visible = false;
+                    }
+                }
+                else
+                {
+                    // (e.Row.FindControl("anchortaglink") as HyperLink).NavigateUrl = "IPORptCommon.aspx?EntrpId=" + enterid.Text.Trim() + "&Inctypeid=" + MstIncentiveId.Text;
+                    if (hdnStageID != null && Convert.ToInt32(hdnStageID.Value) >= 5)
+                    {
+                        (e.Row.FindControl("anchortaglinkView") as HyperLink).Visible = true;
+                        (e.Row.FindControl("anchortaglinkView") as HyperLink).NavigateUrl = "IPORptCommonDraft.aspx?EntrpId=" + enterid.Text.Trim() + "&Inctypeid=" + MstIncentiveId.Text;
+                    }
+                    else
+                    {
+                        (e.Row.FindControl("anchortaglinkView") as HyperLink).Visible = false;
+                    }
+                }
+
+                // added for Inspection not required cases
+                Label txtinspectiondate = (e.Row.FindControl("txtinspectiondate") as Label);
+                if (txtinspectiondate.Text == "")
+                {
+                    HyperLink anchortaglinkView = (e.Row.FindControl("anchortaglinkView") as HyperLink);
+                    anchortaglinkView.Visible = false;
+                    txtinspectiondate.Text = "Inspection Not Required";
+                }
+
+            }
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+
+    protected void gvdetailsfinalproforma_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        try
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Label enterid = (e.Row.FindControl("lblIncentiveID") as Label);
+                Label MstIncentiveId = (e.Row.FindControl("lblMstIncentiveId") as Label);
+                if (MstIncentiveId.Text == "6")
+                {
+                    (e.Row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaApplicantInvestmentSubsidy.aspx?incentiveid=" + enterid.Text.Trim();
+                }
+                if (MstIncentiveId.Text == "1")
+                {
+                    (e.Row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaApplicantPavalaVaddiSubsidy.aspx?incentiveid=" + enterid.Text.Trim();
+                }
+                if (MstIncentiveId.Text == "3")
+                {
+                    (e.Row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaApplicantPowerCostSubsidy.aspx?incentiveid=" + enterid.Text.Trim();
+                }
+                if (MstIncentiveId.Text == "5")
+                {
+                    (e.Row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaApplicantSalesTaxSubsidy.aspx?incentiveid=" + enterid.Text.Trim();
+                }
+                if (MstIncentiveId.Text == "9")
+                {
+                    (e.Row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaApplicantStampDutySubsidy.aspx?incentiveid=" + enterid.Text.Trim();
+                }
+                if (MstIncentiveId.Text == "4")
+                {
+                    (e.Row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaApplicantCleanerProductionSubsidy.aspx?incentiveid=" + enterid.Text.Trim();
+                }
+                if (MstIncentiveId.Text == "7")
+                {
+                    (e.Row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaApplicantIIDFSubsidy.aspx?incentiveid=" + enterid.Text.Trim();
+                }
+                if (MstIncentiveId.Text == "8")
+                {
+                    (e.Row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaApplicantskillupgradationSubsidy.aspx?incentiveid=" + enterid.Text.Trim();
+                }
+                if (MstIncentiveId.Text == "10")
+                {
+                    (e.Row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaApplicantSeedCapitalSubsidy.aspx?incentiveid=" + enterid.Text.Trim();
+                }
+                if (MstIncentiveId.Text == "11")
+                {
+                    (e.Row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaApplicantQualityCertificationSubsidy.aspx?incentiveid=" + enterid.Text.Trim();
+                }
+                if (MstIncentiveId.Text == "12")
+                {
+                    (e.Row.FindControl("anchortagGMCertificate") as HyperLink).NavigateUrl = "ProformaApplicantAdvanceSubsidyforSCSTSubsidy.aspx?incentiveid=" + enterid.Text.Trim();
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+    protected void btnfinalsubmit_Click(object sender, EventArgs e)
+    {
+
+    }
+    protected void gvinspectionReport_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        try
+        {
+            //if (e.Row.RowType == DataControlRowType.DataRow)
+            //{
+            //    Label enterid = (e.Row.FindControl("lblIncentiveID") as Label);
+            //    Label MstIncentiveId = (e.Row.FindControl("lblMstIncentiveId") as Label);
+            //    if (MstIncentiveId.Text.ToString() == "6")
+            //    {
+            //        (e.Row.FindControl("anchortaglink") as HyperLink).NavigateUrl = "InspectionReport.aspx?EntrpId=" + enterid.Text.Trim() + "&Inctypeid=" + MstIncentiveId.Text;
+            //    }
+            //}
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Label enterid = (e.Row.FindControl("lblIncentiveID") as Label);
+                Label MstIncentiveId = (e.Row.FindControl("lblMstIncentiveId") as Label);
+                HiddenField hdnStageID = (e.Row.FindControl("hdfStatusId") as HiddenField);
+                DropDownList ddlinspector = (e.Row.FindControl("ddlinspector") as DropDownList);
+                Label lblReportStatus = (e.Row.FindControl("lblreportStatusID") as Label);
+                if (lblReportStatus.Text.Trim() == "Q")
+                {
+                    ddlinspector.SelectedValue = "2";
+                    ddlinspector.Enabled = false;
+                    (e.Row.FindControl("anchortagIPOCertificate") as HyperLink).Visible = true;
+                    (e.Row.FindControl("anchortagIPOCertificate") as HyperLink).NavigateUrl = "QueryRaiseShortFallLetterinspectortoApplicantApproval.aspx?incentiveid=" + enterid.Text.Trim() + "&MstIncentiveId=" + MstIncentiveId.Text;
+                    (e.Row.FindControl("anchortaglink") as HyperLink).Visible = false;
+
+                }
+
+                if (MstIncentiveId.Text.ToString() == "6")
+                {
+                    // (e.Row.FindControl("anchortaglink") as HyperLink).NavigateUrl = "InspectionReport.aspx?EntrpId=" + enterid.Text.Trim() + "&Inctypeid=" + MstIncentiveId.Text;
+                    (e.Row.FindControl("anchortaglink") as HyperLink).NavigateUrl = "InspectionReportNew.aspx?EntrpId=" + enterid.Text.Trim() + "&Inctypeid=" + MstIncentiveId.Text;
+
+                    //
+                    if (hdnStageID != null && Convert.ToInt32(hdnStageID.Value) >= 5 && Convert.ToInt32(hdnStageID.Value) != 67)
+                    {
+                        (e.Row.FindControl("anchortaglinkView") as HyperLink).Visible = true;
+                        //(e.Row.FindControl("anchortaglinkView") as HyperLink).NavigateUrl = "frmInspRepDrft.aspx?EntrpId=" + enterid.Text.Trim() + "&Inctypeid=" + MstIncentiveId.Text;
+                        (e.Row.FindControl("anchortaglinkView") as HyperLink).NavigateUrl = "InspectionReportNew.aspx?EntrpId=" + enterid.Text.Trim() + "&Inctypeid=" + MstIncentiveId.Text;
+                        ddlinspector.SelectedValue = "1";
+                        ddlinspector.Enabled = false;
+                    }
+                    else
+                    {
+                        (e.Row.FindControl("anchortaglinkView") as HyperLink).Visible = false;
+                    }
+                }
+                else if (MstIncentiveId.Text.ToString() == "9")
+                {
+                    (e.Row.FindControl("anchortaglink") as HyperLink).NavigateUrl = "IPORptStampDutySubsidy.aspx?EntrpId=" + enterid.Text.Trim() + "&Inctypeid=" + MstIncentiveId.Text;
+                    if (hdnStageID != null && Convert.ToInt32(hdnStageID.Value) >= 5 && Convert.ToInt32(hdnStageID.Value) != 67)
+                    {
+                        (e.Row.FindControl("anchortaglinkView") as HyperLink).Visible = true;
+                        (e.Row.FindControl("anchortaglinkView") as HyperLink).NavigateUrl = "IPORptStampDutySubsidyDraft.aspx?EntrpId=" + enterid.Text.Trim() + "&Inctypeid=" + MstIncentiveId.Text;
+                        ddlinspector.SelectedValue = "1";
+                        ddlinspector.Enabled = false;
+                    }
+                    else
+                    {
+                        (e.Row.FindControl("anchortaglinkView") as HyperLink).Visible = false;
+                    }
+                }
+                else
+                {
+                    (e.Row.FindControl("anchortaglink") as HyperLink).NavigateUrl = "IPORptCommon.aspx?EntrpId=" + enterid.Text.Trim() + "&Inctypeid=" + MstIncentiveId.Text;
+                    if (hdnStageID != null && Convert.ToInt32(hdnStageID.Value) >= 5 && Convert.ToInt32(hdnStageID.Value) != 67)
+                    {
+                        (e.Row.FindControl("anchortaglinkView") as HyperLink).Visible = true;
+                        (e.Row.FindControl("anchortaglinkView") as HyperLink).NavigateUrl = "IPORptCommonDraft.aspx?EntrpId=" + enterid.Text.Trim() + "&Inctypeid=" + MstIncentiveId.Text;
+                        ddlinspector.SelectedValue = "1";
+                        ddlinspector.Enabled = false;
+                    }
+                    else
+                    {
+                        (e.Row.FindControl("anchortaglinkView") as HyperLink).Visible = false;
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+
+    protected void gvinspectionReport_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        try
+        {
+
+        }
+        catch (Exception ex)
+        {
+
+        }
+    }
+    protected void gvSubsidy_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        try
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Label lbl = (e.Row.FindControl("lbl") as Label);
+                HyperLink HyperLinkSubsidy = (e.Row.FindControl("HyperLinkSubsidy") as HyperLink);
+                Label enterid = (e.Row.FindControl("lblverified") as Label);
+                if (lbl.Text == "")
+                {
+                    e.Row.Cells[1].ColumnSpan = 2;
+                    e.Row.Cells.RemoveAt(2);
+                    HyperLinkSubsidy.Visible = false;
+                    e.Row.Font.Bold = true;
+                }
+                if (enterid.Text.ToString() == "")
+                {
+                    HyperLinkSubsidy.Visible = false;
+                }
+                if (lbl.Text == "")
+                {
+                    e.Row.Cells[1].ColumnSpan = 2;
+                    e.Row.Cells.RemoveAt(2);
+                    HyperLinkSubsidy.Visible = false;
+                    e.Row.Font.Bold = true;
+                }
+                if (lbl.Text != "")
+                {
+                    e.Row.Cells[2].ColumnSpan = 2;
+                    e.Row.Cells.RemoveAt(1);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+    protected void gvfinalgrid_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        try
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Label enterid = (e.Row.FindControl("lblverified") as Label);
+                Label lbl = (e.Row.FindControl("lbl") as Label);
+                HyperLink HyperLinkSubsidy = (e.Row.FindControl("HyperLinkSubsidy") as HyperLink);
+                if (enterid.Text.ToString() == "NO")
+                {
+                    enterid.ForeColor = System.Drawing.Color.Red;
+                    enterid.Style.Add("Font-Bold", "true");
+                }
+                if (enterid.Text.ToString() == "")
+                {
+                    HyperLinkSubsidy.Visible = false;
+                }
+                if (lbl.Text == "")
+                {
+                    e.Row.Cells[1].ColumnSpan = 2;
+                    e.Row.Cells.RemoveAt(2);
+                    HyperLinkSubsidy.Visible = false;
+                    e.Row.Font.Bold = true;
+                }
+                if (lbl.Text != "")
+                {
+                    e.Row.Cells[2].ColumnSpan = 2;
+                    e.Row.Cells.RemoveAt(1);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+    protected void rdbyesno_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+
+    }
+    protected void ddlapplicationto_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+    //adde newly
+    protected void lnkapplntotalprint_Click(object sender, EventArgs e)
+    {
+        ScriptManager.RegisterStartupScript(Page, this.GetType(), "Key", "window.open('../../UI/Tsipass/CompleteApplicationForm.aspx?EntrpId=" + Request.QueryString[0].ToString() + "','null','height=500,width=800,scrollbars=1,status=yes,toolbar=no,menubar=no,location=no');", true);
+        //Response.Redirect("../../UI/TSiPASS/IncentivesAnnexures/AnnexInvestSubsidyS.aspx");
+    }
+
+    protected void gvquerygm_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        try
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                //if (e.Row.RowState.Equals(DataControlRowState.Edit))
+                //{
+                Button btnUpload = e.Row.FindControl("btnsendcoi") as Button;
+                ScriptManager.GetCurrent(this).RegisterPostBackControl(btnUpload);
+                // }
+            }
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+    //protected void gvquerygmtbyIO_RowDataBound(object sender, GridViewRowEventArgs e)
+    //{
+    //    if (e.Row.RowType == DataControlRowType.DataRow)
+    //    {
+    //        //if (e.Row.RowState.Equals(DataControlRowState.Edit))
+    //        //{
+    //        Button btnUpload = e.Row.FindControl("btnsendcoiIO") as Button;
+    //        ScriptManager.GetCurrent(this).RegisterPostBackControl(btnUpload);
+
+    //        Button btnUpload2 = e.Row.FindControl("btnsendIOQuerybyGM") as Button;
+    //        ScriptManager.GetCurrent(this).RegisterPostBackControl(btnUpload2);
+    //        // }
+    //    }
+    //}
+    protected void gvquerygmtbyIO_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        try
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                //if (e.Row.RowState.Equals(DataControlRowState.Edit))
+                //{
+                Button btnUpload = e.Row.FindControl("btnsendcoiIO") as Button;
+                ScriptManager.GetCurrent(this).RegisterPostBackControl(btnUpload);
+
+                Button btnUpload2 = e.Row.FindControl("btnsendIOQuerybyGM") as Button;
+                ScriptManager.GetCurrent(this).RegisterPostBackControl(btnUpload2);
+
+
+                int indexing = e.Row.RowIndex;
+                Label lblIOQuerySts = (e.Row.FindControl("lblIoQuerySts") as Label);
+                // lblIOQuerySts = (Label)gvquerygmtbyIO.Rows[indexing].FindControl("lblIoQuerySts");
+                if (lblIOQuerySts.Text == "1")
+                {
+                    Button btnIOqueryfwdtoApplicant = (e.Row.FindControl("btnsendcoiIO") as Button); //(Button)gvquerygmtbyIO.Rows[indexing].FindControl("btnsendcoiIO");
+                    btnIOqueryfwdtoApplicant.Enabled = false;
+
+                    Button btnIOQueryResponsebyGMtoIO = (e.Row.FindControl("btnsendIOQuerybyGM") as Button); // (Button)gvquerygmtbyIO.Rows[indexing].FindControl("btnsendIOQuerybyGM");
+                    btnIOQueryResponsebyGMtoIO.Enabled = false;
+                }
+                else if (lblIOQuerySts.Text == "2")  // added newly by chhh on 05.12.2017
+                {
+                    Button btnIOqueryfwdtoApplicant = (e.Row.FindControl("btnsendcoiIO") as Button); //(Button)gvquerygmtbyIO.Rows[indexing].FindControl("btnsendcoiIO");
+                    btnIOqueryfwdtoApplicant.Enabled = true;
+
+                    Button btnIOQueryResponsebyGMtoIO = (e.Row.FindControl("btnsendIOQuerybyGM") as Button); // (Button)gvquerygmtbyIO.Rows[indexing].FindControl("btnsendIOQuerybyGM");
+                    btnIOQueryResponsebyGMtoIO.Enabled = false;
+                }
+                else
+                {
+                    Button btnIOqueryfwdtoApplicant = (e.Row.FindControl("btnsendcoiIO") as Button); //(Button)gvquerygmtbyIO.Rows[indexing].FindControl("btnsendcoiIO");
+                    btnIOqueryfwdtoApplicant.Enabled = true;
+
+                    Button btnIOQueryResponsebyGMtoIO = (e.Row.FindControl("btnsendIOQuerybyGM") as Button); // (Button)gvquerygmtbyIO.Rows[indexing].FindControl("btnsendIOQuerybyGM");
+                    btnIOQueryResponsebyGMtoIO.Enabled = true;
+
+                    //Button btnIOqueryfwdtoApplicant = (Button)gvquerygmtbyIO.Rows[indexing].FindControl("btnsendcoiIO");
+                    //btnIOqueryfwdtoApplicant.Enabled = true;
+
+                    //Button btnIOQueryResponsebyGMtoIO = (Button)gvquerygmtbyIO.Rows[indexing].FindControl("btnsendIOQuerybyGM");
+                    //btnIOQueryResponsebyGMtoIO.Enabled = true;
+                }
+                // }
+            }
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+    // added by chh  on 17.10.2017
+    protected void btnsendcoiIO_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    //added by chhh on 18.10.2017 forward IO query to applicant by GM
+    protected void btnsendIOQuerybyGM_Click(object sender, EventArgs e)
+    {
+
+    }
+
+
+
+    public void EnableDisableForm(ControlCollection ctrls, bool status)
+    {
+        try
+        {
+            status = false;
+            foreach (Control ctrl in ctrls)
+            {
+
+                if (ctrl is Button)      // commented to enable the Button Controls
+                    ((Button)ctrl).Visible = status;
+
+                else if (ctrl is DropDownList)
+                    ((DropDownList)ctrl).Enabled = status;
+                else if (ctrl is CheckBox)
+                    ((CheckBox)ctrl).Enabled = status;
+                else if (ctrl is RadioButton)
+                    ((RadioButton)ctrl).Enabled = status;
+
+                else if (ctrl is CheckBoxList)
+                    ((CheckBoxList)ctrl).Enabled = status;
+
+                EnableDisableForm(ctrl.Controls, status);
+
+            }
+        }
+        catch (Exception ex)
+        {
+            //lblmsg0.Text = "Internal error has occured. Please try after some time";
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+
+
+
+
+}

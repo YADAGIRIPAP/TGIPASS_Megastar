@@ -1,0 +1,3226 @@
+﻿<%@ Page Language="C#" MasterPageFile="~/UI/TSiPASS/CCMaster.master" AutoEventWireup="true" CodeFile="ApplicantIncentiveDetailsView.aspx.cs" Inherits="UI_TSiPASS_ApplicantIncentiveDetailsView" %>
+
+<%@ Register Assembly="System.Web, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Namespace="System.Web.UI.WebControls" TagPrefix="asp" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <script src="../../Resource/Scripts/js/validations.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        function CallPrint(strid) {
+            var prtContent = document.getElementById(strid);
+            var WinPrint = window.open('', '', 'letf=0,top=0,width=0,height=0,toolbar=0,scrollbars=1,status=0');
+            var strOldOne = prtContent.innerHTML;
+            WinPrint.document.write(prtContent.innerHTML);
+            WinPrint.document.close();
+            WinPrint.focus();
+            WinPrint.print();
+            WinPrint.close();
+            prtContent.innerHTML = strOldOne;
+        }
+        function inputOnlyNumbers(evt) {
+            var e = window.event || evt; // for trans-browser compatibility 
+            var charCode = e.which || e.keyCode;
+            if ((charCode > 45 && charCode < 58) || charCode == 8 || charCode == 9) {
+                return true;
+            }
+            return false;
+        }
+       
+    </script>
+    <style type="text/css">
+        .overlay {
+            position: fixed;
+            z-index: 999;
+            height: 100%;
+            width: 100%;
+            top: 112px;
+            background-color: Gray;
+            filter: alpha(opacity=60);
+            opacity: 0.9;
+            -moz-opacity: 0.9;
+        }
+
+        .update {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            min-height: 100%;
+            min-width: 100%;
+            background-image: url("../../Images/ajax-loaderblack.gif");
+            /*background-image: url("Images/spinner_60.gif");*/
+            background-position: center center;
+            background-repeat: no-repeat;
+            /*background-color: #e4e4e6;*/
+            background-color: #535252;
+            z-index: 500 !important;
+            opacity: 0.6;
+            overflow: hidden;
+        }
+
+        .tr {
+        }
+
+        .style5 {
+            color: #FF0000;
+        }
+
+        .myGridClass {
+            width: 100%;
+            /*this will be the color of the odd row*/
+            background-color: #fff;
+            margin: 5px 0 10px 0;
+            border: solid 1px #525252;
+            border-collapse: collapse;
+        }
+
+            /*data elements*/
+            .myGridClass td {
+                padding: 2px;
+                border: solid 1px #c1c1c1;
+                color: #717171;
+            }
+
+            /*header elements*/
+            .myGridClass th {
+                padding: 4px 2px;
+                color: #fff;
+                background: #424242;
+                border-left: solid 1px #525252;
+                font-size: 0.9em;
+            }
+
+            /*his will be the color of even row*/
+            .myGridClass .myAltRowClass {
+                background: #fcfcfc repeat-x top;
+            }
+
+            /*and finally, we style the pager on the bottom*/
+            .myGridClass .myPagerClass {
+                background: #424242;
+            }
+
+                .myGridClass .myPagerClass table {
+                    margin: 5px 0;
+                }
+
+                .myGridClass .myPagerClass td {
+                    border-width: 0;
+                    padding: 0 6px;
+                    border-left: solid 1px #666;
+                    font-weight: bold;
+                    color: #fff;
+                    line-height: 12px;
+                }
+
+                .myGridClass .myPagerClass a {
+                    color: #666;
+                    text-decoration: none;
+                }
+
+                    .myGridClass .myPagerClass a:hover {
+                        color: #000;
+                        text-decoration: none;
+                    }
+    </style>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,900italic,900,700italic,700,400italic,300italic,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Domine:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" language="javascript">
+
+        function OpenPopup() {
+
+            window.open("Lookups/LookupBDC.aspx", "List", "scrollbars=yes,resizable=yes,width=1000,height=650;display = block;position=absolute");
+
+            return false;
+        }
+    </script>
+    <%-- <link href="assets/css/basic.css" rel="stylesheet" />--%>
+
+
+    <%--  <div align="left">
+        <div class="row" align="left">
+            <div class="col-lg-11">--%>
+    <%--<div class="panel panel-primary">
+                           <div class="panel-heading" align="center">
+                                <h3 class="panel-title">
+                                    Entrepreneur Details</h3>
+                            </div>--%>
+    <%--<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>--%>
+    <asp:UpdateProgress ID="UpdateProgress" runat="server" AssociatedUpdatePanelID="updatepanel1">
+        <ProgressTemplate>
+            <div class="update">
+            </div>
+        </ProgressTemplate>
+    </asp:UpdateProgress>
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+            <div class="container demo">
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <i class="more-less glyphicon glyphicon-plus"></i>
+                                    Enterprise Details
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+                                <table bgcolor="White" width="100%" style="font-family: Verdana;">
+                                    <tr>
+                                        <td align="left" colspan="4" style="padding: 10px; margin: 5px; font-weight: bold;">A.
+                                            <asp:Label ID="lblIndustries1" runat="server" Font-Bold="True" Font-Size="15px">COMMON DETAILS OF THE ENTREPRENUER</asp:Label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 10px; margin: 5px; font-weight: bold; width: 10px">1. </td>
+                                        <td style="text-align: left; padding: 5px; margin: 5px">EM Part - II/IEM/IL No/Udyog Aadhar No</td>
+                                        <td style="padding: 5px; margin: 5px">:
+                                        </td>
+                                        <td style="text-align: left; padding: 5px; margin: 5px">
+                                            <asp:Label ID="txtudyogAadharNo" runat="server"></asp:Label>
+                                        </td>
+                                        <td style="padding: 10px; margin: 5px; font-weight: bold;">2. </td>
+                                        <td style="text-align: left; padding: 5px; margin: 5px">Unit Name</td>
+
+                                        <td style="padding: 5px; margin: 5px">:
+                                        </td>
+                                        <td style="padding: 5px; margin: 5px">
+                                            <span>
+                                                <asp:Label ID="txtUnitname" runat="server"></asp:Label>
+                                            </span>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 10px; margin: 5px; font-weight: bold;">3. </td>
+                                        <td style="text-align: left; width: 250px; padding: 5px; margin: 5px">Name of the  Managing Director /Managing Partner / Proprietor</td>
+                                        <td style="padding: 5px; margin: 5px">:
+                                        </td>
+                                        <td style="text-align: left; padding: 5px; margin: 5px">
+                                            <span>
+                                                <asp:Label ID="txtApplicantName" runat="server"></asp:Label>
+                                            </span>
+                                        </td>
+                                        <td style="padding: 10px; margin: 5px; font-weight: bold;">4. </td>
+                                        <td style="text-align: left; padding: 5px; margin: 5px">TIN/CST/GST</td>
+                                        <td style="padding: 5px; margin: 5px">:
+                                        </td>
+                                        <td style="padding: 5px; margin: 5px">
+                                            <span>
+                                                <asp:Label ID="txtTinNumber" runat="server"></asp:Label>
+                                            </span>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 10px; margin: 5px; font-weight: bold;">5. </td>
+                                        <td style="text-align: left; width: 250px; padding: 5px; margin: 5px">PAN Number of the  Managing Director /Managing Partner / Proprietor</td>
+                                        <td style="padding: 5px; margin: 5px">:
+                                        </td>
+                                        <td style="text-align: left; padding: 5px; margin: 5px">
+                                            <span>
+                                                <asp:Label ID="txtPanNumber" runat="server"></asp:Label>
+                                            </span></td>
+                                        <td style="padding: 10px; margin: 5px; font-weight: bold;">6. </td>
+                                        <td style="padding: 5px; margin: 5px">Category</td>
+                                        <td style="padding: 5px; margin: 5px">:
+                                        </td>
+                                        <td style="padding: 5px; margin: 5px">
+                                            <asp:Label ID="ddlCategory" runat="server"></asp:Label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 10px; margin: 5px; font-weight: bold;">7. </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">Type of Organization</td>
+                                        <td style="padding: 5px; margin: 5px">:
+                                        </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">
+                                            <span>
+                                                <asp:Label ID="ddltypeofOrg" runat="server"></asp:Label>
+                                            </span>
+                                        </td>
+                                        <td style="padding: 10px; margin: 5px; font-weight: bold; padding: 10px; margin: 5px;">8. </td>
+                                        <td>Industry Status 
+                                        </td>
+                                        <td style="padding: 5px; margin: 5px">:
+                                        </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;"><span>
+                                            <asp:Label ID="ddlindustryStatus" runat="server">                                                      
+                                            </asp:Label>
+                                        </span>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 10px; margin: 5px; font-weight: bold;">9. </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">Date of commencement for Production</td>
+                                        <td style="padding: 5px; margin: 5px">:
+                                        </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">
+                                            <span>
+                                                <asp:Label ID="txtDateofCommencement" runat="server"></asp:Label>
+                                            </span>
+                                        </td>
+                                        <td style="padding: 10px; margin: 5px; font-weight: bold;">10. </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">Social Status</td>
+                                        <td style="padding: 5px; margin: 5px">:
+                                        </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">
+                                            <span>
+                                                <asp:Label ID="rblCaste" runat="server"></asp:Label>
+                                            </span>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 10px; margin: 5px; font-weight: bold;">11. </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">Physically Handicapped</td>
+                                        <td style="padding: 5px; margin: 5px">:
+                                        </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">
+                                            <span>
+                                                <asp:Label ID="lblPhc" runat="server"></asp:Label>
+                                            </span>
+                                        </td>
+
+
+                                    </tr>
+                                    <tr id="trEmPartNo11" runat="server" visible="false">
+                                        <td style="padding: 10px; margin: 5px; font-weight: bold;">11. </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">EM Part - II/IEM/IL No:
+                                        </td>
+                                        <td style="padding: 5px; margin: 5px">:
+                                        </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">
+                                            <span>
+                                                <asp:Label ID="lblEMPartNo" runat="server"></asp:Label>
+                                            </span>
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" colspan="4" style="padding: 10px; margin: 5px; font-weight: bold;">
+                                            <asp:Label ID="Label4" runat="server" Font-Bold="True" Font-Size="15px"
+                                                ForeColor="Black">B. UNIT ADDRESS</asp:Label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 10px; margin: 5px; font-weight: bold;">1. </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">District</td>
+                                        <td style="padding: 5px; margin: 5px">:
+                                        </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">
+                                            <span>
+                                                <asp:Label ID="ddldistrictunit" runat="server"></asp:Label>
+                                            </span>
+                                        </td>
+                                        <td style="padding: 10px; margin: 5px; font-weight: bold;">2.</td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">Survey No
+                                        </td>
+                                        <td style="padding: 5px; margin: 5px">:
+                                        </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">
+                                            <span>
+                                                <asp:Label ID="txtunitaddhno" runat="server"></asp:Label>
+                                            </span>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 10px; margin: 5px; font-weight: bold;">3. </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">Mandal</td>
+                                        <td style="padding: 5px; margin: 5px">:
+                                        </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">
+                                            <span>
+                                                <asp:Label ID="ddlUnitMandal" runat="server"></asp:Label>
+                                            </span>
+                                        </td>
+                                        <td style="padding: 10px; margin: 5px; font-weight: bold;">4. </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">Street</td>
+                                        <td style="padding: 5px; margin: 5px">:
+                                        </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">
+                                            <span>
+                                                <asp:Label ID="txtstreetunit" runat="server"></asp:Label>
+                                            </span>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 10px; margin: 5px; font-weight: bold;">5. </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">Village</td>
+                                        <td style="padding: 5px; margin: 5px">:
+                                        </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">
+                                            <span>
+                                                <asp:Label ID="ddlVillageunit" runat="server"></asp:Label>
+                                            </span>
+                                        </td>
+                                        <td style="padding: 10px; margin: 5px; font-weight: bold;">6. </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">Mobile Number
+                                        </td>
+                                        <td style="padding: 5px; margin: 5px">:
+                                        </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">
+                                            <span>
+                                                <asp:Label ID="txtunitmobileno" runat="server"></asp:Label>
+                                            </span>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 10px; margin: 5px; font-weight: bold;">7. </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">Email Id</td>
+                                        <td style="padding: 5px; margin: 5px">:
+                                        </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px; width: 250px">
+                                            <span>
+                                                <asp:Label ID="txtunitemailid" runat="server"></asp:Label>
+                                            </span>
+                                        </td>
+                                        <td style="padding: 10px; margin: 5px; font-weight: bold;"></td>
+                                        <td style="text-align: left;">&nbsp;</td>
+                                        <td style="text-align: left;">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" colspan="8" style="padding: 10px; margin: 5px; font-weight: bold;">
+                                            <asp:Label ID="Label5" runat="server" Font-Bold="True" Font-Size="15px"
+                                                ForeColor="Black">C. OFFICE ADDRESS</asp:Label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 10px; margin: 5px; font-weight: bold;">1. </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">District</td>
+
+                                        <td style="padding: 5px; margin: 5px">:
+                                        </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">
+                                            <span>
+                                                <asp:Label ID="ddldistrictoffc" runat="server"></asp:Label>
+                                            </span>
+                                        </td>
+                                        <td style="padding: 10px; margin: 5px; font-weight: bold;">2. </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">Survey No
+                                        </td>
+                                        <td style="padding: 5px; margin: 5px">:
+                                        </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">
+                                            <span>
+                                                <asp:Label ID="txtoffaddhnno" runat="server"></asp:Label>
+                                            </span>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 10px; margin: 5px; font-weight: bold;">3. </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">Mandal</td>
+                                        <td style="padding: 5px; margin: 5px">:
+                                        </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">
+                                            <span>
+                                                <asp:Label ID="ddloffcmandal" runat="server"></asp:Label>
+                                            </span>
+                                        </td>
+                                        <td style="padding: 10px; margin: 5px; font-weight: bold;">4. </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">Street
+                                        </td>
+                                        <td style="padding: 5px; margin: 5px">:
+                                        </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">
+                                            <span>
+                                                <asp:Label ID="txtstreetoffice" runat="server"></asp:Label>
+                                            </span>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 10px; margin: 5px; font-weight: bold;">5. </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">Village</td>
+                                        <td style="padding: 5px; margin: 5px">:
+                                        </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">
+                                            <span>
+                                                <asp:Label ID="ddlvilloffc" runat="server"></asp:Label>
+                                            </span>
+                                        </td>
+                                        <td style="padding: 10px; margin: 5px; font-weight: bold;">6. </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">Mobile Number
+                                        </td>
+                                        <td style="padding: 5px; margin: 5px">:
+                                        </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">
+                                            <span>
+                                                <asp:Label ID="txtOffcMobileNO" runat="server"></asp:Label>
+                                            </span>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 10px; margin: 5px; font-weight: bold;">7. </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px;">Email Id</td>
+                                        <td style="padding: 5px; margin: 5px">:
+                                        </td>
+                                        <td style="text-align: left; padding: 10px; margin: 5px; width: 250px">
+                                            <span>
+                                                <asp:Label ID="txtOffcEmail" runat="server"></asp:Label>
+                                            </span>
+                                        </td>
+                                        <td style="text-align: left;"></td>
+                                        <td style="text-align: left;">
+                                            <span></span>
+
+                                        </td>
+                                    </tr>
+
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="Div3">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwoication" aria-expanded="false" aria-controls="collapseTwo">
+                                    <i class="more-less glyphicon glyphicon-plus"></i>
+                                    Application
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwoication" class="panel-collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="panel-body">
+                                <div align="center">
+                                    <div align="center" style="text-align: center" id="Receipt">
+                                        <div align="center" style="width: 1000px">
+                                            <center>
+                                                <img src="telanganalogo.png" width="75px" height="75px" />
+                                            </center>
+                                            <%-- <h3>TS-iPASS COMMON APPLICATION FORM</h3>--%>
+                                            <br />
+                                            <table style="width: 100%;" align="center">
+                                                <tr>
+                                                    <td width="100%" align="center" style="text-align: center">
+                                                        <asp:Label Font-Bold="true" Font-Size="X-Large" ID="lblheadTPRIDE" runat="server"></asp:Label>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <br />
+                                        </div>
+
+                                        <div align="center">
+
+                                            <table style="width: 800px">
+                                                <tr>
+                                                    <td>
+                                                        <div align="center" id="divCommonAppli" runat="server" visible="false">
+                                                            <div align="center">
+                                                                <table bgcolor="White" width="1000px" border="2px"
+                                                                    style="font-family: Verdana; font-size: small;">
+                                                                    <tr>
+                                                                        <td align="center" colspan="4"
+                                                                            style="text-align: center; background-color: #0066FF;">
+                                                                            <asp:Label ID="Label7" runat="server" Font-Bold="True" Font-Size="15px"
+                                                                                ForeColor="White">COMMON DETAILS OF THE ENTREPRENUER</asp:Label>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <%--Start--%>
+                                                                    <tr>
+                                                                        <td style="text-align: left; width: 250px">Application Date</td>
+                                                                        <td style="text-align: left; width: 250px">
+                                                                            <asp:Label ID="lblapplicationdate" runat="server"></asp:Label>
+                                                                        </td>
+                                                                        <td style="padding: 5px; margin: 5px; width: 250px">Application No</td>
+                                                                        <td style="padding: 5px; margin: 5px; width: 250px">
+                                                                            <asp:Label ID="lblApplicationNo" runat="server"></asp:Label>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="text-align: left; width: 250px">Sector</td>
+                                                                        <td style="text-align: left; width: 250px">
+                                                                            <asp:Label ID="lblsector" runat="server"></asp:Label>
+                                                                        </td>
+                                                                        <td style="text-align: left; width: 250px">
+                                                                            <asp:Label ID="lblisvehicle" runat="server" Text="Vehicle Number"></asp:Label></td>
+                                                                        <td style="text-align: left; width: 250px">
+                                                                            <asp:Label ID="lblvehno" runat="server"></asp:Label>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <%--End--%>
+                                                                    <tr>
+                                                                        <td style="text-align: left; width: 250px">EM/Udyog Aadhar No</td>
+                                                                        <td style="text-align: left; width: 250px">
+                                                                            <asp:Label ID="txtudyogAadharNo1" runat="server"></asp:Label>
+                                                                        </td>
+                                                                        <td style="text-align: left; width: 250px">Unit Name</td>
+                                                                        <td style="width: 250px">
+                                                                            <span>
+                                                                                <asp:Label ID="txtUnitname1" runat="server"></asp:Label>
+                                                                            </span>
+
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Name of the  Managing Director /Managing Partner / Proprietor</td>
+                                                                        <td>
+                                                                            <span>
+                                                                                <asp:Label ID="txtApplicantName1" runat="server"></asp:Label>
+                                                                            </span>
+                                                                        </td>
+                                                                        <td>TIN/CST/GST</td>
+                                                                        <td>
+                                                                            <span>
+                                                                                <asp:Label ID="txtTinNumber1" runat="server"></asp:Label>
+                                                                            </span>
+
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>PAN Number of the  Managing Director /Managing Partner / Proprietor</td>
+                                                                        <td>
+                                                                            <span>
+                                                                                <asp:Label ID="txtPanNumber1" runat="server"></asp:Label>
+                                                                            </span></td>
+                                                                        <td>Category</td>
+                                                                        <td>
+                                                                            <asp:Label ID="ddlCategory1" runat="server"></asp:Label></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Type of Organization</td>
+                                                                        <td>
+                                                                            <span>
+                                                                                <asp:Label ID="ddltypeofOrg1" runat="server"></asp:Label>
+                                                                            </span>
+                                                                        </td>
+                                                                        <td>Industry Status 
+                                                                        </td>
+
+                                                                        <td><span>
+                                                                            <asp:Label ID="ddlindustryStatus1" runat="server">                                                      
+                                                                            </asp:Label></span>
+                                                                        </td>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Date of commencement for Production</td>
+                                                                        <td>
+                                                                            <span>
+                                                                                <asp:Label ID="txtDateofCommencement1" runat="server"></asp:Label>
+                                                                            </span>
+                                                                        </td>
+                                                                        <td>Social Status</td>
+                                                                        <td>
+                                                                            <span>
+                                                                                <asp:Label ID="rblCaste1" runat="server"></asp:Label>
+                                                                            </span>
+                                                                        </td>
+
+                                                                    </tr>
+                                                                    <tr id="trempartno" runat="server" visible="false">
+                                                                        <td><%--EM Part - II/IEM/IL No:--%>
+                                                                        </td>
+                                                                        <td>
+                                                                            <span>
+                                                                                <asp:Label ID="lblEMPartNo1" runat="server" Visible="false"> </asp:Label>
+                                                                            </span>
+                                                                        </td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <%--  <td>Nature of Activity
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <asp:Label ID="ddlintLineofActivity" runat="server"></asp:Label>
+                                        </span>
+
+                                    </td>--%>
+                                                                    </tr>
+                                                                    <%--<tr>
+                                    <td>Areas</td>
+                                    <td>
+                                        <span>
+                                            <asp:Label ID="rblGHMC" runat="server"></asp:Label>
+                                        </span>
+                                    </td>
+                                    <td>Type of Sector
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <asp:Label ID="rblSector" runat="server"></asp:Label>
+                                        </span>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Allied Type</td>
+                                    <td>
+                                        <span>
+                                            <asp:Label ID="rblVeh" runat="server"></asp:Label>
+                                        </span>
+                                    </td>
+
+                                </tr>--%>
+
+                                                                    <tr>
+                                                                        <td align="center" colspan="4"
+                                                                            style="text-align: center;">
+                                                                            <asp:Label ID="Label8" runat="server" Font-Bold="True" Font-Size="15px"
+                                                                                ForeColor="Black">UNIT ADDRESS</asp:Label>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="text-align: left; width: 250px">District</td>
+                                                                        <td style="text-align: left; width: 250px">
+                                                                            <span>
+                                                                                <asp:Label ID="ddldistrictunit1" runat="server"></asp:Label>
+                                                                            </span>
+                                                                        </td>
+                                                                        <td style="text-align: left; width: 250px">Survey No
+                                                                        </td>
+                                                                        <td style="text-align: left; width: 250px">
+                                                                            <span>
+                                                                                <asp:Label ID="txtunitaddhno1" runat="server"></asp:Label>
+                                                                            </span>
+
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="text-align: left; width: 250px">Mandal</td>
+                                                                        <td style="text-align: left; width: 250px">
+                                                                            <span>
+                                                                                <asp:Label ID="ddlUnitMandal1" runat="server"></asp:Label>
+                                                                            </span>
+                                                                        </td>
+                                                                        <td style="text-align: left; width: 250px">Street</td>
+                                                                        <td style="text-align: left; width: 250px">
+                                                                            <span>
+                                                                                <asp:Label ID="txtstreetunit1" runat="server"></asp:Label>
+                                                                            </span>
+
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="text-align: left; width: 250px">Village</td>
+                                                                        <td style="text-align: left; width: 250px">
+                                                                            <span>
+                                                                                <asp:Label ID="ddlVillageunit1" runat="server"></asp:Label>
+                                                                            </span>
+                                                                        </td>
+                                                                        <td style="text-align: left; width: 250px">Mobile Number
+                                                                        </td>
+                                                                        <td style="text-align: left; width: 250px">
+                                                                            <span>
+                                                                                <asp:Label ID="txtunitmobileno1" runat="server"></asp:Label>
+                                                                            </span>
+
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="text-align: left; width: 250px">Email Id</td>
+                                                                        <td style="text-align: left; width: 250px">
+                                                                            <span>
+                                                                                <asp:Label ID="txtunitemailid1" runat="server"></asp:Label>
+                                                                            </span>
+                                                                        </td>
+                                                                        <td style="text-align: left; width: 250px">&nbsp;</td>
+                                                                        <td style="text-align: left; width: 250px">&nbsp;</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td align="center" colspan="4"
+                                                                            style="text-align: center;">
+                                                                            <asp:Label ID="Label9" runat="server" Font-Bold="True" Font-Size="15px"
+                                                                                ForeColor="Black">OFFICE ADDRESS</asp:Label>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="text-align: left; width: 250px">District</td>
+                                                                        <td style="text-align: left; width: 250px">
+                                                                            <span>
+                                                                                <asp:Label ID="ddldistrictoffc1" runat="server"></asp:Label>
+                                                                            </span>
+                                                                        </td>
+                                                                        <td style="text-align: left; width: 250px">Survey No
+                                                                        </td>
+                                                                        <td style="text-align: left; width: 250px">
+                                                                            <span>
+                                                                                <asp:Label ID="txtoffaddhnno1" runat="server"></asp:Label>
+                                                                            </span>
+
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="text-align: left; width: 250px">Mandal</td>
+                                                                        <td style="text-align: left; width: 250px">
+                                                                            <span>
+                                                                                <asp:Label ID="ddloffcmandal1" runat="server"></asp:Label>
+                                                                            </span>
+                                                                        </td>
+                                                                        <td style="text-align: left; width: 250px">Street
+                                                                        </td>
+                                                                        <td style="text-align: left; width: 250px">
+                                                                            <span>
+                                                                                <asp:Label ID="txtstreetoffice1" runat="server"></asp:Label>
+                                                                            </span>
+
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="text-align: left; width: 250px">Village</td>
+                                                                        <td style="text-align: left; width: 250px">
+                                                                            <span>
+                                                                                <asp:Label ID="ddlvilloffc1" runat="server"></asp:Label>
+                                                                            </span>
+                                                                        </td>
+                                                                        <td style="text-align: left; width: 250px">Mobile Number
+                                                                        </td>
+                                                                        <td style="text-align: left; width: 250px">
+                                                                            <span>
+                                                                                <asp:Label ID="txtOffcMobileNO1" runat="server"></asp:Label>
+                                                                            </span>
+
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="text-align: left; width: 250px">Email Id</td>
+                                                                        <td style="text-align: left; width: 250px">
+                                                                            <span>
+                                                                                <asp:Label ID="txtOffcEmail1" runat="server"></asp:Label>
+                                                                            </span>
+                                                                        </td>
+                                                                        <td style="text-align: left; width: 250px"></td>
+                                                                        <td style="text-align: left; width: 250px">
+                                                                            <span></span>
+
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                            <div align="center">
+                                                                <table bgcolor="White" width="100%" border="2px" style="font-family: Verdana; font-size: small;">
+                                                                    <tr>
+                                                                        <td colspan="2"
+                                                                            style="font-size: large; text-align: center; background-color: #0066FF; color: #FFFFFF; font-weight: bold;">LINE OF ACTIVITY</td>
+                                                                    </tr>
+                                                                    <tr>
+
+                                                                        <td>Line of Activity </td>
+                                                                        <td>
+                                                                            <span>
+                                                                                <asp:Label ID="lblLineofActiivity" runat="server"></asp:Label>
+                                                                            </span>
+                                                                        </td>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td colspan="2">
+                                                                            <asp:GridView ID="gvLOA" runat="server" AutoGenerateColumns="False"
+                                                                                Font-Names="Verdana" Font-Size="12px" SkinID="gridviewSkin" Width="100%">
+                                                                                <Columns>
+                                                                                    <asp:TemplateField HeaderText="Sl No.">
+                                                                                        <ItemTemplate>
+                                                                                            <asp:Label ID="Label3" runat="server" Text="<%#Container.DataItemIndex+1 %>"></asp:Label>
+                                                                                        </ItemTemplate>
+                                                                                    </asp:TemplateField>
+                                                                                    <asp:BoundField DataField="LineofActivity" HeaderText="Line Of Activity" />
+                                                                                    <asp:BoundField DataField="InstalledCapacity" HeaderText="Installed Capacity" />
+                                                                                    <asp:BoundField DataField="NameofUnit" HeaderText="Unit" />
+                                                                                    <asp:BoundField DataField="Value" HeaderText="Value" />
+                                                                                </Columns>
+                                                                            </asp:GridView>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr id="trexpansionhead" runat="server">
+                                                                        <td colspan="2"
+                                                                            style="font-size: large; text-align: center; background-color: #0066FF; color: #FFFFFF; font-weight: bold;">
+                                                                            <asp:Label ID="lblexpan1" Text="Expansion/Diversification" runat="server"></asp:Label>&nbsp;
+                                        PROJECT (In Rs.)</td>
+                                                                    </tr>
+                                                                    <tr id="trexpansion" runat="server">
+                                                                        <td colspan="9">
+                                                                            <table bgcolor="White" width="100%" border="2px" style="font-family: Verdana; font-size: small;">
+                                                                                <tr>
+                                                                                    <td></td>
+                                                                                    <td style="text-align: center">Line Of Activity</td>
+                                                                                    <td style="text-align: center">Installed Capacity</td>
+                                                                                    <td style="text-align: center">% of increase under
+                                                        <br />
+                                                                                        <asp:Label ID="lblexpan2" runat="server"></asp:Label></td>
+                                                                                    <%--Expansion--%>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>Existing</td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txteeploa" runat="server"></asp:Label>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <%--<asp:Label ID="txteepinscap" runat="server"      ></asp:Label>--%>
+                                                                                        <table bgcolor="White" width="100%" border="2px" style="font-family: Verdana; font-size: small;">
+                                                                                            <tr>
+                                                                                                <td style="text-align: center">Quantity</td>
+                                                                                                <td style="text-align: center">Unit</td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <asp:Label ID="txteepinscap" runat="server"></asp:Label></td>
+                                                                                                <td>
+                                                                                                    <asp:Label ID="ddleepinscap" runat="server"></asp:Label>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </table>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txteeppercentage" runat="server"></asp:Label>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <asp:Label ID="lblexpan3" runat="server"></asp:Label>
+                                                                                        <br />
+                                                                                        Project</td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtedploa" runat="server"></asp:Label>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <table bgcolor="White" width="100%" border="2px" style="font-family: Verdana; font-size: small;">
+                                                                                            <tr>
+                                                                                                <td style="text-align: center">Quantity</td>
+                                                                                                <td style="text-align: center">Unit</td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <asp:Label ID="txtedpinscap" runat="server"></asp:Label></td>
+                                                                                                <td>
+                                                                                                    <asp:Label ID="ddledpinscap" runat="server"></asp:Label>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </table>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtedppercentage" runat="server"></asp:Label>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td colspan="2"
+                                                                            style="font-size: large; text-align: center; background-color: #0066FF; color: #FFFFFF; font-weight: bold;">FIXED CAPITAL INVESTMENT(In Rs.)</td>
+                                                                    </tr>
+                                                                    <tr id="tr1" runat="server">
+                                                                        <td colspan="9">
+                                                                            <table bgcolor="White" width="100%" border="2px" style="font-family: Verdana; font-size: small;">
+                                                                                <tr>
+                                                                                    <td style="text-align: left">Nature of Assets</td>
+                                                                                    <td style="text-align: left">Existing Enterprise</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>Land</td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtlandexistingNew" runat="server"></asp:Label>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>Building</td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtbuildingexistingNew" runat="server"></asp:Label>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>Plant & Machinery
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtplantexistingNew" runat="server"></asp:Label>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr id="tr3" runat="server">
+                                                                        <td colspan="9">
+                                                                            <table bgcolor="White" width="100%" border="2px" style="font-family: Verdana; font-size: small;">
+                                                                                <tr>
+                                                                                    <td style="text-align: center">Nature of Assets</td>
+                                                                                    <td style="text-align: center">Existing Enterprise</td>
+                                                                                    <td style="text-align: center">Under Expansion/Diversification<br />
+                                                                                        Project</td>
+                                                                                    <td>% of increase under<br />
+                                                                                        Expansion/Diversification</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>Land</td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtlandexisting" runat="server"></asp:Label>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtlandexpandiver" runat="server"></asp:Label>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtlandpercentage" runat="server"></asp:Label>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>Building</td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtbuildingexisting" runat="server"></asp:Label>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtbuildingexpandiver" runat="server"></asp:Label>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtbuildingpercentage" runat="server"></asp:Label>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>Plant & Machinery
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtplantexisting" runat="server"></asp:Label>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtplantexpandiver" runat="server"></asp:Label>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtplantpercentage" runat="server"></asp:Label>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+
+
+                                                                </table>
+                                                            </div>
+                                                            <div align="center">
+                                                                <table bgcolor="White" width="100%" border="2px" style="font-family: Verdana; font-size: small;">
+                                                                    <tr>
+                                                                        <td colspan="2"
+                                                                            style="font-size: large; text-align: center; background-color: #0066FF; color: #FFFFFF; font-weight: bold;">Details of the Director(s)/ Partner(s)</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td colspan="2">
+                                                                            <asp:GridView ID="GridViewdirectors" runat="server" AutoGenerateColumns="False"
+                                                                                Font-Names="Verdana" Font-Size="12px" SkinID="gridviewSkin" Width="100%">
+                                                                                <Columns>
+                                                                                    <asp:TemplateField HeaderText="Sl No.">
+                                                                                        <ItemTemplate>
+                                                                                            <asp:Label ID="Label3" runat="server" Text="<%#Container.DataItemIndex+1 %>"></asp:Label>
+                                                                                        </ItemTemplate>
+                                                                                    </asp:TemplateField>
+                                                                                    <asp:BoundField DataField="Name" HeaderText="Name" />
+                                                                                    <asp:BoundField DataField="Community" HeaderText="Community" />
+                                                                                    <asp:BoundField DataField="Share" HeaderText="Share" />
+                                                                                    <%-- <asp:BoundField DataField="Percentage" HeaderText="Percentage" />--%>
+                                                                                </Columns>
+                                                                            </asp:GridView>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                            <div align="center">
+                                                                <table bgcolor="White" width="100%" border="2px" style="font-family: Verdana; font-size: small;">
+                                                                    <tr>
+
+                                                                        <td colspan="4"
+                                                                            style="font-size: large; text-align: center; background-color: #0066FF; color: #FFFFFF; font-weight: bold;">POWER</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <asp:Label ID="lblpowerHEAD" Text="POWER TYPE" runat="server"></asp:Label></td>
+
+                                                                        <td>
+                                                                            <asp:Label ID="ddlPowerStatus" runat="server"></asp:Label>
+                                                                        </td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Power Released Date</td>
+                                                                        <td>
+                                                                            <asp:Label ID="txtNewPowerReleaseDate" runat="server"></asp:Label>
+                                                                        </td>
+                                                                        <td>Contracted load (In HP)</td>
+                                                                        <td>
+                                                                            <asp:Label ID="txtNewContractedLoad" runat="server"></asp:Label>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Service Connection Number</td>
+                                                                        <td>
+                                                                            <asp:Label ID="txtServiceConnectionNumberNew" runat="server"></asp:Label>
+                                                                        </td>
+                                                                        <td>Connected load (In HP)</td>
+                                                                        <td>
+                                                                            <asp:Label ID="txtNewConnectedLoad" runat="server"></asp:Label>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                                <table id="tblpower" runat="server" bgcolor="White" width="100%" border="2" style="font-family: Verdana; font-size: small;">
+                                                                    <tr>
+                                                                        <td style="height: 10px" colspan="4"></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td colspan="4">
+                                                                            <asp:Label ID="lblexistingpower" runat="server"></asp:Label></td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <td>Power Released Date</td>
+                                                                        <td>
+                                                                            <asp:Label ID="txtExistPowerReleaseDate" runat="server"></asp:Label>
+                                                                        </td>
+                                                                        <td>Contracted load (In HP)</td>
+                                                                        <td>
+                                                                            <asp:Label ID="txtExistContractedLoad" runat="server"></asp:Label>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Service Connection Number</td>
+                                                                        <td>
+                                                                            <asp:Label ID="txtServiceConnectionNumberExist" runat="server"></asp:Label>
+                                                                        </td>
+                                                                        <td>Connected load (In HP)</td>
+                                                                        <td>
+                                                                            <asp:Label ID="txtExistConnectedLoad" runat="server"></asp:Label>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="height: 10px" colspan="4"></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td colspan="4">
+                                                                            <asp:Label ID="lblexpandiverpower" runat="server"></asp:Label></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Power Released Date</td>
+                                                                        <td>
+                                                                            <asp:Label ID="txtExpanPowerReleaseDate" runat="server"></asp:Label>
+                                                                        </td>
+                                                                        <td>Contracted load (In HP)</td>
+                                                                        <td>
+                                                                            <asp:Label ID="txtExpanContractedLoad" runat="server"></asp:Label>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Service Connection Number</td>
+                                                                        <td>
+                                                                            <asp:Label ID="txtServiceConnectionNumberExpan" runat="server"></asp:Label>
+                                                                        </td>
+                                                                        <td>Connected load (In HP)</td>
+                                                                        <td>
+                                                                            <asp:Label ID="txtExpanConnectedLoad" runat="server"></asp:Label>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                            <div align="center">
+                                                                <table bgcolor="White" width="100%" border="2px" style="font-family: Verdana; font-size: small;">
+                                                                    <tr>
+
+                                                                        <td align="center" colspan="4" style="text-align: center; background-color: #0066FF; color: #FFFFFF; font-size: large; font-weight: bold;">
+                                                                            <asp:Label ID="lblIndustries6" runat="server" Font-Bold="True" Font-Size="18px"
+                                                                                ForeColor="White">Employment</asp:Label>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <table bgcolor="White" width="100%" border="2px" style="font-family: Verdana; font-size: small;">
+                                                                                <tr>
+                                                                                    <td></td>
+                                                                                    <td></td>
+                                                                                    <td>Male(Nos)
+                                                                                    </td>
+                                                                                    <td>Female(Nos)
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>1
+                                                                                    </td>
+                                                                                    <td>Management & Staff 
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtstaffMale" runat="server"></asp:Label>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtStaffFemale" runat="server"></asp:Label>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>2
+                                                                                    </td>
+                                                                                    <td>Supervisory 
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtSuprMale" runat="server"></asp:Label>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtSuperFemale" runat="server"></asp:Label>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>3
+                                                                                    </td>
+                                                                                    <td>Skilled workers
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtSkilledWorkersMale" runat="server"></asp:Label>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtSkilledWorkersFemale" runat="server"></asp:Label>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>4
+                                                                                    </td>
+                                                                                    <td>Semi-skilled workers
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtSemiSkilledWorkersMale" runat="server"></asp:Label>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtSemiSkilledWorkersFemale" runat="server"></asp:Label>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                            <div align="center">
+                                                                <table bgcolor="White" width="100%" border="2px" style="font-family: Verdana; font-size: small;">
+                                                                    <tr>
+                                                                        <td align="center" colspan="4"
+                                                                            style="text-align: center; background-color: #0066FF; color: #FFFFFF; font-size: large; font-weight: bold;">
+                                                                            <asp:Label ID="lblIndustries7" runat="server" Font-Bold="True" Font-Size="18px"
+                                                                                ForeColor="White">Implementation Steps Taken</asp:Label>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td align="center" colspan="4"></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Date of application for Term Loan</td>
+                                                                        <td>
+                                                                            <asp:Label ID="txtTermloan" runat="server"></asp:Label>
+                                                                            &nbsp;</td>
+                                                                        <td>Term Loan Sanctioned Date</td>
+                                                                        <td>
+                                                                            <span>
+                                                                                <asp:Label ID="txtdatesanctioned" runat="server"></asp:Label>
+                                                                            </span>
+
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Term Loan Sanctioned reference No</td>
+                                                                        <td>
+                                                                            <span>
+                                                                                <asp:Label ID="txtsactionedloan" runat="server"></asp:Label>
+                                                                            </span>
+                                                                        </td>
+                                                                        <td>Name of the Institution</td>
+                                                                        <td>
+                                                                            <span>
+                                                                                <asp:Label ID="txtnmofinstitution" runat="server"></asp:Label>
+                                                                            </span>
+
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                            <div align="center" style="page-break-before: always;">
+                                                                <table bgcolor="White" width="100%" border="2px" style="font-family: Verdana; font-size: small;">
+                                                                    <tr>
+
+                                                                        <td align="center" colspan="4"
+                                                                            style="text-align: center; background-color: #0066FF; color: #FFFFFF; font-size: large; font-weight: bold;">
+                                                                            <asp:Label ID="lblIndustries9" runat="server" Font-Bold="True" Font-Size="18px"
+                                                                                ForeColor="White">Approved/Estimated projected cost, term loan sanctioned and released, assets acquired etc</asp:Label>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <table bgcolor="White" width="100%" border="2px" style="font-family: Verdana; font-size: small;">
+                                                                                <tr>
+                                                                                    <td style="text-align: center">Name of Asset</td>
+                                                                                    <td style="text-align: center">Approved Project
+                                                                                                    <br />
+                                                                                        Cost  (Rs.)                                                                                                  
+                                                                                    </td>
+                                                                                    <td style="text-align: center">Loan Sanctioned (Rs.)</td>
+                                                                                    <td style="text-align: center">Equity from
+                                                                                                    <br />
+                                                                                        the promoters (Rs.) 
+                                                                                    </td>
+                                                                                    <td style="text-align: center">Loan Amount
+                                                                                                    <br />
+                                                                                        Released (Rs.) 
+                                                                                    </td>
+                                                                                    <td style="text-align: center">Value of assets  (as
+                                                                                                    <br />
+                                                                                        certified by financial<br />
+                                                                                        institution) (Rs.) 
+                                                                                    </td>
+                                                                                    <td style="text-align: center">Value of assets certified
+                                                                                                    <br />
+                                                                                        by Chartered Accoutant (Rs.)                                                                                        
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td style="text-align: center">1</td>
+                                                                                    <td style="text-align: center">2</td>
+                                                                                    <td style="text-align: center">3</td>
+                                                                                    <td style="text-align: center">4</td>
+                                                                                    <td style="text-align: center">5</td>
+                                                                                    <td style="text-align: center">6</td>
+                                                                                    <td style="text-align: center">7</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>Land</td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtLand2" runat="server"></asp:Label></td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtLand3" runat="server"></asp:Label>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtLand4" runat="server"></asp:Label></td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtLand5" runat="server"></asp:Label></td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtLand6" runat="server"></asp:Label></td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtLand7" runat="server"></asp:Label></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>Buildings</td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtBuilding2" runat="server"></asp:Label></td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtBuilding3" runat="server"></asp:Label>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtBuilding4" runat="server"></asp:Label></td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtBuilding5" runat="server"></asp:Label></td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtBuilding6" runat="server"></asp:Label></td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtBuilding7" runat="server"></asp:Label></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>Plant & Machinery</td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtPM2" runat="server"></asp:Label></td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtPM3" runat="server"></asp:Label>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtPM4" runat="server"></asp:Label></td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtPM5" runat="server"></asp:Label></td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtPM6" runat="server"></asp:Label></td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtPM7" runat="server"></asp:Label></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>Machinery Contingencies</td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtMCont2" runat="server"></asp:Label></td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtMCont3" runat="server"></asp:Label>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtMCont4" runat="server"></asp:Label></td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtMCont5" runat="server"></asp:Label></td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtMCont6" runat="server"></asp:Label></td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtMCont7" runat="server"></asp:Label></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>Erection</td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtErec2" runat="server"></asp:Label></td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtErec3" runat="server"></asp:Label>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtErec4" runat="server"></asp:Label></td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtErec5" runat="server"></asp:Label></td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtErec6" runat="server"></asp:Label></td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtErec7" runat="server"></asp:Label></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>Technical know-how,<br />
+                                                                                        feasibility study</td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtTFS2" runat="server"></asp:Label></td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtTFS3" runat="server"></asp:Label>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtTFS4" runat="server"></asp:Label></td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtTFS5" runat="server"></asp:Label></td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtTFS6" runat="server"></asp:Label></td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtTFS7" runat="server"></asp:Label></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>Working Capital</td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtWC2" runat="server"></asp:Label></td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtWC3" runat="server"></asp:Label>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtWC4" runat="server"></asp:Label></td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtWC5" runat="server"></asp:Label></td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtWC6" runat="server"></asp:Label></td>
+                                                                                    <td>
+                                                                                        <asp:Label ID="txtWC7" runat="server"></asp:Label></td>
+                                                                                </tr>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                            <div align="center" id="divsecondhandMichinary" runat="server">
+                                                                <table bgcolor="White" width="100%" border="2px" style="font-family: Verdana; font-size: small;">
+                                                                    <tr>
+                                                                        <td align="center" colspan="6"
+                                                                            style="text-align: center; background-color: #0066FF; color: #FFFFFF; font-size: large; font-weight: bold;">
+                                                                            <asp:Label ID="lblIndustries11" runat="server" Font-Bold="True" Font-Size="18px"
+                                                                                ForeColor="White">Approved/Estimated projected cost, term loan sanctioned and released, assets acquired etc</asp:Label>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr id="trSecondhandmachinery" runat="server">
+                                                                        <td colspan="4">
+                                                                            <table bgcolor="White" width="100%" border="2px" style="font-family: Verdana; font-size: small;">
+                                                                                <tr>
+                                                                                    <td style="text-align: center">Second hand machinery
+                                                                                                    <br />
+                                                                                        value in Rs</td>
+                                                                                    <td style="text-align: center">New machinery value in Rs</td>
+                                                                                    <td style="text-align: center">Total value in Rs<br />
+                                                                                        (1+2)</td>
+                                                                                    <td style="text-align: center">% of second hand machinery
+                                                                                        <br />
+                                                                                        value in total machinery value</td>
+                                                                                    <td style="text-align: center">Value of the machinery
+                                                                                        <br />
+                                                                                        purchaced from TSIDC<br />
+                                                                                        (Telangana unit)/TSSFC
+                                                                                        <br />
+                                                                                        (Telangana unit)/Bank in Rs</td>
+                                                                                    <td style="text-align: center">Total value in Rs
+                                                                                        <br />
+                                                                                        (2+5)</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td style="text-align: center">1</td>
+                                                                                    <td style="text-align: center">2</td>
+                                                                                    <td style="text-align: center">3</td>
+                                                                                    <td style="text-align: center">4</td>
+                                                                                    <td style="text-align: center">5</td>
+                                                                                    <td style="text-align: center">6</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td style="text-align: center">
+                                                                                        <asp:Label ID="txtsecondhndmachine" runat="server"></asp:Label></td>
+                                                                                    <td style="text-align: center">
+                                                                                        <asp:Label ID="txtnewmachine" runat="server"></asp:Label>
+                                                                                    </td>
+                                                                                    <td style="text-align: center">
+                                                                                        <asp:Label ID="txtTotalvalue12" runat="server"></asp:Label></td>
+                                                                                    <td style="text-align: center">
+                                                                                        <asp:Label ID="txtpercentage12" runat="server"></asp:Label></td>
+                                                                                    <td style="text-align: center">
+                                                                                        <asp:Label ID="txtmachinepucr" runat="server"></asp:Label></td>
+                                                                                    <td style="text-align: center">
+                                                                                        <asp:Label ID="txttotal25" runat="server"></asp:Label></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td colspan="6"></td>
+                                                                                </tr>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                            <div align="center">
+                                                                <table bgcolor="White" width="100%" border="2px"
+                                                                    style="font-family: Verdana; font-size: small;">
+                                                                    <tr>
+
+                                                                        <td align="center" colspan="4"
+                                                                            style="text-align: center; background-color: #0066FF; color: #FFFFFF; font-size: large; font-weight: bold;">
+                                                                            <asp:Label ID="lblIndustries12" runat="server" Font-Bold="True" Font-Size="15px"
+                                                                                ForeColor="White">Registration with Commercial taxes Department Registration</asp:Label>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>VAT No</td>
+                                                                        <td>
+                                                                            <asp:Label ID="txtvatno" runat="server"></asp:Label></td>
+                                                                        <td>Registration Date</td>
+                                                                        <td>
+                                                                            <span>
+                                                                                <asp:Label ID="txtCSTRegDate" runat="server"></asp:Label>
+                                                                            </span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>CST No</td>
+                                                                        <td>
+                                                                            <asp:Label ID="txtcstno" runat="server"></asp:Label></td>
+                                                                        <td>Registring Authority Address</td>
+                                                                        <td>
+                                                                            <span>
+                                                                                <asp:Label ID="txtCSTRegAuthAddress" runat="server"></asp:Label>
+                                                                            </span>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Registring Authority</td>
+                                                                        <td>
+                                                                            <asp:Label ID="txtCSTRegAuthority" runat="server"></asp:Label></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div align="center" id="divInvestmenSubsidy" runat="server" visible="false">
+                                                            <table bgcolor="White" border="2px" style="font-family: Verdana; font-size: small;" width="100%">
+                                                                <tr>
+                                                                    <td colspan="2"
+                                                                        style="text-align: center; background-color: #0066FF; color: #FFFFFF; font-size: large; font-weight: bold;">
+                                                                        <asp:Label ID="Label36" runat="server" Font-Bold="True" Font-Size="15px"
+                                                                            ForeColor="White">ANNEXURE: VIII - Claiming of Investment Subsidy</asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="2" style="font-size: medium">
+                                                                        <asp:Label ID="Label37" runat="server" Font-Bold="True" Font-Size="13px" ForeColor="Black">1 Subsidy Already availed i.r.o Expansion / Diversification</asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>1.1 Scheme in Rs.</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtAvldSubsidyScheme" runat="server"></asp:Label></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>1.2 Amount in Rs.</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtAvldSubsidyAmt" runat="server"></asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="2" style="font-size: medium">
+                                                                        <asp:Label ID="Label38" runat="server" Font-Bold="True" Font-Size="13px" ForeColor="Black">2 Incentives Applied for (in Rs.) on fixed capital investment</asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>2.1 Scheme eligible</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtSchemeEligible" runat="server"></asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td valign="top">2.2 Investment Subsidy</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtAppldInvestSubsidy" runat="server"></asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>2.3 Additional amount for Women</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtAppldAddlAmtWomen" runat="server"></asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>2.4 Total Investment Subsidy</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtAppldTotInvestSubsidy" runat="server"></asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div align="center" id="divStampDuty" runat="server" visible="false">
+                                                            <table bgcolor="White" width="100%" border="2px" style="font-family: Verdana; font-size: small;">
+                                                                <tr>
+                                                                    <td align="center" colspan="4"
+                                                                        style="text-align: center; background-color: #0066FF; color: #FFFFFF; font-size: large; font-weight: bold;">
+                                                                        <asp:Label ID="Label39" runat="server" Font-Bold="True" Font-Size="18px"
+                                                                            ForeColor="White">ANNEXURE: VI - Claiming of Stamp Duty, Transfer Duty, Mortgage Duty, Land Conversion Charges & Land Cost Purchased in IE/ IDA / IP’s </asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="2" style="font-size: medium">
+                                                                        <asp:Label ID="Label40" runat="server" Font-Bold="True" Font-Size="13px" ForeColor="Black">1   Land purchased details</asp:Label></td>
+                                                                    <td colspan="2" style="font-size: medium">
+                                                                        <asp:Label ID="Label41" runat="server" Font-Bold="True" Font-Size="13px" ForeColor="Black">2   Registered Deed Details</asp:Label></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>1.1  Area as per registered sale deed in Sq Mts</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtAreaRegdSaledeed" runat="server"></asp:Label></td>
+                                                                    <td>2.1  Nature of transaction / deed registered for industrial use Sale deed / lease deed / Mortgage</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtNatureofTrans" runat="server"></asp:Label></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>1.2  Plinth area of the building as per approved plan By HUDA / DT&CP / IALA in Sq. Mts</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtPlnthAreaBuild" runat="server"></asp:Label></td>
+                                                                    <td>2.2  Sub Registrar office</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtSubRegOffc" runat="server"></asp:Label></td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td>1.3  5 times of the plinth area of factory building in Sq. Mts</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtFivePlnthAreaBuild" runat="server"></asp:Label></td>
+                                                                    <td>2.3  Registered deed number</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtRegdDeedNo" runat="server"></asp:Label></td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td>1.4  Area required for the factory as per the appraisal in Sq. Mts.</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtAreaReqdAppraisal" runat="server"></asp:Label></td>
+                                                                    <td>2.4  Date Of Registration</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtRegDate" runat="server"></asp:Label></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>1.5  Area required for the factory as per the norms of TSPCB or any other state govt. department in Sq. Mts.</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtAreaReqdTSPCB" runat="server"></asp:Label></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="4" style="padding: 5px; margin: 5px; text-align: center;">
+                                                                        <table bgcolor="White" width="100%" border="2px" style="font-family: Verdana; font-size: small;">
+                                                                            <tr>
+                                                                                <td colspan="4" style="font-weight: bold; text-align: left">3   Details of duty paid and claimed</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                <td>Nature Of Payment</td>
+                                                                                <td>Amount Paid</td>
+                                                                                <td>Amount Claimed</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>3.1</td>
+                                                                                <td>Stamp Duty / transfer duty</td>
+                                                                                <td align="center">
+                                                                                    <asp:Label ID="txtStampTranfrDutyAP" runat="server"></asp:Label>
+                                                                                </td>
+                                                                                <td align="center">
+                                                                                    <asp:Label ID="txtStampTranfrDutyAC" runat="server"></asp:Label>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>3.2</td>
+                                                                                <td>Mortgage & Hypothecations Duty</td>
+                                                                                <td align="center">
+                                                                                    <asp:Label ID="txtMortgageHypothDutyAP" runat="server"></asp:Label>
+                                                                                </td>
+                                                                                <td align="center">
+                                                                                    <asp:Label ID="txtMortgageHypothDutyAC" runat="server"></asp:Label>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>3.3</td>
+                                                                                <td>Land Conversion charges</td>
+                                                                                <td align="center">
+                                                                                    <asp:Label ID="txtLandConvrChrgAP" runat="server"></asp:Label>
+                                                                                </td>
+                                                                                <td align="center">
+                                                                                    <asp:Label ID="txtLandConvrChrgAC" runat="server"></asp:Label>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>3.4</td>
+                                                                                <td>Cost of land in case of purchase in IE / IDA / IP</td>
+                                                                                <td align="center">
+                                                                                    <asp:Label ID="txtLandCostIeIdaIpAP" runat="server"></asp:Label>
+                                                                                </td>
+                                                                                <td align="center">
+                                                                                    <asp:Label ID="txtLandCostIeIdaIpAC" runat="server"></asp:Label>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div align="center" id="divPowerCost" runat="server" visible="false">
+                                                            <table bgcolor="White" width="100%" border="2px" style="font-family: Verdana; font-size: small;">
+                                                                <tr>
+                                                                    <td align="center" colspan="4"
+                                                                        style="text-align: center; background-color: #0066FF; color: #FFFFFF; font-size: large; font-weight: bold;">
+                                                                        <asp:Label ID="Label42" runat="server" Font-Bold="True" Font-Size="18px"
+                                                                            ForeColor="White">ANNEXURE: VII - Reimbursement of Power Cost</asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="font-weight: bold; text-align: left">1.  For Expansion / Diversification</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="font-weight: bold; text-align: left">1.1 Power utilised during previous 3 years</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <asp:GridView ID="gvPowerIncentives" runat="server" AutoGenerateColumns="False"
+                                                                            Font-Names="Verdana" Font-Size="12px" SkinID="gridviewSkin" Width="100%">
+                                                                            <Columns>
+                                                                                <asp:TemplateField HeaderText="Sl No.">
+                                                                                    <ItemTemplate>
+                                                                                        <asp:Label ID="Label3" runat="server" Text="<%#Container.DataItemIndex+1 %>"></asp:Label>
+                                                                                    </ItemTemplate>
+                                                                                </asp:TemplateField>
+                                                                                <asp:BoundField DataField="FinancialYear" HeaderText="Financial year" />
+                                                                                <asp:BoundField DataField="UnitsConsumed" HeaderText="Units consumed" />
+                                                                                <asp:BoundField DataField="Amount" HeaderText="Amount paid in Rs" />
+                                                                            </Columns>
+                                                                        </asp:GridView>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="font-weight: bold; text-align: left">2. Energy consumption details from DCP</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <asp:GridView ID="gvEnergy" runat="server" AutoGenerateColumns="False"
+                                                                            Font-Names="Verdana" Font-Size="12px" SkinID="gridviewSkin" Width="100%">
+                                                                            <Columns>
+                                                                                <asp:TemplateField HeaderText="Sl No.">
+                                                                                    <ItemTemplate>
+                                                                                        <asp:Label ID="Label3" runat="server" Text="<%#Container.DataItemIndex+1 %>"></asp:Label>
+                                                                                    </ItemTemplate>
+                                                                                </asp:TemplateField>
+                                                                                <asp:BoundField DataField="FinancialYearNew" HeaderText="Financial year" />
+                                                                                <asp:BoundField DataField="F_UnitsConsumed" HeaderText="1st Half Year Units consumed" />
+                                                                                <asp:BoundField DataField="F_Amount" HeaderText="1st Half Year Amount paid in Rs" />
+                                                                                <asp:BoundField DataField="S_UnitsConsumed" HeaderText="2nd Half Year Units consumed" />
+                                                                                <asp:BoundField DataField="S_Amount" HeaderText="2nd Half Year Amount paid in Rs" />
+                                                                            </Columns>
+                                                                        </asp:GridView>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="font-weight: bold; text-align: left">Claim Applied for (Amount in Rs.) :&nbsp;   
+                                            <asp:Label ID="txtClaimedAmount" runat="server"></asp:Label></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div align="center" id="divPavalaVaddi" runat="server" visible="false">
+                                                            <table bgcolor="White" width="100%" border="2px" style="font-family: Verdana; font-size: small;">
+                                                                <tr>
+                                                                    <td align="center" colspan="4"
+                                                                        style="text-align: center; background-color: #0066FF; color: #FFFFFF; font-size: large; font-weight: bold;">
+                                                                        <asp:Label ID="Label43" runat="server" Font-Bold="True" Font-Size="18px"
+                                                                            ForeColor="White">ANNEXURE: IX - Reimbursement of Interest Subsidy under Pavala Vaddi Scheme</asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="font-weight: bold; text-align: left">1.  Interest paid details from DCP</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <asp:GridView ID="gvInterestDCP" runat="server" AutoGenerateColumns="False"
+                                                                            Font-Names="Verdana" Font-Size="12px" SkinID="gridviewSkin" Width="100%">
+                                                                            <Columns>
+                                                                                <asp:TemplateField HeaderText="Sl No.">
+                                                                                    <ItemTemplate>
+                                                                                        <asp:Label ID="Label3" runat="server" Text="<%#Container.DataItemIndex+1 %>"></asp:Label>
+                                                                                    </ItemTemplate>
+                                                                                </asp:TemplateField>
+                                                                                <asp:BoundField DataField="FinancialYearNew" HeaderText="Financial year" />
+                                                                                <asp:BoundField DataField="IntrestPaid" HeaderText="Interest paid on Term Loan on half yearly basis" />
+                                                                                <asp:BoundField DataField="RateofIntrest" HeaderText="Rate of interest %" />
+
+                                                                                <asp:BoundField DataField="IntrestPenaltyPaid" HeaderText="Interest paid (Rs.) excluding penal interest" />
+                                                                                <asp:BoundField DataField="Eligible" HeaderText="Eligible % (Max 9%)" />
+                                                                                <asp:BoundField DataField="AmountClaimed" HeaderText="Amount claimed (Rs.)" />
+                                                                            </Columns>
+                                                                        </asp:GridView>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div align="center" id="divSalesTax" runat="server" visible="false">
+                                                            <table bgcolor="White" width="100%" border="2px" style="font-family: Verdana; font-size: small;">
+                                                                <tr>
+                                                                    <td align="center" colspan="4"
+                                                                        style="text-align: center; background-color: #0066FF; color: #FFFFFF; font-size: large; font-weight: bold;">
+                                                                        <asp:Label ID="Label44" runat="server" Font-Bold="True" Font-Size="18px"
+                                                                            ForeColor="White">ANNEXURE: XI - Reimbursement of Sales Tax</asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="font-weight: bold; text-align: left">1.  Production Details preceeding 3 years before expansion / diversification 
+                                            <br />
+                                                                        &nbsp;&nbsp;&nbsp; certified by the financial institution / CA
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <asp:GridView ID="gvProductiondtls" runat="server" AutoGenerateColumns="False"
+                                                                            Font-Names="Verdana" Font-Size="12px" SkinID="gridviewSkin" Width="100%">
+                                                                            <Columns>
+                                                                                <asp:TemplateField HeaderText="Sl No.">
+                                                                                    <ItemTemplate>
+                                                                                        <asp:Label ID="Label3" runat="server" Text="<%#Container.DataItemIndex+1 %>"></asp:Label>
+                                                                                    </ItemTemplate>
+                                                                                </asp:TemplateField>
+                                                                                <asp:BoundField DataField="FinancialYearNew" HeaderText="Financial year" />
+                                                                                <asp:BoundField DataField="Quantity" HeaderText="Quantity" />
+                                                                                <asp:BoundField DataField="Unit" HeaderText="Unit" />
+                                                                                <asp:BoundField DataField="Value" HeaderText="Value In Rs" />
+                                                                            </Columns>
+                                                                        </asp:GridView>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="auto-style1"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="font-weight: bold; text-align: left">2. Sales Tax paid since DCP as certified by CTO</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <asp:GridView ID="gvSalesTax" runat="server" AutoGenerateColumns="False"
+                                                                            Font-Names="Verdana" Font-Size="12px" SkinID="gridviewSkin" Width="100%">
+                                                                            <Columns>
+                                                                                <asp:TemplateField HeaderText="Sl No.">
+                                                                                    <ItemTemplate>
+                                                                                        <asp:Label ID="Label3" runat="server" Text="<%#Container.DataItemIndex+1 %>"></asp:Label>
+                                                                                    </ItemTemplate>
+                                                                                </asp:TemplateField>
+                                                                                <asp:BoundField DataField="FinancialYearNew" HeaderText="Financial year" />
+                                                                                <asp:BoundField DataField="F_AmountPaid" HeaderText="1st Half Year Amount Paid in Rs." />
+                                                                                <asp:BoundField DataField="F_AmountClaimed" HeaderText="1st Half Year Amount claimed in Rs." />
+                                                                                <asp:BoundField DataField="S_AmountPaid" HeaderText="2nd Half Year Amount Paid in Rs." />
+                                                                                <asp:BoundField DataField="S_AmountClaimed" HeaderText="2nd Half Year Amount claimed in Rs." />
+                                                                            </Columns>
+                                                                        </asp:GridView>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div align="center" id="divQualityCertification" runat="server" visible="false">
+                                                            <table bgcolor="White" border="2px" style="font-family: Verdana; font-size: small;" width="100%">
+                                                                <tr>
+                                                                    <td colspan="4"
+                                                                        style="text-align: center; background-color: #0066FF; color: #FFFFFF; font-size: large; font-weight: bold;">
+                                                                        <asp:Label ID="Label45" runat="server" Font-Bold="True" Font-Size="15px"
+                                                                            ForeColor="White">ANNEXURE: XII - Reimbursement of Quality Certification Charges for Acquiring Certification Cost                                                    
+                                                                        </asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="4" style="font-size: medium">
+                                                                        <asp:Label ID="Label46" runat="server" Font-Bold="True" Font-Size="13px" ForeColor="Black">Details of ISO 9000 / ISO 14001 / HACCP Certificate</asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>1 Name of certifying agency</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtagencyName" runat="server"></asp:Label></td>
+                                                                    <td>2 Certificate Number</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtCertificatNumber" runat="server"></asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>3  Date of Issue</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtDateofIssue" runat="server"></asp:Label>
+                                                                    </td>
+                                                                    <td valign="top">4  Period of Validity</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtPeriodofValidity" runat="server"></asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="4"><strong>Address of certifying agency</strong></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>5  State</td>
+                                                                    <td>
+                                                                        <asp:Label ID="ddlstate" runat="server"></asp:Label>
+                                                                    </td>
+                                                                    <td valign="top">6  District</td>
+                                                                    <td>
+                                                                        <asp:Label ID="ddlDistrict" runat="server"></asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>7  Mandal</td>
+                                                                    <td>
+                                                                        <asp:Label ID="ddlmandal" runat="server"></asp:Label>
+                                                                    </td>
+                                                                    <td valign="top">8  Village/Town</td>
+                                                                    <td>
+                                                                        <asp:Label ID="ddlvillage" runat="server"></asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>9  Door No</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtdoorno" runat="server"></asp:Label>
+                                                                    </td>
+                                                                    <td valign="top">10  Pin Code</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtpincode" runat="server"></asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="4" style="font-size: medium">
+                                                                        <asp:Label ID="Label47" runat="server" Font-Bold="True" Font-Size="13px" ForeColor="Black">Subsidy already received for the certification in Rs.</asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>11 From Central Government</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtFromCentralGovernment" runat="server"></asp:Label></td>
+                                                                    <td valign="top">12  From Financing Institution</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtFinancingInstitution" runat="server"></asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>13  From State Government</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtFromStateGovernment" runat="server"></asp:Label>
+                                                                    </td>
+
+                                                                    <td>14 Amount spent in acquiring the certification</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtAmountspentinacquiringthecertification" runat="server"></asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="4"></td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div align="center" id="divCleanerProduction" runat="server" visible="false">
+                                                            <table bgcolor="White" width="100%" border="2px" style="font-family: Verdana; font-size: small;">
+                                                                <tr>
+                                                                    <td align="center" colspan="4"
+                                                                        style="text-align: center; background-color: #0066FF; color: #FFFFFF; font-size: large; font-weight: bold;">
+                                                                        <asp:Label ID="Label48" runat="server" Font-Bold="True" Font-Size="18px" ForeColor="White">ANNEXURE: XIII - Reimbursement on equipment purchased for cleaner production measures.</asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="font-weight: bold; text-align: left">1. Details of equipment purchased for the purpose</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="padding: 5px; margin: 5px; text-align: left;">
+                                                                        <asp:GridView ID="gvCertificate" runat="server" AutoGenerateColumns="False"
+                                                                            Font-Names="Verdana" Font-Size="12px" SkinID="gridviewSkin" Width="1000px">
+                                                                            <Columns>
+                                                                                <asp:TemplateField HeaderText="Sl No.">
+                                                                                    <ItemTemplate>
+                                                                                        <asp:Label ID="Label3" runat="server" Text="<%#Container.DataItemIndex+1 %>"></asp:Label>
+                                                                                    </ItemTemplate>
+                                                                                </asp:TemplateField>
+                                                                                <asp:BoundField DataField="Nameoftheequipment" HeaderText="Name of the equipment" />
+                                                                                <asp:BoundField DataField="Nameaddressofsupplier" HeaderText="Name & address of supplier" />
+                                                                                <asp:BoundField DataField="BillNo" HeaderText="Bill No" />
+                                                                                <asp:BoundField DataField="BillDate" HeaderText="Bill Date" />
+                                                                                <asp:BoundField DataField="Costoftheequipment" HeaderText="Cost of the equipment in Rs." />
+                                                                                <asp:BoundField DataField="VATCST" HeaderText="VAT/CST in Rs." />
+                                                                                <asp:BoundField DataField="ExciseDuty" HeaderText="Excise Duty in Rs." />
+                                                                                <asp:BoundField DataField="FreightCharge" HeaderText="Freight Charge in Rs." />
+                                                                                <asp:BoundField DataField="Othercharges" HeaderText="Other charges in Rs." />
+                                                                                <asp:BoundField DataField="TotalinRs" HeaderText="Total in Rs." />
+                                                                                <%--<asp:TemplateField Visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblid" runat="server" Text='<%# Bind("id") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>--%>
+                                                                            </Columns>
+                                                                        </asp:GridView>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Amount of subsidy claimed in Rs.&nbsp;    
+                                    <asp:Label ID="txtsubsidyclaimed" runat="server" Style="font-weight: 700"></asp:Label></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div align="center" id="divSkillupgradation" runat="server" visible="false">
+                                                            <table bgcolor="White" width="100%" border="2px" style="font-family: Verdana; font-size: small;">
+                                                                <tr>
+                                                                    <td align="center" colspan="4"
+                                                                        style="text-align: center; background-color: #0066FF; color: #FFFFFF; font-size: large; font-weight: bold;">
+                                                                        <asp:Label ID="Label49" runat="server" Font-Bold="True" Font-Size="18px" ForeColor="White"> ANNEXURE: XIV - Reimbursement of costs involved in Skill upgradation and training</asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="font-weight: bold; text-align: left" colspan="4">1. Training Undergone</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>1.1   Name of the training institute</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtagencyName1" runat="server"></asp:Label>
+                                                                    </td>
+                                                                    <td>1.2&nbsp;&nbsp; Duration of training                                    
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtDurationoftraining" runat="server"></asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>1.3   Name of the skill development programme</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtNameoftheskilldevelopmentprogramme" runat="server"></asp:Label>
+                                                                    </td>
+                                                                    <td>1.4&nbsp;&nbsp; Number of skilled employees trained by the industry                                    
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtNumberskilledemployees" runat="server"></asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>1.5   Expenditure incurred for training programme</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtExpenditureincurredfortrainingprogramme" runat="server"></asp:Label>
+                                                                    </td>
+                                                                    <td>1.6&nbsp;&nbsp; Amount claimed in Rs.
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtAmountclaimedinRs" runat="server"></asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="4"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="4"></td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div align="center" id="divIIDF" runat="server" visible="false">
+                                                            <table bgcolor="White" width="100%" border="2px" style="font-family: Verdana; font-size: small;">
+                                                                <tr>
+                                                                    <td align="center" colspan="4"
+                                                                        style="text-align: center; background-color: #0066FF; color: #FFFFFF; font-size: large; font-weight: bold;">
+                                                                        <asp:Label ID="Label50" runat="server" Font-Bold="True" Font-Size="18px" ForeColor="White">ANNEXURE: XIV - Claiming for SANCTION OF INDUSTRIAL INFRASTRUCTURE DEVELOPMENT FUND (IIDF) </asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="font-weight: bold; text-align: left" colspan="4">1. IIDF Fund</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>1.1   Whether the unit is located in Industrial Area declared by the Governement</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtUnitLocatedinIndustArea" runat="server"></asp:Label>
+                                                                    </td>
+                                                                    <td>1.2  Justification for the location of the Industry, if it is located outside IA declared by the Government                                    
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtJustLocation" runat="server"></asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>1.3   Source of Finance</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtFinanceSource" runat="server"></asp:Label>
+                                                                    </td>
+                                                                    <td>1.4   Description of the infrastructure facilities required and its objectives
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtReqdInfraFacilities" runat="server"></asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>1.5   Estimates of Infrastructure facilities</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtEstimatesInfra" runat="server"></asp:Label>
+                                                                    </td>
+                                                                    <td>1.6   How the proposed infrastructure is critical to the Industrial Enterprise
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtProposedInfraCritical" runat="server"></asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>1.7   Name of the Chartered Engineer / Agency who prepared the estimates</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtCAName" runat="server"></asp:Label>
+                                                                    </td>
+                                                                    <td>1.8   Duration of the project
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtProjDuration" runat="server"></asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>1.9   Measures proposed to maintain the infrastructure created & its maintenance cost per annum</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtMaintanCostAnnum" runat="server"></asp:Label>
+                                                                    </td>
+                                                                    <td>1.10  Amount claimed in Rs.
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtAmtClaimed" runat="server"></asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="4"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="4"></td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div align="center" id="divSCAndST" runat="server" visible="false">
+                                                            <table bgcolor="White" width="100%" border="2px" style="font-family: Verdana; font-size: small;">
+                                                                <tr>
+                                                                    <td align="center" colspan="4"
+                                                                        style="text-align: center; background-color: #0066FF; color: #FFFFFF; font-size: large; font-weight: bold;">
+                                                                        <asp:Label ID="Label51" runat="server" Font-Bold="True" Font-Size="18px" ForeColor="White">ANNEXURE: XVI - Claiming Advance Subsidy for SC / ST Entrepreneurs</asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="font-weight: bold; text-align: left" colspan="4">1. Means of Finance</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>1.1   Total equity from promotors / share holders / partners to be brought in Rs.</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtTotalEquity" runat="server"></asp:Label>
+                                                                    </td>
+                                                                    <td>1.2  Own capital in Rs.
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtOwnCapital" runat="server"></asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>1.3   Borrowed from outside Rs.</td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtBorrowed" runat="server"></asp:Label>
+                                                                    </td>
+                                                                    <td>1.4   Advance Subsidy claimed in Rs.
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Label ID="txtAdvSubClaimed" runat="server"></asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="4"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="4"></td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td align="center" style="text-align: center">
+                                                        <asp:Button ID="Button1" runat="server" Height="32px" Width="90px" Text=" Print " OnClientClick="javascript:CallPrint('Receipt')" />
+
+                                                        <%--<a href="HomeDashboard.aspx">HOME</a>--%>
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default" id="divlastattachemntold" runat="server">
+                        <div class="panel-heading" role="tab" id="headingTwo">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <i class="more-less glyphicon glyphicon-plus"></i>
+                                    Attachments
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="panel-body">
+                                <%--   <table>
+                                    <tr>
+                                        <td style="padding: 10px; margin: 5px; font-weight: bold;">1. </td>
+                                        <td style="text-align: left;">Attchments</td>
+                                        <td style="text-align: left;">
+                                            <span>
+                                                <asp:HyperLink ID="AnchorView" Font-Bold="false" Font-Size="Larger" ForeColor="Blue" runat="server" Target="_blank">View Attchments</asp:HyperLink>
+                                            </span>
+                                        </td>
+                                        <td style="padding: 10px; margin: 5px; font-weight: bold;">2. </td>
+                                        <td style="text-align: left;">Applicant Application</td>
+                                        <td style="text-align: left;">
+
+                                            <asp:HyperLink ID="HyperLink1" Font-Bold="false" Font-Size="Larger" ForeColor="Blue" runat="server" Target="_blank">View Application</asp:HyperLink>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 10px; margin: 5px; font-weight: bold;">3. </td>
+                                        <td style="text-align: left;">Draft</td>
+                                        <td style="text-align: left;">
+                                            <span>
+                                                <asp:HyperLink ID="HyperLink3" Font-Bold="false" Font-Size="Larger" ForeColor="Blue" runat="server" Target="_blank">View Draft</asp:HyperLink>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </table>--%>
+                                <div align="center">
+                                    <%-- <table style="padding-left: 25px; width: 600px;">
+                                        <tr>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align: center;">Documents / Attachments Submitted
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <td align="left">
+                                                <asp:GridView ID="gvAttachments" runat="server" AutoGenerateColumns="False"
+                                                    Width="100%" HorizontalAlign="Left" ShowHeader="false">
+                                                    <Columns>
+                                                        <asp:TemplateField HeaderText="Attachments">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lbl" runat="server" Text='<%# Eval("AttachmentName") %>'></asp:Label>
+                                                            </ItemTemplate>
+                                                            <ItemStyle HorizontalAlign="Left" />
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="View">
+                                                            <ItemTemplate>
+                                                                <asp:HyperLink ID="HyperLink1" Text="view" NavigateUrl='<%#Eval("FilePath") %>' Target="_blank" runat="server" />
+                                                            </ItemTemplate>
+                                                            <ItemStyle HorizontalAlign="Left" />
+                                                        </asp:TemplateField>
+
+                                                    </Columns>
+                                                </asp:GridView>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tdStyle" align="center">&nbsp;</td>
+                                        </tr>
+                                    </table>--%>
+                                    <table width="100%" id="tblSubsidy" runat="server">
+                                        <tr>
+                                            <td colspan="10" style="padding: 10px; margin: 5px; font-weight: bold;">Incentive wise Attachments
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 10px; margin: 5px;">
+                                                <asp:GridView ID="gvSubsidy" runat="server" AutoGenerateColumns="False"
+                                                    Width="96%" HorizontalAlign="Left" ShowHeader="true" OnRowDataBound="gvSubsidy_RowDataBound">
+                                                    <Columns>
+                                                        <asp:TemplateField HeaderStyle-HorizontalAlign="Center" HeaderText="S No">
+                                                            <ItemTemplate>
+                                                                <%# Container.DataItemIndex + 1%>
+                                                            </ItemTemplate>
+                                                            <HeaderStyle HorizontalAlign="Center" />
+                                                            <ItemStyle Width="50px" />
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Type of Attachment">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblCategory" runat="server" Text='<%# Eval("Category")%>'></asp:Label>
+                                                            </ItemTemplate>
+                                                            <ItemStyle HorizontalAlign="Left" />
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Attachments">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lbl" runat="server" Text='<%# Eval("AttachmentName")%>'></asp:Label>
+                                                            </ItemTemplate>
+                                                            <ItemStyle HorizontalAlign="Left" />
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="View">
+                                                            <ItemTemplate>
+                                                                <asp:HyperLink ID="HyperLinkSubsidy" Text="view" NavigateUrl='<%#Eval("FilePath")%>' Target="_blank" runat="server" />
+                                                            </ItemTemplate>
+                                                            <ItemStyle HorizontalAlign="Left" Width="100px" />
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Verified">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblverified" Text='<%#Eval("Verified")%>' runat="server"></asp:Label>
+                                                            </ItemTemplate>
+                                                            <ItemStyle HorizontalAlign="Left" Width="100px" />
+                                                        </asp:TemplateField>
+                                                    </Columns>
+                                                </asp:GridView>
+                                            </td>
+                                        </tr>
+
+                                        <tr id="trQueryResponceAttachments" runat="server" visible="false">
+                                            <td colspan="10" style="padding: 10px; margin: 5px; font-weight: bold;">Query Responce Attachments
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 10px; margin: 5px;">
+                                                <asp:GridView ID="gvqquryresponceattachment" runat="server" AutoGenerateColumns="False"
+                                                    Width="80%" HorizontalAlign="Left" ShowHeader="true">
+                                                    <Columns>
+                                                        <asp:TemplateField HeaderStyle-HorizontalAlign="Center" HeaderText="S No">
+                                                            <ItemTemplate>
+                                                                <%# Container.DataItemIndex + 1%>
+                                                            </ItemTemplate>
+                                                            <HeaderStyle HorizontalAlign="Center" />
+                                                            <ItemStyle Width="50px" />
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Attachments">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lbl" runat="server" Text='<%# Eval("AttachmentName")%>'></asp:Label>
+                                                            </ItemTemplate>
+                                                            <ItemStyle HorizontalAlign="Left" />
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="View">
+                                                            <ItemTemplate>
+                                                                <asp:HyperLink ID="HyperLinkSubsidy" Text="view" NavigateUrl='<%#Eval("FilePath")%>' Target="_blank" runat="server" />
+                                                            </ItemTemplate>
+                                                            <ItemStyle HorizontalAlign="Left" Width="100px" />
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Verified">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblverified" Text='<%#Eval("Verified")%>' runat="server"></asp:Label>
+                                                            </ItemTemplate>
+                                                            <ItemStyle HorizontalAlign="Left" Width="100px" />
+                                                        </asp:TemplateField>
+                                                    </Columns>
+                                                </asp:GridView>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default" id="tripo1" runat="server" visible="true">
+                        <div class="panel-heading" role="tab" id="Div1">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapseTwo">
+                                    <i class="more-less glyphicon glyphicon-plus"></i>
+                                    <span id="Span1" runat="server">Application Status at Inspecting Officer</span>
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse4" class="panel-collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="panel-body">
+                                <table bgcolor="White" width="100%">
+                                    <tr style="height: 30px" id="tr4" runat="server" visible="false">
+                                        <td style="width: 250px; font-weight: bold" colspan="2">--> Query History : &nbsp;
+                                        </td>
+                                    </tr>
+                                     <tr>
+                                        <td>
+                                            <asp:GridView ID="GVIOQueryStatus" runat="server" AutoGenerateColumns="true"
+                                                CellPadding="4" Height="62px"
+                                                Width="100%" Font-Names="Verdana" Font-Size="12px">
+                                                <HeaderStyle VerticalAlign="Middle" Height="40px" CssClass="GridviewScrollC1HeaderWrap" />
+                                                <RowStyle CssClass="GridviewScrollC1Item" />
+                                                <PagerStyle CssClass="GridviewScrollC1Pager" />
+                                                <FooterStyle BackColor="#013161" Height="40px" CssClass="GridviewScrollC1Header" />
+                                                <AlternatingRowStyle CssClass="GridviewScrollC1Item2" />
+                                                <Columns>
+                                                    <asp:TemplateField HeaderStyle-HorizontalAlign="Center" HeaderText="S No">
+                                                        <ItemTemplate>
+                                                            <%# Container.DataItemIndex + 1%>
+                                                            <asp:HiddenField ID="HiddenField3" runat="server" />
+                                                            <asp:HiddenField ID="HiddenField4" runat="server" />
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" />
+                                                        <ItemStyle Width="50px" />
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                            </asp:GridView>
+                                        </td>
+                                    </tr>                             
+
+                                    <tr style="height: 30px" id="trUpdateInspectionReport" runat="server" visible="false">
+                                        <td style="width: 250px; font-weight: bold" colspan="2">--> Inspection Report : &nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr id="trUpdateInspectionReport1" runat="server" visible="false">
+                                        <td colspan="2">
+                                            <asp:GridView ID="gvinspectionReport" runat="server" AutoGenerateColumns="False"
+                                                CellPadding="4" Height="62px"
+                                                Width="80%" Font-Names="Verdana" Font-Size="12px" OnRowDataBound="gvinspectionReport_RowDataBound" OnRowCommand="gvinspectionReport_RowCommand">
+                                                <HeaderStyle VerticalAlign="Middle" Height="40px" CssClass="GridviewScrollC1HeaderWrap" />
+                                                <RowStyle CssClass="GridviewScrollC1Item" />
+                                                <PagerStyle CssClass="GridviewScrollC1Pager" />
+                                                <FooterStyle BackColor="#013161" Height="40px" CssClass="GridviewScrollC1Header" />
+                                                <AlternatingRowStyle CssClass="GridviewScrollC1Item2" />
+                                                <Columns>
+                                                    <asp:TemplateField HeaderStyle-HorizontalAlign="Center" HeaderText="S No">
+                                                        <ItemTemplate>
+                                                            <%# Container.DataItemIndex + 1%>
+                                                            <asp:HiddenField ID="HdfQueid" runat="server" />
+                                                            <asp:HiddenField ID="HdfApprovalid" runat="server" />
+                                                            <asp:HiddenField ID="hdfStatusId" runat="server" Value='<%#Eval("intstageid") %>' />
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" />
+                                                        <ItemStyle Width="50px" />
+                                                    </asp:TemplateField>
+                                                    <asp:BoundField DataField="IncentiveName" HeaderText="Incentives" />
+                                                    <asp:TemplateField HeaderText="Masterincentiveid" Visible="false">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblMstIncentiveId" Text='<%#Eval("MstIncentiveId") %>' runat="server" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Incentiveid" Visible="false">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblIncentiveID" Text='<%#Eval("EnterperIncentiveID") %>' runat="server" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Inspection Date">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="txtinspectiondate" Text='<%#Eval("TobeinspectedDate") %>' runat="server" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <%-- <asp:BoundField DataField="ReportStatus" HeaderText="Report Status" />--%>
+                                                    <%--<asp:TemplateField HeaderText="Remarks">
+                                                        <ItemTemplate>
+                                                            <asp:DropDownList ID="ddlinspector" runat="server" Width="180px" CssClass="DROPDOWN"
+                                                                class="form-control txtbox" Height="33px" AutoPostBack="true" CausesValidation="True" OnSelectedIndexChanged="ddlinspector_SelectedIndexChanged">
+                                                                <asp:ListItem Value="0">--Select--</asp:ListItem>
+                                                                <asp:ListItem Value="1">Upload Inspection Report</asp:ListItem>
+                                                                <asp:ListItem Value="2">Raise Query</asp:ListItem>
+                                                            </asp:DropDownList><br />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>--%>
+                                                    <%--<asp:TemplateField  HeaderText="Upload Inspection Report/Raise Query">
+                                                        <ItemTemplate>
+                                                            <asp:HyperLink ID="anchortaglink" runat="server" Text="Upload Inspection Report" Font-Bold="true" ForeColor="Green" Target="_blank" />
+                                                            <asp:TextBox ID="txtIncQueryFnl2ins" TextMode="MultiLine" Height="100px" Width="250px" Visible="false" runat="server"></asp:TextBox>
+                                                            <asp:Button ID="btnsubmitqueryins" CssClass="btn btn-primary" OnClick="btnsubmitqueryins_Click" Visible="false" runat="server" Text="Send Query" Width="150px" /><br />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>--%>
+                                                    <asp:TemplateField HeaderText="View Inspection Report/Query Letter">
+                                                        <ItemTemplate>
+                                                            <asp:HyperLink ID="anchortaglinkView" runat="server" Text="View Inspection Report" Font-Bold="true" Target="_blank" />
+                                                            <asp:HyperLink ID="anchortagIPOCertificate" runat="server" Text="Query Letter" Font-Bold="true" Visible="false" ForeColor="Red" Target="_blank" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="StatusID" Visible="false">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblreportStatusID" Text='<%#Eval("ReportStatus") %>' runat="server" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                            </asp:GridView>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                                       
+                    <div class="panel panel-default" id="trinspectionname1" runat="server">
+                        <div class="panel-heading" role="tab" id="Div4">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapserecomended" aria-expanded="false" aria-controls="collapseTwo">
+                                    <i class="more-less glyphicon glyphicon-plus"></i>
+                                    <span id="trinspectionname" runat="server">Application Status at General Manager</span></a>
+                            </h4>
+                        </div>
+                        <div id="collapserecomended" class="panel-collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="panel-body">
+                                <table width="100%">
+                                   <tr style="height: 30px" id="tr5" runat="server" visible="false">
+                                        <td style="width: 250px; font-weight: bold" colspan="2">--> Query History : &nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <asp:GridView ID="gvquery" runat="server" AutoGenerateColumns="true"
+                                                CellPadding="4" Height="62px"
+                                                Width="100%" Font-Names="Verdana" Font-Size="12px">
+                                                <HeaderStyle VerticalAlign="Middle" Height="40px" CssClass="GridviewScrollC1HeaderWrap" />
+                                                <RowStyle CssClass="GridviewScrollC1Item" />
+                                                <PagerStyle CssClass="GridviewScrollC1Pager" />
+                                                <FooterStyle BackColor="#013161" Height="40px" CssClass="GridviewScrollC1Header" />
+                                                <AlternatingRowStyle CssClass="GridviewScrollC1Item2" />
+                                                <Columns>
+                                                    <asp:TemplateField HeaderStyle-HorizontalAlign="Center" HeaderText="S No">
+                                                        <ItemTemplate>
+                                                            <%# Container.DataItemIndex + 1%>
+                                                            <asp:HiddenField ID="HiddenField1" runat="server" />
+                                                            <asp:HiddenField ID="HiddenField2" runat="server" />
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" />
+                                                        <ItemStyle Width="50px" />
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                            </asp:GridView>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="height:10px;"></td>
+
+                                    </tr>
+                                     <tr style="height: 30px" id="tr2" runat="server" visible="false">
+                                        <td style="width: 250px; font-weight: bold" colspan="2">--> Recomandations : &nbsp;
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="4">
+                                            <asp:GridView ID="gvinspectionOfficer" runat="server" AutoGenerateColumns="False"
+                                                CellPadding="4" Height="62px"
+                                                Width="100%" Font-Names="Verdana" Font-Size="12px" OnRowDataBound="gvinspectionOfficer_RowDataBound">
+                                                <HeaderStyle VerticalAlign="Middle" Height="40px" CssClass="GridviewScrollC1HeaderWrap" />
+                                                <RowStyle CssClass="GridviewScrollC1Item" />
+                                                <PagerStyle CssClass="GridviewScrollC1Pager" />
+                                                <FooterStyle BackColor="#013161" Height="40px" CssClass="GridviewScrollC1Header" />
+                                                <AlternatingRowStyle CssClass="GridviewScrollC1Item2" />
+                                                <Columns>
+                                                    <asp:TemplateField HeaderStyle-HorizontalAlign="Center" HeaderText="S No">
+                                                        <ItemTemplate>
+                                                            <%# Container.DataItemIndex + 1%>
+                                                            <asp:HiddenField ID="HdfQueid" runat="server" />
+                                                            <asp:HiddenField ID="HdfApprovalid" runat="server" />
+                                                            <asp:HiddenField ID="hdfStatusId" runat="server" Value='<%#Eval("intstageid") %>' />
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" />
+                                                        <ItemStyle Width="50px" />
+                                                    </asp:TemplateField>
+                                                    <asp:BoundField DataField="IncentiveName" HeaderText="Incentives" />
+                                                    <asp:TemplateField HeaderText="Date of Inspection">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="txtinspectiondate" Enabled="false" Text='<%#Eval("TobeinspectedDate") %>' runat="server" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="View Inspection Report">
+                                                        <ItemTemplate>
+                                                            <asp:HyperLink ID="anchortaglinkView" runat="server" Text="View Inspection Report" Font-Bold="true" Target="_blank" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Masterincentiveid" Visible="false">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblMstIncentiveId" Text='<%#Eval("MstIncentiveId") %>' runat="server" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Incentiveid" Visible="false">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblIncentiveID" Text='<%#Eval("EnterperIncentiveID") %>' runat="server" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Unit Claim Amount">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="txtClaimamount" Text='<%#Eval("Unitamount") %>' runat="server" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Inspecting Officer Recommended Amount">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="txtInspectingRecommendedAmount" Text='<%#Eval("Inspection_RecommAmnt")%>' runat="server" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+
+                                                    <asp:TemplateField HeaderText="Remarks">
+                                                        <ItemTemplate>
+                                                            <asp:DropDownList ID="ddlapprove" runat="server" Width="130px" CssClass="DROPDOWN"
+                                                                class="form-control txtbox" Height="33px" AutoPostBack="true" CausesValidation="True" OnSelectedIndexChanged="ddlapprove_SelectedIndexChanged">
+                                                                <asp:ListItem Value="0">--Select--</asp:ListItem>
+                                                                <asp:ListItem Value="1">Raise Query</asp:ListItem>
+                                                                <asp:ListItem Value="2">Recommend</asp:ListItem>
+                                                                <%-- <asp:ListItem Value="3">Reject</asp:ListItem>--%>
+                                                            </asp:DropDownList><br />
+                                                            <br />
+                                                            <asp:TextBox ID="txtIncQueryFnl2" TextMode="MultiLine" Height="100px" Width="250px" Visible="false" runat="server"></asp:TextBox>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="G.M Recommended Amount(in Rs.)">
+                                                        <ItemTemplate>
+                                                            <asp:TextBox ID="txtrecomandedamount" onkeypress="return inputOnlyNumbers(event)" Enabled="true" Text='<%#Eval("GM_Rcon_Amount") %>' runat="server" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+
+                                                    <asp:TemplateField HeaderText="G.M Recommended Remarks" Visible="false">
+                                                        <ItemTemplate>
+                                                            <asp:TextBox ID="txtGMRecommendedRemarks" TextMode="MultiLine" Enabled="true" runat="server" Text='<%#Eval("GMRecommendedRemarks") %>' />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+
+                                                    <asp:TemplateField HeaderText="Raise Query/Forward Application to DICP/COI">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblcois" Visible="false" runat="server" Font-Bold="true" Font-Size="Larger" Text="Sent to COI"></asp:Label>
+                                                            <asp:Button ID="Button1" CssClass="btn btn-primary" Visible="false" OnClick="Button1_Click" runat="server" Text="Send to COI" Width="150px" /><br />
+                                                            <br />
+                                                            <%-- <asp:Label ID="lbldipcs" Visible="false" runat="server" Font-Bold="true" Font-Size="Larger" Text="Sent to DIPC"></asp:Label>--%>
+                                                            <asp:Button ID="Button2" Visible="false" CssClass="btn btn-primary" OnClick="Button2_Click" runat="server" Text="Send to DIPC" Width="150px" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Query Letter/GM Recommendation Letter">
+                                                        <ItemTemplate>
+                                                            <asp:HyperLink ID="anchortagGMCertificate" runat="server" Text="Recommendation Letter" Font-Bold="true" ForeColor="Green" Target="_blank" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+
+                                                    <%--<asp:TemplateField HeaderText="Inspection Report">
+                                            <ItemTemplate>
+                                                <asp:HyperLink ID="anchortaglink" runat="server" Text="Update Inspection Report" Font-Bold="true" ForeColor="Green" Target="_blank" />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>--%>
+                                                </Columns>
+                                            </asp:GridView>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="height:10px;"></td>
+
+                                    </tr>
+                                     <tr style="height: 30px" id="tr9" runat="server" visible="false">
+                                        <td style="width: 250px; font-weight: bold" colspan="2">--> Rejected  : &nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <asp:GridView ID="gvGmReject" runat="server" AutoGenerateColumns="true"
+                                                CellPadding="4" Height="62px"
+                                                Width="100%" Font-Names="Verdana" Font-Size="12px">
+                                                <HeaderStyle VerticalAlign="Middle" Height="40px" CssClass="GridviewScrollC1HeaderWrap" />
+                                                <RowStyle CssClass="GridviewScrollC1Item" />
+                                                <PagerStyle CssClass="GridviewScrollC1Pager" />
+                                                <FooterStyle BackColor="#013161" Height="40px" CssClass="GridviewScrollC1Header" />
+                                                <AlternatingRowStyle CssClass="GridviewScrollC1Item2" />
+                                                <Columns>
+                                                    <asp:TemplateField HeaderStyle-HorizontalAlign="Center" HeaderText="S No">
+                                                        <ItemTemplate>
+                                                            <%# Container.DataItemIndex + 1%>
+                                                            <asp:HiddenField ID="HiddenField11" runat="server" />
+                                                            <asp:HiddenField ID="HiddenField12" runat="server" />
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" />
+                                                        <ItemStyle Width="50px" />
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                            </asp:GridView>
+                                        </td>
+                                    </tr>
+
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                  
+                    <div class="panel panel-default" id="Div2" runat="server">
+                        <div class="panel-heading" role="tab" id="Div5">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapserecomended1" aria-expanded="false" aria-controls="collapseTwo">
+                                    <i class="more-less glyphicon glyphicon-plus"></i>
+                                    <span id="Span2" runat="server">Application Status at JD-Incentives</span></a>
+                            </h4>
+                        </div>
+                        <div id="collapserecomended1" class="panel-collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="panel-body">
+                                <table width="100%">
+                                    <tr style="height: 30px" id="tr6" runat="server" visible="false">
+                                        <td style="width: 250px; font-weight: bold" colspan="2">--> Query History : &nbsp;
+                                        </td>
+                                    </tr>
+                                     <tr style="height: 30px" id="tr1gmresponce2" runat="server">
+                                        <td colspan="12">
+                                            <asp:GridView ID="gvresponcegmgv" runat="server" AutoGenerateColumns="true"
+                                                CellPadding="4" Height="62px"
+                                                Width="100%" Font-Names="Verdana" Font-Size="12px">
+                                                <HeaderStyle VerticalAlign="Middle" Height="40px" CssClass="GridviewScrollC1HeaderWrap" />
+                                                <RowStyle CssClass="GridviewScrollC1Item" />
+                                                <PagerStyle CssClass="GridviewScrollC1Pager" />
+                                                <FooterStyle BackColor="#013161" Height="40px" CssClass="GridviewScrollC1Header" />
+                                                <AlternatingRowStyle CssClass="GridviewScrollC1Item2" />
+                                                <Columns>
+                                                    <asp:TemplateField HeaderStyle-HorizontalAlign="Center" HeaderText="S No">
+                                                        <ItemTemplate>
+                                                            <%# Container.DataItemIndex + 1%>
+                                                            <asp:HiddenField ID="HiddenField5" runat="server" />
+                                                            <asp:HiddenField ID="HiddenField6" runat="server" />
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" />
+                                                        <ItemStyle Width="50px" />
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                            </asp:GridView>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr><td style="height:10px;"></td></tr>
+
+                                     <tr style="height: 30px" id="tr7" runat="server" visible="false">
+                                        <td style="width: 250px; font-weight: bold" colspan="2">--> Recomandations : &nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                         <td>
+                                             <asp:GridView ID="gvProcessedApplications" runat="server" AutoGenerateColumns="false" CellPadding="4" Font-Names="Verdana" Font-Size="12px" Height="62px" Width="100%">
+                                                 <HeaderStyle CssClass="GridviewScrollC1HeaderWrap" Height="40px" VerticalAlign="Middle" />
+                                                 <RowStyle CssClass="GridviewScrollC1Item" />
+                                                 <PagerStyle CssClass="GridviewScrollC1Pager" />
+                                                 <FooterStyle BackColor="#013161" CssClass="GridviewScrollC1Header" Height="40px" />
+                                                 <AlternatingRowStyle CssClass="GridviewScrollC1Item2" />
+                                                 <Columns>
+                                                     <asp:TemplateField HeaderStyle-HorizontalAlign="Center" HeaderText="S No">
+                                                         <ItemTemplate>
+                                                             <%# Container.DataItemIndex + 1%>
+                                                             <asp:HiddenField ID="HiddenField7" runat="server" />
+                                                             <asp:HiddenField ID="HiddenField8" runat="server" />
+                                                         </ItemTemplate>
+                                                         <HeaderStyle HorizontalAlign="Center" />
+                                                         <ItemStyle Width="50px" />
+                                                     </asp:TemplateField>
+                                                     <asp:BoundField DataField="Incentive" HeaderText="Type of incetive" />
+                                                     <asp:BoundField DataField="RecomendedAmount" HeaderText="Recomended Amount" />
+                                                     <asp:BoundField DataField="CreatedBy" HeaderText="Recomended By" />
+                                                     <asp:BoundField DataField="CreatedDate" HeaderText="Recomended Date" />
+                                                     <asp:TemplateField HeaderText="Masterincentiveid" Visible="false">
+                                                         <ItemTemplate>
+                                                             <asp:Label ID="Label1" runat="server" Text='<%#Eval("MstIncentiveId") %>' />
+                                                         </ItemTemplate>
+                                                     </asp:TemplateField>
+                                                     <asp:TemplateField HeaderText="Incentiveid" Visible="false">
+                                                         <ItemTemplate>
+                                                             <asp:Label ID="Label2" runat="server" Text='<%#Eval("EnterperIncentiveID") %>' />
+                                                         </ItemTemplate>
+                                                     </asp:TemplateField>
+                                                     <asp:TemplateField HeaderText="CreatedByid" Visible="false">
+                                                         <ItemTemplate>
+                                                             <asp:Label ID="lblCreatedByid" runat="server" Text='<%#Eval("CreatedByid") %>' />
+                                                         </ItemTemplate>
+                                                     </asp:TemplateField>
+                                                 </Columns>
+                                             </asp:GridView>
+                                         </td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td style="height:10px;"></td>
+
+                                    </tr>
+                                     <tr style="height: 30px" id="tr10" runat="server" visible="false">
+                                        <td style="width: 250px; font-weight: bold" colspan="2">--> Rejected  : &nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <asp:GridView ID="gvJdReject" runat="server" AutoGenerateColumns="true"
+                                                CellPadding="4" Height="62px"
+                                                Width="100%" Font-Names="Verdana" Font-Size="12px">
+                                                <HeaderStyle VerticalAlign="Middle" Height="40px" CssClass="GridviewScrollC1HeaderWrap" />
+                                                <RowStyle CssClass="GridviewScrollC1Item" />
+                                                <PagerStyle CssClass="GridviewScrollC1Pager" />
+                                                <FooterStyle BackColor="#013161" Height="40px" CssClass="GridviewScrollC1Header" />
+                                                <AlternatingRowStyle CssClass="GridviewScrollC1Item2" />
+                                                <Columns>
+                                                    <asp:TemplateField HeaderStyle-HorizontalAlign="Center" HeaderText="S No">
+                                                        <ItemTemplate>
+                                                            <%# Container.DataItemIndex + 1%>
+                                                            <asp:HiddenField ID="HiddenField13" runat="server" />
+                                                            <asp:HiddenField ID="HiddenField14" runat="server" />
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" />
+                                                        <ItemStyle Width="50px" />
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                            </asp:GridView>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height:10px;"></td>
+
+                                    </tr>
+                                     <tr style="height: 30px" id="tr11" runat="server" visible="false">
+                                        <td style="width: 250px; font-weight: bold" colspan="2">--> Abeyance : &nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <asp:GridView ID="gvJdAbeyance" runat="server" AutoGenerateColumns="true"
+                                                CellPadding="4" Height="62px"
+                                                Width="100%" Font-Names="Verdana" Font-Size="12px">
+                                                <HeaderStyle VerticalAlign="Middle" Height="40px" CssClass="GridviewScrollC1HeaderWrap" />
+                                                <RowStyle CssClass="GridviewScrollC1Item" />
+                                                <PagerStyle CssClass="GridviewScrollC1Pager" />
+                                                <FooterStyle BackColor="#013161" Height="40px" CssClass="GridviewScrollC1Header" />
+                                                <AlternatingRowStyle CssClass="GridviewScrollC1Item2" />
+                                                <Columns>
+                                                    <asp:TemplateField HeaderStyle-HorizontalAlign="Center" HeaderText="S No">
+                                                        <ItemTemplate>
+                                                            <%# Container.DataItemIndex + 1%>
+                                                            <asp:HiddenField ID="HiddenField15" runat="server" />
+                                                            <asp:HiddenField ID="HiddenField16" runat="server" />
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" />
+                                                        <ItemStyle Width="50px" />
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                            </asp:GridView>
+                                        </td>
+                                    </tr>
+
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default" id="Div6" runat="server">
+                        <div class="panel-heading" role="tab" id="Div5">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapserecomended2" aria-expanded="false" aria-controls="collapseTwo">
+                                    <i class="more-less glyphicon glyphicon-plus"></i>
+                                    <span id="Span3" runat="server">Application Status at Additional Director</span></a>
+                            </h4>
+                        </div>
+                        <div id="collapserecomended2" class="panel-collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="panel-body">
+                                <table width="100%">
+                                    <tr style="height: 20px">
+                                        <td></td>
+                                    </tr>
+                                    <tr style="height: 30px" id="tr8" runat="server" visible="false">
+                                        <td style="width: 250px; font-weight: bold" colspan="2">--> Recomandations : &nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false"
+                                                CellPadding="4" Height="62px"
+                                                Width="100%" Font-Names="Verdana" Font-Size="12px">
+                                                <HeaderStyle VerticalAlign="Middle" Height="40px" CssClass="GridviewScrollC1HeaderWrap" />
+                                                <RowStyle CssClass="GridviewScrollC1Item" />
+                                                <PagerStyle CssClass="GridviewScrollC1Pager" />
+                                                <FooterStyle BackColor="#013161" Height="40px" CssClass="GridviewScrollC1Header" />
+                                                <AlternatingRowStyle CssClass="GridviewScrollC1Item2" />
+                                                <Columns>
+                                                    <asp:TemplateField HeaderStyle-HorizontalAlign="Center" HeaderText="S No">
+                                                        <ItemTemplate>
+                                                            <%# Container.DataItemIndex + 1%>
+                                                            <asp:HiddenField ID="HiddenField9" runat="server" />
+                                                            <asp:HiddenField ID="HiddenField10" runat="server" />
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" />
+                                                        <ItemStyle Width="50px" />
+                                                    </asp:TemplateField>
+                                                    <asp:BoundField DataField="Incentive" HeaderText="Type of incetive" />
+                                                    <asp:BoundField DataField="ApplicationStatus" HeaderText="Application At" />
+                                                    <asp:BoundField DataField="RecomendedAmount" HeaderText="Recomended Amount" />
+                                                    <asp:BoundField DataField="CreatedBy" HeaderText="Recomended By" />
+                                                    <asp:BoundField DataField="CreatedDate" HeaderText="Recomended Date" />
+                                                    <asp:TemplateField HeaderText="Masterincentiveid" Visible="false">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="Label6" Text='<%#Eval("MstIncentiveId") %>' runat="server" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Incentiveid" Visible="false">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="Label10" Text='<%#Eval("EnterperIncentiveID") %>' runat="server" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="CreatedByid" Visible="false">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="Label11" Text='<%#Eval("CreatedByid") %>' runat="server" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                   
+                                                </Columns>
+                                            </asp:GridView>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default" id="divnewattachemts" runat="server" visible="false">
+                        <div class="panel-heading" role="tab" id="Div9">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#Div11" aria-expanded="false" aria-controls="Div11">
+                                    <i class="more-less glyphicon glyphicon-plus"></i>
+                                    Attachments
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="Div11" class="panel-collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="panel-body">
+
+                                <div align="center">
+
+                                    <table width="100%" id="Table1" runat="server">
+                                        <tr>
+                                            <td colspan="10" style="padding: 10px; margin: 5px; font-weight: bold;">Incentive wise Attachments
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 10px; margin: 5px;">
+                                                <asp:GridView ID="gvfinalgrid" runat="server" AutoGenerateColumns="False"
+                                                    Width="96%" HorizontalAlign="Left" ShowHeader="true" OnRowDataBound="gvfinalgrid_RowDataBound">
+                                                    <Columns>
+                                                        <asp:TemplateField HeaderStyle-HorizontalAlign="Center" HeaderText="S No">
+                                                            <ItemTemplate>
+                                                                <%# Container.DataItemIndex + 1%>
+                                                            </ItemTemplate>
+                                                            <HeaderStyle HorizontalAlign="Center" />
+                                                            <ItemStyle Width="50px" />
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Type of Attachment">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblCategory" runat="server" Text='<%# Eval("Category")%>'></asp:Label>
+                                                            </ItemTemplate>
+                                                            <ItemStyle HorizontalAlign="Left" />
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Attachments">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lbl" runat="server" Text='<%# Eval("AttachmentName")%>'></asp:Label>
+                                                            </ItemTemplate>
+                                                            <ItemStyle HorizontalAlign="Left" />
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="View">
+                                                            <ItemTemplate>
+                                                                <asp:HyperLink ID="HyperLinkSubsidy" Text="view" NavigateUrl='<%#Eval("FilePath")%>' Target="_blank" runat="server" />
+                                                            </ItemTemplate>
+                                                            <ItemStyle HorizontalAlign="Left" Width="100px" />
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Verified">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblverified" Text='<%#Eval("Verified")%>' runat="server"></asp:Label>
+                                                            </ItemTemplate>
+                                                            <ItemStyle HorizontalAlign="Left" Width="100px" />
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Verified By">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblverifiedby" Text='<%#Eval("Verifiedby")%>' runat="server"></asp:Label>
+                                                            </ItemTemplate>
+                                                            <ItemStyle HorizontalAlign="Left" Width="100px" />
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Verified Date">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblverifieddate" Text='<%#Eval("Verifieddate")%>' runat="server"></asp:Label>
+                                                            </ItemTemplate>
+                                                            <ItemStyle HorizontalAlign="Left" Width="100px" />
+                                                        </asp:TemplateField>
+                                                    </Columns>
+                                                </asp:GridView>
+                                            </td>
+                                        </tr>
+                                        <tr id="trattachemntslastgrid" runat="server" visible="false">
+                                            <td colspan="10" style="padding: 10px; margin: 5px; font-weight: bold;">Query Response Attachments
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 10px; margin: 5px;">
+                                                <asp:GridView ID="gvlastattachments" runat="server" AutoGenerateColumns="False"
+                                                    Width="80%" HorizontalAlign="Left" ShowHeader="true">
+                                                    <Columns>
+                                                        <asp:TemplateField HeaderStyle-HorizontalAlign="Center" HeaderText="S No">
+                                                            <ItemTemplate>
+                                                                <%# Container.DataItemIndex + 1%>
+                                                            </ItemTemplate>
+                                                            <HeaderStyle HorizontalAlign="Center" />
+                                                            <ItemStyle Width="50px" />
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Attachments">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lbl" runat="server" Text='<%# Eval("AttachmentName")%>'></asp:Label>
+                                                            </ItemTemplate>
+                                                            <ItemStyle HorizontalAlign="Left" />
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="View">
+                                                            <ItemTemplate>
+                                                                <asp:HyperLink ID="HyperLinkSubsidy" Text="view" NavigateUrl='<%#Eval("FilePath")%>' Target="_blank" runat="server" />
+                                                            </ItemTemplate>
+                                                            <ItemStyle HorizontalAlign="Left" Width="100px" />
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Verified">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblverified" Text='<%#Eval("Verified")%>' runat="server"></asp:Label>
+                                                            </ItemTemplate>
+                                                            <ItemStyle HorizontalAlign="Left" Width="100px" />
+                                                        </asp:TemplateField>
+                                                    </Columns>
+                                                </asp:GridView>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <!-- panel-group -->
+            </div>
+            <!-- container -->
+            <div align="center">
+            </div>
+            <div>
+                <table style="width: 100%">
+                    <tr style="height: 25px">
+                        <td align="center" colspan="4"></td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <table bgcolor="White" width="100%" style="font-family: Verdana;">
+
+
+                    <%--  <tr style="height: 60px" id="trbuttoninspection" runat="server">
+                        <td align="center" valign="middle">
+                            <asp:Button ID="BtnSave1" runat="server" CssClass="btn btn-primary" Height="32px"
+                                TabIndex="10" Text="Assign to Inspecting Officer/Raise Query" Width="347px" ValidationGroup="group" OnClick="BtnSave1_Click" />
+                        </td>
+                    </tr>--%>
+                    <%-- <tr style="height: 30px" id="tripo" runat="server" visible="false">
+                        <td><span style="font-weight: bold; font-size: 14pt" id="Span1" runat="server">Recommended by GM-DIC</span></td>
+                    </tr>--%>
+
+
+
+
+                    <tr style="height: 30px">
+                        <td></td>
+                    </tr>
+
+
+                    <tr style="height: 30px">
+                        <td></td>
+                    </tr>
+
+
+                    <tr>
+                        <td align="center" colspan="3" style="padding: 5px; margin: 5px">
+                            <div id="success" runat="server" visible="false" class="alert alert-success">
+                                <a href="AddQualification.aspx" class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong>Success!</strong><asp:Label ID="lblmsg" runat="server"></asp:Label>
+                            </div>
+                            <div id="Failure" runat="server" visible="false" class="alert alert-danger">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong>Warning!</strong>
+                                <asp:Label ID="lblmsg0" runat="server"></asp:Label>
+                            </div>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+
+            <div id="dialog" style="display: none">
+            </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+    <%--  </div>--%>
+    <%-- </div>
+        </div>
+    </div>--%>
+
+
+
+    <%--</div>
+       </td>
+        </tr>
+    </table>--%>
+    <link href="../../css/ui-lightness/jquery-ui-1.8.19.custom.css" rel="stylesheet" />
+    <script src="../../js/jquery-1.7.2.min.js"></script>
+    <script src="../../js/jquery-ui-1.8.19.custom.min.js"></script>
+
+    <link href="<%= ResolveUrl("css/ui-lightness/jquery-ui-1.8.19.custom.css") %>" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="<%= ResolveUrl("js/jquery-1.7.2.min.js") %>"></script>
+    <script src="<%= ResolveUrl("js/jquery-ui-1.8.19.custom.min.js") %>" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        function pageLoad() {
+            var date = new Date();
+            var currentMonth = date.getMonth();
+            var currentDate = date.getDate();
+            var currentYear = date.getFullYear();
+
+            $("input[id$='txtinspectiondate']").datepicker(
+               {
+                   dateFormat: "dd/mm/yy",
+                   minDate: 0,
+                   //yearRange: "1930:2017",
+                   //changeYear: true
+                   //  maxDate: new Date(currentYear, currentMonth, currentDate)
+               }); // Will run at every postback/AsyncPostback
+            $("input[id$='txtslcnodate']").datepicker(
+              {
+                  dateFormat: "dd/mm/yy",
+                  //  maxDate: new Date(currentYear, currentMonth, currentDate)
+              }); // Will run at every postback/AsyncPostback
+            $("input[id$='txtsvcdate']").datepicker(
+             {
+                 dateFormat: "dd/mm/yy",
+                 //  maxDate: new Date(currentYear, currentMonth, currentDate)
+             });
+        }
+        $(function () {
+
+
+            $('#MstLftMenu').remove();
+
+
+          $("input[id$='txtinspectiondate']").keydown(function() {
+            //code to not allow any changes to be made to input field 
+            return false;
+          });
+            var date = new Date();
+            var currentMonth = date.getMonth();
+            var currentDate = date.getDate();
+            var currentYear = date.getFullYear();
+            $("input[id$='txtinspectiondate']").datepicker(
+                {
+                    //dateFormat: "dd/mm/yy",
+                    dateFormat: "dd/mm/yy",
+                    minDate: 0,
+                    //yearRange: "1930:2017",
+                   // changeYear: true
+                   // maxDate: new Date(currentYear, currentMonth, currentDate) txtinspectiondate
+                });
+            $("input[id$='txtslcnodate']").datepicker(
+             {
+                 dateFormat: "dd/mm/yy",
+                 //  maxDate: new Date(currentYear, currentMonth, currentDate)
+             }); // Will run at every postback/AsyncPostback
+
+            $("input[id$='txtsvcdate']").datepicker(
+            {
+                dateFormat: "dd/mm/yy",
+                //  maxDate: new Date(currentYear, currentMonth, currentDate)
+            });
+
+            var Role = '<%=HttpContext.Current.Session["Role_Code"]%>';
+
+            var StatusId = getParameterByName('Sts');
+
+            if (Role == 'JD' && StatusId == 54) {
+                $("#collapserecomended").addClass('collapse').removeClass('in');
+                $("#collapsegmqueryhistorynew").addClass('collapse').removeClass('in');
+                $("#Div20").addClass('in').removeClass('collapse');
+
+            }
+
+            if (Role == 'COI-AD' || Role == 'COI-DD' || Role == 'COI-SUPDT')
+            {
+                $('#ctl00_ContentPlaceHolder1_trRemarks1').html('');
+                $("#collapserecomended").addClass('collapse').removeClass('in');
+                $("#Div23").addClass('collapse').removeClass('in');
+                $("#collapseTwoication").addClass('in').removeClass('collapse');
+
+                
+            }
+
+            if (Role == 'COI-SUPDT')
+            {
+                $('#ctl00_ContentPlaceHolder1_trinspectionname1').html('');
+                
+            }
+
+           // 
+
+        });
+        function getParameterByName(name) {
+            debugger;
+            name = name.replace(/[[]/, "\[").replace(/[]]/, "\]");
+            var regexS = "[\?&]" + name + "=([^&#]*)";
+            var regex = new RegExp(regexS);
+            var results = regex.exec(window.location.href);
+            if (results == null)
+                return "";
+            else
+                return decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+    </script>
+    <style type="text/css">
+        .ui-datepicker {
+            font-size: 8pt !important;
+            height: 250px;
+            padding: 0.2em 0.2em 0;
+        }
+    </style>
+</asp:Content>

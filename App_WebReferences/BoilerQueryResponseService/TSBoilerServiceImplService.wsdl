@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tsboilersws.cgg.gov.in/" name="TSBoilerServiceImplService" targetNamespace="http://tsboilersws.cgg.gov.in/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="https://tsboilersqueryresponsews.cgg.gov.in:443/tsBoilersQR?xsd=1" namespace="http://tsboilersws.cgg.gov.in/" />
+    </xsd:schema>
+  </types>
+  <message name="insertIntoPlanApprovalQueryResponse">
+    <part name="parameters" element="tns:insertIntoPlanApprovalQueryResponse" />
+  </message>
+  <message name="insertIntoPlanApprovalQueryResponseResponse">
+    <part name="parameters" element="tns:insertIntoPlanApprovalQueryResponseResponse" />
+  </message>
+  <portType name="TSBoilerService">
+    <operation name="insertIntoPlanApprovalQueryResponse">
+      <input message="tns:insertIntoPlanApprovalQueryResponse" />
+      <output message="tns:insertIntoPlanApprovalQueryResponseResponse" />
+    </operation>
+  </portType>
+  <binding name="TSBoilerServiceImplPortBinding" type="tns:TSBoilerService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="insertIntoPlanApprovalQueryResponse">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="TSBoilerServiceImplService">
+    <port name="TSBoilerServiceImplPort" binding="tns:TSBoilerServiceImplPortBinding">
+      <soap:address location="https://tsboilersqueryresponsews.cgg.gov.in:443/tsBoilersQR" />
+    </port>
+  </service>
+</definitions>

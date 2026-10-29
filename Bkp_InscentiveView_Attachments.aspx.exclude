@@ -1,0 +1,81 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true"
+    CodeFile="Bkp_InscentiveView_Attachments.aspx.cs" Inherits="InscentiveView_Attachments" Title="Incentive View Attachments" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Untitled Page</title>
+        <style type="text/css">
+        .padding
+        {
+            margin: 10px 10px 10px 10px;
+            padding-left: 10px;
+        }
+    </style>
+    </head> 
+    <body>
+    <form id="form1" runat="server">
+    <div align="center">
+    
+    <table style="padding-left: 25px; width: 100%;">
+        <tr>
+            <td><br /></td>
+        </tr>
+        <tr>
+            <th style="text-align:center;">Incentives Applied for</th>
+        </tr>
+        <tr><td><br /></td></tr>
+        <tr>
+            <td>
+                <asp:GridView ID="gvIncetiveTypes" runat="server" AutoGenerateColumns="False" Width="100%">
+                    <Columns>
+                        <asp:TemplateField HeaderText="Incentives">
+                            <ItemTemplate>
+                                <asp:Label ID="lblIncentiveName" runat="server" Text='<%# Eval("IncentiveName") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="View Attachments">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lbtVwatt" runat="server" Text="View" OnClick="lbtVwatt_Click"></asp:LinkButton>
+                                <asp:Label ID="lblEntrpId" runat="server" Visible="false" Text='<%# Eval("EnterperIncentiveID") %>' 
+                                    ToolTip='<%# Eval("MstIncentiveId") %>' />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
+            </td>
+        </tr>
+    </table>
+    <table style="padding-left: 25px; width: 100%;" id="tblAttachments" runat="server" visible="false">
+        <tr>
+            <td><br /></td>
+        </tr>
+        <tr>
+            <th style="text-align:center;">Documents / Attachments Submitted</th>
+        </tr>
+        <tr><td><br /></td></tr>
+        <tr>
+            <td>
+                <asp:GridView ID="gvAttachments" runat="server" AutoGenerateColumns="False"  Width="100%">
+                    <Columns>                        
+                        <asp:TemplateField HeaderText="Attachments">
+                            <ItemTemplate>
+                                <asp:Label id="lbl" runat="server" Text='<%# Eval("AttachmentName") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="View">
+                            <ItemTemplate>
+                                <asp:HyperLink ID="hlVw" runat="server" Text='<%# Eval("FileNm") %>' NavigateUrl='<%# Eval("FilePath") %>'
+                                    Target="_blank" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
+            </td>
+        </tr>
+    </table>
+    </div>
+    </form>
+    </body>
+    </html>
+

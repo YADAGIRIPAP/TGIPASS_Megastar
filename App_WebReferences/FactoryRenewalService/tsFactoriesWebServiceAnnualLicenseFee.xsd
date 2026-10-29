@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tsfactoriesws.cgg.gov.in/" targetNamespace="http://tsfactoriesws.cgg.gov.in/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="insertFactoryAnnualLicenseFeeDetails" type="tns:insertFactoryAnnualLicenseFeeDetails" />
+  <xs:element name="insertFactoryAnnualLicenseFeeDetailsResponse" type="tns:insertFactoryAnnualLicenseFeeDetailsResponse" />
+  <xs:element name="isValidFactoryRegistrationNumber" type="tns:isValidFactoryRegistrationNumber" />
+  <xs:element name="isValidFactoryRegistrationNumberResponse" type="tns:isValidFactoryRegistrationNumberResponse" />
+  <xs:complexType name="isValidFactoryRegistrationNumber">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="factoryRegistrationNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="selectedCalendarYear" type="xs:string" />
+      <xs:element minOccurs="0" name="selectedNumberOfLicenseYears" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="isValidFactoryRegistrationNumberResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:factoriesAutoDetailsResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="factoriesAutoDetailsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="factoriesAutoDetails" nillable="true" type="tns:factoriesAutoDetails" />
+      <xs:element minOccurs="0" name="isLicenseFeeAlreadyPaid" type="xs:string" />
+      <xs:element minOccurs="0" name="messageToBeDisplayed" type="xs:string" />
+      <xs:element minOccurs="0" name="status" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="factoriesAutoDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="adjustmentOnAnnualLicenseFee" type="xs:string" />
+      <xs:element minOccurs="0" name="annualLicenseFee" type="xs:string" />
+      <xs:element minOccurs="0" name="annualLicenseFeePayable" type="xs:string" />
+      <xs:element minOccurs="0" name="arrearsAmount" type="xs:string" />
+      <xs:element minOccurs="0" name="carryForwardAdjustmentFee" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryAddress" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryCircleID" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryCircleName" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryHP" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryLicenseNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryName" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryNumberOfEmployees" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryRegistrationNumber" type="xs:string" />
+      <xs:element name="harithaNidhiAmount" type="xs:int" />
+      <xs:element minOccurs="0" name="interestOnAnnualLicenseFee" type="xs:string" />
+      <xs:element minOccurs="0" name="interestOnArrearsAmount" type="xs:string" />
+      <xs:element minOccurs="0" name="isAdjustmentOnAnnualLicenseFeeAvailable" type="xs:string" />
+      <xs:element minOccurs="0" name="isZeroAmountPayableAfterAdjustment" type="xs:string" />
+      <xs:element minOccurs="0" name="licenseValidFrom" type="xs:string" />
+      <xs:element minOccurs="0" name="licenseValidUpto" type="xs:string" />
+      <xs:element minOccurs="0" name="resultantNoOfPayableYears" type="xs:string" />
+      <xs:element minOccurs="0" name="selectedCalendarYear" type="xs:string" />
+      <xs:element minOccurs="0" name="selectedNumberOfLicenseYears" type="xs:string" />
+      <xs:element minOccurs="0" name="totalFee" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertFactoryAnnualLicenseFeeDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FactoryAnnualLicenseFeeDetails" type="tns:factoryAnnualLicenseFee" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="factoryAnnualLicenseFee">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="adjustmentOnAnnualLicenseFee" type="xs:string" />
+      <xs:element minOccurs="0" name="annualLicenseFee" type="xs:string" />
+      <xs:element minOccurs="0" name="annualLicenseFeePayable" type="xs:string" />
+      <xs:element minOccurs="0" name="applicantEMailID" type="xs:string" />
+      <xs:element minOccurs="0" name="applicantMobileNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="applicationID" type="xs:string" />
+      <xs:element minOccurs="0" name="applicationSubmittedDate" type="xs:string" />
+      <xs:element minOccurs="0" name="arrearsAmount" type="xs:string" />
+      <xs:element minOccurs="0" name="bankName" type="xs:string" />
+      <xs:element minOccurs="0" name="carryForwardAdjustmentFee" type="xs:string" />
+      <xs:element minOccurs="0" name="entrepreneurID" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryAddress" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryCircleID" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryCircleName" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryHP" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryLicenseNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryName" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryNumberOfEmployees" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryRegistrationNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="harithaBankName" type="xs:string" />
+      <xs:element name="harithaNidhiAmount" type="xs:int" />
+      <xs:element minOccurs="0" name="harithaPaymentAmount" type="xs:string" />
+      <xs:element minOccurs="0" name="harithaPaymentDate" type="xs:string" />
+      <xs:element minOccurs="0" name="harithaPaymentStatus" type="xs:string" />
+      <xs:element minOccurs="0" name="harithaTransactionNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="interestOnAnnualLicenseFee" type="xs:string" />
+      <xs:element minOccurs="0" name="interestOnArrearsAmount" type="xs:string" />
+      <xs:element minOccurs="0" name="isAdjustmentOnAnnualLicenseFeeAvailable" type="xs:string" />
+      <xs:element minOccurs="0" name="isZeroAmountPayableAfterAdjustment" type="xs:string" />
+      <xs:element minOccurs="0" name="licenseValidFrom" type="xs:string" />
+      <xs:element minOccurs="0" name="licenseValidUpto" type="xs:string" />
+      <xs:element minOccurs="0" name="paymentAmount" type="xs:string" />
+      <xs:element minOccurs="0" name="paymentDate" type="xs:string" />
+      <xs:element minOccurs="0" name="paymentStatus" type="xs:string" />
+      <xs:element minOccurs="0" name="questionaireID" type="xs:string" />
+      <xs:element minOccurs="0" name="resultantNoOfPayableYears" type="xs:string" />
+      <xs:element minOccurs="0" name="selectedCalendarYear" type="xs:string" />
+      <xs:element minOccurs="0" name="selectedNumberOfLicenseYears" type="xs:string" />
+      <xs:element minOccurs="0" name="systemIP" type="xs:string" />
+      <xs:element minOccurs="0" name="totalFee" type="xs:string" />
+      <xs:element minOccurs="0" name="transactionNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="userID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertFactoryAnnualLicenseFeeDetailsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:approvedCertificateDetailsResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="approvedCertificateDetailsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="approvedCertificateDetails" nillable="true" type="tns:approvedCertificateDetails" />
+      <xs:element minOccurs="0" name="status" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="approvedCertificateDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

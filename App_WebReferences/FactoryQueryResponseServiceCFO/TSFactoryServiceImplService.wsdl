@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tsfactoriesws.cgg.gov.in/" name="TSFactoryServiceImplService" targetNamespace="http://tsfactoriesws.cgg.gov.in/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="https://tsfactoriescfoqueryresponse.cgg.gov.in:443/tsFactoriesWebServiceCFOQueryResponse?xsd=1" namespace="http://tsfactoriesws.cgg.gov.in/" />
+    </xsd:schema>
+  </types>
+  <message name="insertIntoGrantLicenseQueryResponse">
+    <part name="parameters" element="tns:insertIntoGrantLicenseQueryResponse" />
+  </message>
+  <message name="insertIntoGrantLicenseQueryResponseResponse">
+    <part name="parameters" element="tns:insertIntoGrantLicenseQueryResponseResponse" />
+  </message>
+  <portType name="TSFactoryService">
+    <operation name="insertIntoGrantLicenseQueryResponse">
+      <input message="tns:insertIntoGrantLicenseQueryResponse" />
+      <output message="tns:insertIntoGrantLicenseQueryResponseResponse" />
+    </operation>
+  </portType>
+  <binding name="TSFactoryServiceImplPortBinding" type="tns:TSFactoryService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="insertIntoGrantLicenseQueryResponse">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="TSFactoryServiceImplService">
+    <port name="TSFactoryServiceImplPort" binding="tns:TSFactoryServiceImplPortBinding">
+      <soap:address location="https://tsfactoriescfoqueryresponse.cgg.gov.in:443/tsFactoriesWebServiceCFOQueryResponse" />
+    </port>
+  </service>
+</definitions>

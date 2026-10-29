@@ -1,0 +1,187 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="EmptyMaster2.master.cs" Inherits="EmptyMaster2" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    
+<style type="text/css">
+.overlay
+{
+position: fixed;
+z-index: 999;
+height: 100%;
+width: 100%;
+top: 1px;
+background-color:Gray;
+filter: alpha(opacity=60);
+opacity: 0.9;
+-moz-opacity: 0.9;
+}
+</style>
+    <script src="Resource/Styles/SideMenu/script.js" type="text/javascript"></script>
+
+    <link href="Resource/Styles/SideMenu/styles.css" rel="stylesheet" type="text/css" />
+
+   
+    <link href="Masterfiles/css/StyleSheetMaster.css" rel="stylesheet" />
+    <script src="Resource/Scripts/js/jquery.js" type="text/javascript"></script>
+
+    <script src="Resource/Scripts/js/bootstrap.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="Resource/Scripts/js/plugins/morris/raphael.min.js"></script>
+
+    <script src="Resource/Scripts/js/plugins/morris/morris.min.js" type="text/javascript"></script>
+
+    <script src="Resource/Scripts/js/plugins/morris/morris-data.js" type="text/javascript"></script>
+
+    <%--<script src="../../Resource/js/bootstrap.min.js"></script>   
+    <script src="../../Resource/js/plugins/morris/raphael.min.js"></script>
+    <script src="../../Resource/js/plugins/morris/morris.min.js"></script>
+    <script src="../../Resource/js/plugins/morris/morris-data.js"></script>--%>
+    <link href="Resource/Styles/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="Resource/Styles/css/sb-admin.css" rel="stylesheet" type="text/css" />
+    <link href="Resource/Styles/css/plugins/morris.css" rel="stylesheet" type="text/css" />
+    <link href="Resource/Styles/font-awesome/css/font-awesome.css" rel="stylesheet"
+        type="text/css" />
+    <%--<link href="../../Resource/css/bootstrap.min.css"rel="stylesheet" type="text/css" />   
+    <link href="../../Resource/css/sb-admin.css" rel="stylesheet" type="text/css" />   
+    <link href="../../Resource/css/plugins/morris.css" rel="stylesheet" type="text/css" />--%>
+    <%--<link href="../../Resource/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />--%>
+
+    <style type="text/css">
+        .style1
+        {
+            width: 99.8%;
+        }
+        .style4
+        {
+        }
+
+                                img.goog-te-gadget-icon {
+    display: none;
+}
+
+div#\:0\.targetLanguage {
+    border-radius: 6px;
+    margin-top: -1px;
+}
+
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf.VIpgJd-ZVi9od-aZ2wEe-wOHMyf-ti6hGc {
+    display: none;
+}
+
+iframe#\:2\.container {
+    visibility: hidden;
+    display: none;
+    margin-top: -10px !important;
+}
+body {
+    top: 0px !important;
+}
+
+        </style>
+
+  
+
+</head>
+<body>
+
+     <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+        <table cellpadding="0" cellspacing="0" class="style1">
+            <tr>
+                <td>
+                    <table cellpadding="3" cellspacing="5" class="style1">
+                        <tr>
+                            <td class="top-bar" >
+                               <div class="container">
+                            <span id="clock" style="font-size: 12px;"></span>
+
+                            <div class="dt-sc-contact-number">
+                                <ul class="dt-sc-social-icons" style="height:5px">
+                                    <li><span class="fa fa-phone"></span>Call us:     040-23441636</li>
+                                  <%--  <li><a href="#" title="Facebook"><span class="fa fa-facebook"></span></a></li>
+                                    <li><a href="#" title="Google Plus"><span class="fa fa-google-plus"></span></a></li>
+                                    <li><a href="#" title="Youtube"><span class="fa fa-youtube"></span></a></li>--%>
+                                    <li><div class="translate d-flex mt-1 rounded"><div id="google_translate_element"></div></div></li>
+                                </ul>
+
+                            </div>
+                        </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                  <div class="container">
+                        <div class="logo">
+                            <a href="TSHome.aspx">
+                                
+                                 <img src="viewpdf.aspx?filepathnew=D:/TS-iPASSFinal/images/logo.jpg">
+                            </a>
+                        </div>
+                        <div class="top-head" >
+                            <div class="top-img" style="display:none">
+                                <img src="viewpdf.aspx?filepathnew=D:/TS-iPASSFinal/Masterfiles/images/Revanth Reddy CM.JPG" id="imgcm" runat="server">
+                                <h5 class="top-names">Sri. A.Revanth Reddy</h5>
+                                <p class="top-names1">Hon'ble Chief Minister</p>
+                            </div>
+                            <div class="top-img mr0" style="display:none">
+                                <img src="viewpdf.aspx?filepathnew=D:/TS-iPASSFinal/Masterfiles/images/IT Minister.JPG" id="imgitm" runat="server">
+                                <h5 class="top-names">Sri. D.Sridhar Babu</h5>
+                                <p class="top-names1">Hon'ble Minister for Industries</p>
+                            </div>
+                        </div>
+                    </div>   
+                            </td>
+                        </tr>
+                        <tr align="right">
+                            <td style="background: #1d9a5b; padding: 5px; margin: 5px;">&nbsp;
+                                
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table cellspacing="1" class="style1">
+                        <tr>
+                            <td valign="top" style="padding: 10px; margin: 10px" bgcolor="White">
+                                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                </asp:ContentPlaceHolder>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
+                </td>
+            </tr>
+        </table>
+    </form>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114319492-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-114319492-1');
+    </script>
+                        <script type="text/javascript">
+                            function googleTranslateElementInit() {
+                                new google.translate.TranslateElement({
+                                    pageLanguage: 'en',
+                                    includedLanguages: 'te,en', // Telugu
+                                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                                }, 'google_translate_element');
+                            }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    </body>
+</html>

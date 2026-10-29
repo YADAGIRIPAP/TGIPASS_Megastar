@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tslabourws.cgg.gov.in/" name="TSLabourServiceImplService" targetNamespace="http://tslabourws.cgg.gov.in/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="https://tslabourinspections.cgg.gov.in:443/tsLabour?xsd=1" namespace="http://tslabourws.cgg.gov.in/" />
+    </xsd:schema>
+  </types>
+  <message name="inspectionsLogicBegin">
+    <part name="parameters" element="tns:inspectionsLogicBegin" />
+  </message>
+  <message name="inspectionsLogicBeginResponse">
+    <part name="parameters" element="tns:inspectionsLogicBeginResponse" />
+  </message>
+  <portType name="TSLabourService">
+    <operation name="inspectionsLogicBegin">
+      <input message="tns:inspectionsLogicBegin" />
+      <output message="tns:inspectionsLogicBeginResponse" />
+    </operation>
+  </portType>
+  <binding name="TSLabourServiceImplPortBinding" type="tns:TSLabourService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="inspectionsLogicBegin">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="TSLabourServiceImplService">
+    <port name="TSLabourServiceImplPort" binding="tns:TSLabourServiceImplPortBinding">
+      <soap:address location="https://tslabourinspections.cgg.gov.in:443/tsLabour" />
+    </port>
+  </service>
+</definitions>

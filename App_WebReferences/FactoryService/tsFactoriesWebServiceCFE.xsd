@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tsfactoriesws.cgg.gov.in/" targetNamespace="http://tsfactoriesws.cgg.gov.in/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="insertIntoPlanApproval" type="tns:insertIntoPlanApproval" />
+  <xs:element name="insertIntoPlanApprovalAdditionalPayment" type="tns:insertIntoPlanApprovalAdditionalPayment" />
+  <xs:element name="insertIntoPlanApprovalAdditionalPaymentResponse" type="tns:insertIntoPlanApprovalAdditionalPaymentResponse" />
+  <xs:element name="insertIntoPlanApprovalResponse" type="tns:insertIntoPlanApprovalResponse" />
+  <xs:element name="updateAppealAgainstRejection" type="tns:updateAppealAgainstRejection" />
+  <xs:element name="updateAppealAgainstRejectionResponse" type="tns:updateAppealAgainstRejectionResponse" />
+  <xs:complexType name="insertIntoPlanApproval">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PlanDetail" type="tns:plan" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="plan">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="additionalAttachments" nillable="true" type="tns:additionalAttachment" />
+      <xs:element minOccurs="0" name="amountToBePaid" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="appealAttachments" nillable="true" type="tns:appealAttachment" />
+      <xs:element minOccurs="0" name="applicationID" type="xs:string" />
+      <xs:element minOccurs="0" name="applicationStageID" type="xs:string" />
+      <xs:element minOccurs="0" name="applicationStatus" type="xs:string" />
+      <xs:element minOccurs="0" name="applicationSubmittedDate" type="xs:string" />
+      <xs:element minOccurs="0" name="bankAmount" type="xs:string" />
+      <xs:element minOccurs="0" name="bankDate" type="xs:string" />
+      <xs:element minOccurs="0" name="bankName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="buildingPlans" nillable="true" type="tns:buildingPlan" />
+      <xs:element minOccurs="0" name="challanNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="communicationAddress" type="xs:string" />
+      <xs:element minOccurs="0" name="entrepreneurID" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryDistrictID" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryDoorNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryLocality" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryMandalID" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryName" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryPinCode" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryVillageID" type="xs:string" />
+      <xs:element minOccurs="0" name="hazardousNature" type="xs:string" />
+      <xs:element minOccurs="0" name="installedHP" type="xs:string" />
+      <xs:element minOccurs="0" name="mailID" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="manufacturingDescriptions" nillable="true" type="tns:manufacturingDescription" />
+      <xs:element minOccurs="0" name="mobileNumber" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="natureWastes" nillable="true" type="tns:natureWaste" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="occupierSignatures" nillable="true" type="tns:occupierSignature" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="panAadharCards" nillable="true" type="tns:panAadharCard" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="partnershipDeeds" nillable="true" type="tns:partnershipDeed" />
+      <xs:element minOccurs="0" name="paymentStatus" type="xs:string" />
+      <xs:element minOccurs="0" name="planReferenceNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="planType" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="plantMachineries" nillable="true" type="tns:plantMachinery" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="processFlowCharts" nillable="true" type="tns:processFlowChart" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="productsOutputs" nillable="true" type="tns:productsOutput" />
+      <xs:element minOccurs="0" name="questionaireID" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="rawMaterials" nillable="true" type="tns:rawMaterial" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="saleLeaseDeeds" nillable="true" type="tns:saleLeaseDeed" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="sitePlans" nillable="true" type="tns:sitePlan" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ssiCertificates" nillable="true" type="tns:ssiCertificate" />
+      <xs:element minOccurs="0" name="ssiType" type="xs:string" />
+      <xs:element minOccurs="0" name="systemIP" type="xs:string" />
+      <xs:element minOccurs="0" name="userID" type="xs:string" />
+      <xs:element minOccurs="0" name="workersToBeEmployedMen" type="xs:string" />
+      <xs:element minOccurs="0" name="workersToBeEmployedWomen" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="additionalAttachment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="appealAttachment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="buildingPlan">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="manufacturingDescription">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="natureWaste">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="occupierSignature">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="panAadharCard">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="partnershipDeed">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="plantMachinery">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="processFlowChart">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="productsOutput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="output" type="xs:string" />
+      <xs:element minOccurs="0" name="product" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="rawMaterial">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="materialDescr" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="saleLeaseDeed">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sitePlan">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ssiCertificate">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertIntoPlanApprovalResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateAppealAgainstRejection">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="UpdateAppealAgainstRejectionDetails" type="tns:UpdateAppealAgainstRejection" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="UpdateAppealAgainstRejection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="additionalAttachments" nillable="true" type="tns:additionalAttachment" />
+      <xs:element minOccurs="0" name="amountToBePaid" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="appealAttachments" nillable="true" type="tns:appealAttachment" />
+      <xs:element minOccurs="0" name="applicationID" type="xs:string" />
+      <xs:element minOccurs="0" name="applicationStageID" type="xs:string" />
+      <xs:element minOccurs="0" name="applicationStatus" type="xs:string" />
+      <xs:element minOccurs="0" name="applicationSubmittedDate" type="xs:string" />
+      <xs:element minOccurs="0" name="bankAmount" type="xs:string" />
+      <xs:element minOccurs="0" name="bankDate" type="xs:string" />
+      <xs:element minOccurs="0" name="bankName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="buildingPlans" nillable="true" type="tns:buildingPlan" />
+      <xs:element minOccurs="0" name="challanNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="communicationAddress" type="xs:string" />
+      <xs:element minOccurs="0" name="entrepreneurID" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryDistrictID" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryDoorNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryLocality" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryMandalID" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryName" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryPinCode" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryVillageID" type="xs:string" />
+      <xs:element minOccurs="0" name="hazardousNature" type="xs:string" />
+      <xs:element minOccurs="0" name="installedHP" type="xs:string" />
+      <xs:element minOccurs="0" name="mailID" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="manufacturingDescriptions" nillable="true" type="tns:manufacturingDescription" />
+      <xs:element minOccurs="0" name="mobileNumber" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="natureWastes" nillable="true" type="tns:natureWaste" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="occupierSignatures" nillable="true" type="tns:occupierSignature" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="panAadharCards" nillable="true" type="tns:panAadharCard" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="partnershipDeeds" nillable="true" type="tns:partnershipDeed" />
+      <xs:element minOccurs="0" name="paymentStatus" type="xs:string" />
+      <xs:element minOccurs="0" name="planReferenceNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="planType" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="plantMachineries" nillable="true" type="tns:plantMachinery" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="processFlowCharts" nillable="true" type="tns:processFlowChart" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="productsOutputs" nillable="true" type="tns:productsOutput" />
+      <xs:element minOccurs="0" name="questionaireID" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="rawMaterials" nillable="true" type="tns:rawMaterial" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="saleLeaseDeeds" nillable="true" type="tns:saleLeaseDeed" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="sitePlans" nillable="true" type="tns:sitePlan" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ssiCertificates" nillable="true" type="tns:ssiCertificate" />
+      <xs:element minOccurs="0" name="ssiType" type="xs:string" />
+      <xs:element minOccurs="0" name="systemIP" type="xs:string" />
+      <xs:element minOccurs="0" name="userID" type="xs:string" />
+      <xs:element minOccurs="0" name="workersToBeEmployedMen" type="xs:string" />
+      <xs:element minOccurs="0" name="workersToBeEmployedWomen" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateAppealAgainstRejectionResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertIntoPlanApprovalAdditionalPayment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PlanApprovalAdditionalPaymentDetails" type="tns:planAdditionalPayment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="planAdditionalPayment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="applicationID" type="xs:string" />
+      <xs:element minOccurs="0" name="bankAmount" type="xs:string" />
+      <xs:element minOccurs="0" name="bankDate" type="xs:string" />
+      <xs:element minOccurs="0" name="bankName" type="xs:string" />
+      <xs:element minOccurs="0" name="challanNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="paymentStatus" type="xs:string" />
+      <xs:element minOccurs="0" name="systemIP" type="xs:string" />
+      <xs:element minOccurs="0" name="userID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertIntoPlanApprovalAdditionalPaymentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

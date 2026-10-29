@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tsfactoriesws.cgg.gov.in/" targetNamespace="http://tsfactoriesws.cgg.gov.in/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="scheduleFactoriesDepartmentInspection" type="tns:scheduleFactoriesDepartmentInspection" />
+  <xs:element name="scheduleFactoriesDepartmentInspectionResponse" type="tns:scheduleFactoriesDepartmentInspectionResponse" />
+  <xs:complexType name="scheduleFactoriesDepartmentInspection">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="scheduleFactoriesDepartmentInspectionResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:factoriesInspectionDetailsSendResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="factoriesInspectionDetailsSendResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="factoriesInspectionDetailsResponse" nillable="true" type="tns:factoriesInspectionDetailsResponse" />
+      <xs:element minOccurs="0" name="status" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="factoriesInspectionDetailsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="actionTaken" type="xs:string" />
+      <xs:element minOccurs="0" name="allottedInspectionOfficer" type="xs:string" />
+      <xs:element minOccurs="0" name="complianceAction" type="xs:string" />
+      <xs:element minOccurs="0" name="complianceActionTakenBy" type="xs:string" />
+      <xs:element minOccurs="0" name="complianceDate" type="xs:string" />
+      <xs:element minOccurs="0" name="complianceFilepath" type="xs:string" />
+      <xs:element minOccurs="0" name="complianceGeneratedIP" type="xs:string" />
+      <xs:element minOccurs="0" name="complianceRemarksByOfficer" type="xs:string" />
+      <xs:element minOccurs="0" name="complianceSubmitted" type="xs:string" />
+      <xs:element minOccurs="0" name="complianceVerificationRemarksByOfficer" type="xs:string" />
+      <xs:element minOccurs="0" name="descriptionOfEconomicActivity" type="xs:string" />
+      <xs:element minOccurs="0" name="dofAction" type="xs:string" />
+      <xs:element minOccurs="0" name="dofActionDate" type="xs:string" />
+      <xs:element minOccurs="0" name="dofRemarks" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryAddress" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryDistrictName" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryMandalId" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryMandalName" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryName" type="xs:string" />
+      <xs:element minOccurs="0" name="factorycircleName" type="xs:string" />
+      <xs:element minOccurs="0" name="generalRemarks" type="xs:string" />
+      <xs:element minOccurs="0" name="inspectionMonth" type="xs:string" />
+      <xs:element minOccurs="0" name="inspectionReportUploaded" type="xs:string" />
+      <xs:element minOccurs="0" name="inspectionReportUploadedTime" type="xs:string" />
+      <xs:element minOccurs="0" name="inspectionScheduledTime" type="xs:string" />
+      <xs:element minOccurs="0" name="inspectionYear" type="xs:string" />
+      <xs:element minOccurs="0" name="ownerComplianceRemarks" type="xs:string" />
+      <xs:element minOccurs="0" name="registrationNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="riskFactor" type="xs:string" />
+      <xs:element minOccurs="0" name="showcausePostalReference" type="xs:string" />
+      <xs:element minOccurs="0" name="workingOrClosedFactory" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

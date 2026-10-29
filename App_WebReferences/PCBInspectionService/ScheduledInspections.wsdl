@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetEmpwiseIndustryInsp">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetEmpwiseIndustryInspResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmpwiseIndustryInspResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInsp">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetInspResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetInspResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetIndustryMaster">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetIndustryMasterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetIndustryMasterResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmployeeMaster">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetEmployeeMasterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmployeeMasterResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetEmpwiseIndustryInspSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmpwiseIndustryInsp" />
+  </wsdl:message>
+  <wsdl:message name="GetEmpwiseIndustryInspSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmpwiseIndustryInspResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetInspSoapIn">
+    <wsdl:part name="parameters" element="tns:GetInsp" />
+  </wsdl:message>
+  <wsdl:message name="GetInspSoapOut">
+    <wsdl:part name="parameters" element="tns:GetInspResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetIndustryMasterSoapIn">
+    <wsdl:part name="parameters" element="tns:GetIndustryMaster" />
+  </wsdl:message>
+  <wsdl:message name="GetIndustryMasterSoapOut">
+    <wsdl:part name="parameters" element="tns:GetIndustryMasterResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmployeeMasterSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmployeeMaster" />
+  </wsdl:message>
+  <wsdl:message name="GetEmployeeMasterSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmployeeMasterResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmpwiseIndustryInspHttpGetIn" />
+  <wsdl:message name="GetEmpwiseIndustryInspHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="GetInspHttpGetIn" />
+  <wsdl:message name="GetInspHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="GetIndustryMasterHttpGetIn" />
+  <wsdl:message name="GetIndustryMasterHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="GetEmployeeMasterHttpGetIn" />
+  <wsdl:message name="GetEmployeeMasterHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="GetEmpwiseIndustryInspHttpPostIn" />
+  <wsdl:message name="GetEmpwiseIndustryInspHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="GetInspHttpPostIn" />
+  <wsdl:message name="GetInspHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="GetIndustryMasterHttpPostIn" />
+  <wsdl:message name="GetIndustryMasterHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="GetEmployeeMasterHttpPostIn" />
+  <wsdl:message name="GetEmployeeMasterHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:portType name="ScheduledInspectionsSoap">
+    <wsdl:operation name="GetEmpwiseIndustryInsp">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Inspections Assigned for the Month</wsdl:documentation>
+      <wsdl:input message="tns:GetEmpwiseIndustryInspSoapIn" />
+      <wsdl:output message="tns:GetEmpwiseIndustryInspSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInsp">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Scheduled Inspections for the Month</wsdl:documentation>
+      <wsdl:input message="tns:GetInspSoapIn" />
+      <wsdl:output message="tns:GetInspSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetIndustryMaster">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Industry Master</wsdl:documentation>
+      <wsdl:input message="tns:GetIndustryMasterSoapIn" />
+      <wsdl:output message="tns:GetIndustryMasterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeMaster">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Employee Master</wsdl:documentation>
+      <wsdl:input message="tns:GetEmployeeMasterSoapIn" />
+      <wsdl:output message="tns:GetEmployeeMasterSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ScheduledInspectionsHttpGet">
+    <wsdl:operation name="GetEmpwiseIndustryInsp">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Inspections Assigned for the Month</wsdl:documentation>
+      <wsdl:input message="tns:GetEmpwiseIndustryInspHttpGetIn" />
+      <wsdl:output message="tns:GetEmpwiseIndustryInspHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInsp">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Scheduled Inspections for the Month</wsdl:documentation>
+      <wsdl:input message="tns:GetInspHttpGetIn" />
+      <wsdl:output message="tns:GetInspHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetIndustryMaster">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Industry Master</wsdl:documentation>
+      <wsdl:input message="tns:GetIndustryMasterHttpGetIn" />
+      <wsdl:output message="tns:GetIndustryMasterHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeMaster">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Employee Master</wsdl:documentation>
+      <wsdl:input message="tns:GetEmployeeMasterHttpGetIn" />
+      <wsdl:output message="tns:GetEmployeeMasterHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ScheduledInspectionsHttpPost">
+    <wsdl:operation name="GetEmpwiseIndustryInsp">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Inspections Assigned for the Month</wsdl:documentation>
+      <wsdl:input message="tns:GetEmpwiseIndustryInspHttpPostIn" />
+      <wsdl:output message="tns:GetEmpwiseIndustryInspHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInsp">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Scheduled Inspections for the Month</wsdl:documentation>
+      <wsdl:input message="tns:GetInspHttpPostIn" />
+      <wsdl:output message="tns:GetInspHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetIndustryMaster">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Industry Master</wsdl:documentation>
+      <wsdl:input message="tns:GetIndustryMasterHttpPostIn" />
+      <wsdl:output message="tns:GetIndustryMasterHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeMaster">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Employee Master</wsdl:documentation>
+      <wsdl:input message="tns:GetEmployeeMasterHttpPostIn" />
+      <wsdl:output message="tns:GetEmployeeMasterHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ScheduledInspectionsSoap" type="tns:ScheduledInspectionsSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetEmpwiseIndustryInsp">
+      <soap:operation soapAction="http://tempuri.org/GetEmpwiseIndustryInsp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInsp">
+      <soap:operation soapAction="http://tempuri.org/GetInsp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIndustryMaster">
+      <soap:operation soapAction="http://tempuri.org/GetIndustryMaster" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeMaster">
+      <soap:operation soapAction="http://tempuri.org/GetEmployeeMaster" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ScheduledInspectionsSoap12" type="tns:ScheduledInspectionsSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetEmpwiseIndustryInsp">
+      <soap12:operation soapAction="http://tempuri.org/GetEmpwiseIndustryInsp" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInsp">
+      <soap12:operation soapAction="http://tempuri.org/GetInsp" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIndustryMaster">
+      <soap12:operation soapAction="http://tempuri.org/GetIndustryMaster" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeMaster">
+      <soap12:operation soapAction="http://tempuri.org/GetEmployeeMaster" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ScheduledInspectionsHttpGet" type="tns:ScheduledInspectionsHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetEmpwiseIndustryInsp">
+      <http:operation location="/GetEmpwiseIndustryInsp" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInsp">
+      <http:operation location="/GetInsp" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIndustryMaster">
+      <http:operation location="/GetIndustryMaster" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeMaster">
+      <http:operation location="/GetEmployeeMaster" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ScheduledInspectionsHttpPost" type="tns:ScheduledInspectionsHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetEmpwiseIndustryInsp">
+      <http:operation location="/GetEmpwiseIndustryInsp" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInsp">
+      <http:operation location="/GetInsp" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIndustryMaster">
+      <http:operation location="/GetIndustryMaster" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeeMaster">
+      <http:operation location="/GetEmployeeMaster" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ScheduledInspections">
+    <wsdl:port name="ScheduledInspectionsSoap" binding="tns:ScheduledInspectionsSoap">
+      <soap:address location="https://tspcbmanifest.cgg.gov.in/tspcbinspection/webservice/ScheduledInspections.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ScheduledInspectionsSoap12" binding="tns:ScheduledInspectionsSoap12">
+      <soap12:address location="https://tspcbmanifest.cgg.gov.in/tspcbinspection/webservice/ScheduledInspections.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ScheduledInspectionsHttpGet" binding="tns:ScheduledInspectionsHttpGet">
+      <http:address location="https://tspcbmanifest.cgg.gov.in/tspcbinspection/webservice/ScheduledInspections.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ScheduledInspectionsHttpPost" binding="tns:ScheduledInspectionsHttpPost">
+      <http:address location="https://tspcbmanifest.cgg.gov.in/tspcbinspection/webservice/ScheduledInspections.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

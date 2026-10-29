@@ -1,0 +1,224 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UI/TSiPASS/BankMaster.master" AutoEventWireup="true" CodeFile="frmBankSubordinateDashboard.aspx.cs" Inherits="UI_TSiPASS_frmBankSubordinateDashboard" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+
+    <script type="text/javascript" language="javascript">
+
+
+
+
+</script>
+
+
+    <asp:UpdatePanel ID="updatepanel1" runat="server">
+        <ContentTemplate>
+            <div align="left">
+                <ol class="breadcrumb">
+                    You are here
+        &nbsp;!&nbsp; &nbsp; &nbsp; 
+                            <li>
+                                <i class="fa fa-dashboard"></i><a href="Home.aspx">Dashboard</a>
+                            </li>
+
+
+                </ol>
+            </div>
+
+            <div align="center">
+                <div class="row" align="center">
+                    <div class="col-lg-11">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">SUBORDINATE DEBT SCHEME Dashboard</h3>
+                            </div>
+                            <div class="panel-body">
+                                <table align="center" cellpadding="10" cellspacing="5" style="width: 100%">
+                                    <tr>
+                                        <td style="padding: 5px; margin: 5px">
+
+                                            <div class="panel panel-default">
+                                                <div class="panel-body" align="center">
+
+                                                    <table cellpadding="3" cellspacing="5" style="width: 100%">
+                                                        <tr>
+                                                            <td style="font-size: 16px; text-align: center;" colspan="3">
+                                                                <asp:HyperLink ID="HyperLink1" runat="server" Font-Size="Small"
+                                                                    NavigateUrl="~/UI/TSiPASS/frmSbordinateDebtscheme.aspx">Back</asp:HyperLink>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="width: 395px; font-size: 16px;">
+                                                                <b>SUBORDINATE DEBT SCHEME</b></td>
+                                                            <td style="width: 30px">&nbsp;</td>
+                                                            <td style="width: 395px" valign="top">&nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="width: 395px; font-size: 16px;">&nbsp;</td>
+                                                            <td style="width: 30px">&nbsp;</td>
+                                                            <td style="width: 395px" valign="top">&nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="width: 395px" valign="top">
+                                                                <div class="list-group">
+
+                                                                    <a href="#" class="list-group-item">
+
+                                                                        <i class="fa fa-fw fa-check"></i><b>SUBORDINATE DEBT SCHEME </b>
+                                                                    </a>
+
+
+                                                                    <a href="frmSbordinateDebtscheme_report.aspx?Stg=1&lbl=No of Application" class="list-group-item">
+                                                                        <span class="badge">
+                                                                            <asp:Label ID="lblNoofApplication" runat="server"></asp:Label></span>
+                                                                        <i class="fa fa-fw fa-calendar"></i>No of Application
+                                                                    </a>
+
+                                                                    <a class="list-group-item" href="#"><i class="fa fa-fw fa-check"></i><b>Loan Account Status</b> </a>
+
+                                                                    <a class="list-group-item" href="frmSbordinateDebtscheme_report.aspx?Stg=2&lbl=SMA"><span class="badge" style="background-color: #87D37C;">
+                                                                        <asp:Label ID="lblSMA" runat="server"></asp:Label>
+                                                                    </span><i class="fa fa-fw fa-calendar"></i>SMA</a>
+
+                                                                    <a class="list-group-item" href="frmSbordinateDebtscheme_report.aspx?Stg=3&lbl=NPA"><span class="badge" style="background-color: #d9534f;">
+                                                                        <asp:Label ID="lblNPA" runat="server"></asp:Label>
+                                                                    </span><i class="fa fa-fw fa-calendar"></i>NPA </a>
+
+                                                                    <a class="list-group-item" href="frmSbordinateDebtscheme_report.aspx?Stg=4&lbl=Loan Account Status"><span class="badge">
+                                                                        <asp:Label ID="lblLoanAccountStatustotal" runat="server"></asp:Label>
+                                                                    </span><i class="fa fa-fw fa-calendar"></i>Total </a>
+
+                                                                     <a class="list-group-item" href="#"><b> <= 10 Lakhs outstanding account</b> </a>
+
+                                                                    <a class="list-group-item" href="#"><i class="fa fa-fw fa-check"></i><b>Assessment Status</b> </a>
+
+                                                                    <a class="list-group-item" href="frmSbordinateDebtscheme_report.aspx?Stg=5&lbl=Assessment Status Done"><span class="badge" style="background-color: #87D37C;">
+                                                                        <asp:Label ID="lblAssesstmentDone" runat="server"></asp:Label>
+                                                                    </span><i class="fa fa-fw fa-calendar"></i>Assesstment Done</a>
+
+                                                                    <a class="list-group-item" href="frmSbordinateDebtscheme_report.aspx?Stg=6&lbl=Assessment Status Not Done"><span class="badge" style="background-color: #d9534f;">
+                                                                        <asp:Label ID="lblAssesstmentnotDone" runat="server"></asp:Label>
+                                                                    </span><i class="fa fa-fw fa-calendar"></i>Assesstment Not Done </a>
+
+                                                                    <a class="list-group-item" href="frmSbordinateDebtscheme_report.aspx?Stg=7&lbl=Assessment Status Total"><span class="badge">
+                                                                        <asp:Label ID="lblAssesstmentstatus" runat="server"></asp:Label>
+                                                                    </span><i class="fa fa-fw fa-calendar"></i>Total </a>
+
+                                                                    <a class="list-group-item" href="#"><i class="fa fa-fw fa-check"></i><b>Assessment Viable</b> </a>
+
+                                                                    <a class="list-group-item" href="frmSbordinateDebtscheme_report.aspx?Stg=8&lbl=Assessment Viable"><span class="badge" style="background-color: #87D37C;">
+                                                                        <asp:Label ID="lblAssessmentviable" runat="server"></asp:Label>
+                                                                    </span><i class="fa fa-fw fa-calendar"></i>Viable</a>
+
+                                                                    <a class="list-group-item" href="frmSbordinateDebtscheme_report.aspx?Stg=9&lbl=Assessment Not Viable"><span class="badge" style="background-color: #d9534f;">
+                                                                        <asp:Label ID="lblAssessmentnotviable" runat="server"></asp:Label>
+                                                                    </span><i class="fa fa-fw fa-calendar"></i>Not Viable</a>
+
+                                                                    <a class="list-group-item" href="frmSbordinateDebtscheme_report.aspx?Stg=10&lbl=Assessment Viable Total"><span class="badge">
+                                                                        <asp:Label ID="lbllblAssessmentviabletotal" runat="server"></asp:Label>
+                                                                    </span><i class="fa fa-fw fa-calendar"></i>Total </a>
+
+                                                                    <a class="list-group-item" href="#"><i class="fa fa-fw fa-check"></i><b>Assessment Sanctioned under SUb-Debt Scheme</b> </a>
+
+                                                                    <a class="list-group-item" href="frmSbordinateDebtscheme_report.aspx?Stg=11&lbl=Assessment Sanctioned"><span class="badge" style="background-color: #87D37C;">
+                                                                        <asp:Label ID="lblAssessmentsanctioned" runat="server"></asp:Label>
+                                                                    </span><i class="fa fa-fw fa-calendar"></i>Sanctioned</a>
+
+                                                                    <a class="list-group-item" href="frmSbordinateDebtscheme_report.aspx?Stg=12&lbl=Assessment Not Sanctioned"><span class="badge" style="background-color: #d9534f;">
+                                                                        <asp:Label ID="lblAssessmentnotsanctioned" runat="server"></asp:Label>
+                                                                    </span><i class="fa fa-fw fa-calendar"></i>Viable - Not Yet Sanctioned</a>
+
+                                                                    <a class="list-group-item" href="frmSbordinateDebtscheme_report.aspx?Stg=13&lbl=Assessment Sanctioned Total"><span class="badge">
+                                                                        <asp:Label ID="lbllblAssessmentsanctionedtotal" runat="server"></asp:Label>
+                                                                    </span><i class="fa fa-fw fa-calendar"></i>Total </a>
+                                                                </div>
+                                                            </td>
+                                                            <td style="width: 30px">&nbsp;</td>
+                                                            <td valign="top" style="width: 395px">
+
+                                                                <div class="list-group">
+
+                                                                <a class="list-group-item" href="#"><b> > 10 Lakhs outstanding account</b> </a>
+
+                                                                    <a class="list-group-item" href="#"><i class="fa fa-fw fa-check"></i><b>TEV Study Status</b> </a>
+
+                                                                    <a class="list-group-item" href="frmSbordinateDebtscheme_report.aspx?Stg=14&lbl=TEV Study Done"><span class="badge" style="background-color: #87D37C;">
+                                                                        <asp:Label ID="lblTEVstudydone" runat="server"></asp:Label>
+                                                                    </span><i class="fa fa-fw fa-calendar"></i>TEV Study Done</a>
+
+                                                                    <a class="list-group-item" href="frmSbordinateDebtscheme_report.aspx?Stg=15&lbl=TEV Study Not Done"><span class="badge" style="background-color: #d9534f;">
+                                                                        <asp:Label ID="lblTEVstudynotdone" runat="server"></asp:Label>
+                                                                    </span><i class="fa fa-fw fa-calendar"></i>TEV Study Not Done </a>
+
+                                                                    <a class="list-group-item" href="frmSbordinateDebtscheme_report.aspx?Stg=16&lbl=TEV Study Status Total"><span class="badge">
+                                                                        <asp:Label ID="lblTEVstudydoneTotal" runat="server"></asp:Label>
+                                                                    </span><i class="fa fa-fw fa-calendar"></i>Total </a>
+
+                                                                    <a class="list-group-item" href="#"><i class="fa fa-fw fa-check"></i><b>TEV Study Viable</b> </a>
+
+                                                                    <a class="list-group-item" href="frmSbordinateDebtscheme_report.aspx?Stg=17&lbl=TEV Study Viable"><span class="badge" style="background-color: #87D37C;">
+                                                                        <asp:Label ID="lblTEVstudyviable" runat="server"></asp:Label>
+                                                                    </span><i class="fa fa-fw fa-calendar"></i>Viable</a>
+
+                                                                    <a class="list-group-item" href="frmSbordinateDebtscheme_report.aspx?Stg=18&lbl=TEV Study Not Viable"><span class="badge" style="background-color: #d9534f;">
+                                                                        <asp:Label ID="lblTEVstudynotviable" runat="server"></asp:Label>
+                                                                    </span><i class="fa fa-fw fa-calendar"></i>Not Viable</a>
+
+                                                                    <a class="list-group-item" href="frmSbordinateDebtscheme_report.aspx?Stg=19&lbl=TEV Study Viable Total"><span class="badge">
+                                                                        <asp:Label ID="lblTEVstudyviabletotal" runat="server"></asp:Label>
+                                                                    </span><i class="fa fa-fw fa-calendar"></i>Total </a>
+
+                                                                    <a class="list-group-item" href="#"><i class="fa fa-fw fa-check"></i><b>TEV Study Sanctioned under SUb-Debt Scheme</b> </a>
+
+                                                                    <a class="list-group-item" href="frmSbordinateDebtscheme_report.aspx?Stg=20&lbl=TEV Study Sanctioned"><span class="badge" style="background-color: #87D37C;">
+                                                                        <asp:Label ID="lblTEVstudyviablesanctioned" runat="server"></asp:Label>
+                                                                    </span><i class="fa fa-fw fa-calendar"></i>Sanctioned</a>
+
+                                                                    <a class="list-group-item" href="frmSbordinateDebtscheme_report.aspx?Stg=21&lbl=TEV Study Not Sanctioned"><span class="badge" style="background-color: #d9534f;">
+                                                                        <asp:Label ID="lblTEVstudyviablenotsanctioned" runat="server"></asp:Label>
+                                                                    </span><i class="fa fa-fw fa-calendar"></i>Viable - Not Yet Sanctioned</a>
+
+                                                                    <a class="list-group-item" href="frmSbordinateDebtscheme_report.aspx?Stg=22&lbl=TEV Study Sanctioned under SUb-Debt Scheme"><span class="badge">
+                                                                        <asp:Label ID="lblTEVstudyviablesanctionedtotal" runat="server"></asp:Label>
+                                                                    </span><i class="fa fa-fw fa-calendar"></i>Total </a>
+                                                                </div>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="width: 395px">&nbsp;</td>
+                                                            <td style="width: 30px">&nbsp;</td>
+                                                            <td>&nbsp;</td>
+                                                        </tr>
+                                                    </table>
+                                                    &nbsp;
+                                
+                                                </div>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+
+                                </table>
+                                <asp:HiddenField ID="hdfID" runat="server" />
+                                <asp:HiddenField ID="hdfFlagID" runat="server" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <br />
+            <br />
+            <br />
+
+
+        </ContentTemplate>
+    </asp:UpdatePanel>
+    <%--</div>
+       </td>
+        </tr>
+    </table>--%>
+</asp:Content>
+

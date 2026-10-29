@@ -1,0 +1,121 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class UI_TSiPASS_IncentivesAnnexure_IncentivesCheckSlip : System.Web.UI.Page
+{
+    IncentiveVosIncetForms objvoA = new IncentiveVosIncetForms();
+    General Gen = new General();
+    BusinessLogic.DML objDml = new BusinessLogic.DML();
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        try
+        {
+            if (Session["uid"] != null)
+            {
+                Session["EntprIncentive"] = "1000";
+            }
+        }
+        catch (Exception ex)
+        {
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+
+    protected void BtnSave_Click(object sender, EventArgs e)
+    {
+        string valid = "";
+        try
+        {
+            AssignValuesToVosFromControls();
+
+            valid = Gen.InsertCheckSlip(objvoA);
+
+            if(valid == "Y")
+            {
+                lblmsg.Text = "<font color=Black>Application Submitted Sucessfully</font>";
+                success.Visible = true;
+                BtnNext.Visible = true;
+                BtnNext.PostBackUrl = "../../UI/Tsipass/TypeOfIncentivesNew.aspx";
+            }
+            else
+            {
+                lblmsg0.Text = "<font color=Red>Submittion Failed</font>";
+                success.Visible = false;
+                Failure.Visible = true;
+                BtnNext.Visible = false;
+                //BtnNext.PostBackUrl = "../../UI/Tsipass/TypeOfIncentivesNew.aspx";
+            }
+        }
+        catch (Exception ex)
+        {
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+
+    public void AssignValuesToVosFromControls()
+    {
+        try
+        {
+            objvoA.CSCreatedBy = Session["uid"].ToString();
+            objvoA.CSIncentiveId = Session["EntprIncentive"].ToString();
+            objvoA.CSbillsofinstitutfinancedEnterpriseindustries = ddlCSbillsofinstitutfinancedEnterpriseindustries.SelectedValue;
+            objvoA.CSbillandpymtproofrespectofselffinancedEnterprisesindustries = ddlCSbillandpymtproofrespectofselffinancedEnterprisesindustries.SelectedValue;
+            objvoA.CasteCertificatesSCST = ddlCSCasteCertificatesSCST.SelectedValue;
+            objvoA.CSEntrepreneurAadhar = ddlCSEntrepreneurAadhar.SelectedValue;
+            objvoA.CSEntrepreneurPANCard = ddlCSEntrepreneurPANCard.SelectedValue;
+            objvoA.CSCertificateofCA = ddlCSCertificateofCA.SelectedValue;
+            objvoA.CSRegdPartnershipDeedArticles = ddlCSRegdPartnershipDeedArticles.SelectedValue;
+            objvoA.CSApprovalDirectorFactories = ddlCSApprovalDirectorFactories.SelectedValue;
+            objvoA.CSBoilersCertificate = ddlCSBoilersCertificate.SelectedValue;
+            objvoA.CSApprovalDirectorTownCountryPlanningUDA = ddlCSApprovalDirectorTownCountryPlanningUDA.SelectedValue;
+            objvoA.CSRegularbuildingplansapprovalofMunicipalityGramPanchayat = ddlCSRegularbuildingplansapprovalofMunicipalityGramPanchayat.SelectedValue;
+            objvoA.CSOperationTSPCBAcknowledgementGM = ddlCSOperationTSPCBAcknowledgementGM.SelectedValue;
+            objvoA.CSPowerreleaseCertificatefrmTSTRANSCODISCOM = ddlCSPowerreleaseCertificatefrmTSTRANSCODISCOM.SelectedValue;
+            objvoA.CSEnvironmentalclearance = ddlCSEnvironmentalclearance.SelectedValue;
+            objvoA.CSOtherstatutoryapprovalsspecif = ddlCSOtherstatutoryapprovalsspecif.SelectedValue;
+            objvoA.CSEMPartIfullsetIEMIL = ddlCSEMPartIfullsetIEMIL.SelectedValue;
+            objvoA.CSEMPartIIfullsetIEMIL = ddlCSEMPartIIfullsetIEMIL.SelectedValue;
+            objvoA.CSUdyogAadhar = ddlCSUdyogAadhar.SelectedValue;
+            objvoA.CSProjectReport = ddlCSProjectReport.SelectedValue;
+            objvoA.CSTermloansanctionletters = ddlCSTermloansanctionletters.SelectedValue;
+            objvoA.CSBoardResolutionauthorizing = ddlCSBoardResolutionauthorizing.SelectedValue;
+            objvoA.CSRegisteredlandSaledeedPremisesLeasedeed = ddlCSRegisteredlandSaledeedPremisesLeasedeed.SelectedValue;
+            objvoA.CSCACECertificateregarding2handplantmachinery = ddlCSCACECertificateregarding2handplantmachinery.SelectedValue;
+            objvoA.CSCECertificateSelffabricatedmachinery = ddlCSCECertificateSelffabricatedmachinery.SelectedValue;
+            objvoA.CSBISCertificate = ddlCSBISCertificate.SelectedValue;
+            objvoA.CSDrugLicense = ddlCSDrugLicense.SelectedValue;
+            objvoA.CSExplosiveLicense = ddlCSExplosiveLicense.SelectedValue;
+            objvoA.CSVATCSTSGSTCertificate = ddlCSVATCSTSGSTCertificate.SelectedValue;
+            objvoA.CSFormA = ddlCSFormA.SelectedValue;
+            objvoA.CSFormB = ddlCSFormB.SelectedValue;
+
+        }
+        catch (Exception ex)
+        {
+            lblmsg0.Text = ex.Message;
+            Failure.Visible = true;
+        }
+    }
+
+    protected void BtnPrevious_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void BtnNext_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void BtnClear_Click(object sender, EventArgs e)
+    {
+
+    }
+}

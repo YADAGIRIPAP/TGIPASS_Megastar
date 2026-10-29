@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tsboilersws.cgg.gov.in/" targetNamespace="http://tsboilersws.cgg.gov.in/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="insertIntoPlanApprovalQueryResponse" type="tns:insertIntoPlanApprovalQueryResponse" />
+  <xs:element name="insertIntoPlanApprovalQueryResponseResponse" type="tns:insertIntoPlanApprovalQueryResponseResponse" />
+  <xs:complexType name="insertIntoPlanApprovalQueryResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PlanApprovalQueryResponse" type="tns:planQR" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="planQR">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="applicationID" type="xs:string" />
+      <xs:element minOccurs="0" name="entrepreneurRemarks" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="queryResponseAttachments" nillable="true" type="tns:queryResponseAttachment" />
+      <xs:element minOccurs="0" name="systemIP" type="xs:string" />
+      <xs:element minOccurs="0" name="userID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="queryResponseAttachment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertIntoPlanApprovalQueryResponseResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,61 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using DotNetIntegrationKit;
+public partial class UI_TSiPASS_Request : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        RequestURL objRequestURL = new RequestURL();
+        String response = objRequestURL.SendRequest
+                                      (
+                                      "T"
+,                                      "T44409"
+                                     , "103445"
+                                     , "Sunil Mumbai", "1.00"
+                                     , "INR"
+                                     , "103445"
+                                     , "https://ipass.telangana.gov.in/UI/TSiPASS/Response.aspx"
+                                     , "https://www.tekprocess.co.in/PaymentGateway/services/TransactionDetailsNew"
+                                     ,""
+                                     , "test1-1"
+                                     , "05-05-2016"
+                                     , "fss.srikanth@gmail.com"
+                                     , "9247492919"
+                                     , "10310"
+                                     , "Srikanth"
+                                     , "12345"
+                                     , "123456"
+                                     , "7602013131GSXSNX"
+                                     , "2547161353NRJXFP"
+                                      );
+
+        String strResponse = response.ToUpper();
+
+        if (strResponse.StartsWith("ERROR"))
+        {
+            lblError.Text = response;
+        }
+        else
+        {
+            if ("T" == "T")
+            {
+
+                Response.Write("<form name='s1_2' id='s1_2' action='" + response + "' method='post'> ");
+
+                Response.Write("<script type='text/javascript' language='javascript' >document.getElementById('s1_2').submit();");
+
+                Response.Write("</script>");
+                Response.Write("<script language='javascript' >");
+                Response.Write("</script>");
+                Response.Write("</form> ");
+
+            }
+
+        }
+
+    }
+}

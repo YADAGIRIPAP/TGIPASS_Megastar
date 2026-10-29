@@ -1,0 +1,865 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UI/TSiPASS/CCMaster.master" AutoEventWireup="true" CodeFile="IncentivesCheckSlip.aspx.cs" Inherits="UI_TSiPASS_IncentivesAnnexure_IncentivesCheckSlip" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+
+    <script src="../../Resource/Scripts/js/validations.js" type="text/javascript"></script>
+    <link href="assets/css/basic.css" rel="stylesheet" />
+
+    <style type="text/css">
+        .overlay {
+            position: fixed;
+            z-index: 999;
+            height: 100%;
+            width: 100%;
+            top: 112px;
+            background-color: Gray;
+            filter: alpha(opacity=60);
+            opacity: 0.9;
+            -moz-opacity: 0.9;
+        }
+
+        .update {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            min-height: 100%;
+            min-width: 100%;
+            background-image: url("../../Images/ajax-loaderblack.gif");
+            /*background-image: url("Images/spinner_60.gif");*/
+            background-position: center center;
+            background-repeat: no-repeat;
+            /*background-color: #e4e4e6;*/
+            background-color: #535252;
+            z-index: 500 !important;
+            opacity: 0.6;
+            overflow: hidden;
+        }
+
+        .style5 {
+            color: #FF0000;
+        }
+    </style>
+    <script type="text/javascript" language="javascript">
+
+        function OpenPopup() {
+
+            window.open("Lookups/LookupBDC.aspx", "List", "scrollbars=yes,resizable=yes,width=1000,height=650;display = block;position=absolute");
+
+            return false;
+        }
+    </script>
+    <script type="text/javascript">
+        function showProgress() {
+            var updateProgress = $get("<%= UpdateProgress.ClientID %>");
+            updateProgress.style.display = "block";
+        }
+    </script>
+    <script type="text/javascript">
+        function inputOnlyNumbers(evt) {
+            var e = window.event || evt; // for trans-browser compatibility  
+            var charCode = e.which || e.keyCode;
+            if ((charCode > 45 && charCode < 58) || charCode == 8) {
+                return true;
+            }
+            return false;
+        }
+    </script>
+    <script type="text/javascript">
+        function alpha(e) {
+            var k;
+            document.all ? k = e.keyCode : k = e.which;
+            return ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57));
+        }
+    </script>
+    <script type="text/javascript">
+        function Names() {
+            var AsciiValue = event.keyCode
+            if ((AsciiValue >= 65 && AsciiValue <= 90) || (AsciiValue >= 97 && AsciiValue <= 122) || (AsciiValue == 46) || (AsciiValue == 32))
+                event.returnValue = true;
+            else {
+                event.returnValue = false;
+
+                alert("Enter Alphabets, '.' and Space Only");
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        function checkLength(el) {
+            if (el.value.length != 6) {
+                alert("Pin number length must be exactly 6 characters")
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        function checkLength1(el) {
+            if (el.value.length != 10) {
+                alert("Mobile number length must be exactly 10 characters")
+            }
+        }
+    </script>
+
+    <asp:UpdatePanel ID="upd1" runat="server">
+        <ContentTemplate>
+            <div align="left">
+                <ol class="breadcrumb">
+                    You are here
+        &nbsp;!&nbsp; &nbsp; &nbsp; 
+                            <li>
+                                <i class="fa fa-dashboard"></i><a href="Home.aspx"></a>
+                            </li>
+                    <li class="">
+                        <i class="fa fa-fw fa-edit"></i>
+                    </li>
+                </ol>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" style="background-color: #339966">
+                            <table class="nav-justified">
+                                <tr>
+                                    <td style="font-weight: bold;">Incentives Check Slip</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div align="left">
+                <div class="row" align="left">
+                    <div class="col-lg-11">
+                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">                            
+                            <ContentTemplate>
+                                <div class="panel-body" align="left">
+                                    <table style="width: 100%; border-width: 1px; border-color: #666; border-style: solid">
+                                        <tr>
+                                            <td style="padding: 5px; margin: 5px" valign="top">
+                                                <table cellpadding="4" cellspacing="5" style="width: 90%">
+                                                    <tr>
+                                                        <td style="padding: 5px; margin: 5px; text-align: center; font-weight: bold">1</td>
+                                                        <td colspan="8" style="font: bold; font-weight: bold">Documents to be enclosed</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 5px; margin: 5px; text-align: center;" valign="top">1.1
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;" valign="top">Certificate from the financing institution concerned showing term loan released and the value of assets acquired as on prior to filing of claim/within 6 months from the date of commencement of commercial production whichever is earlier together with other details and machinery statement as a statement of account in the form prescribed with attested copies of bills in case of institutionally financed Enterprises/industries.
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">:
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; width: 192px; text-align: left;" valign="top">
+                                                            <asp:DropDownList ID="ddlCSbillsofinstitutfinancedEnterpriseindustries" runat="server" class="form-control txtbox" Height="28px"
+                                                                MaxLength="40" TabIndex="1" ValidationGroup="group" Width="180px">
+                                                                <asp:ListItem Value="S">--Select--</asp:ListItem>
+                                                                <asp:ListItem Value="Y">Yes</asp:ListItem>
+                                                                <asp:ListItem Value="N">No</asp:ListItem>
+                                                                <asp:ListItem Value="I">NA</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </td>
+                                                        <%-- NumberOnly()--%>
+                                                        <td style="padding: 5px; margin: 5px; width: 10px;" valign="top">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ddlCSbillsofinstitutfinancedEnterpriseindustries"
+                                                                ErrorMessage="Please select ddlCSbillsofinstitutfinancedEnterpriseindustries" ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 5px; margin: 5px; text-align: center;" valign="middle"></td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;">List of Plant & Machinery & Equipment purchased and installed in the prescribed form with attested copies of bills and payment proof in respect of self financed Enterprises/industries.
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">:
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;">
+                                                            <asp:DropDownList ID="ddlCSbillandpymtproofrespectofselffinancedEnterprisesindustries" runat="server" class="form-control txtbox" Height="28px"
+                                                                MaxLength="40" TabIndex="1" ValidationGroup="group" Width="180px">
+                                                                <asp:ListItem Value="S">--Select--</asp:ListItem>
+                                                                <asp:ListItem Value="Y">Yes</asp:ListItem>
+                                                                <asp:ListItem Value="N">No</asp:ListItem>
+                                                                <asp:ListItem Value="I">NA</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlCSbillandpymtproofrespectofselffinancedEnterprisesindustries"
+                                                                ErrorMessage="Please enter Own capital" ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 5px; margin: 5px; text-align: center;" valign="middle">1.2
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;">Caste Certificates issued by M.R.Os concerned in case of SC/ST Entrepreneur.
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">:
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;">
+                                                            <asp:DropDownList ID="ddlCSCasteCertificatesSCST" runat="server" class="form-control txtbox" Height="28px" MaxLength="40" TabIndex="1" ValidationGroup="group" Width="180px">
+                                                                <asp:ListItem Value="S">--Select--</asp:ListItem>
+                                                                <asp:ListItem Value="Y">Yes</asp:ListItem>
+                                                                <asp:ListItem Value="N">No</asp:ListItem>
+                                                                <asp:ListItem Value="I">NA</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlCSCasteCertificatesSCST"
+                                                                ErrorMessage="Please enter Own capital" ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 5px; margin: 5px; text-align: center;" valign="middle">1.3
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;">Attested copy of Aadhar of the Entrepreneur.
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">:
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:DropDownList ID="ddlCSEntrepreneurAadhar" runat="server" class="form-control txtbox" Height="28px" MaxLength="40" TabIndex="1" ValidationGroup="group" Width="180px">
+                                                                <asp:ListItem Value="S">--Select--</asp:ListItem>
+                                                                <asp:ListItem Value="Y">Yes</asp:ListItem>
+                                                                <asp:ListItem Value="N">No</asp:ListItem>
+                                                                <asp:ListItem Value="I">NA</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator29" runat="server" ControlToValidate="ddlCSEntrepreneurAadhar"
+                                                                ErrorMessage="Please enter Borrowed from outside" ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 5px; margin: 5px; text-align: center;" valign="middle">1.4
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;">Attested copy of PAN Card of the Entrepreneur.
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">:
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:DropDownList ID="ddlCSEntrepreneurPANCard" runat="server" class="form-control txtbox" Height="28px" MaxLength="40" TabIndex="1" ValidationGroup="group" Width="180px">
+                                                                <asp:ListItem Value="S">--Select--</asp:ListItem>
+                                                                <asp:ListItem Value="Y">Yes</asp:ListItem>
+                                                                <asp:ListItem Value="N">No</asp:ListItem>
+                                                                <asp:ListItem Value="I">NA</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="ddlCSEntrepreneurPANCard"
+                                                                ErrorMessage="Please enter Advance Subsidy claimed" ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                        </td>
+                                                    </tr>                                                    
+                                                    <tr>
+                                                        <td style="padding: 5px; margin: 5px; text-align: center;" valign="top">1.5
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;">Certificate from the Chartered Accountant and % of holding of equity in the company by each partner/director.
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">:
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">
+                                                            <asp:DropDownList ID="ddlCSCertificateofCA" runat="server" class="form-control txtbox" Height="28px" MaxLength="40" TabIndex="1" ValidationGroup="group" Width="180px">
+                                                                <asp:ListItem Value="S">--Select--</asp:ListItem>
+                                                                <asp:ListItem Value="Y">Yes</asp:ListItem>
+                                                                <asp:ListItem Value="N">No</asp:ListItem>
+                                                                <asp:ListItem Value="I">NA</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlCSCertificateofCA"
+                                                                ErrorMessage="Please enter Advance Subsidy claimed" ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 5px; margin: 5px; text-align: center;" valign="top">1.6
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;">Regd. Partnership Deed/Articles of Association and Memorandum of Association in case of Pvt. Ltd and Limited companies along with incorporation certificate / Bye-laws in case of Indl. Cooperative along with Registration Certificate.
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">:
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:DropDownList ID="ddlCSRegdPartnershipDeedArticles" runat="server" class="form-control txtbox" Height="28px" MaxLength="40" TabIndex="1" ValidationGroup="group" Width="180px">
+                                                                <asp:ListItem Value="S">--Select--</asp:ListItem>
+                                                                <asp:ListItem Value="Y">Yes</asp:ListItem>
+                                                                <asp:ListItem Value="N">No</asp:ListItem>
+                                                                <asp:ListItem Value="I">NA</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="ddlCSRegdPartnershipDeedArticles"
+                                                                ErrorMessage="Please enter Advance Subsidy claimed" ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="8" style="padding: 5px; margin: 5px; text-align: center;"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 5px; margin: 5px" valign="top">
+                                                <table cellpadding="4" cellspacing="5" style="width: 90%">
+                                                    <tr>
+                                                        <td style="padding: 5px; margin: 5px; text-align: center; font-weight: bold">2</td>
+                                                        <td colspan="8" style="font: bold; font-weight: bold">Documents in original to be produced to the inspecting officer of DIC for verification</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 5px; margin: 5px; text-align: center;" valign="top">2.1
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;" valign="top">Approval of Director of Factories.
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">:
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; width: 192px; text-align: left;" valign="top">
+                                                            <asp:DropDownList ID="ddlCSApprovalDirectorFactories" runat="server" class="form-control txtbox" Height="28px"
+                                                                MaxLength="40" TabIndex="1" ValidationGroup="group" Width="180px">
+                                                                <asp:ListItem Value="S">--Select--</asp:ListItem>
+                                                                <asp:ListItem Value="Y">Yes</asp:ListItem>
+                                                                <asp:ListItem Value="N">No</asp:ListItem>
+                                                                <asp:ListItem Value="I">NA</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </td>
+                                                        <%-- NumberOnly()--%>
+                                                        <td style="padding: 5px; margin: 5px; width: 10px;" valign="top">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="ddlCSApprovalDirectorFactories"
+                                                                ErrorMessage="Please enter Total Equity from Promoters" ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                        </td>
+                                                    </tr>                                                    
+                                                    <tr>
+                                                        <td style="padding: 5px; margin: 5px; text-align: center;" valign="middle">2.2
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;">Boilers Certificate.
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">:
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;">
+                                                            <asp:DropDownList ID="ddlCSBoilersCertificate" runat="server" class="form-control txtbox" Height="28px" MaxLength="40" TabIndex="1" ValidationGroup="group" Width="180px">
+                                                                <asp:ListItem Value="S">--Select--</asp:ListItem>
+                                                                <asp:ListItem Value="Y">Yes</asp:ListItem>
+                                                                <asp:ListItem Value="N">No</asp:ListItem>
+                                                                <asp:ListItem Value="I">NA</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="ddlCSBoilersCertificate"
+                                                                ErrorMessage="Please enter Own capital" ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 5px; margin: 5px; text-align: center;" valign="middle">2.3
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;">Approval of Director of Town & Country Planning / UDA.
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">:
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:DropDownList ID="ddlCSApprovalDirectorTownCountryPlanningUDA" runat="server" class="form-control txtbox" Height="28px" MaxLength="40" TabIndex="1" ValidationGroup="group" Width="180px">
+                                                                <asp:ListItem Value="S">--Select--</asp:ListItem>
+                                                                <asp:ListItem Value="Y">Yes</asp:ListItem>
+                                                                <asp:ListItem Value="N">No</asp:ListItem>
+                                                                <asp:ListItem Value="I">NA</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="ddlCSApprovalDirectorTownCountryPlanningUDA"
+                                                                ErrorMessage="Please enter Borrowed from outside" ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 5px; margin: 5px; text-align: center;" valign="middle">2.4
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;">Regular building plans approval of Municipality or Gram Panchayat.
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">:
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:DropDownList ID="ddlCSRegularbuildingplansapprovalofMunicipalityGramPanchayat" runat="server" class="form-control txtbox" Height="28px" MaxLength="40" TabIndex="1" ValidationGroup="group" Width="180px">
+                                                                <asp:ListItem Value="S">--Select--</asp:ListItem>
+                                                                <asp:ListItem Value="Y">Yes</asp:ListItem>
+                                                                <asp:ListItem Value="N">No</asp:ListItem>
+                                                                <asp:ListItem Value="I">NA</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="ddlCSRegularbuildingplansapprovalofMunicipalityGramPanchayat"
+                                                                ErrorMessage="Please enter Advance Subsidy claimed" ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 5px; margin: 5px; text-align: center;" valign="middle">2.5
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;">Consent for Operation from TSPCB/Acknowledgement from the General Manager, DIC concerned.
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">:
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:DropDownList ID="ddlCSOperationTSPCBAcknowledgementGM" runat="server" class="form-control txtbox" Height="28px" MaxLength="40" TabIndex="1" ValidationGroup="group" Width="180px">
+                                                                <asp:ListItem Value="S">--Select--</asp:ListItem>
+                                                                <asp:ListItem Value="Y">Yes</asp:ListItem>
+                                                                <asp:ListItem Value="N">No</asp:ListItem>
+                                                                <asp:ListItem Value="I">NA</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ControlToValidate="ddlCSOperationTSPCBAcknowledgementGM"
+                                                                ErrorMessage="Please enter Advance Subsidy claimed" ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 5px; margin: 5px; text-align: center;" valign="top">2.6
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;">Power release Certificate from TSTRANSCO/DISCOM.
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">:
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">
+                                                            <asp:DropDownList ID="ddlCSPowerreleaseCertificatefrmTSTRANSCODISCOM" runat="server" class="form-control txtbox" Height="28px" MaxLength="40" TabIndex="1" ValidationGroup="group" Width="180px">
+                                                                <asp:ListItem Value="S">--Select--</asp:ListItem>
+                                                                <asp:ListItem Value="Y">Yes</asp:ListItem>
+                                                                <asp:ListItem Value="N">No</asp:ListItem>
+                                                                <asp:ListItem Value="I">NA</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ControlToValidate="ddlCSPowerreleaseCertificatefrmTSTRANSCODISCOM"
+                                                                ErrorMessage="Please enter Advance Subsidy claimed" ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 5px; margin: 5px; text-align: center;" valign="top">2.7
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;">Environmental clearance.
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">:
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">
+                                                            <asp:DropDownList ID="ddlCSEnvironmentalclearance" runat="server" class="form-control txtbox" Height="28px" MaxLength="40" TabIndex="1" ValidationGroup="group" Width="180px">
+                                                                <asp:ListItem Value="S">--Select--</asp:ListItem>
+                                                                <asp:ListItem Value="Y">Yes</asp:ListItem>
+                                                                <asp:ListItem Value="N">No</asp:ListItem>
+                                                                <asp:ListItem Value="I">NA</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="ddlCSEnvironmentalclearance"
+                                                                ErrorMessage="Please enter Advance Subsidy claimed" ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 5px; margin: 5px; text-align: center;" valign="top">2.8
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;">Other statutory approvals (specify).
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">:
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">
+                                                            <asp:DropDownList ID="ddlCSOtherstatutoryapprovalsspecif" runat="server" class="form-control txtbox" Height="28px" MaxLength="40" TabIndex="1" ValidationGroup="group" Width="180px">
+                                                                <asp:ListItem Value="S">--Select--</asp:ListItem>
+                                                                <asp:ListItem Value="Y">Yes</asp:ListItem>
+                                                                <asp:ListItem Value="N">No</asp:ListItem>
+                                                                <asp:ListItem Value="I">NA</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ControlToValidate="ddlCSOtherstatutoryapprovalsspecif"
+                                                                ErrorMessage="Please enter Advance Subsidy claimed" ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 5px; margin: 5px; text-align: center;" valign="top">2.9
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;">EM Part – I full set/IEM/IL.
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">:
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">
+                                                            <asp:DropDownList ID="ddlCSEMPartIfullsetIEMIL" runat="server" class="form-control txtbox" Height="28px" MaxLength="40" TabIndex="1" ValidationGroup="group" Width="180px">
+                                                                <asp:ListItem Value="S">--Select--</asp:ListItem>
+                                                                <asp:ListItem Value="Y">Yes</asp:ListItem>
+                                                                <asp:ListItem Value="N">No</asp:ListItem>
+                                                                <asp:ListItem Value="I">NA</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ControlToValidate="ddlCSEMPartIfullsetIEMIL"
+                                                                ErrorMessage="Please enter Advance Subsidy claimed" ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 5px; margin: 5px; text-align: center;" valign="top">2.10
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;">EM Part – II full set/IEM/IL.
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">:
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">
+                                                            <asp:DropDownList ID="ddlCSEMPartIIfullsetIEMIL" runat="server" class="form-control txtbox" Height="28px" MaxLength="40" TabIndex="1" ValidationGroup="group" Width="180px">
+                                                                <asp:ListItem Value="S">--Select--</asp:ListItem>
+                                                                <asp:ListItem Value="Y">Yes</asp:ListItem>
+                                                                <asp:ListItem Value="N">No</asp:ListItem>
+                                                                <asp:ListItem Value="I">NA</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ControlToValidate="ddlCSEMPartIIfullsetIEMIL"
+                                                                ErrorMessage="Please enter Advance Subsidy claimed" ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 5px; margin: 5px; text-align: center;" valign="top">2.11
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;">Udyog Aadhar.
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">:
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">
+                                                            <asp:DropDownList ID="ddlCSUdyogAadhar" runat="server" class="form-control txtbox" Height="28px" MaxLength="40" TabIndex="1" ValidationGroup="group" Width="180px">
+                                                                <asp:ListItem Value="S">--Select--</asp:ListItem>
+                                                                <asp:ListItem Value="Y">Yes</asp:ListItem>
+                                                                <asp:ListItem Value="N">No</asp:ListItem>
+                                                                <asp:ListItem Value="I">NA</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator17" runat="server" ControlToValidate="ddlCSUdyogAadhar"
+                                                                ErrorMessage="Please enter Advance Subsidy claimed" ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 5px; margin: 5px; text-align: center;" valign="top">2.12
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;">Project Report.
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">:
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">
+                                                            <asp:DropDownList ID="ddlCSProjectReport" runat="server" class="form-control txtbox" Height="28px" MaxLength="40" TabIndex="1" ValidationGroup="group" Width="180px">
+                                                                <asp:ListItem Value="S">--Select--</asp:ListItem>
+                                                                <asp:ListItem Value="Y">Yes</asp:ListItem>
+                                                                <asp:ListItem Value="N">No</asp:ListItem>
+                                                                <asp:ListItem Value="I">NA</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator18" runat="server" ControlToValidate="ddlCSProjectReport"
+                                                                ErrorMessage="Please enter Advance Subsidy claimed" ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 5px; margin: 5px; text-align: center;" valign="top">2.13
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;">Term loan sanction letters.
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">:
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">
+                                                            <asp:DropDownList ID="ddlCSTermloansanctionletters" runat="server" class="form-control txtbox" Height="28px" MaxLength="40" TabIndex="1" ValidationGroup="group" Width="180px">
+                                                                <asp:ListItem Value="S">--Select--</asp:ListItem>
+                                                                <asp:ListItem Value="Y">Yes</asp:ListItem>
+                                                                <asp:ListItem Value="N">No</asp:ListItem>
+                                                                <asp:ListItem Value="I">NA</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator19" runat="server" ControlToValidate="ddlCSTermloansanctionletters"
+                                                                ErrorMessage="Please enter Advance Subsidy claimed" ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 5px; margin: 5px; text-align: center;" valign="top">2.14
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;">Board Resolution authorizing to sign and file claim etc., in case of Pvt./Ltd., Companies, Cooperatives and similar authorization in respect of partnership firms.
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">:
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">
+                                                            <asp:DropDownList ID="ddlCSBoardResolutionauthorizing" runat="server" class="form-control txtbox" Height="28px" MaxLength="40" TabIndex="1" ValidationGroup="group" Width="180px">
+                                                                <asp:ListItem Value="S">--Select--</asp:ListItem>
+                                                                <asp:ListItem Value="Y">Yes</asp:ListItem>
+                                                                <asp:ListItem Value="N">No</asp:ListItem>
+                                                                <asp:ListItem Value="I">NA</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator20" runat="server" ControlToValidate="ddlCSBoardResolutionauthorizing"
+                                                                ErrorMessage="Please enter Advance Subsidy claimed" ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 5px; margin: 5px; text-align: center;" valign="top">2.15
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;">Registered land Sale deed/Premises Lease deed.
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">:
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">
+                                                            <asp:DropDownList ID="ddlCSRegisteredlandSaledeedPremisesLeasedeed" runat="server" class="form-control txtbox" Height="28px" MaxLength="40" TabIndex="1" ValidationGroup="group" Width="180px">
+                                                                <asp:ListItem Value="S">--Select--</asp:ListItem>
+                                                                <asp:ListItem Value="Y">Yes</asp:ListItem>
+                                                                <asp:ListItem Value="N">No</asp:ListItem>
+                                                                <asp:ListItem Value="I">NA</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator21" runat="server" ControlToValidate="ddlCSRegisteredlandSaledeedPremisesLeasedeed"
+                                                                ErrorMessage="Please enter Advance Subsidy claimed" ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 5px; margin: 5px; text-align: center;" valign="top">2.16
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;">C.A. and C.E. Certificate regarding 2nd hand plant & machinery.
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">:
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">
+                                                            <asp:DropDownList ID="ddlCSCACECertificateregarding2handplantmachinery" runat="server" class="form-control txtbox" Height="28px" MaxLength="40" TabIndex="1" ValidationGroup="group" Width="180px">
+                                                                <asp:ListItem Value="S">--Select--</asp:ListItem>
+                                                                <asp:ListItem Value="Y">Yes</asp:ListItem>
+                                                                <asp:ListItem Value="N">No</asp:ListItem>
+                                                                <asp:ListItem Value="I">NA</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator22" runat="server" ControlToValidate="ddlCSCACECertificateregarding2handplantmachinery"
+                                                                ErrorMessage="Please enter Advance Subsidy claimed" ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 5px; margin: 5px; text-align: center;" valign="top">2.17
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;">C.E. Certificate for Self fabricated machinery.
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">:
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">
+                                                            <asp:DropDownList ID="ddlCSCECertificateSelffabricatedmachinery" runat="server" class="form-control txtbox" Height="28px" MaxLength="40" TabIndex="1" ValidationGroup="group" Width="180px">
+                                                                <asp:ListItem Value="S">--Select--</asp:ListItem>
+                                                                <asp:ListItem Value="Y">Yes</asp:ListItem>
+                                                                <asp:ListItem Value="N">No</asp:ListItem>
+                                                                <asp:ListItem Value="I">NA</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator23" runat="server" ControlToValidate="ddlCSCECertificateSelffabricatedmachinery"
+                                                                ErrorMessage="Please enter Advance Subsidy claimed" ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 5px; margin: 5px; text-align: center;" valign="top">2.18
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;">BIS Certificate.
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">:
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">
+                                                            <asp:DropDownList ID="ddlCSBISCertificate" runat="server" class="form-control txtbox" Height="28px" MaxLength="40" TabIndex="1" ValidationGroup="group" Width="180px">
+                                                                <asp:ListItem Value="S">--Select--</asp:ListItem>
+                                                                <asp:ListItem Value="Y">Yes</asp:ListItem>
+                                                                <asp:ListItem Value="N">No</asp:ListItem>
+                                                                <asp:ListItem Value="I">NA</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator24" runat="server" ControlToValidate="ddlCSBISCertificate"
+                                                                ErrorMessage="Please enter Advance Subsidy claimed" ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 5px; margin: 5px; text-align: center;" valign="top">2.19
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;">Drug License.
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">:
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">
+                                                            <asp:DropDownList ID="ddlCSDrugLicense" runat="server" class="form-control txtbox" Height="28px" MaxLength="40" TabIndex="1" ValidationGroup="group" Width="180px">
+                                                                <asp:ListItem Value="S">--Select--</asp:ListItem>
+                                                                <asp:ListItem Value="Y">Yes</asp:ListItem>
+                                                                <asp:ListItem Value="N">No</asp:ListItem>
+                                                                <asp:ListItem Value="I">NA</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator25" runat="server" ControlToValidate="ddlCSDrugLicense"
+                                                                ErrorMessage="Please enter Advance Subsidy claimed" ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 5px; margin: 5px; text-align: center;" valign="top">2.20
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;">Explosive License.
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">:
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">
+                                                            <asp:DropDownList ID="ddlCSExplosiveLicense" runat="server" class="form-control txtbox" Height="28px" MaxLength="40" TabIndex="1" ValidationGroup="group" Width="180px">
+                                                                <asp:ListItem Value="S">--Select--</asp:ListItem>
+                                                                <asp:ListItem Value="Y">Yes</asp:ListItem>
+                                                                <asp:ListItem Value="N">No</asp:ListItem>
+                                                                <asp:ListItem Value="I">NA</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator26" runat="server" ControlToValidate="ddlCSExplosiveLicense"
+                                                                ErrorMessage="Please enter Advance Subsidy claimed" ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 5px; margin: 5px; text-align: center;" valign="top">2.21
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;">VAT/CST/SGST Certificate.
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">:
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">
+                                                            <asp:DropDownList ID="ddlCSVATCSTSGSTCertificate" runat="server" class="form-control txtbox" Height="28px" MaxLength="40" TabIndex="1" ValidationGroup="group" Width="180px">
+                                                                <asp:ListItem Value="S">--Select--</asp:ListItem>
+                                                                <asp:ListItem Value="Y">Yes</asp:ListItem>
+                                                                <asp:ListItem Value="N">No</asp:ListItem>
+                                                                <asp:ListItem Value="I">NA</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator27" runat="server" ControlToValidate="ddlCSVATCSTSGSTCertificate"
+                                                                ErrorMessage="Please enter Advance Subsidy claimed" ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 5px; margin: 5px; text-align: center;" valign="top">2.22
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;">Form – A.
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">:
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">
+                                                            <asp:DropDownList ID="ddlCSFormA" runat="server" class="form-control txtbox" Height="28px" MaxLength="40" TabIndex="1" ValidationGroup="group" Width="180px">
+                                                                <asp:ListItem Value="S">--Select--</asp:ListItem>
+                                                                <asp:ListItem Value="Y">Yes</asp:ListItem>
+                                                                <asp:ListItem Value="N">No</asp:ListItem>
+                                                                <asp:ListItem Value="I">NA</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator28" runat="server" ControlToValidate="ddlCSFormA"
+                                                                ErrorMessage="Please enter Advance Subsidy claimed" ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding: 5px; margin: 5px; text-align: center;" valign="top">2.23
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px; text-align: left;">Form – B.
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">:
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px" valign="top">
+                                                            <asp:DropDownList ID="ddlCSFormB" runat="server" class="form-control txtbox" Height="28px" MaxLength="40" TabIndex="1" ValidationGroup="group" Width="180px">
+                                                                <asp:ListItem Value="S">--Select--</asp:ListItem>
+                                                                <asp:ListItem Value="Y">Yes</asp:ListItem>
+                                                                <asp:ListItem Value="N">No</asp:ListItem>
+                                                                <asp:ListItem Value="I">NA</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </td>
+                                                        <td style="padding: 5px; margin: 5px">
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator30" runat="server" ControlToValidate="ddlCSFormB"
+                                                                ErrorMessage="Please enter Advance Subsidy claimed" ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="8" style="padding: 5px; margin: 5px; text-align: center;"></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" colspan="3" style="padding: 5px; margin: 5px; text-align: center;">
+                                                <asp:Button ID="BtnSave" runat="server" CssClass="btn btn-primary" Height="32px"
+                                                    TabIndex="10" Text="Save" Width="90px" ValidationGroup="group" OnClick="BtnSave_Click" />
+                                                &nbsp;&nbsp;
+                                                    <asp:Button ID="BtnPrevious" runat="server" CssClass="btn btn-danger" Height="32px"
+                                                        TabIndex="10" Text="Previous" Width="90px" OnClick="BtnPrevious_Click" Visible="False" />
+                                                &nbsp;
+                                                    &nbsp;&nbsp;<asp:Button ID="BtnNext" runat="server" CssClass="btn btn-danger" Height="32px"
+                                                        TabIndex="10" Text="Next" Width="90px" ValidationGroup="group" OnClick="BtnNext_Click" />
+
+                                                &nbsp; &nbsp;<asp:Button ID="BtnClear" runat="server" CausesValidation="False" CssClass="btn btn-warning"
+                                                    Height="32px" TabIndex="10" Text="ClearAll" ToolTip="To Clear  the Screen"
+                                                    Width="90px" OnClick="BtnClear_Click" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" colspan="3" style="padding: 5px; margin: 5px">
+                                                <div id="success" runat="server" visible="false" class="alert alert-success">
+                                                    <a href="AddQualification.aspx" class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong>Success!</strong><asp:Label ID="lblmsg" runat="server"></asp:Label>
+                                                </div>
+                                                <div id="Failure" runat="server" visible="false" class="alert alert-danger">
+                                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong>Warning!</strong>
+                                                    <asp:Label ID="lblmsg0" runat="server"></asp:Label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                        <%--  </div>--%>
+                    </div>
+                </div>
+            </div>
+            <asp:UpdateProgress ID="UpdateProgress" runat="server" AssociatedUpdatePanelID="upd1">
+                <ProgressTemplate>
+                    <div class="update">
+                    </div>
+                </ProgressTemplate>
+            </asp:UpdateProgress>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+        </ContentTemplate>
+    </asp:UpdatePanel>
+
+    <link href="../../css/ui-lightness/jquery-ui-1.8.19.custom.css" rel="stylesheet" />
+    <script src="../../js/jquery-1.7.2.min.js"></script>
+    <script src="../../js/jquery-ui-1.8.19.custom.min.js"></script>
+
+    <link href="<%= ResolveUrl("css/ui-lightness/jquery-ui-1.8.19.custom.css") %>" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="<%= ResolveUrl("js/jquery-1.7.2.min.js") %>"></script>
+    <script src="<%= ResolveUrl("js/jquery-ui-1.8.19.custom.min.js") %>" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        function pageLoad() {
+            var date = new Date();
+            var currentMonth = date.getMonth();
+            var currentDate = date.getDate();
+            var currentYear = date.getFullYear();
+
+            $("input[id$='txtRegDate']").datepicker(
+               {
+                   dateFormat: "dd/mm/yy",
+                   //  maxDate: new Date(currentYear, currentMonth, currentDate)
+               }); // Will run at every postback/AsyncPostback
+        }
+        $(function () {
+            var date = new Date();
+            var currentMonth = date.getMonth();
+            var currentDate = date.getDate();
+            var currentYear = date.getFullYear();
+            $("input[id$='txtRegDate']").datepicker(
+                {
+                    //dateFormat: "dd/mm/yy",
+                    dateFormat: "dd/mm/yy",
+                    //maxDate: new Date(currentYear, currentMonth, currentDate)
+                });
+        });
+    </script>
+    <style type="text/css">
+        .ui-datepicker {
+            font-size: 8pt !important;
+            height: 250px;
+            padding: 0.2em 0.2em 0;
+            width: 200px;
+        }
+    </style>
+</asp:Content>
+

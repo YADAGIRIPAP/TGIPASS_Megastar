@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tslabourws.cgg.gov.in/" targetNamespace="http://tslabourws.cgg.gov.in/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="jiInspectionsLogicBegin" type="tns:jiInspectionsLogicBegin" />
+  <xs:element name="jiInspectionsLogicBeginResponse" type="tns:jiInspectionsLogicBeginResponse" />
+  <xs:complexType name="jiInspectionsLogicBegin">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="jiInspectionsLogicBeginResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:actsResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="actsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="labourInspectionDetails" nillable="true" type="tns:labourInspectionDetails" />
+      <xs:element minOccurs="0" name="status" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="labourInspectionDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="act_name" type="xs:string" />
+      <xs:element minOccurs="0" name="address" type="xs:string" />
+      <xs:element minOccurs="0" name="district_id" type="xs:string" />
+      <xs:element minOccurs="0" name="factory_inspecting_officer" type="xs:string" />
+      <xs:element minOccurs="0" name="factory_inspecting_officer_mobile" type="xs:string" />
+      <xs:element minOccurs="0" name="inspection_alloted_time" type="xs:string" />
+      <xs:element minOccurs="0" name="inspection_completed" type="xs:string" />
+      <xs:element minOccurs="0" name="inspection_officer_alloted" type="xs:string" />
+      <xs:element minOccurs="0" name="name_of_establishment" type="xs:string" />
+      <xs:element minOccurs="0" name="no_of_workers_employees" type="xs:string" />
+      <xs:element minOccurs="0" name="registration_no" type="xs:string" />
+      <xs:element minOccurs="0" name="risk_level" type="xs:string" />
+      <xs:element minOccurs="0" name="slno" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

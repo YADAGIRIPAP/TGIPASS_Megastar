@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="XMLREQUEST1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="psRefNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="psSecretKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="XMLREQUEST1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="XMLREQUEST1Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="XMLREQUEST1SoapIn">
+    <wsdl:part name="parameters" element="tns:XMLREQUEST1" />
+  </wsdl:message>
+  <wsdl:message name="XMLREQUEST1SoapOut">
+    <wsdl:part name="parameters" element="tns:XMLREQUEST1Response" />
+  </wsdl:message>
+  <wsdl:message name="XMLREQUEST1HttpGetIn">
+    <wsdl:part name="psRefNo" type="s:string" />
+    <wsdl:part name="psSecretKey" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="XMLREQUEST1HttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="XMLREQUEST1HttpPostIn">
+    <wsdl:part name="psRefNo" type="s:string" />
+    <wsdl:part name="psSecretKey" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="XMLREQUEST1HttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="TGiPASSdrawingio1Soap">
+    <wsdl:operation name="XMLREQUEST1">
+      <wsdl:input message="tns:XMLREQUEST1SoapIn" />
+      <wsdl:output message="tns:XMLREQUEST1SoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="TGiPASSdrawingio1HttpGet">
+    <wsdl:operation name="XMLREQUEST1">
+      <wsdl:input message="tns:XMLREQUEST1HttpGetIn" />
+      <wsdl:output message="tns:XMLREQUEST1HttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="TGiPASSdrawingio1HttpPost">
+    <wsdl:operation name="XMLREQUEST1">
+      <wsdl:input message="tns:XMLREQUEST1HttpPostIn" />
+      <wsdl:output message="tns:XMLREQUEST1HttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TGiPASSdrawingio1Soap" type="tns:TGiPASSdrawingio1Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="XMLREQUEST1">
+      <soap:operation soapAction="http://tempuri.org/XMLREQUEST1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TGiPASSdrawingio1Soap12" type="tns:TGiPASSdrawingio1Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="XMLREQUEST1">
+      <soap12:operation soapAction="http://tempuri.org/XMLREQUEST1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TGiPASSdrawingio1HttpGet" type="tns:TGiPASSdrawingio1HttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="XMLREQUEST1">
+      <http:operation location="/XMLREQUEST1" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TGiPASSdrawingio1HttpPost" type="tns:TGiPASSdrawingio1HttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="XMLREQUEST1">
+      <http:operation location="/XMLREQUEST1" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TGiPASSdrawingio1">
+    <wsdl:port name="TGiPASSdrawingio1Soap" binding="tns:TGiPASSdrawingio1Soap">
+      <soap:address location="https://dcrportal.telangana.gov.in/ws/TGiPASSdrawingio.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TGiPASSdrawingio1Soap12" binding="tns:TGiPASSdrawingio1Soap12">
+      <soap12:address location="https://dcrportal.telangana.gov.in/ws/TGiPASSdrawingio.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TGiPASSdrawingio1HttpGet" binding="tns:TGiPASSdrawingio1HttpGet">
+      <http:address location="https://dcrportal.telangana.gov.in/ws/TGiPASSdrawingio.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TGiPASSdrawingio1HttpPost" binding="tns:TGiPASSdrawingio1HttpPost">
+      <http:address location="https://dcrportal.telangana.gov.in/ws/TGiPASSdrawingio.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

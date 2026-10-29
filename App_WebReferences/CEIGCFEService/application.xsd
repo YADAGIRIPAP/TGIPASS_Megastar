@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tsceigws.cgg.gov.in/" targetNamespace="http://tsceigws.cgg.gov.in/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="addNewVillage" type="tns:addNewVillage" />
+  <xs:element name="addNewVillageResponse" type="tns:addNewVillageResponse" />
+  <xs:element name="insertIntoDesignApplication" type="tns:insertIntoDesignApplication" />
+  <xs:element name="insertIntoDesignApplicationResponse" type="tns:insertIntoDesignApplicationResponse" />
+  <xs:element name="insertIntoInstallationApplication" type="tns:insertIntoInstallationApplication" />
+  <xs:element name="insertIntoInstallationApplicationResponse" type="tns:insertIntoInstallationApplicationResponse" />
+  <xs:element name="installationCheck" type="tns:installationCheck" />
+  <xs:element name="installationCheckResponse" type="tns:installationCheckResponse" />
+  <xs:element name="updateDesignAddlPayment" type="tns:updateDesignAddlPayment" />
+  <xs:element name="updateDesignAddlPaymentResponse" type="tns:updateDesignAddlPaymentResponse" />
+  <xs:element name="updateDesignAppeal" type="tns:updateDesignAppeal" />
+  <xs:element name="updateDesignAppealResponse" type="tns:updateDesignAppealResponse" />
+  <xs:element name="updateDesignQueryReply" type="tns:updateDesignQueryReply" />
+  <xs:element name="updateDesignQueryReplyResponse" type="tns:updateDesignQueryReplyResponse" />
+  <xs:element name="updateInstallationCompliance" type="tns:updateInstallationCompliance" />
+  <xs:element name="updateInstallationComplianceResponse" type="tns:updateInstallationComplianceResponse" />
+  <xs:element name="updateInstallationPayment" type="tns:updateInstallationPayment" />
+  <xs:element name="updateInstallationPaymentResponse" type="tns:updateInstallationPaymentResponse" />
+  <xs:element name="updateInstallationQueryReply" type="tns:updateInstallationQueryReply" />
+  <xs:element name="updateInstallationQueryReplyResponse" type="tns:updateInstallationQueryReplyResponse" />
+  <xs:complexType name="updateDesignQueryReply">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:queryReply" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="queryReply">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="entrepreneurID" type="xs:string" />
+      <xs:element minOccurs="0" name="questionaireID" type="xs:string" />
+      <xs:element minOccurs="0" name="reply_description" type="xs:string" />
+      <xs:element minOccurs="0" name="reply_doc_path" type="xs:string" />
+      <xs:element minOccurs="0" name="UID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateDesignQueryReplyResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateDesignAppeal">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:designAppeal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="designAppeal">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="appeal_document_path" type="xs:string" />
+      <xs:element minOccurs="0" name="appeal_remarks" type="xs:string" />
+      <xs:element minOccurs="0" name="entrepreneurID" type="xs:string" />
+      <xs:element minOccurs="0" name="questionaireID" type="xs:string" />
+      <xs:element minOccurs="0" name="UID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateDesignAppealResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateDesignAddlPayment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:payment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="payment">
+    <xs:sequence>
+      <xs:element name="amount" type="xs:double" />
+      <xs:element minOccurs="0" name="bank" type="xs:string" />
+      <xs:element minOccurs="0" name="entrepreneurID" type="xs:string" />
+      <xs:element minOccurs="0" name="payment_date" type="xs:string" />
+      <xs:element minOccurs="0" name="questionaireID" type="xs:string" />
+      <xs:element minOccurs="0" name="reply_document" type="xs:string" />
+      <xs:element minOccurs="0" name="reply_remarks" type="xs:string" />
+      <xs:element minOccurs="0" name="tx_id" type="xs:string" />
+      <xs:element minOccurs="0" name="tx_ref" type="xs:string" />
+      <xs:element minOccurs="0" name="UID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateDesignAddlPaymentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertIntoInstallationApplication">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:installationApplication" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="installationApplication">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="abSwitchList" nillable="true" type="tns:inspectionAbSwitchList" />
+      <xs:element name="amount" type="xs:double" />
+      <xs:element minOccurs="0" name="bank" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="circuitBreakerList" nillable="true" type="tns:inspectionCircuitBreakerList" />
+      <xs:element minOccurs="0" name="entrepreneurID" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="equipmentList" nillable="true" type="tns:inspectionLoadPartList" />
+      <xs:element minOccurs="0" name="fileNumber" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="generatorsList" nillable="true" type="tns:inspectionGeneratorsList" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="lightningArrestorList" nillable="true" type="tns:inspectionLightningArrestorList" />
+      <xs:element minOccurs="0" name="load_certificate" type="xs:string" />
+      <xs:element minOccurs="0" name="payment_date" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="precommissionList" nillable="true" type="tns:inspectionPrecommissionList" />
+      <xs:element minOccurs="0" name="questionaireID" type="xs:string" />
+      <xs:element minOccurs="0" name="transaction_id" type="xs:string" />
+      <xs:element minOccurs="0" name="transaction_ref" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="transformerCertList" nillable="true" type="tns:inspectionTransformerCertList" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="transmissionLinesList" nillable="true" type="tns:inspectionTransmissionLinesList" />
+      <xs:element minOccurs="0" name="UID" type="xs:string" />
+      <xs:element minOccurs="0" name="work_comm_repi_path" type="xs:string" />
+      <xs:element minOccurs="0" name="work_comm_repii_path" type="xs:string" />
+      <xs:element minOccurs="0" name="work_comp_rep_path" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="inspectionAbSwitchList">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="capacity" type="xs:string" />
+      <xs:element minOccurs="0" name="location" type="xs:string" />
+      <xs:element minOccurs="0" name="switch_cert" type="xs:string" />
+      <xs:element minOccurs="0" name="switch_make" type="xs:string" />
+      <xs:element minOccurs="0" name="switch_slno" type="xs:string" />
+      <xs:element minOccurs="0" name="voltage" type="xs:string" />
+      <xs:element minOccurs="0" name="with_or_without" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="inspectionCircuitBreakerList">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="capacity" type="xs:string" />
+      <xs:element minOccurs="0" name="cb_serial_no" type="xs:string" />
+      <xs:element minOccurs="0" name="certificate_path" type="xs:string" />
+      <xs:element minOccurs="0" name="isc_ka" type="xs:string" />
+      <xs:element minOccurs="0" name="location_name" type="xs:string" />
+      <xs:element minOccurs="0" name="make" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="inspectionLoadPartList">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="capacity_hp" type="xs:string" />
+      <xs:element minOccurs="0" name="capacity_kw" type="xs:string" />
+      <xs:element minOccurs="0" name="certificate_path" type="xs:string" />
+      <xs:element minOccurs="0" name="equipment_name" type="xs:string" />
+      <xs:element minOccurs="0" name="make" type="xs:string" />
+      <xs:element minOccurs="0" name="serial_no" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="inspectionGeneratorsList">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="fuel_source" type="xs:string" />
+      <xs:element minOccurs="0" name="fuel_type" type="xs:string" />
+      <xs:element minOccurs="0" name="generator_capacity" type="xs:string" />
+      <xs:element minOccurs="0" name="generator_cert" type="xs:string" />
+      <xs:element minOccurs="0" name="generator_location" type="xs:string" />
+      <xs:element minOccurs="0" name="generator_make" type="xs:string" />
+      <xs:element minOccurs="0" name="generator_slno" type="xs:string" />
+      <xs:element minOccurs="0" name="heat_rate" type="xs:string" />
+      <xs:element minOccurs="0" name="mercury" type="xs:string" />
+      <xs:element minOccurs="0" name="sox_no_emission" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="inspectionLightningArrestorList">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arrestor_capacity" type="xs:string" />
+      <xs:element minOccurs="0" name="arrestor_cert" type="xs:string" />
+      <xs:element minOccurs="0" name="arrestor_location" type="xs:string" />
+      <xs:element minOccurs="0" name="arrestor_make" type="xs:string" />
+      <xs:element minOccurs="0" name="arrestor_slno" type="xs:string" />
+      <xs:element minOccurs="0" name="arrestor_voltage" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="inspectionPrecommissionList">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="equipment" type="xs:string" />
+      <xs:element minOccurs="0" name="equipment_desc" type="xs:string" />
+      <xs:element minOccurs="0" name="generator_cert" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="inspectionTransformerCertList">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="transformer_capacity" type="xs:string" />
+      <xs:element minOccurs="0" name="transformer_cert_path" type="xs:string" />
+      <xs:element minOccurs="0" name="transformer_make" type="xs:string" />
+      <xs:element minOccurs="0" name="transformer_name" type="xs:string" />
+      <xs:element minOccurs="0" name="transformer_oil_path" type="xs:string" />
+      <xs:element minOccurs="0" name="transformer_slno" type="xs:string" />
+      <xs:element name="transformer_type_id" type="xs:double" />
+      <xs:element minOccurs="0" name="transformer_voltage" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="inspectionTransmissionLinesList">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="transmission_cert" type="xs:string" />
+      <xs:element minOccurs="0" name="transmission_desc" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertIntoInstallationApplicationResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertIntoDesignApplication">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:designApplication" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="designApplication">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="aadhar_number" type="xs:string" />
+      <xs:element name="amount" type="xs:double" />
+      <xs:element minOccurs="0" name="atc" type="xs:string" />
+      <xs:element minOccurs="0" name="bank" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="checkListUploads" nillable="true" type="tns:checkListUploads" />
+      <xs:element minOccurs="0" name="cli_already_installed" type="xs:string" />
+      <xs:element minOccurs="0" name="cli_proposed" type="xs:string" />
+      <xs:element minOccurs="0" name="cmd_already_installed" type="xs:string" />
+      <xs:element minOccurs="0" name="cmd_proposed" type="xs:string" />
+      <xs:element minOccurs="0" name="customer_remarks" type="xs:string" />
+      <xs:element minOccurs="0" name="district_id" type="xs:string" />
+      <xs:element minOccurs="0" name="email_id" type="xs:string" />
+      <xs:element minOccurs="0" name="entrepreneurID" type="xs:string" />
+      <xs:element minOccurs="0" name="file_number" type="xs:string" />
+      <xs:element minOccurs="0" name="first_name" type="xs:string" />
+      <xs:element minOccurs="0" name="hno" type="xs:string" />
+      <xs:element minOccurs="0" name="industry_district_id" type="xs:string" />
+      <xs:element minOccurs="0" name="industry_hno" type="xs:string" />
+      <xs:element minOccurs="0" name="industry_mandal_id" type="xs:string" />
+      <xs:element minOccurs="0" name="industry_pincode" type="xs:string" />
+      <xs:element minOccurs="0" name="industry_plot_no" type="xs:string" />
+      <xs:element minOccurs="0" name="industry_street_name" type="xs:string" />
+      <xs:element minOccurs="0" name="industry_sy_no" type="xs:string" />
+      <xs:element minOccurs="0" name="industry_village_id" type="xs:string" />
+      <xs:element minOccurs="0" name="last_name" type="xs:string" />
+      <xs:element minOccurs="0" name="loction_district_id" type="xs:string" />
+      <xs:element minOccurs="0" name="mandal_id" type="xs:string" />
+      <xs:element minOccurs="0" name="mobile_no" type="xs:string" />
+      <xs:element minOccurs="0" name="name_of_industry" type="xs:string" />
+      <xs:element minOccurs="0" name="name_of_promoter" type="xs:string" />
+      <xs:element minOccurs="0" name="pan_number" type="xs:string" />
+      <xs:element minOccurs="0" name="password" type="xs:string" />
+      <xs:element minOccurs="0" name="payment_date" type="xs:string" />
+      <xs:element minOccurs="0" name="pincode" type="xs:string" />
+      <xs:element minOccurs="0" name="plant_slno" type="xs:string" />
+      <xs:element minOccurs="0" name="plot_no" type="xs:string" />
+      <xs:element minOccurs="0" name="proposal_for" type="xs:string" />
+      <xs:element minOccurs="0" name="questionaireID" type="xs:string" />
+      <xs:element minOccurs="0" name="regulation_slno" type="xs:string" />
+      <xs:element minOccurs="0" name="so_do_wo" type="xs:string" />
+      <xs:element minOccurs="0" name="street_name" type="xs:string" />
+      <xs:element minOccurs="0" name="sy_no" type="xs:string" />
+      <xs:element minOccurs="0" name="transaction_id" type="xs:string" />
+      <xs:element minOccurs="0" name="transaction_ref" type="xs:string" />
+      <xs:element minOccurs="0" name="type_of_industry" type="xs:string" />
+      <xs:element minOccurs="0" name="type_of_industry_others" type="xs:string" />
+      <xs:element minOccurs="0" name="UID" type="xs:string" />
+      <xs:element minOccurs="0" name="user_name" type="xs:string" />
+      <xs:element minOccurs="0" name="village_id" type="xs:string" />
+      <xs:element minOccurs="0" name="voltage_slno" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="checkListUploads">
+    <xs:sequence>
+      <xs:element name="documentId" type="xs:int" />
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertIntoDesignApplicationResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateInstallationQueryReply">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:queryReply" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateInstallationQueryReplyResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="addNewVillage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:villageMaster" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="villageMaster">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="district_id" type="xs:string" />
+      <xs:element minOccurs="0" name="mandal_id" type="xs:string" />
+      <xs:element minOccurs="0" name="village_id" type="xs:string" />
+      <xs:element minOccurs="0" name="village_name" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="addNewVillageResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="installationCheck">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:checkInstallation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="checkInstallation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="fileNumber" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="installationCheckResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:validInstallationData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="validInstallationData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="atc" type="xs:string" />
+      <xs:element minOccurs="0" name="cliAlreadyInstalled" type="xs:string" />
+      <xs:element minOccurs="0" name="cliProposed" type="xs:string" />
+      <xs:element minOccurs="0" name="cliTotal" type="xs:string" />
+      <xs:element minOccurs="0" name="cmdAlreadyInstalled" type="xs:string" />
+      <xs:element minOccurs="0" name="cmdProposed" type="xs:string" />
+      <xs:element minOccurs="0" name="cmdTotal" type="xs:string" />
+      <xs:element minOccurs="0" name="fileNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="isVoltagePlant" type="xs:string" />
+      <xs:element minOccurs="0" name="plantSlno" type="xs:string" />
+      <xs:element minOccurs="0" name="regulationSlno" type="xs:string" />
+      <xs:element minOccurs="0" name="result" type="xs:string" />
+      <xs:element minOccurs="0" name="voltageSlno" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateInstallationCompliance">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:queryReply" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateInstallationComplianceResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateInstallationPayment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:payment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateInstallationPaymentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

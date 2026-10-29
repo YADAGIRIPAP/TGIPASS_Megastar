@@ -1,0 +1,914 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tsboilersws.cgg.gov.in/" targetNamespace="http://tsboilersws.cgg.gov.in/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="calculateAmount" type="tns:calculateAmount" />
+  <xs:element name="calculateAmountResponse" type="tns:calculateAmountResponse" />
+  <xs:element name="insertIntoAppealAgainstRejection" type="tns:insertIntoAppealAgainstRejection" />
+  <xs:element name="insertIntoAppealAgainstRejectionResponse" type="tns:insertIntoAppealAgainstRejectionResponse" />
+  <xs:element name="insertIntoErrectionCompletionReport" type="tns:insertIntoErrectionCompletionReport" />
+  <xs:element name="insertIntoErrectionCompletionReportResponse" type="tns:insertIntoErrectionCompletionReportResponse" />
+  <xs:element name="insertIntoPlanApprovalAdditionalPayment" type="tns:insertIntoPlanApprovalAdditionalPayment" />
+  <xs:element name="insertIntoPlanApprovalAdditionalPaymentResponse" type="tns:insertIntoPlanApprovalAdditionalPaymentResponse" />
+  <xs:element name="insertIntoRenewalAdditionalPayment" type="tns:insertIntoRenewalAdditionalPayment" />
+  <xs:element name="insertIntoRenewalAdditionalPaymentResponse" type="tns:insertIntoRenewalAdditionalPaymentResponse" />
+  <xs:element name="insertIntoRequestforSteamTest" type="tns:insertIntoRequestforSteamTest" />
+  <xs:element name="insertIntoRequestforSteamTestResponse" type="tns:insertIntoRequestforSteamTestResponse" />
+  <xs:element name="insertIntoSPLErrectionCompletionReport" type="tns:insertIntoSPLErrectionCompletionReport" />
+  <xs:element name="insertIntoSPLErrectionCompletionReportResponse" type="tns:insertIntoSPLErrectionCompletionReportResponse" />
+  <xs:element name="insertIntoSPLQueryresponse" type="tns:insertIntoSPLQueryresponse" />
+  <xs:element name="insertIntoSPLQueryresponseResponse" type="tns:insertIntoSPLQueryresponseResponse" />
+  <xs:element name="insertIntoSPLRegPayment" type="tns:insertIntoSPLRegPayment" />
+  <xs:element name="insertIntoSPLRegPaymentResponse" type="tns:insertIntoSPLRegPaymentResponse" />
+  <xs:element name="insertMeesevaRenewalPaymentDetails" type="tns:insertMeesevaRenewalPaymentDetails" />
+  <xs:element name="insertMeesevaRenewalPaymentDetailsResponse" type="tns:insertMeesevaRenewalPaymentDetailsResponse" />
+  <xs:element name="insertRenewalInspectionRelatedDocs" type="tns:insertRenewalInspectionRelatedDocs" />
+  <xs:element name="insertRenewalInspectionRelatedDocsResponse" type="tns:insertRenewalInspectionRelatedDocsResponse" />
+  <xs:element name="manufacturerQueryResponse" type="tns:manufacturerQueryResponse" />
+  <xs:element name="manufacturerQueryResponseResponse" type="tns:manufacturerQueryResponseResponse" />
+  <xs:element name="manufacturerRenewalQueryResponse" type="tns:manufacturerRenewalQueryResponse" />
+  <xs:element name="manufacturerRenewalQueryResponseResponse" type="tns:manufacturerRenewalQueryResponseResponse" />
+  <xs:element name="registrationofBoilers" type="tns:registrationofBoilers" />
+  <xs:element name="registrationofBoilersResponse" type="tns:registrationofBoilersResponse" />
+  <xs:element name="registrationofSteamPipeLine" type="tns:registrationofSteamPipeLine" />
+  <xs:element name="registrationofSteamPipeLineResponse" type="tns:registrationofSteamPipeLineResponse" />
+  <xs:element name="registrationsManufacturer" type="tns:registrationsManufacturer" />
+  <xs:element name="registrationsManufacturerResponse" type="tns:registrationsManufacturerResponse" />
+  <xs:element name="renewalBoilerManufacturer" type="tns:renewalBoilerManufacturer" />
+  <xs:element name="renewalBoilerManufacturerResponse" type="tns:renewalBoilerManufacturerResponse" />
+  <xs:element name="renewalQueryResponse" type="tns:renewalQueryResponse" />
+  <xs:element name="renewalQueryResponseResponse" type="tns:renewalQueryResponseResponse" />
+  <xs:element name="renewalRepairerDetails" type="tns:renewalRepairerDetails" />
+  <xs:element name="renewalRepairerDetailsResponse" type="tns:renewalRepairerDetailsResponse" />
+  <xs:element name="renewalRepairsCompletion" type="tns:renewalRepairsCompletion" />
+  <xs:element name="renewalRepairsCompletionResponse" type="tns:renewalRepairsCompletionResponse" />
+  <xs:element name="renewalReschduleInspectionNotice" type="tns:renewalReschduleInspectionNotice" />
+  <xs:element name="renewalReschduleInspectionNoticeResponse" type="tns:renewalReschduleInspectionNoticeResponse" />
+  <xs:element name="renewalReschduleSteamTestDate" type="tns:renewalReschduleSteamTestDate" />
+  <xs:element name="renewalReschduleSteamTestDateResponse" type="tns:renewalReschduleSteamTestDateResponse" />
+  <xs:element name="renewalofBoilers" type="tns:renewalofBoilers" />
+  <xs:element name="renewalofBoilersResponse" type="tns:renewalofBoilersResponse" />
+  <xs:element name="scheduleBoilersDepartmentInspection" type="tns:scheduleBoilersDepartmentInspection" />
+  <xs:element name="scheduleBoilersDepartmentInspectionResponse" type="tns:scheduleBoilersDepartmentInspectionResponse" />
+  <xs:element name="sendDatatoMeeseva" type="tns:sendDatatoMeeseva" />
+  <xs:element name="sendDatatoMeesevaResponse" type="tns:sendDatatoMeesevaResponse" />
+  <xs:complexType name="insertIntoPlanApprovalAdditionalPayment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PlanApprovalAdditionalPaymentDetails" type="tns:planAdditionalPayment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="planAdditionalPayment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="applicationID" type="xs:string" />
+      <xs:element minOccurs="0" name="bankAmount" type="xs:string" />
+      <xs:element minOccurs="0" name="bankDate" type="xs:string" />
+      <xs:element minOccurs="0" name="bankName" type="xs:string" />
+      <xs:element minOccurs="0" name="bankstatus" type="xs:string" />
+      <xs:element minOccurs="0" name="banktransid" type="xs:string" />
+      <xs:element minOccurs="0" name="challanNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="ddocode" type="xs:string" />
+      <xs:element minOccurs="0" name="department_transaction_id" type="xs:string" />
+      <xs:element name="harithaNidhiAmount" type="xs:double" />
+      <xs:element minOccurs="0" name="harithaNidhibankStatus" type="xs:string" />
+      <xs:element minOccurs="0" name="harithaNidhibanktransid" type="xs:string" />
+      <xs:element minOccurs="0" name="harithaNidhiddocode" type="xs:string" />
+      <xs:element minOccurs="0" name="harithaNidhihoa" type="xs:string" />
+      <xs:element minOccurs="0" name="harithaNidhiremittersname" type="xs:string" />
+      <xs:element minOccurs="0" name="harithaNidhitrydate" type="xs:string" />
+      <xs:element minOccurs="0" name="hoa" type="xs:string" />
+      <xs:element minOccurs="0" name="remittersname" type="xs:string" />
+      <xs:element minOccurs="0" name="systemIP" type="xs:string" />
+      <xs:element minOccurs="0" name="trydate" type="xs:string" />
+      <xs:element minOccurs="0" name="userID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertIntoPlanApprovalAdditionalPaymentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertIntoSPLRegPayment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="insertIntoSPLRegPayment" type="tns:splRegPayment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="splRegPayment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="applicationID" type="xs:string" />
+      <xs:element minOccurs="0" name="bankAmount" type="xs:string" />
+      <xs:element minOccurs="0" name="bankDate" type="xs:string" />
+      <xs:element minOccurs="0" name="bankName" type="xs:string" />
+      <xs:element minOccurs="0" name="bankstatus" type="xs:string" />
+      <xs:element minOccurs="0" name="banktransid" type="xs:string" />
+      <xs:element minOccurs="0" name="challanNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="ddocode" type="xs:string" />
+      <xs:element minOccurs="0" name="hoa" type="xs:string" />
+      <xs:element minOccurs="0" name="remittersname" type="xs:string" />
+      <xs:element minOccurs="0" name="systemIP" type="xs:string" />
+      <xs:element minOccurs="0" name="trydate" type="xs:string" />
+      <xs:element minOccurs="0" name="userID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertIntoSPLRegPaymentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="manufacturerQueryResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="boilerManufacturerregistrationQueryResponse" type="tns:manufacturerResponseDetails" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="manufacturerResponseDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="applicationID" type="xs:string" />
+      <xs:element minOccurs="0" name="entrepreneurRemarks" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="queryResponseAttachments" nillable="true" type="tns:queryResponseAttachment" />
+      <xs:element minOccurs="0" name="systemIP" type="xs:string" />
+      <xs:element minOccurs="0" name="userID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="queryResponseAttachment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="manufacturerQueryResponseResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="renewalBoilerManufacturer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RenewalManufacturer" type="tns:renewalManufacturer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="renewalManufacturer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="amount_tobe_paid" type="xs:string" />
+      <xs:element minOccurs="0" name="areaofWorkshop" type="xs:string" />
+      <xs:element minOccurs="0" name="bankAmount" type="xs:string" />
+      <xs:element minOccurs="0" name="bankDate" type="xs:string" />
+      <xs:element minOccurs="0" name="bankName" type="xs:string" />
+      <xs:element minOccurs="0" name="bankstatus" type="xs:string" />
+      <xs:element minOccurs="0" name="banktransid" type="xs:string" />
+      <xs:element minOccurs="0" name="challanNo" type="xs:string" />
+      <xs:element minOccurs="0" name="ddocode" type="xs:string" />
+      <xs:element minOccurs="0" name="detailedMachinery" type="xs:string" />
+      <xs:element minOccurs="0" name="detailedTechnical" type="xs:string" />
+      <xs:element minOccurs="0" name="detailedTesting" type="xs:string" />
+      <xs:element minOccurs="0" name="districtId" type="xs:string" />
+      <xs:element name="enterpreneur_id" type="xs:int" />
+      <xs:element minOccurs="0" name="equipmentType" type="xs:string" />
+      <xs:element minOccurs="0" name="firmFullResponsiblity" type="xs:string" />
+      <xs:element minOccurs="0" name="firmInternalQuality" type="xs:string" />
+      <xs:element minOccurs="0" name="firmName" type="xs:string" />
+      <xs:element minOccurs="0" name="firmSupplyMaterials" type="xs:string" />
+      <xs:element minOccurs="0" name="firmapplicationId" type="xs:string" />
+      <xs:element minOccurs="0" name="firmjobConformity" type="xs:string" />
+      <xs:element minOccurs="0" name="hoa" type="xs:string" />
+      <xs:element minOccurs="0" name="locality" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="machinerylistdocuments" nillable="true" type="tns:machinerylistdocuments" />
+      <xs:element minOccurs="0" name="mandalId" type="xs:string" />
+      <xs:element minOccurs="0" name="manufacturerEmailId" type="xs:string" />
+      <xs:element minOccurs="0" name="manufacturerMobileNo" type="xs:string" />
+      <xs:element minOccurs="0" name="payment_status" type="xs:string" />
+      <xs:element minOccurs="0" name="pincode" type="xs:string" />
+      <xs:element minOccurs="0" name="plotNo" type="xs:string" />
+      <xs:element minOccurs="0" name="prvRegRenCertificate" type="xs:string" />
+      <xs:element name="quessionaire_id" type="xs:int" />
+      <xs:element minOccurs="0" name="remittersname" type="xs:string" />
+      <xs:element minOccurs="0" name="system_ip" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="technicallistdocuments" nillable="true" type="tns:technicallistdocuments" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="testinglistdocuments" nillable="true" type="tns:testinglistdocuments" />
+      <xs:element minOccurs="0" name="trydate" type="xs:string" />
+      <xs:element name="user_serial_no" type="xs:int" />
+      <xs:element minOccurs="0" name="villageId" type="xs:string" />
+      <xs:element minOccurs="0" name="weldersEmployed" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="welderslistdocuments" nillable="true" type="tns:welderslistdocuments" />
+      <xs:element minOccurs="0" name="yearofestablishment" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="machinerylistdocuments">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="machinerydocumentName" type="xs:string" />
+      <xs:element minOccurs="0" name="machinerydocumentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="technicallistdocuments">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="technicaldocumentName" type="xs:string" />
+      <xs:element minOccurs="0" name="technicaldocumentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="testinglistdocuments">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="testingdocumentName" type="xs:string" />
+      <xs:element minOccurs="0" name="testingdocumentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="welderslistdocuments">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="weldersdocumentName" type="xs:string" />
+      <xs:element minOccurs="0" name="weldersdocumentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="renewalBoilerManufacturerResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="renewalofBoilers">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="boilerrenewalDetail" type="tns:renewalDetails" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="renewalDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="amount_tobe_paid" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="anexuredocuments" nillable="true" type="tns:anexuredocuments" />
+      <xs:element minOccurs="0" name="applicationId" type="xs:string" />
+      <xs:element name="application_stage" type="xs:int" />
+      <xs:element minOccurs="0" name="bankAmount" type="xs:string" />
+      <xs:element minOccurs="0" name="bankDate" type="xs:string" />
+      <xs:element minOccurs="0" name="bankName" type="xs:string" />
+      <xs:element minOccurs="0" name="bankstatus" type="xs:string" />
+      <xs:element minOccurs="0" name="banktransid" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="boedocuments" nillable="true" type="tns:designdocuments" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="boequalificationdocs" nillable="true" type="tns:designdocuments" />
+      <xs:element minOccurs="0" name="boiler_376" type="xs:string" />
+      <xs:element minOccurs="0" name="boiler_maker_name" type="xs:string" />
+      <xs:element minOccurs="0" name="boiler_maker_no" type="xs:string" />
+      <xs:element minOccurs="0" name="boiler_rating" type="xs:string" />
+      <xs:element minOccurs="0" name="boiler_used_for" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="cbbdocuments" nillable="true" type="tns:cbbdocuments" />
+      <xs:element minOccurs="0" name="challanNo" type="xs:string" />
+      <xs:element minOccurs="0" name="class_of_repairer" type="xs:string" />
+      <xs:element minOccurs="0" name="competent_person" type="xs:string" />
+      <xs:element name="created_by" type="xs:int" />
+      <xs:element minOccurs="0" name="ddocode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="designdocuments" nillable="true" type="tns:designdocuments" />
+      <xs:element minOccurs="0" name="details_of_repairs" type="xs:string" />
+      <xs:element minOccurs="0" name="details_of_repairs_path" type="xs:string" />
+      <xs:element minOccurs="0" name="district" type="xs:string" />
+      <xs:element minOccurs="0" name="door_no" type="xs:string" />
+      <xs:element name="enterpreneur_id" type="xs:int" />
+      <xs:element minOccurs="0" name="exemption_boilers" type="xs:string" />
+      <xs:element minOccurs="0" name="exemption_document" type="xs:string" />
+      <xs:element minOccurs="0" name="expire_pre_cer_date" type="xs:string" />
+      <xs:element minOccurs="0" name="fee" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="formdocuments" nillable="true" type="tns:formdocuments" />
+      <xs:element name="harithaNidhiAmount" type="xs:double" />
+      <xs:element minOccurs="0" name="harithaNidhibankStatus" type="xs:string" />
+      <xs:element minOccurs="0" name="harithaNidhibanktransid" type="xs:string" />
+      <xs:element minOccurs="0" name="harithaNidhiddocode" type="xs:string" />
+      <xs:element minOccurs="0" name="harithaNidhihoa" type="xs:string" />
+      <xs:element minOccurs="0" name="harithaNidhiremittersname" type="xs:string" />
+      <xs:element minOccurs="0" name="harithaNidhitrydate" type="xs:string" />
+      <xs:element minOccurs="0" name="hoa" type="xs:string" />
+      <xs:element minOccurs="0" name="inspection_letter" type="xs:string" />
+      <xs:element minOccurs="0" name="inspection_required" type="xs:string" />
+      <xs:element name="inspector_authority_flag" type="xs:int" />
+      <xs:element minOccurs="0" name="length_pipeline" type="xs:string" />
+      <xs:element minOccurs="0" name="locality" type="xs:string" />
+      <xs:element minOccurs="0" name="mandal" type="xs:string" />
+      <xs:element minOccurs="0" name="max_evaporation" type="xs:string" />
+      <xs:element minOccurs="0" name="max_pressure" type="xs:string" />
+      <xs:element minOccurs="0" name="modeofpayment" type="xs:string" />
+      <xs:element minOccurs="0" name="name_of_repairer" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="otherdocuments" nillable="true" type="tns:otherdocuments" />
+      <xs:element minOccurs="0" name="owner_contact_no" type="xs:string" />
+      <xs:element minOccurs="0" name="owner_email" type="xs:string" />
+      <xs:element minOccurs="0" name="owner_name" type="xs:string" />
+      <xs:element minOccurs="0" name="payment_status" type="xs:string" />
+      <xs:element minOccurs="0" name="pincode" type="xs:string" />
+      <xs:element name="quessionaire_id" type="xs:int" />
+      <xs:element minOccurs="0" name="registration_of_steampipe_line" type="xs:string" />
+      <xs:element minOccurs="0" name="remarks" type="xs:string" />
+      <xs:element minOccurs="0" name="remittersname" type="xs:string" />
+      <xs:element minOccurs="0" name="repairs" type="xs:string" />
+      <xs:element minOccurs="0" name="required_documents" type="xs:string" />
+      <xs:element minOccurs="0" name="supporting_documents" type="xs:string" />
+      <xs:element minOccurs="0" name="system_ip" type="xs:string" />
+      <xs:element minOccurs="0" name="thirdparty_authority" type="xs:string" />
+      <xs:element minOccurs="0" name="trydate" type="xs:string" />
+      <xs:element minOccurs="0" name="type_of_boiler" type="xs:string" />
+      <xs:element minOccurs="0" name="upload_form5" type="xs:string" />
+      <xs:element name="user_serial_no" type="xs:int" />
+      <xs:element minOccurs="0" name="village" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="anexuredocuments">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="designdocuments">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="cbbdocuments">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="formdocuments">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="otherdocuments">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="renewalofBoilersResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="renewalQueryResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="boilerrenewalQueryResponse" type="tns:renewalResponseDetails" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="renewalResponseDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="applicationID" type="xs:string" />
+      <xs:element minOccurs="0" name="entrepreneurRemarks" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="queryResponseAttachments" nillable="true" type="tns:queryResponseAttachment" />
+      <xs:element minOccurs="0" name="systemIP" type="xs:string" />
+      <xs:element minOccurs="0" name="userID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="renewalQueryResponseResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="renewalReschduleInspectionNotice">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RenewalRequestforReschduleinspection" type="tns:renewalRequestforReschduleinspection" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="renewalRequestforReschduleinspection">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="application_id" type="xs:string" />
+      <xs:element minOccurs="0" name="reschdule_hydraulicdate" type="xs:string" />
+      <xs:element minOccurs="0" name="reschdule_inspectiondate" type="xs:string" />
+      <xs:element minOccurs="0" name="systemIP" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="uploadreschduledocuments" nillable="true" type="tns:queryResponseAttachment" />
+      <xs:element minOccurs="0" name="userID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="renewalReschduleInspectionNoticeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="registrationofBoilers">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="boilerDetail" type="tns:plan" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="plan">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="amount_tobe_paid" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="anexuredocuments" nillable="true" type="tns:anexuredocuments" />
+      <xs:element minOccurs="0" name="applicationId" type="xs:string" />
+      <xs:element name="application_stage" type="xs:int" />
+      <xs:element minOccurs="0" name="bankAmount" type="xs:string" />
+      <xs:element minOccurs="0" name="bankDate" type="xs:string" />
+      <xs:element minOccurs="0" name="bankName" type="xs:string" />
+      <xs:element minOccurs="0" name="bankstatus" type="xs:string" />
+      <xs:element minOccurs="0" name="banktransid" type="xs:string" />
+      <xs:element minOccurs="0" name="boiler_maker_name" type="xs:string" />
+      <xs:element minOccurs="0" name="boiler_maker_no" type="xs:string" />
+      <xs:element minOccurs="0" name="boiler_rating" type="xs:string" />
+      <xs:element minOccurs="0" name="boiler_used_for" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="cbbdocuments" nillable="true" type="tns:cbbdocuments" />
+      <xs:element minOccurs="0" name="challanNo" type="xs:string" />
+      <xs:element minOccurs="0" name="component_person_details" type="xs:string" />
+      <xs:element minOccurs="0" name="courier_date" type="xs:string" />
+      <xs:element minOccurs="0" name="courier_number" type="xs:string" />
+      <xs:element name="created_by" type="xs:int" />
+      <xs:element minOccurs="0" name="ddocode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="designdocuments" nillable="true" type="tns:designdocuments" />
+      <xs:element minOccurs="0" name="district" type="xs:string" />
+      <xs:element minOccurs="0" name="door_no" type="xs:string" />
+      <xs:element minOccurs="0" name="e_district" type="xs:string" />
+      <xs:element minOccurs="0" name="e_door_no" type="xs:string" />
+      <xs:element minOccurs="0" name="e_email" type="xs:string" />
+      <xs:element minOccurs="0" name="e_licence_copy_filepath" type="xs:string" />
+      <xs:element minOccurs="0" name="e_locality" type="xs:string" />
+      <xs:element minOccurs="0" name="e_mandal" type="xs:string" />
+      <xs:element minOccurs="0" name="e_mobile_no" type="xs:string" />
+      <xs:element minOccurs="0" name="e_pincode" type="xs:string" />
+      <xs:element minOccurs="0" name="e_state" type="xs:string" />
+      <xs:element minOccurs="0" name="e_village" type="xs:string" />
+      <xs:element name="enterpreneur_id" type="xs:int" />
+      <xs:element minOccurs="0" name="erector_class" type="xs:string" />
+      <xs:element minOccurs="0" name="erector_name" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="formdocuments" nillable="true" type="tns:formdocuments" />
+      <xs:element minOccurs="0" name="hoa" type="xs:string" />
+      <xs:element name="inspector_authority_flag" type="xs:int" />
+      <xs:element minOccurs="0" name="locality" type="xs:string" />
+      <xs:element minOccurs="0" name="mandal" type="xs:string" />
+      <xs:element minOccurs="0" name="max_evaporation" type="xs:string" />
+      <xs:element minOccurs="0" name="max_pressure" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="otherdocuments" nillable="true" type="tns:otherdocuments" />
+      <xs:element minOccurs="0" name="owner_contact_no" type="xs:string" />
+      <xs:element minOccurs="0" name="owner_email" type="xs:string" />
+      <xs:element minOccurs="0" name="owner_name" type="xs:string" />
+      <xs:element minOccurs="0" name="payment_status" type="xs:string" />
+      <xs:element minOccurs="0" name="pincode" type="xs:string" />
+      <xs:element minOccurs="0" name="place" type="xs:string" />
+      <xs:element name="present_status_id" type="xs:int" />
+      <xs:element name="quessionaire_id" type="xs:int" />
+      <xs:element minOccurs="0" name="remittersname" type="xs:string" />
+      <xs:element minOccurs="0" name="required_documents" type="xs:string" />
+      <xs:element minOccurs="0" name="system_ip" type="xs:string" />
+      <xs:element minOccurs="0" name="trydate" type="xs:string" />
+      <xs:element minOccurs="0" name="type_of_boiler" type="xs:string" />
+      <xs:element minOccurs="0" name="upload_form5" type="xs:string" />
+      <xs:element name="user_serial_no" type="xs:int" />
+      <xs:element minOccurs="0" name="village" type="xs:string" />
+      <xs:element minOccurs="0" name="year" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="registrationofBoilersResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertIntoRenewalAdditionalPayment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RenewalAdditionalPayment" type="tns:renewalAdditionalPayment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="renewalAdditionalPayment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="applicationID" type="xs:string" />
+      <xs:element minOccurs="0" name="bankAmount" type="xs:string" />
+      <xs:element minOccurs="0" name="bankDate" type="xs:string" />
+      <xs:element minOccurs="0" name="bankName" type="xs:string" />
+      <xs:element minOccurs="0" name="bankstatus" type="xs:string" />
+      <xs:element minOccurs="0" name="banktransid" type="xs:string" />
+      <xs:element minOccurs="0" name="challanNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="ddocode" type="xs:string" />
+      <xs:element minOccurs="0" name="department_transaction_id" type="xs:string" />
+      <xs:element minOccurs="0" name="entrepreneurRemarks" type="xs:string" />
+      <xs:element minOccurs="0" name="hoa" type="xs:string" />
+      <xs:element minOccurs="0" name="remittersname" type="xs:string" />
+      <xs:element minOccurs="0" name="systemIP" type="xs:string" />
+      <xs:element minOccurs="0" name="trydate" type="xs:string" />
+      <xs:element minOccurs="0" name="userID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertIntoRenewalAdditionalPaymentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertIntoErrectionCompletionReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrectionCompletion" type="tns:errectionCompletion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="errectionCompletion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="applicationId" type="xs:string" />
+      <xs:element name="created_by" type="xs:int" />
+      <xs:element name="enterpreneur_id" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="errdocuments" nillable="true" type="tns:errectiondocuments" />
+      <xs:element name="quessionaire_id" type="xs:int" />
+      <xs:element minOccurs="0" name="system_ip" type="xs:string" />
+      <xs:element minOccurs="0" name="userID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="errectiondocuments">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertIntoErrectionCompletionReportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertIntoSPLErrectionCompletionReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SteampipelineErrectionCompletion" type="tns:steampipelineErrectionCompletion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="steampipelineErrectionCompletion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="applicationId" type="xs:string" />
+      <xs:element name="enterpreneur_id" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="errdocuments" nillable="true" type="tns:errectiondocuments" />
+      <xs:element name="quessionaire_id" type="xs:int" />
+      <xs:element minOccurs="0" name="system_ip" type="xs:string" />
+      <xs:element name="userID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertIntoSPLErrectionCompletionReportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertIntoSPLQueryresponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="insertIntoSPLQueryresponse" type="tns:steamPipelineQR" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="steamPipelineQR">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="applicationID" type="xs:string" />
+      <xs:element minOccurs="0" name="entrepreneurRemarks" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="queryResponseAttachments" nillable="true" type="tns:queryResponseAttachment" />
+      <xs:element minOccurs="0" name="systemIP" type="xs:string" />
+      <xs:element name="userID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertIntoSPLQueryresponseResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="registrationofSteamPipeLine">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="registrationofSteamPipeLine" type="tns:regOfSteamPipeline" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="regOfSteamPipeline">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="applicationId" type="xs:string" />
+      <xs:element minOccurs="0" name="boiler_rating" type="xs:string" />
+      <xs:element minOccurs="0" name="boiler_used_for" type="xs:string" />
+      <xs:element name="created_by" type="xs:int" />
+      <xs:element minOccurs="0" name="district" type="xs:string" />
+      <xs:element minOccurs="0" name="door_survey_no" type="xs:string" />
+      <xs:element minOccurs="0" name="emailId" type="xs:string" />
+      <xs:element name="enterpreneur_id" type="xs:int" />
+      <xs:element minOccurs="0" name="erector_class" type="xs:string" />
+      <xs:element minOccurs="0" name="erector_license_copy" type="xs:string" />
+      <xs:element minOccurs="0" name="erector_name" type="xs:string" />
+      <xs:element minOccurs="0" name="industryName" type="xs:string" />
+      <xs:element minOccurs="0" name="length_spl_above" type="xs:string" />
+      <xs:element minOccurs="0" name="length_spl_upto" type="xs:string" />
+      <xs:element minOccurs="0" name="locality" type="xs:string" />
+      <xs:element minOccurs="0" name="makersNo" type="xs:string" />
+      <xs:element minOccurs="0" name="mandal" type="xs:string" />
+      <xs:element minOccurs="0" name="max_pressure" type="xs:string" />
+      <xs:element minOccurs="0" name="mobileNo" type="xs:string" />
+      <xs:element minOccurs="0" name="noOf_vessels_connected" type="xs:string" />
+      <xs:element minOccurs="0" name="pincode" type="xs:string" />
+      <xs:element name="quessionaire_id" type="xs:int" />
+      <xs:element minOccurs="0" name="registrationNo" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="requiredDocumentsSPL" nillable="true" type="tns:requiredDocumentsSPL" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="splLayoutDrawingDocuments" nillable="true" type="tns:splLayoutDrawingDocuments" />
+      <xs:element minOccurs="0" name="spl_total_length" type="xs:string" />
+      <xs:element minOccurs="0" name="state" type="xs:string" />
+      <xs:element minOccurs="0" name="system_ip" type="xs:string" />
+      <xs:element name="user_serial_no" type="xs:int" />
+      <xs:element minOccurs="0" name="village" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="requiredDocumentsSPL">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="splLayoutDrawingDocuments">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="registrationofSteamPipeLineResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertMeesevaRenewalPaymentDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MeesevaRenewalPaymentDetails" type="tns:meesevaRenewalPaymentDetails" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="meesevaRenewalPaymentDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="applicationID" type="xs:string" />
+      <xs:element minOccurs="0" name="bankAmount" type="xs:string" />
+      <xs:element minOccurs="0" name="bankDate" type="xs:string" />
+      <xs:element minOccurs="0" name="bankstatus" type="xs:string" />
+      <xs:element minOccurs="0" name="challanNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="meesevaCharges" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertMeesevaRenewalPaymentDetailsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:paymentCertificateDetailsResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="paymentCertificateDetailsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="paymentDetailsResponse" nillable="true" type="tns:paymentDetailsResponse" />
+      <xs:element minOccurs="0" name="status" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="paymentDetailsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="registrationsManufacturer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RegManufacturer" type="tns:regManufacturer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="regManufacturer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="amount_tobe_paid" type="xs:string" />
+      <xs:element minOccurs="0" name="areaofWorkshop" type="xs:string" />
+      <xs:element minOccurs="0" name="bankAmount" type="xs:string" />
+      <xs:element minOccurs="0" name="bankDate" type="xs:string" />
+      <xs:element minOccurs="0" name="bankName" type="xs:string" />
+      <xs:element minOccurs="0" name="bankstatus" type="xs:string" />
+      <xs:element minOccurs="0" name="banktransid" type="xs:string" />
+      <xs:element minOccurs="0" name="challanNo" type="xs:string" />
+      <xs:element minOccurs="0" name="ddocode" type="xs:string" />
+      <xs:element minOccurs="0" name="detailedMachinery" type="xs:string" />
+      <xs:element minOccurs="0" name="detailedTechnical" type="xs:string" />
+      <xs:element minOccurs="0" name="detailedTesting" type="xs:string" />
+      <xs:element minOccurs="0" name="districtId" type="xs:string" />
+      <xs:element name="enterpreneur_id" type="xs:int" />
+      <xs:element minOccurs="0" name="equipmentType" type="xs:string" />
+      <xs:element minOccurs="0" name="firmFullResponsiblity" type="xs:string" />
+      <xs:element minOccurs="0" name="firmInternalQuality" type="xs:string" />
+      <xs:element minOccurs="0" name="firmName" type="xs:string" />
+      <xs:element minOccurs="0" name="firmSupplyMaterials" type="xs:string" />
+      <xs:element minOccurs="0" name="firmapplicationId" type="xs:string" />
+      <xs:element minOccurs="0" name="firmjobConformity" type="xs:string" />
+      <xs:element minOccurs="0" name="hoa" type="xs:string" />
+      <xs:element minOccurs="0" name="locality" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="machinerylistdocuments" nillable="true" type="tns:machinerylistdocuments" />
+      <xs:element minOccurs="0" name="mandalId" type="xs:string" />
+      <xs:element minOccurs="0" name="manufacturerEmailId" type="xs:string" />
+      <xs:element minOccurs="0" name="manufacturerMobileNo" type="xs:string" />
+      <xs:element minOccurs="0" name="payment_status" type="xs:string" />
+      <xs:element minOccurs="0" name="pincode" type="xs:string" />
+      <xs:element minOccurs="0" name="plotNo" type="xs:string" />
+      <xs:element name="quessionaire_id" type="xs:int" />
+      <xs:element minOccurs="0" name="remittersname" type="xs:string" />
+      <xs:element minOccurs="0" name="system_ip" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="technicallistdocuments" nillable="true" type="tns:technicallistdocuments" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="testinglistdocuments" nillable="true" type="tns:testinglistdocuments" />
+      <xs:element minOccurs="0" name="trydate" type="xs:string" />
+      <xs:element name="user_serial_no" type="xs:int" />
+      <xs:element minOccurs="0" name="villageId" type="xs:string" />
+      <xs:element minOccurs="0" name="weldersEmployed" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="welderslistdocuments" nillable="true" type="tns:welderslistdocuments" />
+      <xs:element minOccurs="0" name="yearofestablishment" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="registrationsManufacturerResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertRenewalInspectionRelatedDocs">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="insertRenewalInspectionRelatedDocs" type="tns:renewalInspectionRelatedDocs" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="renewalInspectionRelatedDocs">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="applicationID" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="inspectionRelatedDocs" nillable="true" type="tns:queryResponseAttachment" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="inspectionRelaventDocs" nillable="true" type="tns:queryResponseAttachment" />
+      <xs:element minOccurs="0" name="systemIP" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="uploadformvDocs" nillable="true" type="tns:queryResponseAttachment" />
+      <xs:element minOccurs="0" name="userID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertRenewalInspectionRelatedDocsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="manufacturerRenewalQueryResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="boilerManufacturerrenewalQueryResponse" type="tns:manufacturerRenewalResponseDetails" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="manufacturerRenewalResponseDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="applicationID" type="xs:string" />
+      <xs:element minOccurs="0" name="entrepreneurRemarks" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="queryResponseAttachments" nillable="true" type="tns:queryResponseAttachment" />
+      <xs:element minOccurs="0" name="systemIP" type="xs:string" />
+      <xs:element minOccurs="0" name="userID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="manufacturerRenewalQueryResponseResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="renewalReschduleSteamTestDate">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RenewalReschduleSteamTest" type="tns:renewalReschduleSteamTest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="renewalReschduleSteamTest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="application_id" type="xs:string" />
+      <xs:element minOccurs="0" name="reschdule_steamtestdate" type="xs:string" />
+      <xs:element minOccurs="0" name="systemIP" type="xs:string" />
+      <xs:element minOccurs="0" name="userID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="renewalReschduleSteamTestDateResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="renewalRepairsCompletion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="boilerrenewalRepairsCompletion" type="tns:renewalRepairsCompletionDetails" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="renewalRepairsCompletionDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="applicationID" type="xs:string" />
+      <xs:element minOccurs="0" name="entrepreneurRemarks" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="queryResponseAttachments" nillable="true" type="tns:queryResponseAttachment" />
+      <xs:element minOccurs="0" name="systemIP" type="xs:string" />
+      <xs:element minOccurs="0" name="userID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="renewalRepairsCompletionResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="scheduleBoilersDepartmentInspection">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="scheduleBoilersDepartmentInspectionResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:boilersInspectionDetailsSendResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="boilersInspectionDetailsSendResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="boilersInspectionDetailsResponse" nillable="true" type="tns:boilersInspectionDetailsResponse" />
+      <xs:element minOccurs="0" name="status" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="boilersInspectionDetailsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="allottedInspectionOfficer" type="xs:string" />
+      <xs:element minOccurs="0" name="boilerAddress" type="xs:string" />
+      <xs:element minOccurs="0" name="boilerType" type="xs:string" />
+      <xs:element minOccurs="0" name="boilermakerNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="generalRemarks" type="xs:string" />
+      <xs:element minOccurs="0" name="inspectionMonth" type="xs:string" />
+      <xs:element minOccurs="0" name="inspectionReportUploaded" type="xs:string" />
+      <xs:element minOccurs="0" name="inspectionReportUploadedTime" type="xs:string" />
+      <xs:element minOccurs="0" name="inspectionScheduledTime" type="xs:string" />
+      <xs:element minOccurs="0" name="inspectionYear" type="xs:string" />
+      <xs:element minOccurs="0" name="iruploded" type="xs:string" />
+      <xs:element minOccurs="0" name="ownerName" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertIntoRequestforSteamTest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SteamTestRequest" type="tns:requestForSteamTest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="requestForSteamTest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="applicationId" type="xs:string" />
+      <xs:element name="enterpreneur_id" type="xs:int" />
+      <xs:element name="quessionaire_id" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="steamtestrequestdocument" nillable="true" type="tns:steamtestrequestdocument" />
+      <xs:element minOccurs="0" name="system_ip" type="xs:string" />
+      <xs:element minOccurs="0" name="userID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="steamtestrequestdocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertIntoRequestforSteamTestResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sendDatatoMeeseva">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="applicationId" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sendDatatoMeesevaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:meesevaSendValidData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="meesevaSendValidData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="applicationId" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="meesevaValidDataResponse" nillable="true" type="tns:meesevaValidDataResponse" />
+      <xs:element minOccurs="0" name="status" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="meesevaValidDataResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="amounttobepaid" type="xs:string" />
+      <xs:element minOccurs="0" name="boilerrating" type="xs:string" />
+      <xs:element minOccurs="0" name="district" type="xs:string" />
+      <xs:element minOccurs="0" name="mandal" type="xs:string" />
+      <xs:element minOccurs="0" name="ownerName" type="xs:string" />
+      <xs:element minOccurs="0" name="ownermobileno" type="xs:string" />
+      <xs:element minOccurs="0" name="typeofboiler" type="xs:string" />
+      <xs:element minOccurs="0" name="usedfor" type="xs:string" />
+      <xs:element minOccurs="0" name="village" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="calculateAmount">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RenewalPaymentDetails" type="tns:renewalPaymentDetails" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="renewalPaymentDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="boiler_rating" type="xs:string" />
+      <xs:element minOccurs="0" name="inspectingauthority" type="xs:string" />
+      <xs:element minOccurs="0" name="length_pipeline" type="xs:string" />
+      <xs:element minOccurs="0" name="thirdpartytype" type="xs:string" />
+      <xs:element minOccurs="0" name="typeOfBoiler" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="calculateAmountResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="renewalRepairerDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RenewalRepairsDetails" type="tns:renewalRepairsDetails" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="renewalRepairsDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="applicationID" type="xs:string" />
+      <xs:element minOccurs="0" name="entrepreneurRemarks" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="queryResponseAttachments" nillable="true" type="tns:queryResponseAttachment" />
+      <xs:element minOccurs="0" name="systemIP" type="xs:string" />
+      <xs:element minOccurs="0" name="userID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="renewalRepairerDetailsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertIntoAppealAgainstRejection">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="appealagainstrejection" type="tns:appealAgainstRejection" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="appealAgainstRejection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="appealdocument" nillable="true" type="tns:appealdocument" />
+      <xs:element minOccurs="0" name="applicationId" type="xs:string" />
+      <xs:element name="enterpreneur_id" type="xs:int" />
+      <xs:element minOccurs="0" name="entrepreneurRemarks" type="xs:string" />
+      <xs:element name="quessionaire_id" type="xs:int" />
+      <xs:element minOccurs="0" name="system_ip" type="xs:string" />
+      <xs:element minOccurs="0" name="userID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="appealdocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertIntoAppealAgainstRejectionResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tsfactoriesws.cgg.gov.in/" name="TSFactoryServiceImplService" targetNamespace="http://tsfactoriesws.cgg.gov.in/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="https://tsfactoriesjointinspection.cgg.gov.in:443/tsFactoriesWebServiceJointInspection?xsd=1" namespace="http://tsfactoriesws.cgg.gov.in/" />
+    </xsd:schema>
+  </types>
+  <message name="scheduleFactoriesJointInspection">
+    <part name="parameters" element="tns:scheduleFactoriesJointInspection" />
+  </message>
+  <message name="scheduleFactoriesJointInspectionResponse">
+    <part name="parameters" element="tns:scheduleFactoriesJointInspectionResponse" />
+  </message>
+  <portType name="TSFactoryService">
+    <operation name="scheduleFactoriesJointInspection">
+      <input message="tns:scheduleFactoriesJointInspection" />
+      <output message="tns:scheduleFactoriesJointInspectionResponse" />
+    </operation>
+  </portType>
+  <binding name="TSFactoryServiceImplPortBinding" type="tns:TSFactoryService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="scheduleFactoriesJointInspection">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="TSFactoryServiceImplService">
+    <port name="TSFactoryServiceImplPort" binding="tns:TSFactoryServiceImplPortBinding">
+      <soap:address location="https://tsfactoriesjointinspection.cgg.gov.in:443/tsFactoriesWebServiceJointInspection" />
+    </port>
+  </service>
+</definitions>

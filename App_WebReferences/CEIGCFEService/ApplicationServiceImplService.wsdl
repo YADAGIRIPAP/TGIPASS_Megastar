@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tsceigws.cgg.gov.in/" name="ApplicationServiceImplService" targetNamespace="http://tsceigws.cgg.gov.in/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="https://tsceigws.cgg.gov.in:443/application?xsd=1" namespace="http://tsceigws.cgg.gov.in/" />
+    </xsd:schema>
+  </types>
+  <message name="installationCheck">
+    <part name="parameters" element="tns:installationCheck" />
+  </message>
+  <message name="installationCheckResponse">
+    <part name="parameters" element="tns:installationCheckResponse" />
+  </message>
+  <message name="updateDesignQueryReply">
+    <part name="parameters" element="tns:updateDesignQueryReply" />
+  </message>
+  <message name="updateDesignQueryReplyResponse">
+    <part name="parameters" element="tns:updateDesignQueryReplyResponse" />
+  </message>
+  <message name="updateInstallationQueryReply">
+    <part name="parameters" element="tns:updateInstallationQueryReply" />
+  </message>
+  <message name="updateInstallationQueryReplyResponse">
+    <part name="parameters" element="tns:updateInstallationQueryReplyResponse" />
+  </message>
+  <message name="updateInstallationCompliance">
+    <part name="parameters" element="tns:updateInstallationCompliance" />
+  </message>
+  <message name="updateInstallationComplianceResponse">
+    <part name="parameters" element="tns:updateInstallationComplianceResponse" />
+  </message>
+  <message name="addNewVillage">
+    <part name="parameters" element="tns:addNewVillage" />
+  </message>
+  <message name="addNewVillageResponse">
+    <part name="parameters" element="tns:addNewVillageResponse" />
+  </message>
+  <message name="updateInstallationPayment">
+    <part name="parameters" element="tns:updateInstallationPayment" />
+  </message>
+  <message name="updateInstallationPaymentResponse">
+    <part name="parameters" element="tns:updateInstallationPaymentResponse" />
+  </message>
+  <message name="updateDesignAddlPayment">
+    <part name="parameters" element="tns:updateDesignAddlPayment" />
+  </message>
+  <message name="updateDesignAddlPaymentResponse">
+    <part name="parameters" element="tns:updateDesignAddlPaymentResponse" />
+  </message>
+  <message name="updateDesignAppeal">
+    <part name="parameters" element="tns:updateDesignAppeal" />
+  </message>
+  <message name="updateDesignAppealResponse">
+    <part name="parameters" element="tns:updateDesignAppealResponse" />
+  </message>
+  <message name="insertIntoInstallationApplication">
+    <part name="parameters" element="tns:insertIntoInstallationApplication" />
+  </message>
+  <message name="insertIntoInstallationApplicationResponse">
+    <part name="parameters" element="tns:insertIntoInstallationApplicationResponse" />
+  </message>
+  <message name="insertIntoDesignApplication">
+    <part name="parameters" element="tns:insertIntoDesignApplication" />
+  </message>
+  <message name="insertIntoDesignApplicationResponse">
+    <part name="parameters" element="tns:insertIntoDesignApplicationResponse" />
+  </message>
+  <portType name="ApplicationServiceImpl">
+    <operation name="installationCheck">
+      <input message="tns:installationCheck" />
+      <output message="tns:installationCheckResponse" />
+    </operation>
+    <operation name="updateDesignQueryReply">
+      <input message="tns:updateDesignQueryReply" />
+      <output message="tns:updateDesignQueryReplyResponse" />
+    </operation>
+    <operation name="updateInstallationQueryReply">
+      <input message="tns:updateInstallationQueryReply" />
+      <output message="tns:updateInstallationQueryReplyResponse" />
+    </operation>
+    <operation name="updateInstallationCompliance">
+      <input message="tns:updateInstallationCompliance" />
+      <output message="tns:updateInstallationComplianceResponse" />
+    </operation>
+    <operation name="addNewVillage">
+      <input message="tns:addNewVillage" />
+      <output message="tns:addNewVillageResponse" />
+    </operation>
+    <operation name="updateInstallationPayment">
+      <input message="tns:updateInstallationPayment" />
+      <output message="tns:updateInstallationPaymentResponse" />
+    </operation>
+    <operation name="updateDesignAddlPayment">
+      <input message="tns:updateDesignAddlPayment" />
+      <output message="tns:updateDesignAddlPaymentResponse" />
+    </operation>
+    <operation name="updateDesignAppeal">
+      <input message="tns:updateDesignAppeal" />
+      <output message="tns:updateDesignAppealResponse" />
+    </operation>
+    <operation name="insertIntoInstallationApplication">
+      <input message="tns:insertIntoInstallationApplication" />
+      <output message="tns:insertIntoInstallationApplicationResponse" />
+    </operation>
+    <operation name="insertIntoDesignApplication">
+      <input message="tns:insertIntoDesignApplication" />
+      <output message="tns:insertIntoDesignApplicationResponse" />
+    </operation>
+  </portType>
+  <binding name="ApplicationServiceImplPortBinding" type="tns:ApplicationServiceImpl">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="installationCheck">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="updateDesignQueryReply">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="updateInstallationQueryReply">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="updateInstallationCompliance">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="addNewVillage">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="updateInstallationPayment">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="updateDesignAddlPayment">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="updateDesignAppeal">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertIntoInstallationApplication">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertIntoDesignApplication">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="ApplicationServiceImplService">
+    <port name="ApplicationServiceImplPort" binding="tns:ApplicationServiceImplPortBinding">
+      <soap:address location="https://tsceigws.cgg.gov.in:443/application" />
+    </port>
+  </service>
+</definitions>

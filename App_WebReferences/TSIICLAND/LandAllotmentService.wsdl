@@ -1,0 +1,905 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:ax21="http://bo.humint.tsiic.com/xsd" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:ax23="http://ws.apache.org/namespaces/axis2/map" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns="http://service.humint.tsiic.com" xmlns:ns1="http://org.apache.axis2/xsd" targetNamespace="http://service.humint.tsiic.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation>
+	It provides register new user and save all details of application.
+	</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://bo.humint.tsiic.com/xsd">
+      <xs:complexType name="TransactionDetails">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="amount" type="xs:double" />
+          <xs:element minOccurs="0" name="ipassID" type="xs:long" />
+          <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ref_no" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="transaction_date" nillable="true" type="xs:date" />
+          <xs:element minOccurs="0" name="transaction_details" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Plot">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="amount" type="xs:double" />
+          <xs:element minOccurs="0" name="area" type="xs:double" />
+          <xs:element minOccurs="0" name="district" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="emd" type="xs:double" />
+          <xs:element minOccurs="0" name="gst" type="xs:double" />
+          <xs:element minOccurs="0" name="industrialPark" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="landcost" type="xs:double" />
+          <xs:element minOccurs="0" name="plotNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="price" type="xs:double" />
+          <xs:element minOccurs="0" name="processFee" type="xs:double" />
+          <xs:element minOccurs="0" name="totalArea" type="xs:double" />
+          <xs:element minOccurs="0" name="totalEmd" type="xs:double" />
+          <xs:element minOccurs="0" name="totalPrice" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="VerifyFirmDetails">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="alloteeName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="applicantName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="catDesc" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="categoryOfAllotment" nillable="true" type="ax21:CodeDesc" />
+          <xs:element minOccurs="0" name="commFaxCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="commFaxNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="commPhoneCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="commPhoneNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="firmDetails" nillable="true" type="ax21:FirmDetails" />
+          <xs:element minOccurs="0" name="houseNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="orgType" nillable="true" type="ax21:CodeDesc" />
+          <xs:element minOccurs="0" name="otherCommFaxCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="otherCommFaxNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="otherCommPhoneCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="otherCommPhoneNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="otherCommunicationAddress" nillable="true" type="ax21:CommunicationAddress" />
+          <xs:element minOccurs="0" name="others" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="plotNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="shedName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="shopNo" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CodeDesc">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="code" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="desc" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="FirmDetails">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="communicationAddress" nillable="true" type="ax21:CommunicationAddress" />
+          <xs:element minOccurs="0" name="firmRegistrationDetails" nillable="true" type="ax21:FirmRegistrationDetails" />
+          <xs:element minOccurs="0" name="userId" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CommunicationAddress">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="address" nillable="true" type="ax21:Address" />
+          <xs:element minOccurs="0" name="faxNum" nillable="true" type="ax21:Landline" />
+          <xs:element minOccurs="0" name="phoneNum" nillable="true" type="ax21:Landline" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Address">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="city" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="country" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="district" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="doorNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="mandal" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="pincode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="state" nillable="true" type="ax21:CodeDesc" />
+          <xs:element minOccurs="0" name="streetNo1" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="streetNo2" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="village" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Landline">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="areaCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="formattedPhone" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="number" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="phone" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="valid" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="FirmRegistrationDetails">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="regstrAuthority" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="regstrNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="yrOfCommence" type="xs:long" />
+          <xs:element minOccurs="0" name="yrOfEstbl" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PromoterDetails">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="cellNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="commFaxCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="commFaxNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="commPhoneCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="commPhoneNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="communicationAddress" nillable="true" type="ax21:CommunicationAddress" />
+          <xs:element minOccurs="0" name="emailId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="mobile" nillable="true" type="ax21:Mobile" />
+          <xs:element minOccurs="0" name="personName" nillable="true" type="ax21:PersonName" />
+          <xs:element minOccurs="0" name="promoterFinancialInformation" nillable="true" type="ax21:PromoterFinancialInformation" />
+          <xs:element minOccurs="0" name="promoterId" type="xs:long" />
+          <xs:element minOccurs="0" name="userId" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Mobile">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ax21:Landline">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="PersonName">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="firstName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="surname" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PromoterFinancialInformation">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="detlsImvableAssests" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="funcResponsibilities" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="otherAssests" type="xs:double" />
+          <xs:element minOccurs="0" name="otherInfo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="panNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="personalAsset" type="xs:double" />
+          <xs:element minOccurs="0" name="personalLiability" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="AdditionalPromoter">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="additionalPromoterId" type="xs:long" />
+          <xs:element minOccurs="0" name="address" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="contactNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="experience" type="xs:double" />
+          <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="netWorth" type="xs:double" />
+          <xs:element minOccurs="0" name="qualification" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProjectGeneral">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="byProductList" nillable="true" type="ax21:Product" />
+          <xs:element minOccurs="0" name="commOperationPhase1" nillable="true" type="ax21:DateHolder" />
+          <xs:element minOccurs="0" name="commOperationPhase2" nillable="true" type="ax21:DateHolder" />
+          <xs:element minOccurs="0" name="commOperationPhase3" nillable="true" type="ax21:DateHolder" />
+          <xs:element minOccurs="0" name="constructionPhase1" nillable="true" type="ax21:DateHolder" />
+          <xs:element minOccurs="0" name="constructionPhase2" nillable="true" type="ax21:DateHolder" />
+          <xs:element minOccurs="0" name="constructionPhase3" nillable="true" type="ax21:DateHolder" />
+          <xs:element minOccurs="0" name="projCategory" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="projCatgryOther" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="projCatgryOtherValue" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="projDesc" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="projStatus" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="projectId" type="xs:long" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="propProductList" nillable="true" type="ax21:Product" />
+          <xs:element minOccurs="0" name="trailOperationPhase1" nillable="true" type="ax21:DateHolder" />
+          <xs:element minOccurs="0" name="trailOperationPhase2" nillable="true" type="ax21:DateHolder" />
+          <xs:element minOccurs="0" name="trailOperationPhase3" nillable="true" type="ax21:DateHolder" />
+          <xs:element minOccurs="0" name="ventureType1" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ventureType2" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Product">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="code" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="expectedOutput" type="xs:double" />
+          <xs:element minOccurs="0" name="installedCapacity" type="xs:double" />
+          <xs:element minOccurs="0" name="measurement" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="productId" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DateHolder">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="day" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="displayDate" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="empty" type="xs:boolean" />
+          <xs:element minOccurs="0" name="month" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="sqlDateStr" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="valid" type="xs:boolean" />
+          <xs:element minOccurs="0" name="year" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProjectFinancial">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="auxillaryEquipPhase1" type="xs:double" />
+          <xs:element minOccurs="0" name="auxillaryEquipPhase2" type="xs:double" />
+          <xs:element minOccurs="0" name="auxillaryEquipPhase3" type="xs:double" />
+          <xs:element minOccurs="0" name="auxillaryId" type="xs:long" />
+          <xs:element minOccurs="0" name="buildingId" type="xs:long" />
+          <xs:element minOccurs="0" name="buildingsPhase1" type="xs:double" />
+          <xs:element minOccurs="0" name="buildingsPhase2" type="xs:double" />
+          <xs:element minOccurs="0" name="buildingsPhase3" type="xs:double" />
+          <xs:element minOccurs="0" name="contingenciesPhase1" type="xs:double" />
+          <xs:element minOccurs="0" name="contingenciesPhase2" type="xs:double" />
+          <xs:element minOccurs="0" name="contingenciesPhase3" type="xs:double" />
+          <xs:element minOccurs="0" name="contingeniousId" type="xs:long" />
+          <xs:element minOccurs="0" name="debtAmount" type="xs:double" />
+          <xs:element minOccurs="0" name="debtName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="eouDate" nillable="true" type="ax21:DateHolder" />
+          <xs:element minOccurs="0" name="eouNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="equityDomestic" type="xs:double" />
+          <xs:element minOccurs="0" name="equityForiegn" type="xs:double" />
+          <xs:element minOccurs="0" name="fipbRbiApprDate" nillable="true" type="ax21:DateHolder" />
+          <xs:element minOccurs="0" name="fipbRbiApprNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="iemDate" nillable="true" type="ax21:DateHolder" />
+          <xs:element minOccurs="0" name="iemNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="indigeneousPhase1" type="xs:double" />
+          <xs:element minOccurs="0" name="indigeneousPhase2" type="xs:double" />
+          <xs:element minOccurs="0" name="indigeneousPhase3" type="xs:double" />
+          <xs:element minOccurs="0" name="indigeniousId" type="xs:long" />
+          <xs:element minOccurs="0" name="landId" type="xs:long" />
+          <xs:element minOccurs="0" name="landPhase1" type="xs:double" />
+          <xs:element minOccurs="0" name="landPhase2" type="xs:double" />
+          <xs:element minOccurs="0" name="landPhase3" type="xs:double" />
+          <xs:element minOccurs="0" name="loiDate" nillable="true" type="ax21:DateHolder" />
+          <xs:element minOccurs="0" name="loiNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="machineryImportedId" type="xs:long" />
+          <xs:element minOccurs="0" name="machineryImportedPhase1" type="xs:double" />
+          <xs:element minOccurs="0" name="machineryImportedPhase2" type="xs:double" />
+          <xs:element minOccurs="0" name="machineryImportedPhase3" type="xs:double" />
+          <xs:element minOccurs="0" name="miscFixedId" type="xs:long" />
+          <xs:element minOccurs="0" name="miscFxdAssestsPhase1" type="xs:double" />
+          <xs:element minOccurs="0" name="miscFxdAssestsPhase2" type="xs:double" />
+          <xs:element minOccurs="0" name="miscFxdAssestsPhase3" type="xs:double" />
+          <xs:element minOccurs="0" name="preliminaryId" type="xs:long" />
+          <xs:element minOccurs="0" name="preliminaryPreOperativePhase1" type="xs:double" />
+          <xs:element minOccurs="0" name="preliminaryPreOperativePhase2" type="xs:double" />
+          <xs:element minOccurs="0" name="preliminaryPreOperativePhase3" type="xs:double" />
+          <xs:element minOccurs="0" name="projectId" type="xs:long" />
+          <xs:element minOccurs="0" name="totalEqtyDebt" type="xs:double" />
+          <xs:element minOccurs="0" name="totalEquity" type="xs:double" />
+          <xs:element minOccurs="0" name="totalPhase1" type="xs:double" />
+          <xs:element minOccurs="0" name="totalPhase2" type="xs:double" />
+          <xs:element minOccurs="0" name="totalPhase3" type="xs:double" />
+          <xs:element minOccurs="0" name="workCapitalId" type="xs:long" />
+          <xs:element minOccurs="0" name="workCptlMarginPhase1" type="xs:double" />
+          <xs:element minOccurs="0" name="workCptlMarginPhase2" type="xs:double" />
+          <xs:element minOccurs="0" name="workCptlMarginPhase3" type="xs:double" />
+          <xs:element minOccurs="0" name="workingSheet" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProjectEmployment">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="femalePhase1" type="xs:long" />
+          <xs:element minOccurs="0" name="femalePhase2" type="xs:long" />
+          <xs:element minOccurs="0" name="femalePhase3" type="xs:long" />
+          <xs:element minOccurs="0" name="malePhase1" type="xs:long" />
+          <xs:element minOccurs="0" name="malePhase2" type="xs:long" />
+          <xs:element minOccurs="0" name="malePhase3" type="xs:long" />
+          <xs:element minOccurs="0" name="managerialPhase1" type="xs:long" />
+          <xs:element minOccurs="0" name="managerialPhase2" type="xs:long" />
+          <xs:element minOccurs="0" name="managerialPhase3" type="xs:long" />
+          <xs:element minOccurs="0" name="maxNoWorkers" type="xs:long" />
+          <xs:element minOccurs="0" name="projectId" type="xs:long" />
+          <xs:element minOccurs="0" name="skilledPhase1" type="xs:long" />
+          <xs:element minOccurs="0" name="skilledPhase2" type="xs:long" />
+          <xs:element minOccurs="0" name="skilledPhase3" type="xs:long" />
+          <xs:element minOccurs="0" name="supervisoryPhase1" type="xs:long" />
+          <xs:element minOccurs="0" name="supervisoryPhase2" type="xs:long" />
+          <xs:element minOccurs="0" name="supervisoryPhase3" type="xs:long" />
+          <xs:element minOccurs="0" name="totalPhase1" type="xs:long" />
+          <xs:element minOccurs="0" name="totalPhase2" type="xs:long" />
+          <xs:element minOccurs="0" name="totalPhase3" type="xs:long" />
+          <xs:element minOccurs="0" name="unSkilledPhase1" type="xs:long" />
+          <xs:element minOccurs="0" name="unSkilledPhase2" type="xs:long" />
+          <xs:element minOccurs="0" name="unSkilledPhase3" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProjectMaterialManufacturing">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="descProcessTech" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="fileName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="processTechnology" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="projectId" type="xs:long" />
+          <xs:element minOccurs="0" name="projectmatManf" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="rawMaterialList" nillable="true" type="ax21:RawMaterial" />
+          <xs:element minOccurs="0" name="techCollaborationDetails" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="technicalCollaboration" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="RawMaterial">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="dailyConsumption" type="xs:double" />
+          <xs:element minOccurs="0" name="itemCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="itemDescription" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="rawMaterialId" type="xs:long" />
+          <xs:element minOccurs="0" name="unitOfMeasure" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ProjectPlantMachinery">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="highPressureLevel" type="xs:long" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="machineryCapacties" nillable="true" type="ax21:MachineryCapacity" />
+          <xs:element minOccurs="0" name="projectId" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="MachineryCapacity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="costofmachinery" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="numberofmachineries" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="plantCapacity" type="xs:double" />
+          <xs:element minOccurs="0" name="plantDescription" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="plantMachineryId" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Land">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="adminBuildingId" type="xs:long" />
+          <xs:element minOccurs="0" name="adminBuildingPhase1" type="xs:double" />
+          <xs:element minOccurs="0" name="adminBuildingPhase2" type="xs:double" />
+          <xs:element minOccurs="0" name="adminBuildingPhase3" type="xs:double" />
+          <xs:element minOccurs="0" name="estimatedarea" type="xs:double" />
+          <xs:element minOccurs="0" name="indusShed" type="xs:double" />
+          <xs:element minOccurs="0" name="landId" type="xs:long" />
+          <xs:element minOccurs="0" name="openAreaId" type="xs:long" />
+          <xs:element minOccurs="0" name="openAreaPhase1" type="xs:double" />
+          <xs:element minOccurs="0" name="openAreaPhase2" type="xs:double" />
+          <xs:element minOccurs="0" name="openAreaPhase3" type="xs:double" />
+          <xs:element minOccurs="0" name="plantFactoryBuildingId" type="xs:long" />
+          <xs:element minOccurs="0" name="plantFactoryPhase1" type="xs:double" />
+          <xs:element minOccurs="0" name="plantFactoryPhase2" type="xs:double" />
+          <xs:element minOccurs="0" name="plantFactoryPhase3" type="xs:double" />
+          <xs:element minOccurs="0" name="remarks" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="roadWaterPhase1" type="xs:double" />
+          <xs:element minOccurs="0" name="roadWaterPhase2" type="xs:double" />
+          <xs:element minOccurs="0" name="roadWaterPhase3" type="xs:double" />
+          <xs:element minOccurs="0" name="roadWtrStrgId" type="xs:long" />
+          <xs:element minOccurs="0" name="storageWaterPhase1" type="xs:double" />
+          <xs:element minOccurs="0" name="storageWaterPhase2" type="xs:double" />
+          <xs:element minOccurs="0" name="storageWaterPhase3" type="xs:double" />
+          <xs:element minOccurs="0" name="storageWtrHosueId" type="xs:long" />
+          <xs:element minOccurs="0" name="totalPhase1" type="xs:double" />
+          <xs:element minOccurs="0" name="totalPhase2" type="xs:double" />
+          <xs:element minOccurs="0" name="totalPhase3" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Electricity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="commercialPhase1" nillable="true" type="ax21:DateHolder" />
+          <xs:element minOccurs="0" name="commercialPhase2" nillable="true" type="ax21:DateHolder" />
+          <xs:element minOccurs="0" name="commercialPhase3" nillable="true" type="ax21:DateHolder" />
+          <xs:element minOccurs="0" name="connectedLoadPhase1" type="xs:double" />
+          <xs:element minOccurs="0" name="connectedLoadPhase2" type="xs:double" />
+          <xs:element minOccurs="0" name="connectedLoadPhase3" type="xs:double" />
+          <xs:element minOccurs="0" name="constructionPhase1" nillable="true" type="ax21:DateHolder" />
+          <xs:element minOccurs="0" name="constructionPhase2" nillable="true" type="ax21:DateHolder" />
+          <xs:element minOccurs="0" name="constructionPhase3" nillable="true" type="ax21:DateHolder" />
+          <xs:element minOccurs="0" name="contractDemandPhase1" type="xs:double" />
+          <xs:element minOccurs="0" name="contractDemandPhase2" type="xs:double" />
+          <xs:element minOccurs="0" name="contractDemandPhase3" type="xs:double" />
+          <xs:element minOccurs="0" name="energySrcDGSet" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="energySrcGeneration" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="energySrcSupply" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="landId" type="xs:long" />
+          <xs:element minOccurs="0" name="loadFactorPhase1" type="xs:double" />
+          <xs:element minOccurs="0" name="loadFactorPhase2" type="xs:double" />
+          <xs:element minOccurs="0" name="loadFactorPhase3" type="xs:double" />
+          <xs:element minOccurs="0" name="powerRequirementPhase1" type="xs:double" />
+          <xs:element minOccurs="0" name="powerRequirementPhase2" type="xs:double" />
+          <xs:element minOccurs="0" name="powerRequirementPhase3" type="xs:double" />
+          <xs:element minOccurs="0" name="powerSupplyPhase1" type="xs:double" />
+          <xs:element minOccurs="0" name="powerSupplyPhase2" type="xs:double" />
+          <xs:element minOccurs="0" name="powerSupplyPhase3" type="xs:double" />
+          <xs:element minOccurs="0" name="voltageRatingPhase1" type="xs:double" />
+          <xs:element minOccurs="0" name="voltageRatingPhase2" type="xs:double" />
+          <xs:element minOccurs="0" name="voltageRatingPhase3" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Water">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="landId" type="xs:long" />
+          <xs:element minOccurs="0" name="permtDomesticId" type="xs:double" />
+          <xs:element minOccurs="0" name="permtDomesticPhase1" type="xs:double" />
+          <xs:element minOccurs="0" name="permtDomesticPhase2" type="xs:double" />
+          <xs:element minOccurs="0" name="permtDomesticPhase3" type="xs:double" />
+          <xs:element minOccurs="0" name="permtIndustrialId" type="xs:double" />
+          <xs:element minOccurs="0" name="permtIndustrialPhase1" type="xs:double" />
+          <xs:element minOccurs="0" name="permtIndustrialPhase2" type="xs:double" />
+          <xs:element minOccurs="0" name="permtIndustrialPhase3" type="xs:double" />
+          <xs:element minOccurs="0" name="tempDomesticId" type="xs:double" />
+          <xs:element minOccurs="0" name="tempDomesticPhase1" type="xs:double" />
+          <xs:element minOccurs="0" name="tempDomesticPhase2" type="xs:double" />
+          <xs:element minOccurs="0" name="tempDomesticPhase3" type="xs:double" />
+          <xs:element minOccurs="0" name="tempIndustrialId" type="xs:double" />
+          <xs:element minOccurs="0" name="tempIndustrialPhase1" type="xs:double" />
+          <xs:element minOccurs="0" name="tempIndustrialPhase2" type="xs:double" />
+          <xs:element minOccurs="0" name="tempIndustrialPhase3" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Effluents">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="disposalSystem" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="landId" type="xs:long" />
+          <xs:element minOccurs="0" name="quantityPhase1" type="xs:double" />
+          <xs:element minOccurs="0" name="quantityPhase2" type="xs:double" />
+          <xs:element minOccurs="0" name="quantityPhase3" type="xs:double" />
+          <xs:element minOccurs="0" name="typeDescription" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="wastagePhase1" type="xs:double" />
+          <xs:element minOccurs="0" name="wastagePhase2" type="xs:double" />
+          <xs:element minOccurs="0" name="wastagePhase3" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PaymentDetails">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="account_branch" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="account_ifsc" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="account_name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="account_no" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="account_type" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="area" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="bankReferenceNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="bank_name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="cgst" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="clientName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="customerReferenceNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="dateAndTime" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="emd" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="gstNumber" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="gstRegesterd" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="industrialPark" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="landCost" type="xs:double" />
+          <xs:element minOccurs="0" name="paidAmount" type="xs:double" />
+          <xs:element minOccurs="0" name="paymentMode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="processFee" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="referenceId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="remarks" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="sgst" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="statusCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="transactionNumber" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DocumentCheckList">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="addressProof" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="casteCertificate" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="detailedProject" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="emdProcessFee" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="enterpreneurMemorandum" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="financeCertificate" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="gstCertificate" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="otherDocument" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="panCard" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="partnerShipDeed" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="paymentReceipt" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="photoGraph" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="plantLayout" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="requestLetter" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="shareHolderDetails" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="User">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="companyAddress" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="companyAreaCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="companyName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="companyPhone" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="emailId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="firstName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ipassRegistrationId" type="xs:long" />
+          <xs:element minOccurs="0" name="mobile" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="surname" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://ws.apache.org/namespaces/axis2/map">
+      <xs:complexType name="entry1">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="key" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="value" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="map1">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="entry" nillable="true" type="ax23:entry1" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:ax22="http://bo.humint.tsiic.com/xsd" xmlns:ax24="http://ws.apache.org/namespaces/axis2/map" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://service.humint.tsiic.com">
+      <xs:import namespace="http://bo.humint.tsiic.com/xsd" />
+      <xs:import namespace="http://ws.apache.org/namespaces/axis2/map" />
+      <xs:element name="saveFeedBackDetails">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ipassId" type="xs:long" />
+            <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="feedback" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="saveFeedBackDetailsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="saveCreditedTransactionDetails">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="transactionDetails" nillable="true" type="ax22:TransactionDetails" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="saveCreditedTransactionDetailsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="saveApplicationDetails">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="plot" nillable="true" type="ax22:Plot" />
+            <xs:element name="ipass_registrationId" type="xs:long" />
+            <xs:element name="ipass_applicationId" type="xs:long" />
+            <xs:element minOccurs="0" name="_verifyFirmDetails" nillable="true" type="ax22:VerifyFirmDetails" />
+            <xs:element minOccurs="0" name="_promoterDetails" nillable="true" type="ax22:PromoterDetails" />
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="_additionalPromoterList" nillable="true" type="ax22:AdditionalPromoter" />
+            <xs:element minOccurs="0" name="_projectGeneral" nillable="true" type="ax22:ProjectGeneral" />
+            <xs:element minOccurs="0" name="_projectFinancial" nillable="true" type="ax22:ProjectFinancial" />
+            <xs:element minOccurs="0" name="_projectEmployment" nillable="true" type="ax22:ProjectEmployment" />
+            <xs:element minOccurs="0" name="_projectMaterialManufacturing" nillable="true" type="ax22:ProjectMaterialManufacturing" />
+            <xs:element minOccurs="0" name="_projectPlantMachinery" nillable="true" type="ax22:ProjectPlantMachinery" />
+            <xs:element minOccurs="0" name="_land" nillable="true" type="ax22:Land" />
+            <xs:element minOccurs="0" name="_electricity" nillable="true" type="ax22:Electricity" />
+            <xs:element minOccurs="0" name="_water" nillable="true" type="ax22:Water" />
+            <xs:element minOccurs="0" name="_effluents" nillable="true" type="ax22:Effluents" />
+            <xs:element minOccurs="0" name="paymentDetails" nillable="true" type="ax22:PaymentDetails" />
+            <xs:element minOccurs="0" name="_documentCheckList" nillable="true" type="ax22:DocumentCheckList" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="saveApplicationDetailsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="registerUser">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="user" nillable="true" type="ax22:User" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="registerUserResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getIpStatus">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="industrialPark" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getIpStatusResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SaveShortFallDocs">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="files" nillable="true" type="ax24:map1" />
+            <xs:element name="iPassApplicantId" type="xs:long" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SaveShortFallDocsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SaveRevisedProjCost">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="projectFinancial" nillable="true" type="ax22:ProjectFinancial" />
+            <xs:element name="iPassApplicantId" type="xs:long" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SaveRevisedProjCostResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getIpStatusRequest">
+    <wsdl:part name="parameters" element="ns:getIpStatus" />
+  </wsdl:message>
+  <wsdl:message name="getIpStatusResponse">
+    <wsdl:part name="parameters" element="ns:getIpStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="saveFeedBackDetailsRequest">
+    <wsdl:part name="parameters" element="ns:saveFeedBackDetails" />
+  </wsdl:message>
+  <wsdl:message name="saveFeedBackDetailsResponse">
+    <wsdl:part name="parameters" element="ns:saveFeedBackDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="saveCreditedTransactionDetailsRequest">
+    <wsdl:part name="parameters" element="ns:saveCreditedTransactionDetails" />
+  </wsdl:message>
+  <wsdl:message name="saveCreditedTransactionDetailsResponse">
+    <wsdl:part name="parameters" element="ns:saveCreditedTransactionDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveRevisedProjCostRequest">
+    <wsdl:part name="parameters" element="ns:SaveRevisedProjCost" />
+  </wsdl:message>
+  <wsdl:message name="SaveRevisedProjCostResponse">
+    <wsdl:part name="parameters" element="ns:SaveRevisedProjCostResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveShortFallDocsRequest">
+    <wsdl:part name="parameters" element="ns:SaveShortFallDocs" />
+  </wsdl:message>
+  <wsdl:message name="SaveShortFallDocsResponse">
+    <wsdl:part name="parameters" element="ns:SaveShortFallDocsResponse" />
+  </wsdl:message>
+  <wsdl:message name="saveApplicationDetailsRequest">
+    <wsdl:part name="parameters" element="ns:saveApplicationDetails" />
+  </wsdl:message>
+  <wsdl:message name="saveApplicationDetailsResponse">
+    <wsdl:part name="parameters" element="ns:saveApplicationDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="registerUserRequest">
+    <wsdl:part name="parameters" element="ns:registerUser" />
+  </wsdl:message>
+  <wsdl:message name="registerUserResponse">
+    <wsdl:part name="parameters" element="ns:registerUserResponse" />
+  </wsdl:message>
+  <wsdl:portType name="LandAllotmentServicePortType">
+    <wsdl:operation name="getIpStatus">
+      <wsdl:input wsaw:Action="urn:getIpStatus" message="ns:getIpStatusRequest" />
+      <wsdl:output wsaw:Action="urn:getIpStatusResponse" message="ns:getIpStatusResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="saveFeedBackDetails">
+      <wsdl:input wsaw:Action="urn:saveFeedBackDetails" message="ns:saveFeedBackDetailsRequest" />
+      <wsdl:output wsaw:Action="urn:saveFeedBackDetailsResponse" message="ns:saveFeedBackDetailsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="saveCreditedTransactionDetails">
+      <wsdl:input wsaw:Action="urn:saveCreditedTransactionDetails" message="ns:saveCreditedTransactionDetailsRequest" />
+      <wsdl:output wsaw:Action="urn:saveCreditedTransactionDetailsResponse" message="ns:saveCreditedTransactionDetailsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveRevisedProjCost">
+      <wsdl:input wsaw:Action="urn:SaveRevisedProjCost" message="ns:SaveRevisedProjCostRequest" />
+      <wsdl:output wsaw:Action="urn:SaveRevisedProjCostResponse" message="ns:SaveRevisedProjCostResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveShortFallDocs">
+      <wsdl:input wsaw:Action="urn:SaveShortFallDocs" message="ns:SaveShortFallDocsRequest" />
+      <wsdl:output wsaw:Action="urn:SaveShortFallDocsResponse" message="ns:SaveShortFallDocsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="saveApplicationDetails">
+      <wsdl:input wsaw:Action="urn:saveApplicationDetails" message="ns:saveApplicationDetailsRequest" />
+      <wsdl:output wsaw:Action="urn:saveApplicationDetailsResponse" message="ns:saveApplicationDetailsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="registerUser">
+      <wsdl:input wsaw:Action="urn:registerUser" message="ns:registerUserRequest" />
+      <wsdl:output wsaw:Action="urn:registerUserResponse" message="ns:registerUserResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="LandAllotmentServiceSoap11Binding" type="ns:LandAllotmentServicePortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getIpStatus">
+      <soap:operation soapAction="urn:getIpStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveFeedBackDetails">
+      <soap:operation soapAction="urn:saveFeedBackDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveCreditedTransactionDetails">
+      <soap:operation soapAction="urn:saveCreditedTransactionDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveRevisedProjCost">
+      <soap:operation soapAction="urn:SaveRevisedProjCost" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveShortFallDocs">
+      <soap:operation soapAction="urn:SaveShortFallDocs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveApplicationDetails">
+      <soap:operation soapAction="urn:saveApplicationDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registerUser">
+      <soap:operation soapAction="urn:registerUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LandAllotmentServiceSoap12Binding" type="ns:LandAllotmentServicePortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getIpStatus">
+      <soap12:operation soapAction="urn:getIpStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveFeedBackDetails">
+      <soap12:operation soapAction="urn:saveFeedBackDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveCreditedTransactionDetails">
+      <soap12:operation soapAction="urn:saveCreditedTransactionDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveRevisedProjCost">
+      <soap12:operation soapAction="urn:SaveRevisedProjCost" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveShortFallDocs">
+      <soap12:operation soapAction="urn:SaveShortFallDocs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveApplicationDetails">
+      <soap12:operation soapAction="urn:saveApplicationDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registerUser">
+      <soap12:operation soapAction="urn:registerUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LandAllotmentServiceHttpBinding" type="ns:LandAllotmentServicePortType">
+    <http:binding verb="POST" />
+    <wsdl:operation name="getIpStatus">
+      <http:operation location="getIpStatus" />
+      <wsdl:input>
+        <mime:content part="parameters" type="application/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="application/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveFeedBackDetails">
+      <http:operation location="saveFeedBackDetails" />
+      <wsdl:input>
+        <mime:content part="parameters" type="application/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="application/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveCreditedTransactionDetails">
+      <http:operation location="saveCreditedTransactionDetails" />
+      <wsdl:input>
+        <mime:content part="parameters" type="application/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="application/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveRevisedProjCost">
+      <http:operation location="SaveRevisedProjCost" />
+      <wsdl:input>
+        <mime:content part="parameters" type="application/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="application/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveShortFallDocs">
+      <http:operation location="SaveShortFallDocs" />
+      <wsdl:input>
+        <mime:content part="parameters" type="application/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="application/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveApplicationDetails">
+      <http:operation location="saveApplicationDetails" />
+      <wsdl:input>
+        <mime:content part="parameters" type="application/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="application/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registerUser">
+      <http:operation location="registerUser" />
+      <wsdl:input>
+        <mime:content part="parameters" type="application/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="application/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LandAllotmentService">
+    <wsdl:port name="LandAllotmentServiceHttpSoap11Endpoint" binding="ns:LandAllotmentServiceSoap11Binding">
+      <soap:address location="http://onlineapps.tsiic.telangana.gov.in:8888/TS_ipass/services/LandAllotmentService.LandAllotmentServiceHttpSoap11Endpoint/" />
+    </wsdl:port>
+    <wsdl:port name="LandAllotmentServiceHttpSoap12Endpoint" binding="ns:LandAllotmentServiceSoap12Binding">
+      <soap12:address location="http://onlineapps.tsiic.telangana.gov.in:8888/TS_ipass/services/LandAllotmentService.LandAllotmentServiceHttpSoap12Endpoint/" />
+    </wsdl:port>
+    <wsdl:port name="LandAllotmentServiceHttpEndpoint" binding="ns:LandAllotmentServiceHttpBinding">
+      <http:address location="http://onlineapps.tsiic.telangana.gov.in:8888/TS_ipass/services/LandAllotmentService.LandAllotmentServiceHttpEndpoint/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tslabourws.cgg.gov.in/" targetNamespace="http://tslabourws.cgg.gov.in/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="actSelected" type="tns:actSelected" />
+  <xs:element name="actSelectedResponse" type="tns:actSelectedResponse" />
+  <xs:complexType name="actSelected">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActsData" type="tns:act" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="act">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="buildingRegistrationActData" type="tns:buildingotherconstructions" />
+      <xs:element name="buildingRegistrationActSelected" type="xs:boolean" />
+      <xs:element minOccurs="0" name="contractLabourPrincipalEmplyerActData" type="tns:contractLabourPrincipalEmployer" />
+      <xs:element name="contractLabourPrincipalEmplyerActSelected" type="xs:boolean" />
+      <xs:element minOccurs="0" name="interstateMigrantPrincipalEmplyerActData" type="tns:ismwPrincipalEmployer" />
+      <xs:element name="interstateMigrantPrincipalEmplyerActSelected" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="buildingotherconstructions">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="actID" type="xs:string" />
+      <xs:element minOccurs="0" name="establishment_full_name" type="xs:string" />
+      <xs:element minOccurs="0" name="establishment_name" type="xs:string" />
+      <xs:element minOccurs="0" name="establishment_permanent_district" type="xs:string" />
+      <xs:element minOccurs="0" name="establishment_permanent_door" type="xs:string" />
+      <xs:element minOccurs="0" name="establishment_permanent_mandal" type="xs:string" />
+      <xs:element minOccurs="0" name="establishment_permanent_pincode" type="xs:string" />
+      <xs:element minOccurs="0" name="establishment_permanent_village" type="xs:string" />
+      <xs:element minOccurs="0" name="establishment_postal_district" type="xs:string" />
+      <xs:element minOccurs="0" name="establishment_postal_door" type="xs:string" />
+      <xs:element minOccurs="0" name="establishment_postal_locality" type="xs:string" />
+      <xs:element minOccurs="0" name="establishment_postal_mandal" type="xs:string" />
+      <xs:element minOccurs="0" name="establishment_postal_pincode" type="xs:string" />
+      <xs:element minOccurs="0" name="establishment_postal_village" type="xs:string" />
+      <xs:element minOccurs="0" name="manager_agent_designation" type="xs:string" />
+      <xs:element minOccurs="0" name="manager_agent_district" type="xs:string" />
+      <xs:element minOccurs="0" name="manager_agent_door" type="xs:string" />
+      <xs:element minOccurs="0" name="manager_agent_email" type="xs:string" />
+      <xs:element minOccurs="0" name="manager_agent_fathername" type="xs:string" />
+      <xs:element minOccurs="0" name="manager_agent_mandal" type="xs:string" />
+      <xs:element minOccurs="0" name="manager_agent_mobile" type="xs:string" />
+      <xs:element minOccurs="0" name="manager_agent_name" type="xs:string" />
+      <xs:element minOccurs="0" name="manager_agent_street" type="xs:string" />
+      <xs:element minOccurs="0" name="manager_agent_village" type="xs:string" />
+      <xs:element minOccurs="0" name="nature_work" type="xs:string" />
+      <xs:element minOccurs="0" name="other_attachments_1" type="xs:string" />
+      <xs:element minOccurs="0" name="other_attachments_2" type="xs:string" />
+      <xs:element minOccurs="0" name="projectSubmitDate" type="xs:string" />
+      <xs:element minOccurs="0" name="stageID" type="xs:string" />
+      <xs:element minOccurs="0" name="uID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="contractLabourPrincipalEmployer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="actID" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="contractorParticulars" nillable="true" type="tns:contractLabourPrincipalEmployerMultiData" />
+      <xs:element minOccurs="0" name="employees_attachement" type="xs:string" />
+      <xs:element minOccurs="0" name="establishment_category" type="xs:string" />
+      <xs:element minOccurs="0" name="establishment_category_others" type="xs:string" />
+      <xs:element minOccurs="0" name="establishment_name" type="xs:string" />
+      <xs:element minOccurs="0" name="establishment_postal_district" type="xs:string" />
+      <xs:element minOccurs="0" name="establishment_postal_door" type="xs:string" />
+      <xs:element minOccurs="0" name="establishment_postal_locality" type="xs:string" />
+      <xs:element minOccurs="0" name="establishment_postal_mandal" type="xs:string" />
+      <xs:element minOccurs="0" name="establishment_postal_village" type="xs:string" />
+      <xs:element minOccurs="0" name="manager_agent_district" type="xs:string" />
+      <xs:element minOccurs="0" name="manager_agent_door" type="xs:string" />
+      <xs:element minOccurs="0" name="manager_agent_mandal" type="xs:string" />
+      <xs:element minOccurs="0" name="manager_agent_name" type="xs:string" />
+      <xs:element minOccurs="0" name="manager_agent_village" type="xs:string" />
+      <xs:element minOccurs="0" name="nature_work" type="xs:string" />
+      <xs:element minOccurs="0" name="other_attachments_1" type="xs:string" />
+      <xs:element minOccurs="0" name="other_attachments_2" type="xs:string" />
+      <xs:element minOccurs="0" name="previous_registered_act" type="xs:string" />
+      <xs:element minOccurs="0" name="previous_registration_certificate" type="xs:string" />
+      <xs:element minOccurs="0" name="previous_registration_no" type="xs:string" />
+      <xs:element minOccurs="0" name="principal_employer_district" type="xs:string" />
+      <xs:element minOccurs="0" name="principal_employer_door" type="xs:string" />
+      <xs:element minOccurs="0" name="principal_employer_email" type="xs:string" />
+      <xs:element minOccurs="0" name="principal_employer_fathername" type="xs:string" />
+      <xs:element minOccurs="0" name="principal_employer_mandal" type="xs:string" />
+      <xs:element minOccurs="0" name="principal_employer_mobile" type="xs:string" />
+      <xs:element minOccurs="0" name="principal_employer_name" type="xs:string" />
+      <xs:element minOccurs="0" name="principal_employer_village" type="xs:string" />
+      <xs:element minOccurs="0" name="projectSubmitDate" type="xs:string" />
+      <xs:element minOccurs="0" name="stageID" type="xs:string" />
+      <xs:element minOccurs="0" name="uID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="contractLabourPrincipalEmployerMultiData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="commencementDate" type="xs:string" />
+      <xs:element minOccurs="0" name="contractorAddress" type="xs:string" />
+      <xs:element minOccurs="0" name="contractorName" type="xs:string" />
+      <xs:element minOccurs="0" name="manufacturingDeptDetails" type="xs:string" />
+      <xs:element minOccurs="0" name="maxcontractLabour" type="xs:string" />
+      <xs:element minOccurs="0" name="natureOfWork" type="xs:string" />
+      <xs:element minOccurs="0" name="terminationDate" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ismwPrincipalEmployer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="actID" type="xs:string" />
+      <xs:element minOccurs="0" name="director_district" type="xs:string" />
+      <xs:element minOccurs="0" name="director_door" type="xs:string" />
+      <xs:element minOccurs="0" name="director_mandal" type="xs:string" />
+      <xs:element minOccurs="0" name="director_name" type="xs:string" />
+      <xs:element minOccurs="0" name="director_village" type="xs:string" />
+      <xs:element minOccurs="0" name="employees_attachement" type="xs:string" />
+      <xs:element minOccurs="0" name="establishment_category" type="xs:string" />
+      <xs:element minOccurs="0" name="establishment_category_others" type="xs:string" />
+      <xs:element minOccurs="0" name="establishment_name" type="xs:string" />
+      <xs:element minOccurs="0" name="establishment_postal_district" type="xs:string" />
+      <xs:element minOccurs="0" name="establishment_postal_door" type="xs:string" />
+      <xs:element minOccurs="0" name="establishment_postal_locality" type="xs:string" />
+      <xs:element minOccurs="0" name="establishment_postal_mandal" type="xs:string" />
+      <xs:element minOccurs="0" name="establishment_postal_village" type="xs:string" />
+      <xs:element minOccurs="0" name="ipass_status_id" type="xs:string" />
+      <xs:element minOccurs="0" name="manager_agent_district" type="xs:string" />
+      <xs:element minOccurs="0" name="manager_agent_door" type="xs:string" />
+      <xs:element minOccurs="0" name="manager_agent_mandal" type="xs:string" />
+      <xs:element minOccurs="0" name="manager_agent_name" type="xs:string" />
+      <xs:element minOccurs="0" name="manager_agent_village" type="xs:string" />
+      <xs:element minOccurs="0" name="nature_work" type="xs:string" />
+      <xs:element minOccurs="0" name="other_attachments_1" type="xs:string" />
+      <xs:element minOccurs="0" name="other_attachments_2" type="xs:string" />
+      <xs:element minOccurs="0" name="previous_registered_act" type="xs:string" />
+      <xs:element minOccurs="0" name="previous_registration_certificate" type="xs:string" />
+      <xs:element minOccurs="0" name="previous_registration_no" type="xs:string" />
+      <xs:element minOccurs="0" name="principal_employer_district" type="xs:string" />
+      <xs:element minOccurs="0" name="principal_employer_door" type="xs:string" />
+      <xs:element minOccurs="0" name="principal_employer_email" type="xs:string" />
+      <xs:element minOccurs="0" name="principal_employer_fathername" type="xs:string" />
+      <xs:element minOccurs="0" name="principal_employer_mandal" type="xs:string" />
+      <xs:element minOccurs="0" name="principal_employer_mobile" type="xs:string" />
+      <xs:element minOccurs="0" name="principal_employer_name" type="xs:string" />
+      <xs:element minOccurs="0" name="principal_employer_village" type="xs:string" />
+      <xs:element minOccurs="0" name="projectSubmitDate" type="xs:string" />
+      <xs:element minOccurs="0" name="stageID" type="xs:string" />
+      <xs:element minOccurs="0" name="uID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="actSelectedResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:actsResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="actsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="officerDetails" nillable="true" type="tns:officerDetails" />
+      <xs:element minOccurs="0" name="status" type="xs:string" />
+      <xs:element minOccurs="0" name="uID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="officerDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="actID" type="xs:string" />
+      <xs:element minOccurs="0" name="officerID" type="xs:string" />
+      <xs:element minOccurs="0" name="uID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

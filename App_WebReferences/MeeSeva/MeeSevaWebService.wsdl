@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://MsevaPaymentTG.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://MsevaPaymentTG.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://MsevaPaymentTG.org/">
+      <s:element name="GetPaymentGatewayResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="arrPaymentDetails" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="arrAmount" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="arrTransParams" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="arrTransDetails" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="userid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="checksum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetPaymentGatewayResponseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPaymentGatewayResponseResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPaymentTransId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="arrPaymentDetails" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="arrAmount" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="arrTransParams" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="arrTransDetails" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="userid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="checksum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPaymentTransIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPaymentTransIdResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateApplicationDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="appno" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="status" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="remarks" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="updatedby" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DeptFlag" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="checksum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateApplicationDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateApplicationDetailsResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPaymentTransIdonline">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="arrPaymentDetails" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="arrAmount" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="arrTransParams" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="arrTransDetails" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="userid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="checksum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPaymentTransIdonlineResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPaymentTransIdonlineResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetPaymentGatewayResponseSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPaymentGatewayResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentGatewayResponseSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPaymentGatewayResponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentTransIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPaymentTransId" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentTransIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPaymentTransIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateApplicationDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateApplicationDetails" />
+  </wsdl:message>
+  <wsdl:message name="UpdateApplicationDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateApplicationDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentTransIdonlineSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPaymentTransIdonline" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentTransIdonlineSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPaymentTransIdonlineResponse" />
+  </wsdl:message>
+  <wsdl:portType name="MeeSevaWebServiceSoap">
+    <wsdl:operation name="GetPaymentGatewayResponse">
+      <wsdl:input message="tns:GetPaymentGatewayResponseSoapIn" />
+      <wsdl:output message="tns:GetPaymentGatewayResponseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentTransId">
+      <wsdl:input message="tns:GetPaymentTransIdSoapIn" />
+      <wsdl:output message="tns:GetPaymentTransIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateApplicationDetails">
+      <wsdl:input message="tns:UpdateApplicationDetailsSoapIn" />
+      <wsdl:output message="tns:UpdateApplicationDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentTransIdonline">
+      <wsdl:input message="tns:GetPaymentTransIdonlineSoapIn" />
+      <wsdl:output message="tns:GetPaymentTransIdonlineSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MeeSevaWebServiceSoap" type="tns:MeeSevaWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetPaymentGatewayResponse">
+      <soap:operation soapAction="http://MsevaPaymentTG.org/GetPaymentGatewayResponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentTransId">
+      <soap:operation soapAction="http://MsevaPaymentTG.org/GetPaymentTransId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateApplicationDetails">
+      <soap:operation soapAction="http://MsevaPaymentTG.org/UpdateApplicationDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentTransIdonline">
+      <soap:operation soapAction="http://MsevaPaymentTG.org/GetPaymentTransIdonline" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MeeSevaWebServiceSoap12" type="tns:MeeSevaWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetPaymentGatewayResponse">
+      <soap12:operation soapAction="http://MsevaPaymentTG.org/GetPaymentGatewayResponse" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentTransId">
+      <soap12:operation soapAction="http://MsevaPaymentTG.org/GetPaymentTransId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateApplicationDetails">
+      <soap12:operation soapAction="http://MsevaPaymentTG.org/UpdateApplicationDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentTransIdonline">
+      <soap12:operation soapAction="http://MsevaPaymentTG.org/GetPaymentTransIdonline" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MeeSevaWebService">
+    <wsdl:port name="MeeSevaWebServiceSoap" binding="tns:MeeSevaWebServiceSoap">
+      <soap:address location="http://164.100.132.110/MeesevaWebServiceDept/MeeSevaWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MeeSevaWebServiceSoap12" binding="tns:MeeSevaWebServiceSoap12">
+      <soap12:address location="http://164.100.132.110/MeesevaWebServiceDept/MeeSevaWebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

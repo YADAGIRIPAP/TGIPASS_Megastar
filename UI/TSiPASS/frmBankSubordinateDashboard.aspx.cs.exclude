@@ -1,0 +1,83 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
+
+public partial class UI_TSiPASS_frmBankSubordinateDashboard : System.Web.UI.Page
+{
+    //designed by siva as on 29-1-2016 
+    //Purpose : Report for Year wise dashboard
+    //Tables used : All
+    //Stored procedures Used :YearwiseDashboardforAdmin
+
+    General Gen = new General();
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+        if (Session.Count <= 0)
+        {
+            //    Response.Redirect("../../frmUserLogin.aspx");
+            Response.Redirect("~/Index.aspx");
+        }
+
+        if (!IsPostBack)
+        {
+
+            FillDetails();
+        }
+
+
+    }
+
+    void FillDetails()
+    {
+       
+        DataSet ds = new DataSet();
+        DataSet dsMAUD = new DataSet();
+
+            ds = Gen.GetBankerSubordinateDashboardDetails(Session["uid"].ToString().Trim(),"");
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+            //labUidNumber.Text = ds.Tables[0].Rows[0]["UID Number"].ToString();
+            //labNameandAddress.Text = ds.Tables[0].Rows[0]["Name"].ToString();
+            //labLineofActivity.Text = ds.Tables[0].Rows[0]["LineofActivity"].ToString();
+            //labTotalInvestment.Text = ds.Tables[0].Rows[0]["Total Investment"].ToString();
+            //labCategoryofIndustry.Text = ds.Tables[0].Rows[0]["Category of Industry"].ToString();
+            //labDOA.Text = ds.Tables[0].Rows[0]["Date of Application"].ToString();
+            //labNameandAddress0.Text = ds.Tables[0].Rows[0]["PropAddress"].ToString();
+            lblNoofApplication.Text = ds.Tables[0].Rows[0]["NOOFAPPLICATIONS"].ToString();
+            lblSMA.Text = ds.Tables[0].Rows[0]["SMA"].ToString();
+            lblNPA.Text = ds.Tables[0].Rows[0]["NPA"].ToString();
+            lblLoanAccountStatustotal.Text = ds.Tables[0].Rows[0]["LOANSTATUSTOT"].ToString();
+            lblAssesstmentDone.Text = ds.Tables[0].Rows[0]["ASSESSMENT"].ToString();
+            lblAssesstmentnotDone.Text = ds.Tables[0].Rows[0]["ASSESSMENTNOT"].ToString();
+            lblAssesstmentstatus.Text = ds.Tables[0].Rows[0]["ASSESSMENTTOTAL"].ToString();
+            lblAssessmentviable.Text = ds.Tables[0].Rows[0]["ASSESSMENTVIABLE"].ToString();
+            lblAssessmentnotviable.Text = ds.Tables[0].Rows[0]["ASSESSMENTNOTVIABLE"].ToString();
+            lbllblAssessmentviabletotal.Text = ds.Tables[0].Rows[0]["ASSESSMENTVIABLETOTAL"].ToString();
+            lblAssessmentsanctioned.Text = ds.Tables[0].Rows[0]["ASSESSMENTSANCTIONED"].ToString();
+            lblAssessmentnotsanctioned.Text = ds.Tables[0].Rows[0]["ASSESSMENTNOTSANCTIONED"].ToString();
+            lbllblAssessmentsanctionedtotal.Text = ds.Tables[0].Rows[0]["ASSESSMENTTOTALSANCTIONED"].ToString();
+
+            lblTEVstudydone.Text = ds.Tables[0].Rows[0]["TEV"].ToString();
+            lblTEVstudynotdone.Text = ds.Tables[0].Rows[0]["TEVNOT"].ToString();
+            lblTEVstudydoneTotal.Text = ds.Tables[0].Rows[0]["TEVTOTAL"].ToString();
+            lblTEVstudyviable.Text = ds.Tables[0].Rows[0]["TEVVIABLE"].ToString();
+            lblTEVstudynotviable.Text = ds.Tables[0].Rows[0]["TEVNOTVIABLE"].ToString();
+            lblTEVstudyviabletotal.Text = ds.Tables[0].Rows[0]["TEVVIABLETOTAL"].ToString();
+            lblTEVstudyviablesanctioned.Text = ds.Tables[0].Rows[0]["TEVSANCTIONED"].ToString();
+            lblTEVstudyviablenotsanctioned.Text = ds.Tables[0].Rows[0]["TEVNOTSANCTIONED"].ToString();
+            lblTEVstudyviablesanctionedtotal.Text = ds.Tables[0].Rows[0]["TEVTOTALSANCTIONED"].ToString();
+
+        }
+       
+
+
+        
+    }
+}

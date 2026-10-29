@@ -1,0 +1,366 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="TSipassfeedbackPostCertificateDraft.aspx.cs" Inherits="UI_TSiPASS_TSipassfeedbackPostCertificateDraft" %>
+
+<!DOCTYPE html>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title></title>
+    <style>
+        .div3 {
+            /*-webkit-column-count: 3;
+    -moz-column-count: 3; 
+    column-count: 3; */
+            -webkit-column-gap: 40px; /* Chrome, Safari, Opera */
+            -moz-column-gap: 40px; /* Firefox */
+            column-gap: 40px;
+        }
+
+        a {
+            color: #337ab7;
+            text-decoration: none;
+        }
+
+        a {
+            background-color: transparent;
+        }
+
+        .LBLBLACK {
+        }
+    </style>
+
+    <script type="text/javascript" language="javascript">
+
+        function DisableBackButton() {
+            window.history.forward()
+        }
+        DisableBackButton();
+        window.onload = DisableBackButton;
+        window.onpageshow = function (evt) { if (evt.persisted) DisableBackButton() }
+        window.onunload = function () { void (0) }
+    </script>
+    <script type="text/javascript">
+        function CallPrint(strid) {
+            var prtContent = document.getElementById(strid);
+            var WinPrint = window.open('', '', 'letf=0,top=0,width=0,height=0,toolbar=0,scrollbars=1,status=0');
+            var strOldOne = prtContent.innerHTML;
+            WinPrint.document.write(prtContent.innerHTML);
+            WinPrint.document.close();
+            WinPrint.focus();
+            WinPrint.print();
+            WinPrint.close();
+            prtContent.innerHTML = strOldOne;
+        }
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id-="reciept" runat="server">
+            <table align="center" style="border: 1px solid #000000; font-family: Verdana; font-size: 12px; text-align: left; width: 800px;">
+                <tr>
+                    <td align="center" style="/*padding: 0px; margin: 0px; text-align: center*/">
+                        <img src="telanganalogo.png" width="75px" height="65px" />
+                    </td>
+                </tr>
+                <tr style="padding: 0px; margin: 0px; border: 1px solid #000000; font-family: Verdana; font-size: 18px;">
+                    <td align="center" style="text-align: center; font-family: Verdana; font-weight: bold; font-size: 18px; border: 1px solid #000000;">TS-iPASS FEEDBACK FORM</td>
+                </tr>
+
+
+                <tr>
+                    <td align="center">
+                        <table bgcolor="White" width="900" border="2px" cellpadding="22" style="font-family: Verdana; font-size: 14px;">
+
+                            <tr style="background-color: #6699FF">
+                                <td colspan="2" style="padding: 5px; margin: 5px" valign="top"><b><span>Post Download of Certificate Draft</span></b></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <table style="width: 100%">
+                                        <tr>
+                                            <td colspan="4" style="text-align: left">
+                                                <b>Enterprise Details :</b>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 5px; margin: 5px" valign="top" align="left">UID NO
+                                            </td>
+                                            <td style="padding: 5px; margin: 5px" valign="top" align="left"><b>: 
+                                                <asp:Label ID="lbluidno" runat="server"> </asp:Label>
+                                            </b></td>
+                                            <td style="padding: 5px; margin: 5px" valign="top" align="left">Unit Name
+                                            </td>
+                                            <td style="padding: 5px; margin: 5px" valign="top" align="left"><b>: 
+                                                <asp:Label ID="lblUnitName" runat="server"> </asp:Label>
+                                            </b></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 5px; margin: 5px" valign="top" align="left">Entrepreneur Name
+                                            </td>
+                                            <td style="padding: 5px; margin: 5px" valign="top" align="left"><b>: 
+                                                <asp:Label ID="lblEntrepreneurName" runat="server"> </asp:Label>
+                                            </b></td>
+                                            <td style="padding: 5px; margin: 5px" valign="top" align="left">Unit Address
+                                            </td>
+                                            <td style="padding: 5px; margin: 5px" valign="top" align="left"><b>: 
+                                                <asp:Label ID="lblUnitAddress" runat="server"> </asp:Label>
+                                            </b></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 5px; margin: 5px" valign="top" align="left">Mobile No
+                                            </td>
+                                            <td style="padding: 5px; margin: 5px" valign="top" align="left"><b>: 
+                                                <asp:Label ID="lblMobileNo" runat="server"> </asp:Label>
+                                            </b></td>
+                                            <td style="padding: 5px; margin: 5px" valign="top" align="left">Email ID
+                                            </td>
+                                            <td style="padding: 5px; margin: 5px" valign="top" align="left"><b>: 
+                                                <asp:Label ID="LblEmailId" runat="server"> </asp:Label>
+                                            </b></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <table>
+                                        <tr>
+                                            <td colspan="2" align="left"><b>Feedback Details :</b>
+                                                <br />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" align="left"><b>1.	Were you given the license / approval / certificate within the stipulated timelines* </b>
+                                                <br />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <asp:RadioButtonList ID="rblLicenseApproval" runat="server" Height="60px" Width="720px" RepeatDirection="Vertical">
+                                                    <asp:ListItem Value="Y" Text="Yes"></asp:ListItem>
+                                                    <asp:ListItem Value="N" Text="No"></asp:ListItem>
+                                                </asp:RadioButtonList>
+                                            </td>
+                                        </tr>
+                                        <tr id="trissues1" runat="server" visible="false">
+                                            <td align="left" colspan="2">Issues Faced and Recommendations :  </td>
+                                        </tr>
+                                        <tr id="trissues1a" runat="server" visible="false">
+                                            <td colspan="2" align="left">
+                                                <asp:TextBox ID="txtLicenseApprovalIssuesFaced" runat="server" MaxLength="2000" Width="500px" Height="50px" TextMode="MultiLine"></asp:TextBox><br />
+                                                * To select license / approval / certificate based on the department
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td style="padding: 5px; margin: 5px; text-align: left;" colspan="10">
+                                                <asp:GridView ID="gvCertificate" runat="server" AutoGenerateColumns="False"
+                                                    BorderColor="#003399" BorderStyle="Solid" BorderWidth="1px" CellPadding="4"
+                                                    CssClass="GRD" ForeColor="#333333" GridLines="Both"
+                                                    Width="100%">
+                                                    <RowStyle BackColor="#ffffff" />
+                                                    <Columns>
+                                                        <%-- <asp:CommandField HeaderText="Edit" ShowSelectButton="True" Visible="False" />--%>
+
+                                                        <asp:BoundField DataField="deptname" HeaderText="department Name" />
+                                                        <asp:BoundField DataField="approvalname" HeaderText="Approval" />
+                                                        <asp:BoundField DataField="issuesfaced" HeaderText="Issues Faced" />
+
+                                                    </Columns>
+                                                    <FooterStyle BackColor="#013161" Font-Bold="True" ForeColor="White" />
+                                                    <PagerStyle BackColor="#013161" ForeColor="White" HorizontalAlign="Center" />
+                                                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                                                    <HeaderStyle BackColor="#013161" Font-Bold="True" ForeColor="White" />
+                                                    <EditRowStyle BackColor="#013161" />
+                                                    <AlternatingRowStyle BackColor="White" />
+                                                </asp:GridView>
+                                            </td>
+
+                                        </tr>
+
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <table>
+                                        <tr>
+                                            <td colspan="2" align="left"><b>
+                                            2.	Were you able to track the status of your application through the website
+                                            ble to track the status of your application through the website
+                                            
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" align="left">
+                                                <asp:RadioButtonList ID="rblTrackstatus" runat="server" Height="60px" Width="720px" RepeatDirection="Vertical">
+                                                    <asp:ListItem Value="Y" Text="Yes"></asp:ListItem>
+                                                    <asp:ListItem Value="N" Text="No"></asp:ListItem>
+                                                </asp:RadioButtonList>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" colspan="2">Issues Faced and Recommendations :  </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" align="left">
+                                                <asp:TextBox ID="txtTrackStatusIssuesFaced" runat="server" MaxLength="2000" Width="500px" Height="50px" TextMode="MultiLine"></asp:TextBox></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2">
+                                    <table>
+                                        <tr>
+                                            <td colspan="2" align="left"><b>3.	Were you asked for any offline information or documentsfor application processing</b>
+                                                <br />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" align="left">
+                                                <asp:RadioButtonList ID="rblOfflineInfoasked" runat="server" Height="60px" Width="720px" RepeatDirection="Vertical">
+                                                    <asp:ListItem Value="Y" Text="Yes"></asp:ListItem>
+                                                    <asp:ListItem Value="N" Text="No"></asp:ListItem>
+                                                </asp:RadioButtonList>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" align="left">Issues Faced and Recommendations :  </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" align="left">
+                                                <asp:TextBox ID="txtOfflineInfoaskedIssuesFaced" runat="server" MaxLength="2000" Width="500px" Height="50px" TextMode="MultiLine"></asp:TextBox></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2">
+                                    <table>
+                                        <tr>
+                                            <td colspan="2" align="left"><b>4.	Provide your feedback on the inspection on your premises** 
+                                            <br />
+                                            </b>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" align="left">
+                                                <asp:RadioButtonList ID="rblInspectionFeedback" runat="server" Height="60px" Width="720px" RepeatDirection="Vertical">
+                                                    <asp:ListItem Value="1" Text="Inspection was well informed, scheduled and conducted"></asp:ListItem>
+                                                    <asp:ListItem Value="2" Text="Inspection scheduled but not conducted on time"></asp:ListItem>
+                                                    <asp:ListItem Value="3" Text="Inspection conducted without prior intimation"></asp:ListItem>
+                                                    <asp:ListItem Value="4" Text="Inspection not conducted"></asp:ListItem>
+                                                </asp:RadioButtonList>
+                                            </td>
+                                        </tr>
+                                        <tr id="trissues4" runat="server" visible="false">
+                                            <td colspan="2" align="left">Issues Faced and Recommendations :  </td>
+                                        </tr>
+                                        <tr id="trissues4a" runat="server" visible="false">
+                                            <td colspan="2" align="left">
+                                                <asp:TextBox ID="txtInspectionFeedbackIssuesfaced" runat="server" MaxLength="2000" Width="500px" Height="50px" TextMode="MultiLine"></asp:TextBox><br />
+                                                ** To be included only by departments carrying out inspection
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td style="padding: 5px; margin: 5px; text-align: left;" colspan="10">
+                                                <asp:GridView ID="gvCertificate4" runat="server" AutoGenerateColumns="False"
+                                                    BorderColor="#003399" BorderStyle="Solid" BorderWidth="1px" CellPadding="4"
+                                                    CssClass="GRD" ForeColor="#333333" GridLines="Both"
+                                                    Width="100%">
+                                                    <RowStyle BackColor="#ffffff" />
+                                                    <Columns>
+                                                        <%-- <asp:CommandField HeaderText="Edit" ShowSelectButton="True" Visible="False" />--%>
+                                                        <asp:BoundField DataField="deptname" HeaderText="department Name" />
+                                                        <asp:BoundField DataField="approvalname" HeaderText="Approval" />
+                                                        <asp:BoundField DataField="issuesfaced" HeaderText="Issues Faced" />
+                                                    </Columns>
+                                                    <FooterStyle BackColor="#013161" Font-Bold="True" ForeColor="White" />
+                                                    <PagerStyle BackColor="#013161" ForeColor="White" HorizontalAlign="Center" />
+                                                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                                                    <HeaderStyle BackColor="#013161" Font-Bold="True" ForeColor="White" />
+                                                    <EditRowStyle BackColor="#013161" />
+                                                    <AlternatingRowStyle BackColor="White" />
+                                                </asp:GridView>
+                                            </td>
+
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2">
+                                    <table>
+                                        <tr>
+                                            <td colspan="2" align="left" style="padding: 5px; margin: 5px" valign="top"><b>5.	Rate the overall quality of your experience in availing the service from application submission till service fulfillment rall quality of your experience in availing the service from application submission till service fulfillment </b></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 5px; margin: 5px" valign="top" colspan="2">
+                                                <asp:RadioButtonList ID="rblrateQltyPost" runat="server" Height="60px" Width="720px" RepeatDirection="Horizontal">
+                                                    <asp:ListItem Value="1" Text="Poor"></asp:ListItem>
+                                                    <asp:ListItem Value="2" Text="Fair"></asp:ListItem>
+                                                    <asp:ListItem Value="3" Text="Good"></asp:ListItem>
+                                                    <asp:ListItem Value="4" Text="Very Good"></asp:ListItem>
+                                                    <asp:ListItem Value="5" Text="Excellent"></asp:ListItem>
+                                                </asp:RadioButtonList>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td colspan="2" align="left">Issues Faced and Recommendations :  </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" align="left">
+                                                <asp:TextBox ID="txtrateqltyPostIssuesfaced" runat="server" MaxLength="2000" Width="500px" Height="50px" TextMode="MultiLine"> </asp:TextBox></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="width: 100%">
+                        <table style="width: 100%">
+                            <tr>
+                                <td align="center" colspan="8" style="padding: 5px; margin: 5px">
+                                    <div id="success" runat="server" visible="false" class="alert alert-success">
+                                        <a href="AddQualification.aspx" class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong>Success!</strong>
+                                        <asp:Label ID="lblmsg" runat="server"></asp:Label>
+                                    </div>
+                                    <div id="Failure" runat="server" visible="false" class="alert alert-danger">
+                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong>Warning!</strong>
+                                        <asp:Label ID="lblmsg0" runat="server"></asp:Label>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+            <asp:ValidationSummary ID="ValidationSummary3" runat="server"
+                ShowMessageBox="True" ShowSummary="False" ValidationGroup="group1" />
+        </div>
+
+        <div>
+            <table align="center" style="font-family: Verdana; font-size: 12px; text-align: left; width: 800px;">
+                <tr>
+                    <td align="center" class="style2" style="text-align: center">
+                        <br />
+                        <asp:Button ID="Button1" runat="server" Height="32px" Width="90px" CssClass="btn btn-warning" Text=" Print " OnClientClick="javascript:CallPrint('reciept')" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+
+</body>
+</html>
+

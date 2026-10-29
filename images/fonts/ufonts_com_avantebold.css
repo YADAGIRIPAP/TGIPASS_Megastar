@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'ufonts_com_avantebold';
+    src: url('fonts/ufonts_com_avantebold.eot');
+    src: url('fonts/ufonts_com_avantebold.eot') format('embedded-opentype'),
+         url('fonts/ufonts_com_avantebold.woff2') format('woff2'),
+         url('fonts/ufonts_com_avantebold.woff') format('woff'),
+         url('fonts/ufonts_com_avantebold.ttf') format('truetype'),
+         url('fonts/ufonts_com_avantebold.svg#ufonts_com_avantebold') format('svg');
+}

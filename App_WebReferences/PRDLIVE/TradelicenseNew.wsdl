@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://tradelicense.service.cpris/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" name="TradelicenseNew" targetNamespace="http://tradelicense.service.cpris/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="https://epanchayat.telangana.gov.in:443/htax/TradelicenseNew?xsd=1" namespace="http://tradelicense.service.cpris/" />
+    </xsd:schema>
+    <xsd:schema>
+      <xsd:import schemaLocation="https://epanchayat.telangana.gov.in:443/htax/TradelicenseNew?xsd=2" namespace="http://jaxb.dev.java.net/array" />
+    </xsd:schema>
+  </types>
+  <message name="getAnnualFee">
+    <part name="parameters" element="tns:getAnnualFee" />
+  </message>
+  <message name="getAnnualFeeResponse">
+    <part name="parameters" element="tns:getAnnualFeeResponse" />
+  </message>
+  <message name="updateTradeLicenseNew">
+    <part name="parameters" element="tns:updateTradeLicenseNew" />
+  </message>
+  <message name="updateTradeLicenseNewResponse">
+    <part name="parameters" element="tns:updateTradeLicenseNewResponse" />
+  </message>
+  <message name="getDistrictList">
+    <part name="parameters" element="tns:getDistrictList" />
+  </message>
+  <message name="getDistrictListResponse">
+    <part name="parameters" element="tns:getDistrictListResponse" />
+  </message>
+  <message name="getMandalList">
+    <part name="parameters" element="tns:getMandalList" />
+  </message>
+  <message name="getMandalListResponse">
+    <part name="parameters" element="tns:getMandalListResponse" />
+  </message>
+  <message name="getPanchayatList">
+    <part name="parameters" element="tns:getPanchayatList" />
+  </message>
+  <message name="getPanchayatListResponse">
+    <part name="parameters" element="tns:getPanchayatListResponse" />
+  </message>
+  <message name="saveTradeLicenseNew">
+    <part name="parameters" element="tns:saveTradeLicenseNew" />
+  </message>
+  <message name="saveTradeLicenseNewResponse">
+    <part name="parameters" element="tns:saveTradeLicenseNewResponse" />
+  </message>
+  <message name="subtradecode">
+    <part name="parameters" element="tns:subtradecode" />
+  </message>
+  <message name="subtradecodeResponse">
+    <part name="parameters" element="tns:subtradecodeResponse" />
+  </message>
+  <message name="getFinyear">
+    <part name="parameters" element="tns:getFinyear" />
+  </message>
+  <message name="getFinyearResponse">
+    <part name="parameters" element="tns:getFinyearResponse" />
+  </message>
+  <message name="tradeLicenseFor">
+    <part name="parameters" element="tns:tradeLicenseFor" />
+  </message>
+  <message name="tradeLicenseForResponse">
+    <part name="parameters" element="tns:tradeLicenseForResponse" />
+  </message>
+  <message name="getPriodFromToFinyear">
+    <part name="parameters" element="tns:getPriodFromToFinyear" />
+  </message>
+  <message name="getPriodFromToFinyearResponse">
+    <part name="parameters" element="tns:getPriodFromToFinyearResponse" />
+  </message>
+  <message name="getRenewalTradeDetails">
+    <part name="parameters" element="tns:getRenewalTradeDetails" />
+  </message>
+  <message name="getRenewalTradeDetailsResponse">
+    <part name="parameters" element="tns:getRenewalTradeDetailsResponse" />
+  </message>
+  <message name="saveRenewalTradeDetails">
+    <part name="parameters" element="tns:saveRenewalTradeDetails" />
+  </message>
+  <message name="saveRenewalTradeDetailsResponse">
+    <part name="parameters" element="tns:saveRenewalTradeDetailsResponse" />
+  </message>
+  <message name="tradeforcode">
+    <part name="parameters" element="tns:tradeforcode" />
+  </message>
+  <message name="tradeforcodeResponse">
+    <part name="parameters" element="tns:tradeforcodeResponse" />
+  </message>
+  <portType name="TradelicenseNew">
+    <operation name="getAnnualFee">
+      <input wsam:Action="http://tradelicense.service.cpris/TradelicenseNew/getAnnualFeeRequest" message="tns:getAnnualFee" />
+      <output wsam:Action="http://tradelicense.service.cpris/TradelicenseNew/getAnnualFeeResponse" message="tns:getAnnualFeeResponse" />
+    </operation>
+    <operation name="updateTradeLicenseNew">
+      <input wsam:Action="http://tradelicense.service.cpris/TradelicenseNew/updateTradeLicenseNewRequest" message="tns:updateTradeLicenseNew" />
+      <output wsam:Action="http://tradelicense.service.cpris/TradelicenseNew/updateTradeLicenseNewResponse" message="tns:updateTradeLicenseNewResponse" />
+    </operation>
+    <operation name="getDistrictList">
+      <input wsam:Action="http://tradelicense.service.cpris/TradelicenseNew/getDistrictListRequest" message="tns:getDistrictList" />
+      <output wsam:Action="http://tradelicense.service.cpris/TradelicenseNew/getDistrictListResponse" message="tns:getDistrictListResponse" />
+    </operation>
+    <operation name="getMandalList">
+      <input wsam:Action="http://tradelicense.service.cpris/TradelicenseNew/getMandalListRequest" message="tns:getMandalList" />
+      <output wsam:Action="http://tradelicense.service.cpris/TradelicenseNew/getMandalListResponse" message="tns:getMandalListResponse" />
+    </operation>
+    <operation name="getPanchayatList">
+      <input wsam:Action="http://tradelicense.service.cpris/TradelicenseNew/getPanchayatListRequest" message="tns:getPanchayatList" />
+      <output wsam:Action="http://tradelicense.service.cpris/TradelicenseNew/getPanchayatListResponse" message="tns:getPanchayatListResponse" />
+    </operation>
+    <operation name="saveTradeLicenseNew">
+      <input wsam:Action="http://tradelicense.service.cpris/TradelicenseNew/saveTradeLicenseNewRequest" message="tns:saveTradeLicenseNew" />
+      <output wsam:Action="http://tradelicense.service.cpris/TradelicenseNew/saveTradeLicenseNewResponse" message="tns:saveTradeLicenseNewResponse" />
+    </operation>
+    <operation name="subtradecode">
+      <input wsam:Action="http://tradelicense.service.cpris/TradelicenseNew/subtradecodeRequest" message="tns:subtradecode" />
+      <output wsam:Action="http://tradelicense.service.cpris/TradelicenseNew/subtradecodeResponse" message="tns:subtradecodeResponse" />
+    </operation>
+    <operation name="getFinyear">
+      <input wsam:Action="http://tradelicense.service.cpris/TradelicenseNew/getFinyearRequest" message="tns:getFinyear" />
+      <output wsam:Action="http://tradelicense.service.cpris/TradelicenseNew/getFinyearResponse" message="tns:getFinyearResponse" />
+    </operation>
+    <operation name="tradeLicenseFor">
+      <input wsam:Action="http://tradelicense.service.cpris/TradelicenseNew/tradeLicenseForRequest" message="tns:tradeLicenseFor" />
+      <output wsam:Action="http://tradelicense.service.cpris/TradelicenseNew/tradeLicenseForResponse" message="tns:tradeLicenseForResponse" />
+    </operation>
+    <operation name="getPriodFromToFinyear">
+      <input wsam:Action="http://tradelicense.service.cpris/TradelicenseNew/getPriodFromToFinyearRequest" message="tns:getPriodFromToFinyear" />
+      <output wsam:Action="http://tradelicense.service.cpris/TradelicenseNew/getPriodFromToFinyearResponse" message="tns:getPriodFromToFinyearResponse" />
+    </operation>
+    <operation name="getRenewalTradeDetails">
+      <input wsam:Action="http://tradelicense.service.cpris/TradelicenseNew/getRenewalTradeDetailsRequest" message="tns:getRenewalTradeDetails" />
+      <output wsam:Action="http://tradelicense.service.cpris/TradelicenseNew/getRenewalTradeDetailsResponse" message="tns:getRenewalTradeDetailsResponse" />
+    </operation>
+    <operation name="saveRenewalTradeDetails">
+      <input wsam:Action="http://tradelicense.service.cpris/TradelicenseNew/saveRenewalTradeDetailsRequest" message="tns:saveRenewalTradeDetails" />
+      <output wsam:Action="http://tradelicense.service.cpris/TradelicenseNew/saveRenewalTradeDetailsResponse" message="tns:saveRenewalTradeDetailsResponse" />
+    </operation>
+    <operation name="tradeforcode">
+      <input wsam:Action="http://tradelicense.service.cpris/TradelicenseNew/tradeforcodeRequest" message="tns:tradeforcode" />
+      <output wsam:Action="http://tradelicense.service.cpris/TradelicenseNew/tradeforcodeResponse" message="tns:tradeforcodeResponse" />
+    </operation>
+  </portType>
+  <binding name="TradelicenseNewPortBinding" type="tns:TradelicenseNew">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="getAnnualFee">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="updateTradeLicenseNew">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="getDistrictList">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="getMandalList">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="getPanchayatList">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="saveTradeLicenseNew">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="subtradecode">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="getFinyear">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="tradeLicenseFor">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="getPriodFromToFinyear">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="getRenewalTradeDetails">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="saveRenewalTradeDetails">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="tradeforcode">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="TradelicenseNew">
+    <port name="TradelicenseNewPort" binding="tns:TradelicenseNewPortBinding">
+      <soap:address location="https://epanchayat.telangana.gov.in:443/htax/TradelicenseNew" />
+    </port>
+  </service>
+</definitions>

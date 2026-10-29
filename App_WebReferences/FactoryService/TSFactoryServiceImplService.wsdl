@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tsfactoriesws.cgg.gov.in/" name="TSFactoryServiceImplService" targetNamespace="http://tsfactoriesws.cgg.gov.in/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="https://tsfactoriescfe.cgg.gov.in:443/tsFactoriesWebServiceCFE?xsd=1" namespace="http://tsfactoriesws.cgg.gov.in/" />
+    </xsd:schema>
+  </types>
+  <message name="insertIntoPlanApproval">
+    <part name="parameters" element="tns:insertIntoPlanApproval" />
+  </message>
+  <message name="insertIntoPlanApprovalResponse">
+    <part name="parameters" element="tns:insertIntoPlanApprovalResponse" />
+  </message>
+  <message name="updateAppealAgainstRejection">
+    <part name="parameters" element="tns:updateAppealAgainstRejection" />
+  </message>
+  <message name="updateAppealAgainstRejectionResponse">
+    <part name="parameters" element="tns:updateAppealAgainstRejectionResponse" />
+  </message>
+  <message name="insertIntoPlanApprovalAdditionalPayment">
+    <part name="parameters" element="tns:insertIntoPlanApprovalAdditionalPayment" />
+  </message>
+  <message name="insertIntoPlanApprovalAdditionalPaymentResponse">
+    <part name="parameters" element="tns:insertIntoPlanApprovalAdditionalPaymentResponse" />
+  </message>
+  <portType name="TSFactoryService">
+    <operation name="insertIntoPlanApproval">
+      <input message="tns:insertIntoPlanApproval" />
+      <output message="tns:insertIntoPlanApprovalResponse" />
+    </operation>
+    <operation name="updateAppealAgainstRejection">
+      <input message="tns:updateAppealAgainstRejection" />
+      <output message="tns:updateAppealAgainstRejectionResponse" />
+    </operation>
+    <operation name="insertIntoPlanApprovalAdditionalPayment">
+      <input message="tns:insertIntoPlanApprovalAdditionalPayment" />
+      <output message="tns:insertIntoPlanApprovalAdditionalPaymentResponse" />
+    </operation>
+  </portType>
+  <binding name="TSFactoryServiceImplPortBinding" type="tns:TSFactoryService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="insertIntoPlanApproval">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="updateAppealAgainstRejection">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertIntoPlanApprovalAdditionalPayment">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="TSFactoryServiceImplService">
+    <port name="TSFactoryServiceImplPort" binding="tns:TSFactoryServiceImplPortBinding">
+      <soap:address location="https://tsfactoriescfe.cgg.gov.in:443/tsFactoriesWebServiceCFE" />
+    </port>
+  </service>
+</definitions>

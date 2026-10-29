@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:ns="http://service.ts.spd" xmlns:ns1="http://org.apache.axis2/xsd" targetNamespace="http://service.ts.spd" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://service.ts.spd">
+      <xs:element name="TSSPDCLIPassServiceException">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="TSSPDCLIPassServiceException" nillable="true" type="ns:Exception" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="Exception">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="setPayment">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="uid" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="paid_amt" type="xs:double" />
+            <xs:element minOccurs="0" name="bank" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="trans_no" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="trans_dt" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="setPaymentResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="setPowerRegistration">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="str" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="setPowerRegistrationResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="setQueryResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="str" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="setQueryResponseResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="setQueryResponseRequest">
+    <wsdl:part name="parameters" element="ns:setQueryResponse" />
+  </wsdl:message>
+  <wsdl:message name="setQueryResponseResponse">
+    <wsdl:part name="parameters" element="ns:setQueryResponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="TSSPDCLIPassServiceException">
+    <wsdl:part name="parameters" element="ns:TSSPDCLIPassServiceException" />
+  </wsdl:message>
+  <wsdl:message name="setPowerRegistrationRequest">
+    <wsdl:part name="parameters" element="ns:setPowerRegistration" />
+  </wsdl:message>
+  <wsdl:message name="setPowerRegistrationResponse">
+    <wsdl:part name="parameters" element="ns:setPowerRegistrationResponse" />
+  </wsdl:message>
+  <wsdl:message name="setPaymentRequest">
+    <wsdl:part name="parameters" element="ns:setPayment" />
+  </wsdl:message>
+  <wsdl:message name="setPaymentResponse">
+    <wsdl:part name="parameters" element="ns:setPaymentResponse" />
+  </wsdl:message>
+  <wsdl:portType name="TSSPDCLIPassServicePortType">
+    <wsdl:operation name="setQueryResponse">
+      <wsdl:input wsaw:Action="urn:setQueryResponse" message="ns:setQueryResponseRequest" />
+      <wsdl:output wsaw:Action="urn:setQueryResponseResponse" message="ns:setQueryResponseResponse" />
+      <wsdl:fault wsaw:Action="urn:setQueryResponseTSSPDCLIPassServiceException" name="TSSPDCLIPassServiceException" message="ns:TSSPDCLIPassServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="setPowerRegistration">
+      <wsdl:input wsaw:Action="urn:setPowerRegistration" message="ns:setPowerRegistrationRequest" />
+      <wsdl:output wsaw:Action="urn:setPowerRegistrationResponse" message="ns:setPowerRegistrationResponse" />
+      <wsdl:fault wsaw:Action="urn:setPowerRegistrationTSSPDCLIPassServiceException" name="TSSPDCLIPassServiceException" message="ns:TSSPDCLIPassServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="setPayment">
+      <wsdl:input wsaw:Action="urn:setPayment" message="ns:setPaymentRequest" />
+      <wsdl:output wsaw:Action="urn:setPaymentResponse" message="ns:setPaymentResponse" />
+      <wsdl:fault wsaw:Action="urn:setPaymentTSSPDCLIPassServiceException" name="TSSPDCLIPassServiceException" message="ns:TSSPDCLIPassServiceException" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TSSPDCLIPassServiceSoap11Binding" type="ns:TSSPDCLIPassServicePortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="setQueryResponse">
+      <soap:operation soapAction="urn:setQueryResponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="TSSPDCLIPassServiceException">
+        <soap:fault use="literal" name="TSSPDCLIPassServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setPowerRegistration">
+      <soap:operation soapAction="urn:setPowerRegistration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="TSSPDCLIPassServiceException">
+        <soap:fault use="literal" name="TSSPDCLIPassServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setPayment">
+      <soap:operation soapAction="urn:setPayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="TSSPDCLIPassServiceException">
+        <soap:fault use="literal" name="TSSPDCLIPassServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TSSPDCLIPassServiceSoap12Binding" type="ns:TSSPDCLIPassServicePortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="setQueryResponse">
+      <soap12:operation soapAction="urn:setQueryResponse" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="TSSPDCLIPassServiceException">
+        <soap12:fault use="literal" name="TSSPDCLIPassServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setPowerRegistration">
+      <soap12:operation soapAction="urn:setPowerRegistration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="TSSPDCLIPassServiceException">
+        <soap12:fault use="literal" name="TSSPDCLIPassServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setPayment">
+      <soap12:operation soapAction="urn:setPayment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="TSSPDCLIPassServiceException">
+        <soap12:fault use="literal" name="TSSPDCLIPassServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TSSPDCLIPassServiceHttpBinding" type="ns:TSSPDCLIPassServicePortType">
+    <http:binding verb="POST" />
+    <wsdl:operation name="setQueryResponse">
+      <http:operation location="setQueryResponse" />
+      <wsdl:input>
+        <mime:content part="parameters" type="application/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="application/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setPowerRegistration">
+      <http:operation location="setPowerRegistration" />
+      <wsdl:input>
+        <mime:content part="parameters" type="application/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="application/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setPayment">
+      <http:operation location="setPayment" />
+      <wsdl:input>
+        <mime:content part="parameters" type="application/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="application/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TSSPDCLIPassService">
+    <wsdl:port name="TSSPDCLIPassServiceHttpSoap11Endpoint" binding="ns:TSSPDCLIPassServiceSoap11Binding">
+      <soap:address location="http://117.239.151.79:8080/tsspd/services/TSSPDCLIPassService.TSSPDCLIPassServiceHttpSoap11Endpoint/" />
+    </wsdl:port>
+    <wsdl:port name="TSSPDCLIPassServiceHttpSoap12Endpoint" binding="ns:TSSPDCLIPassServiceSoap12Binding">
+      <soap12:address location="http://117.239.151.79:8080/tsspd/services/TSSPDCLIPassService.TSSPDCLIPassServiceHttpSoap12Endpoint/" />
+    </wsdl:port>
+    <wsdl:port name="TSSPDCLIPassServiceHttpEndpoint" binding="ns:TSSPDCLIPassServiceHttpBinding">
+      <http:address location="http://117.239.151.79:8080/tsspd/services/TSSPDCLIPassService.TSSPDCLIPassServiceHttpEndpoint/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

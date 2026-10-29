@@ -1,0 +1,80 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32929.386
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "TG-iPASS", ".", "{BC267173-CC4B-4AD2-B726-461BE60F56A0}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		Debug.AspNetCompiler.VirtualPath = "/TSIPASS"
+		Debug.AspNetCompiler.PhysicalPath = "..\TSIPASS\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\TSIPASS\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/TSIPASS"
+		Release.AspNetCompiler.PhysicalPath = "..\TSIPASS\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\TSIPASS\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "12850"
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "HELPDESK", "..\HELPDESK\", "{8E030C70-EFA7-4A82-A14F-F7EC72E0C165}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		Debug.AspNetCompiler.VirtualPath = "/HELPDESK"
+		Debug.AspNetCompiler.PhysicalPath = "..\HELPDESK\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\HELPDESK\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/HELPDESK"
+		Release.AspNetCompiler.PhysicalPath = "..\HELPDESK\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\HELPDESK\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "15264"
+	EndProjectSection
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		Debug.AspNetCompiler.VirtualPath = "/HELPDESK"
+		Debug.AspNetCompiler.PhysicalPath = "..\HELPDESK\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\HELPDESK\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/HELPDESK"
+		Release.AspNetCompiler.PhysicalPath = "..\HELPDESK\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\HELPDESK\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "15264"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC267173-CC4B-4AD2-B726-461BE60F56A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC267173-CC4B-4AD2-B726-461BE60F56A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E030C70-EFA7-4A82-A14F-F7EC72E0C165}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E030C70-EFA7-4A82-A14F-F7EC72E0C165}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2ED15B70-1B96-4958-9C3A-AB4A177A7E67}
+	EndGlobalSection
+EndGlobal

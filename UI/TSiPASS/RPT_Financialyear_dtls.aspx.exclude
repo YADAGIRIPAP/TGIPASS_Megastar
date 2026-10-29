@@ -1,0 +1,97 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/UI/TSiPASS/CCMaster.master" AutoEventWireup="true" CodeFile="RPT_Financialyear_dtls.aspx.cs" Inherits="UI_TSiPASS_RPT_Financialyear_dtls" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+ <script language="javascript" type="text/javascript">
+        function Panel1() {
+          <%--   document.getElementById('<%=Button2.ClientID %>').style.display = "none";
+            document.getElementById('<%=tblselection.ClientID %>').style.display = "none";--%>
+
+            var panel = document.getElementById("<%=divPrint.ClientID %>");
+            var printWindow = window.open('', '', 'height=400,width=800');
+            printWindow.document.write('<html><head><h3 style="width: 100%;text-align: center;">Government of Telangana</h3>');
+
+            printWindow.document.write('</head><body style="width: 100%;text-align: center;">');
+            printWindow.document.write(panel.innerHTML);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+
+            setTimeout(function () {
+                printWindow.print();
+                location.reload(true);
+                printWindow.close();
+            }, 1000);
+            return false;
+
+        }
+
+        $(function () {
+
+            $('#MstLftMenu').remove();
+
+     });
+
+    </script>
+    <style>
+        .width {
+            width: 85%;
+        }
+    </style>
+    <link href="../../Resource/Styles/css/Mainstyle.css" rel="stylesheet" />
+    <table id="divPrint" runat="server" border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
+        <tr runat="server" id="div_Print">
+            <td colspan="2" style="padding: 5px;" valign="top">
+                <table style="width: 100%;">
+                    <tr>
+                        <td colspan="2" style="padding: 10px; margin: 5px; text-align: center; font-weight: bold;">
+                            <%--<asp:Label ID="Label12" Font-Size="Large" runat="server">Financial Year Details (Implicit Year wise)</asp:Label>--%>
+                                 <center>
+                <div style="margin: auto;">
+                    <asp:Label ID="lblHeader" runat="server" class="mainheading" Text="Financial Year Details (Implicit Year wise)"> </asp:Label>
+                </div>
+            </center>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; margin: 5px; float:right; font-weight: bold; width:21%">
+                            <asp:Button ID="btnpdf" runat="server" CssClass="btn btn-primary" Height="32px" TabIndex="10" Text="Generate Pdf" OnClick="btnpdf_Click" />
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px;" valign="top" align="center">
+                            <asp:GridView ID="grdDetails" CssClass="floatingTable" runat="server" AutoGenerateColumns="false" CellPadding="5" EmptyDataText="No Data Found"
+                                ShowFooter="True" Width="1000px">
+                                <HeaderStyle ForeColor="#FFFFFF" BackColor="#009688" Height="50px" CssClass="GridviewScrollC1HeaderWrap" Font-Bold="true" />
+                                <RowStyle Height="40px" CssClass="GridviewScrollC1Item" />
+                                <PagerStyle CssClass="GridviewScrollC1Pager" />
+                                <FooterStyle ForeColor="#FFFFFF" BackColor="#009688" Height="40px" CssClass="GridviewScrollC1Footer" Font-Bold="true" HorizontalAlign="Right" />
+                                <AlternatingRowStyle Height="40px" CssClass="GridviewScrollC1Item2" /> <RowStyle Wrap="true" />
+                                <Columns>
+                                   <%-- <asp:TemplateField HeaderText="Sl.No." ItemStyle-HorizontalAlign="Center">
+                                        <ItemTemplate>
+                                            <%# Container.DataItemIndex +1 %>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:TemplateField>--%>
+                                    <asp:BoundField DataField="SLNO" HeaderText="SLNO" ItemStyle-HorizontalAlign="Right"/>
+                                    <asp:BoundField DataField="Year" HeaderText="Year" ItemStyle-HorizontalAlign="Left"/>
+                                    <asp:BoundField DataField="Progress" HeaderText="Progress" ItemStyle-HorizontalAlign="Left"/>
+                                    <asp:BoundField DataField="No. of Industries" HeaderText="No. of Industries" ItemStyle-HorizontalAlign="Right"/>
+                                    <asp:BoundField DataField="Investment(Rs In Crores)" HeaderText="Investment(Rs In Crores)" ItemStyle-HorizontalAlign="Right"/>
+                                    <asp:BoundField DataField="Employment" HeaderText="Employment" ItemStyle-HorizontalAlign="Right"/>
+                                    </Columns>
+                            </asp:GridView>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr runat="server">
+            <td colspan="2" class="col-xs-5" style="padding: 5px; text-align: right; margin: 5px">
+                <asp:Label ID="Label2" runat="server" CssClass="LBLBLACK"></asp:Label>
+            </td>
+        </tr>
+    </table>
+
+</asp:Content>
+

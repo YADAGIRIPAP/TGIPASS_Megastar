@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tslabourGrievanceRegsws.cgg.gov.in/" targetNamespace="http://tslabourGrievanceRegsws.cgg.gov.in/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="grievanceRegistration" type="tns:grievanceRegistration" />
+  <xs:element name="grievanceRegistrationResponse" type="tns:grievanceRegistrationResponse" />
+  <xs:complexType name="grievanceRegistration">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="grievanceRegistration" type="tns:grievanceRegisration" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="grievanceRegisration">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="applicationId" type="xs:string" />
+      <xs:element name="departmentId" type="xs:int" />
+      <xs:element minOccurs="0" name="description" type="xs:string" />
+      <xs:element name="districtId" type="xs:int" />
+      <xs:element minOccurs="0" name="email_Id" type="xs:string" />
+      <xs:element minOccurs="0" name="grievance_type" type="xs:string" />
+      <xs:element minOccurs="0" name="grievance_upload_attachment" type="xs:string" />
+      <xs:element minOccurs="0" name="industryName" type="xs:string" />
+      <xs:element minOccurs="0" name="mobileNumber" type="xs:string" />
+      <xs:element name="subjectId" type="xs:int" />
+      <xs:element minOccurs="0" name="tsipass_uid" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="grievanceRegistrationResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

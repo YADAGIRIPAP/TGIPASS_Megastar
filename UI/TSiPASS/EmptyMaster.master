@@ -1,0 +1,480 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="EmptyMaster.master.cs"
+    Inherits="EmptyMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <meta http-equiv="content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>TG-iPASS</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+   <%-- <link href="../../css/style.css" rel="stylesheet" type="text/css" />--%>
+    <link href="../../Resource/Styles/css/ComprehensiveMenu.css" rel="stylesheet" />
+    <link href="../../css/responsive.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../skins/maroon/style.css" rel="stylesheet" media="all" />
+    <script src="../../js/modernizr-2.6.2.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,900italic,900,700italic,700,400italic,300italic,300'
+        rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Domine:400,700' rel='stylesheet'
+        type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic,700italic'
+        rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+        rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script>
+        function UserDeleteConfirmation() {
+            return confirm("This is external link. Are you sure you want to continue?");
+        }
+    </script>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            const textboxes = document.querySelectorAll('input[type="text"]');
+
+            textboxes.forEach(function (textBox) {
+                textBox.addEventListener('input', function (event) {
+                    const inputValue = event.target.value;
+
+                    // Block the entry of '<' and '>' characters
+                    if (inputValue.includes('<') || inputValue.includes('>')) {
+                        event.target.value = inputValue.replace(/[<>]/g, '');
+                    }
+                });
+
+                // Prevent paste action for the textbox
+                //textBox.addEventListener('paste', function (event) {
+                //    event.preventDefault();
+                //});
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            const textareas = document.querySelectorAll('textarea');
+
+            textareas.forEach(function (textarea) {
+                textarea.addEventListener('input', function (event) {
+                    const textareaValue = event.target.value;
+
+                    // Block the entry of '<' and '>' characters
+                    if (textareaValue.includes('<') || textareaValue.includes('>')) {
+                        event.target.value = textareaValue.replace(/[<>]/g, '');
+                    }
+                });
+            });
+        });
+    </script>
+    <link href="../../Masterfiles/css/StyleSheetMaster.css" rel="stylesheet" />
+
+    <link href="../../Resource/Styles/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <%--<link href="../../Resource/Styles/css/sb-admin.css" rel="stylesheet" type="text/css" />--%>
+    <%-- <link href="../../Resource/Styles/css/plugins/morris.css" rel="stylesheet" type="text/css" />--%>
+
+
+
+    <style type="text/css">
+        .style1 {
+            width: 99.8%;
+        }
+
+        .style4 {
+        }
+    </style>
+    <style>
+        .blink_text {
+            animation: 1s blinker linear infinite;
+            -webkit-animation: 1s blinker linear infinite;
+            -moz-animation: 1s blinker linear infinite;
+            color: white;
+            background-color: red;
+        }
+
+        .font-button {
+            background-color: #0090CB;
+            height: 50px;
+            width: 50px;
+            display: inline-block;
+            color: #fff;
+            text-align: center;
+            line-height: 50px;
+            font-size: 25pt;
+            cursor: pointer;
+        }
+
+        @-moz-keyframes blinker {
+            0% {
+                opacity: 1.0;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            100% {
+                opacity: 10.5;
+            }
+        }
+
+        @-webkit-keyframes blinker {
+            0% {
+                opacity: 1.0;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            100% {
+                opacity: 10.5;
+            }
+        }
+
+        @keyframes blinker {
+            0% {
+                opacity: 1.0;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            100% {
+                opacity: 10.5;
+            }
+        }
+
+
+                                                      :lang(te) {
+    font-size: 100%;  /* Adjust as needed */
+   
+                        #main-menu ul.menu  li a {
+    padding: 9px 5px 10px;
+    font-size: 15px;
+}
+}
+                        img.goog-te-gadget-icon {
+    display: none;
+}
+
+div#\:0\.targetLanguage {
+    border-radius: 6px;
+    margin-top: -1px;
+}
+
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf.VIpgJd-ZVi9od-aZ2wEe-wOHMyf-ti6hGc {
+    display: none;
+}
+
+iframe#\:2\.container {
+    visibility: hidden;
+    display: none;
+    margin-top: -10px !important;
+}
+body {
+    top: 0px !important;
+}
+
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+        <div class="wrapper">
+            <div class="inner-wrapper">
+                <header>
+                    <div class="top-bar">
+                        <div class="container">
+                            <span id="clock" style="font-size: 12px;"></span>
+
+                            <div class="dt-sc-contact-number">
+                                <ul class="dt-sc-social-icons" style="height:5px">
+                                    <li><span class="fa fa-phone"></span>Call us: 040-23441636</li>
+                                    <li><div class="translate d-flex mt-1 rounded"><div id="google_translate_element"></div></div></li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="logo">
+                            <a href="TSHOME.ASPX">
+                                <img src="viewpdf.aspx?filepathnew=D:/TS-iPASSFinal/images/logo.jpg"></a>
+                        </div>
+                        <div class="top-head" >
+                            <div class="top-img" style="display:none">
+                                <img src="viewpdf.aspx?filepathnew=D:/TS-iPASSFinal/Masterfiles/images/Revanth Reddy CM.JPG" id="imgcm" runat="server">
+
+                                <h5 class="top-names">Sri. A.Revanth Reddy</h5>
+                                <p class="top-names1">Hon'ble Chief Minister</p>
+                            </div>
+                            <div class="top-img mr0" style="display:none">
+                                <img src="viewpdf.aspx?filepathnew=D:/TS-iPASSFinal/Masterfiles/images/IT Minister.JPG" id="imgitm" runat="server">
+
+                                <h5 class="top-names">Sri. D.Sridhar Babu</h5>
+                                <p class="top-names1">Hon'ble Minister for Industries</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="menu-container">
+                        <div class="container">
+                            <nav id="main-menu">
+                                <div class="dt-menu-toggle" id="dt-menu-toggle">Menu<span class="dt-menu-toggle-icon"></span></div>
+                                <ul id="menu-main-menu" class="menu">
+                                    <li ><a href="../../TSHome.aspx">Home</a></li>
+                                    <li><a href="../../about.aspx">About Us</a></li>
+                                    <li class="menu-item-simple-parent menu-item-depth-0"><a href="#x">Services</a>
+                                        <ul class="sub-menu">
+                                            <%--  <li><a target="_blank" href="UI/TSiPASS/AmmendamentUserRegistration.aspx">Inspection</a></li>--%>
+                                            <li><a target="_blank" href="frmCFEcertificateProcess.aspx">TG-iPass Certificate Verification</a></li>
+                                            <%--<li><a target="_blank" href="UI/TSiPASS/AddNewInspectionUser.aspx">Inspection</a></li>--%>
+                                            <li class="menu-item-simple-parent menu-item-depth-0"><a target="_blank" href="../../IncentiveRegistrationViewDocsNew.aspx">Incentive</a></li>
+                                            <%-- <li class="menu-item-simple-parent menu-item-depth-0"><a target="_blank" href="#">Incentive</a>
+                                                <ul class="sub-menu">
+                                                    <li><a target="_blank" href="IncentiveRegistrationViewDocs.aspx">Incentive Check</a></li>
+                                                    <li><a target="_blank" href="IpassLogin.aspx">Apply For Incentive</a></li>
+                                                </ul>
+                                            </li>--%>
+                                            <li><a target="_blank" href="RawMatirialLink.aspx">Raw Material Allocation</a></li>
+                                            <li><a target="_blank" href="GuestGrievance.aspx">Grievance/Feedback</a></li>
+                                            <li><a target="_blank" href="IFCHomepage.aspx">Investor Facilitation Cell</a></li>
+                                            <%--<li><a target="_blank" href="UI/TSiPASS/GuestInsturction.aspx">Bank Loan Application</a></li>--%>
+                                            <li><a target="_blank" onclick="if ( ! UserDeleteConfirmation()) return false;" href="http://udyogaadhaar.gov.in/">Udyog Aadhaar</a></li>
+                                            <li><a target="_blank" href="MisreportDashboard.aspx">Mis Reports</a></li>
+                                            <%--<li><a href="ClusterAbstractReportPublic.aspx">Central Inspection Report</a></li>--%>
+                                        </ul>
+                                    </li>
+                                    <li><a href="../../links.aspx">Related Departments</a></li>
+                                    <li><a href="../../Information.aspx">Information Wizard</a></li>
+
+                                    <li><a href="../../Downloads.aspx">Repository of Regulations</a></li>
+                                    <li><a href="../../UseCommentsOnAmmendments.aspx">Business Regulations</a> </li>
+
+                                    <li><a href="../../Contacts.aspx">Contact us</a></li>
+                                    <%-- <li><a href="#x">Related Departments</a></li>
+                                <li><a href="#x">Testimonials</a></li>
+                                <li><a href="#x">Latest News</a></li>
+                                <li><a href="#x">Contact Us</a></li>--%>
+                                    <li><a href="../../IpassLogin.aspx"><i class="fa fa-lock"></i>Login</a></li>
+                                    <%--<li><a href="UI/TSiPASS/AddnewuserRegistration.aspx"><i class="fa fa-pencil"></i>Register</a></li>--%>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </header>
+                <div>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+                 <%--<footer>
+                <div class="copyright">
+                    <div class="container">
+                        <div class="col-1 white">
+                            <script type="text/javascript">                                document.write("&copy; " + new Date().getFullYear() + ". Copyright " + new Date().getFullYear() + " Government of Telangana. all rights reserved by Industries Chasing Cell..");</script>
+                        </div>
+                        <div class="col-1 white">
+                            <a href="../../Contacts.aspx" title="Contact Us" target="_blank">Contact Us</a> |
+                            <a href="TermsConditions.aspx" title="Terms of Use" target="_blank">Terms of Use</a> |
+                            <a href="Privacypolicy.aspx" title="Privacy Policy" target="_blank">Privacy</a> |
+                             <a href="UI/TSIPASS/IpassSitemap.aspx" title="Privacy Policy" target="_blank">Site Map</a>
+                        </div>
+                        <div class="col-2 white">
+                             <span style="font-weight: bold"><asp:Label ID="lbllastupdat" runat="server" Text=""></asp:Label></span>
+                        </div>
+                    </div>
+                </div>
+            </footer>--%>
+                                        <footer>
+                <div class="copyright">
+                    <div class="container">
+                        
+                        <div class="col-1 white">
+                            <a href="Contacts.aspx" title="Contact Us" target="_blank">Contact Us</a> |
+                            <a href="UI/TSIPASS/TermsConditions.aspx" title="Terms of Use" target="_blank">Terms of Use</a> |
+                            <a href="UI/TSIPASS/Privacypolicy.aspx" title="Privacy Policy" target="_blank">Privacy</a> |
+                             <a href="UI/TSIPASS/IpassSitemap.aspx" title="Privacy Policy" target="_blank">Site Map</a> |
+                           <%-- <div id="count">View Counts: 0</div>--%>
+                             <%--<div id="count" runat="server" clientidmode="Static"></div>--%>
+                           <asp:Label ID="lblClickCount" runat="server" Text="Chatbot View Count:"></asp:Label>
+                        </div>
+                        <div class="col-2 white">
+                             <span style="font-weight: bold"><asp:Label ID="lbllastupdat" runat="server" Text=""></asp:Label></span>
+                            <%--Designed By <a href="http://www.bitranet.com/" title="Website Designed by BitraNet Pvt. Ltd.," target="_blank">BitraNet</a>--%>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <footer style="background: linear-gradient(45deg, #021331, #044a8c);border: none !important;">
+    <div class="copyright">
+        <div class="container">
+            <div class="col-1 white" style="width: 60% !important;margin-top: 2px;">
+                <script type="text/javascript">  document.write("&copy; " + new Date().getFullYear() + ". Copyright " + new Date().getFullYear() + " Government of Telangana. all rights reserved by Industries Chasing Cell..");</script>
+            </div>
+            
+            <div class="col-2 white" style="width: 40% !important;">
+                 <span style="font-weight: 500;">Design and Developed by : <img src="viewpdf.aspx?filepathnew=D:/TS-iPASSFinal/images/cmslogo.png" alt="CMS logo" style="width: 16%;margin-top: -5px;"/></span>
+                <%--Designed By <a href="http://www.bitranet.com/" title="Website Designed by BitraNet Pvt. Ltd.," target="_blank">BitraNet</a>--%>
+            </div>
+        </div>
+    </div>
+</footer>
+            </div>
+        </div>
+        <a href="#" title="Go to Top" class="back-to-top"><span class="fa fa-angle-up"></span>
+        </a>
+    </form>
+
+    <a href="#" title="Go to Top" class="back-to-top"><span class="fa fa-angle-up"></span>
+    </a>
+
+
+    <style>
+        .sticky-container {
+            /*background-color: #333;*/
+            padding: 0px;
+            margin: 0px;
+            position: fixed;
+            right: -154px;
+            top: 48px;
+            width: 200px;
+            z-index: 9999;
+        }
+
+        .sticky li {
+            list-style-type: none;
+            background-color: #333;
+            color: #efefef;
+            height: 43px;
+            padding: 0px;
+            margin: 0px 0px 1px 0px;
+            -webkit-transition: all 0.25s ease-in-out;
+            -moz-transition: all 0.25s ease-in-out;
+            -o-transition: all 0.25s ease-in-out;
+            transition: all 0.25s ease-in-out;
+            cursor: pointer;
+            filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+            filter: gray;
+            -webkit-filter: grayscale(100%);
+        }
+
+            .sticky li:hover {
+                margin-left: -115px;
+                /*-webkit-transform: translateX(-115px);
+		-moz-transform: translateX(-115px);
+		-o-transform: translateX(-115px);
+		-ms-transform: translateX(-115px);
+		transform:translateX(-115px);*/
+                /*background-color: #8e44ad;*/
+                filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+                -webkit-filter: grayscale(0%);
+            }
+
+            .sticky li img {
+                float: left;
+                margin: 5px 5px;
+                margin-right: 10px;
+            }
+
+            .sticky li p {
+                padding: 0px;
+                margin: 0px;
+                text-transform: uppercase;
+                line-height: 43px;
+            }
+
+            .sticky li a p {
+                color: #fff;
+            }
+
+        .facebook {
+            background: #3B5998 !important;
+            color: white !important;
+            background-color: #3B5998;
+        }
+
+        .Newlogn {
+            background: #32bda5 !important;
+            color: white !important;
+            background-color: #32bda5;
+        }
+
+        .Regnnew {
+            background: #157dc3 !important;
+            color: white !important;
+            background-color: #157dc3;
+        }
+
+        body {
+            color: black !important;
+        }
+    </style>
+
+    <style type="text/css">
+        .copyright {
+            clear: both;
+            width: 100%;
+            margin: 0px auto;
+            padding: 0px;
+            display: block;
+            font-size: 12px;
+            text-align: center;
+        }
+        .top-bar {
+        height:31px;
+        }
+        .container {
+            width: 1170px;
+            margin: 0 auto;
+        }
+
+        .col-1 {
+            float: left;
+            text-align: left;
+            width: 50%;
+            color: #fff;
+        }
+
+        .col-2 {
+            float: right;
+            text-align: right;
+            width: 50%;
+             color: #fff;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            $(".font-button").bind("click", function () {
+                var size = parseInt($('body').css("font-size"));
+
+                if ($(this).hasClass("plus")) {
+                    size = size + 2;
+                } else {
+                    size = size - 2;
+                    if (size <= 10) {
+                        size = 10;
+                    }
+                }
+                $('body').css("font-size", size);
+            });
+        });
+    </script>
+                    <script type="text/javascript">
+                        function googleTranslateElementInit() {
+                            new google.translate.TranslateElement({
+                                pageLanguage: 'en',
+                                includedLanguages: 'te,en', // Telugu
+                                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                            }, 'google_translate_element');
+                        }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

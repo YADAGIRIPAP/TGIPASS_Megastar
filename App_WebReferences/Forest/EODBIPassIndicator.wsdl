@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="Per_Indicator">
+        <s:complexType />
+      </s:element>
+      <s:element name="Per_IndicatorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Per_IndicatorResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Inspec_Indicator">
+        <s:complexType />
+      </s:element>
+      <s:element name="Inspec_IndicatorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Inspec_IndicatorResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Per_Indicator_division">
+        <s:complexType />
+      </s:element>
+      <s:element name="Per_Indicator_divisionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Per_Indicator_divisionResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="Per_IndicatorSoapIn">
+    <wsdl:part name="parameters" element="tns:Per_Indicator" />
+  </wsdl:message>
+  <wsdl:message name="Per_IndicatorSoapOut">
+    <wsdl:part name="parameters" element="tns:Per_IndicatorResponse" />
+  </wsdl:message>
+  <wsdl:message name="Inspec_IndicatorSoapIn">
+    <wsdl:part name="parameters" element="tns:Inspec_Indicator" />
+  </wsdl:message>
+  <wsdl:message name="Inspec_IndicatorSoapOut">
+    <wsdl:part name="parameters" element="tns:Inspec_IndicatorResponse" />
+  </wsdl:message>
+  <wsdl:message name="Per_Indicator_divisionSoapIn">
+    <wsdl:part name="parameters" element="tns:Per_Indicator_division" />
+  </wsdl:message>
+  <wsdl:message name="Per_Indicator_divisionSoapOut">
+    <wsdl:part name="parameters" element="tns:Per_Indicator_divisionResponse" />
+  </wsdl:message>
+  <wsdl:portType name="EODBIPassIndicatorSoap">
+    <wsdl:operation name="Per_Indicator">
+      <wsdl:input message="tns:Per_IndicatorSoapIn" />
+      <wsdl:output message="tns:Per_IndicatorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Inspec_Indicator">
+      <wsdl:input message="tns:Inspec_IndicatorSoapIn" />
+      <wsdl:output message="tns:Inspec_IndicatorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Per_Indicator_division">
+      <wsdl:input message="tns:Per_Indicator_divisionSoapIn" />
+      <wsdl:output message="tns:Per_Indicator_divisionSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EODBIPassIndicatorSoap" type="tns:EODBIPassIndicatorSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Per_Indicator">
+      <soap:operation soapAction="http://tempuri.org/Per_Indicator" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Inspec_Indicator">
+      <soap:operation soapAction="http://tempuri.org/Inspec_Indicator" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Per_Indicator_division">
+      <soap:operation soapAction="http://tempuri.org/Per_Indicator_division" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="EODBIPassIndicatorSoap12" type="tns:EODBIPassIndicatorSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Per_Indicator">
+      <soap12:operation soapAction="http://tempuri.org/Per_Indicator" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Inspec_Indicator">
+      <soap12:operation soapAction="http://tempuri.org/Inspec_Indicator" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Per_Indicator_division">
+      <soap12:operation soapAction="http://tempuri.org/Per_Indicator_division" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EODBIPassIndicator">
+    <wsdl:port name="EODBIPassIndicatorSoap" binding="tns:EODBIPassIndicatorSoap">
+      <soap:address location="http://fmis.telangana.gov.in/common/WebService/EODBIPassIndicator.asmx" />
+    </wsdl:port>
+    <wsdl:port name="EODBIPassIndicatorSoap12" binding="tns:EODBIPassIndicatorSoap12">
+      <soap12:address location="http://fmis.telangana.gov.in/common/WebService/EODBIPassIndicator.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

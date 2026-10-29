@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://webservice.ws.tsipass.tsnpdcl.com/" targetNamespace="http://webservice.ws.tsipass.tsnpdcl.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="insertAllAttachments" type="tns:insertAllAttachments" />
+  <xs:element name="insertAllAttachmentsResponse" type="tns:insertAllAttachmentsResponse" />
+  <xs:element name="insertAppealAgainstRejects" type="tns:insertAppealAgainstRejects" />
+  <xs:element name="insertAppealAgainstRejectsResponse" type="tns:insertAppealAgainstRejectsResponse" />
+  <xs:element name="insertQueryResponse" type="tns:insertQueryResponse" />
+  <xs:element name="insertQueryResponseResponse" type="tns:insertQueryResponseResponse" />
+  <xs:element name="insertTsipassOnlinePayments" type="tns:insertTsipassOnlinePayments" />
+  <xs:element name="insertTsipassOnlinePaymentsResponse" type="tns:insertTsipassOnlinePaymentsResponse" />
+  <xs:element name="insertTsipassUidDetaisls" type="tns:insertTsipassUidDetaisls" />
+  <xs:element name="insertTsipassUidDetaislsResponse" type="tns:insertTsipassUidDetaislsResponse" />
+  <xs:complexType name="insertQueryResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertQueryResponseResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertAppealAgainstRejects">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertAppealAgainstRejectsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertTsipassOnlinePayments">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertTsipassOnlinePaymentsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertTsipassUidDetaisls">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertTsipassUidDetaislsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertAllAttachments">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertAllAttachmentsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

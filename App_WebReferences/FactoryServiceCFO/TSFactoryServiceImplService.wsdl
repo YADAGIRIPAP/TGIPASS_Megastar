@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tsfactoriesws.cgg.gov.in/" name="TSFactoryServiceImplService" targetNamespace="http://tsfactoriesws.cgg.gov.in/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="https://tsfactoriescfo.cgg.gov.in:443/tsFactoriesWebServiceCFO?xsd=1" namespace="http://tsfactoriesws.cgg.gov.in/" />
+    </xsd:schema>
+  </types>
+  <message name="insertIntoGrantLicenseAdditionalPayment">
+    <part name="parameters" element="tns:insertIntoGrantLicenseAdditionalPayment" />
+  </message>
+  <message name="insertIntoGrantLicenseAdditionalPaymentResponse">
+    <part name="parameters" element="tns:insertIntoGrantLicenseAdditionalPaymentResponse" />
+  </message>
+  <message name="insertIntoGrantLicense">
+    <part name="parameters" element="tns:insertIntoGrantLicense" />
+  </message>
+  <message name="insertIntoGrantLicenseResponse">
+    <part name="parameters" element="tns:insertIntoGrantLicenseResponse" />
+  </message>
+  <message name="updateAppealAgainstRejectionCFO">
+    <part name="parameters" element="tns:updateAppealAgainstRejectionCFO" />
+  </message>
+  <message name="updateAppealAgainstRejectionCFOResponse">
+    <part name="parameters" element="tns:updateAppealAgainstRejectionCFOResponse" />
+  </message>
+  <portType name="TSFactoryService">
+    <operation name="insertIntoGrantLicenseAdditionalPayment">
+      <input message="tns:insertIntoGrantLicenseAdditionalPayment" />
+      <output message="tns:insertIntoGrantLicenseAdditionalPaymentResponse" />
+    </operation>
+    <operation name="insertIntoGrantLicense">
+      <input message="tns:insertIntoGrantLicense" />
+      <output message="tns:insertIntoGrantLicenseResponse" />
+    </operation>
+    <operation name="updateAppealAgainstRejectionCFO">
+      <input message="tns:updateAppealAgainstRejectionCFO" />
+      <output message="tns:updateAppealAgainstRejectionCFOResponse" />
+    </operation>
+  </portType>
+  <binding name="TSFactoryServiceImplPortBinding" type="tns:TSFactoryService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="insertIntoGrantLicenseAdditionalPayment">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertIntoGrantLicense">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="updateAppealAgainstRejectionCFO">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="TSFactoryServiceImplService">
+    <port name="TSFactoryServiceImplPort" binding="tns:TSFactoryServiceImplPortBinding">
+      <soap:address location="https://tsfactoriescfo.cgg.gov.in:443/tsFactoriesWebServiceCFO" />
+    </port>
+  </service>
+</definitions>

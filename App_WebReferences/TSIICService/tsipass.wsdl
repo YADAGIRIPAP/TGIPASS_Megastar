@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="https://dpms.hmda.gov.in/BPAMSClient/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="https://dpms.hmda.gov.in/BPAMSClient/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="https://dpms.hmda.gov.in/BPAMSClient/">
+      <s:element name="create">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AuthenticationKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="createResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="createResult" type="tns:ApplicationFormResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ApplicationFormResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ServiceResponse">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="ProposalDetailsResponse" type="tns:ProposalDetailsResponse" />
+              <s:element minOccurs="0" maxOccurs="1" name="SanctionBuildingList" type="tns:ArrayOfSanctionBuildingDetailsResponse" />
+              <s:element minOccurs="0" maxOccurs="1" name="FileNo" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="HMDAFileNo" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="TotalAmount" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="PenaltyAmount" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="UniqueID" type="s:long" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MobileNo" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="DepartmentId" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="TS_Client" type="tns:enCorporation" />
+              <s:element minOccurs="1" maxOccurs="1" name="Installment" type="tns:enInstallment" />
+              <s:element minOccurs="1" maxOccurs="1" name="InstallmentType" type="tns:enInstallmentType" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ServiceResponse" abstract="true">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Error" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResponseStatus" type="s:short" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProposalDetailsResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Building_Permit_No" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Building_Permit_Date" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Occupancy_Applied_for" type="tns:enOccupancyApplied" />
+          <s:element minOccurs="0" maxOccurs="1" name="Mandal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Village" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="District" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Zone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Location_Type" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Proposed_Plot_Area" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Proposed_Use" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Owner_Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MobileNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Plot_No" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Survey_No" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Door_No" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Road_Street" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Locality" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ward_No" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parking_Space_Provisions" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Road_Widening" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RWH_Pits" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tot_Lot_Area" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="No_of_Building" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PreviousFileNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RegistrationNo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Work_Commenced_Date" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Work_Completion_Date" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Duedate_for_completion_of_the_building" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="IndustrialPark" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LocationID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ULBCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Remarks" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="enOccupancyApplied">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="Full" />
+          <s:enumeration value="Part" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfSanctionBuildingDetailsResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SanctionBuildingDetailsResponse" nillable="true" type="tns:SanctionBuildingDetailsResponse" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SanctionBuildingDetailsResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="BuildingName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BuildingId" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="PlotId" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="enCorporation">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="HMDA" />
+          <s:enumeration value="GHMC" />
+          <s:enumeration value="DTCP" />
+          <s:enumeration value="TSIIC" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="enInstallment">
+        <s:restriction base="s:string">
+          <s:enumeration value="No" />
+          <s:enumeration value="Yes" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="enInstallmentType">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="GO_108_Installment" />
+          <s:enumeration value="GO_CCL_Installment" />
+          <s:enumeration value="Both" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="SaveDocumentDataUsingXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="psXML" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AuthenticationKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveDocumentDataUsingXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SaveDocumentDataUsingXMLResult" type="tns:ApplicationFormResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="reSubmission">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AuthenticationKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="reSubmissionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="reSubmissionResult" type="tns:ApplicationFormResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DCPayment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AuthenticationKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DCPaymentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DCPaymentResult" type="tns:ApplicationFormResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPenaltyAmount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="txnUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AuthenticationKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPenaltyAmountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPenaltyAmountResult" type="tns:ApplicationFormResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdditionalDocument">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AuthenticationKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdditionalDocumentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AdditionalDocumentResult" type="tns:ApplicationFormResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Mortgage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AuthenticationKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MortgageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MortgageResult" type="tns:ApplicationFormResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getArchitectDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="registrationNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AuthenticationKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getArchitectDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getArchitectDetailsResult" type="tns:ApplicationFormResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getDetailsforOccupancy">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DepartmentId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AuthenticationKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getDetailsforOccupancyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getDetailsforOccupancyResult" type="tns:ApplicationFormResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ApplyforOccupancy">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applicationFormResponse" type="tns:ApplicationFormResponse" />
+            <s:element minOccurs="0" maxOccurs="1" name="AuthenticationKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ApplyforOccupancyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ApplyforOccupancyResult" type="tns:ApplicationFormResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ApplyDemolishedOC">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applicationFormResponse" type="tns:ApplicationFormResponse" />
+            <s:element minOccurs="0" maxOccurs="1" name="AuthenticationKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ApplyDemolishedOCResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ApplyDemolishedOCResult" type="tns:ApplicationFormResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResubmitOccupancy">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applicationFormResponse" type="tns:ApplicationFormResponse" />
+            <s:element minOccurs="0" maxOccurs="1" name="AuthenticationKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResubmitOccupancyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ResubmitOccupancyResult" type="tns:ApplicationFormResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="createSoapIn">
+    <wsdl:part name="parameters" element="tns:create" />
+  </wsdl:message>
+  <wsdl:message name="createSoapOut">
+    <wsdl:part name="parameters" element="tns:createResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveDocumentDataUsingXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveDocumentDataUsingXML" />
+  </wsdl:message>
+  <wsdl:message name="SaveDocumentDataUsingXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveDocumentDataUsingXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="reSubmissionSoapIn">
+    <wsdl:part name="parameters" element="tns:reSubmission" />
+  </wsdl:message>
+  <wsdl:message name="reSubmissionSoapOut">
+    <wsdl:part name="parameters" element="tns:reSubmissionResponse" />
+  </wsdl:message>
+  <wsdl:message name="DCPaymentSoapIn">
+    <wsdl:part name="parameters" element="tns:DCPayment" />
+  </wsdl:message>
+  <wsdl:message name="DCPaymentSoapOut">
+    <wsdl:part name="parameters" element="tns:DCPaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPenaltyAmountSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPenaltyAmount" />
+  </wsdl:message>
+  <wsdl:message name="GetPenaltyAmountSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPenaltyAmountResponse" />
+  </wsdl:message>
+  <wsdl:message name="AdditionalDocumentSoapIn">
+    <wsdl:part name="parameters" element="tns:AdditionalDocument" />
+  </wsdl:message>
+  <wsdl:message name="AdditionalDocumentSoapOut">
+    <wsdl:part name="parameters" element="tns:AdditionalDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="MortgageSoapIn">
+    <wsdl:part name="parameters" element="tns:Mortgage" />
+  </wsdl:message>
+  <wsdl:message name="MortgageSoapOut">
+    <wsdl:part name="parameters" element="tns:MortgageResponse" />
+  </wsdl:message>
+  <wsdl:message name="getArchitectDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:getArchitectDetails" />
+  </wsdl:message>
+  <wsdl:message name="getArchitectDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:getArchitectDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="getDetailsforOccupancySoapIn">
+    <wsdl:part name="parameters" element="tns:getDetailsforOccupancy" />
+  </wsdl:message>
+  <wsdl:message name="getDetailsforOccupancySoapOut">
+    <wsdl:part name="parameters" element="tns:getDetailsforOccupancyResponse" />
+  </wsdl:message>
+  <wsdl:message name="ApplyforOccupancySoapIn">
+    <wsdl:part name="parameters" element="tns:ApplyforOccupancy" />
+  </wsdl:message>
+  <wsdl:message name="ApplyforOccupancySoapOut">
+    <wsdl:part name="parameters" element="tns:ApplyforOccupancyResponse" />
+  </wsdl:message>
+  <wsdl:message name="ApplyDemolishedOCSoapIn">
+    <wsdl:part name="parameters" element="tns:ApplyDemolishedOC" />
+  </wsdl:message>
+  <wsdl:message name="ApplyDemolishedOCSoapOut">
+    <wsdl:part name="parameters" element="tns:ApplyDemolishedOCResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResubmitOccupancySoapIn">
+    <wsdl:part name="parameters" element="tns:ResubmitOccupancy" />
+  </wsdl:message>
+  <wsdl:message name="ResubmitOccupancySoapOut">
+    <wsdl:part name="parameters" element="tns:ResubmitOccupancyResponse" />
+  </wsdl:message>
+  <wsdl:portType name="tsipassSoap">
+    <wsdl:operation name="create">
+      <wsdl:input message="tns:createSoapIn" />
+      <wsdl:output message="tns:createSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveDocumentDataUsingXML">
+      <wsdl:input message="tns:SaveDocumentDataUsingXMLSoapIn" />
+      <wsdl:output message="tns:SaveDocumentDataUsingXMLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="reSubmission">
+      <wsdl:input message="tns:reSubmissionSoapIn" />
+      <wsdl:output message="tns:reSubmissionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DCPayment">
+      <wsdl:input message="tns:DCPaymentSoapIn" />
+      <wsdl:output message="tns:DCPaymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPenaltyAmount">
+      <wsdl:input message="tns:GetPenaltyAmountSoapIn" />
+      <wsdl:output message="tns:GetPenaltyAmountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AdditionalDocument">
+      <wsdl:input message="tns:AdditionalDocumentSoapIn" />
+      <wsdl:output message="tns:AdditionalDocumentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Mortgage">
+      <wsdl:input message="tns:MortgageSoapIn" />
+      <wsdl:output message="tns:MortgageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getArchitectDetails">
+      <wsdl:input message="tns:getArchitectDetailsSoapIn" />
+      <wsdl:output message="tns:getArchitectDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getDetailsforOccupancy">
+      <wsdl:input message="tns:getDetailsforOccupancySoapIn" />
+      <wsdl:output message="tns:getDetailsforOccupancySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ApplyforOccupancy">
+      <wsdl:input message="tns:ApplyforOccupancySoapIn" />
+      <wsdl:output message="tns:ApplyforOccupancySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ApplyDemolishedOC">
+      <wsdl:input message="tns:ApplyDemolishedOCSoapIn" />
+      <wsdl:output message="tns:ApplyDemolishedOCSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResubmitOccupancy">
+      <wsdl:input message="tns:ResubmitOccupancySoapIn" />
+      <wsdl:output message="tns:ResubmitOccupancySoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="tsipassSoap" type="tns:tsipassSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="create">
+      <soap:operation soapAction="https://dpms.hmda.gov.in/BPAMSClient/create" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveDocumentDataUsingXML">
+      <soap:operation soapAction="https://dpms.hmda.gov.in/BPAMSClient/SaveDocumentDataUsingXML" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reSubmission">
+      <soap:operation soapAction="https://dpms.hmda.gov.in/BPAMSClient/reSubmission" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DCPayment">
+      <soap:operation soapAction="https://dpms.hmda.gov.in/BPAMSClient/DCPayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPenaltyAmount">
+      <soap:operation soapAction="https://dpms.hmda.gov.in/BPAMSClient/GetPenaltyAmount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdditionalDocument">
+      <soap:operation soapAction="https://dpms.hmda.gov.in/BPAMSClient/AdditionalDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Mortgage">
+      <soap:operation soapAction="https://dpms.hmda.gov.in/BPAMSClient/Mortgage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getArchitectDetails">
+      <soap:operation soapAction="https://dpms.hmda.gov.in/BPAMSClient/getArchitectDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDetailsforOccupancy">
+      <soap:operation soapAction="https://dpms.hmda.gov.in/BPAMSClient/getDetailsforOccupancy" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApplyforOccupancy">
+      <soap:operation soapAction="https://dpms.hmda.gov.in/BPAMSClient/ApplyforOccupancy" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApplyDemolishedOC">
+      <soap:operation soapAction="https://dpms.hmda.gov.in/BPAMSClient/ApplyDemolishedOC" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResubmitOccupancy">
+      <soap:operation soapAction="https://dpms.hmda.gov.in/BPAMSClient/ResubmitOccupancy" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="tsipassSoap12" type="tns:tsipassSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="create">
+      <soap12:operation soapAction="https://dpms.hmda.gov.in/BPAMSClient/create" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveDocumentDataUsingXML">
+      <soap12:operation soapAction="https://dpms.hmda.gov.in/BPAMSClient/SaveDocumentDataUsingXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reSubmission">
+      <soap12:operation soapAction="https://dpms.hmda.gov.in/BPAMSClient/reSubmission" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DCPayment">
+      <soap12:operation soapAction="https://dpms.hmda.gov.in/BPAMSClient/DCPayment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPenaltyAmount">
+      <soap12:operation soapAction="https://dpms.hmda.gov.in/BPAMSClient/GetPenaltyAmount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdditionalDocument">
+      <soap12:operation soapAction="https://dpms.hmda.gov.in/BPAMSClient/AdditionalDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Mortgage">
+      <soap12:operation soapAction="https://dpms.hmda.gov.in/BPAMSClient/Mortgage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getArchitectDetails">
+      <soap12:operation soapAction="https://dpms.hmda.gov.in/BPAMSClient/getArchitectDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDetailsforOccupancy">
+      <soap12:operation soapAction="https://dpms.hmda.gov.in/BPAMSClient/getDetailsforOccupancy" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApplyforOccupancy">
+      <soap12:operation soapAction="https://dpms.hmda.gov.in/BPAMSClient/ApplyforOccupancy" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApplyDemolishedOC">
+      <soap12:operation soapAction="https://dpms.hmda.gov.in/BPAMSClient/ApplyDemolishedOC" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResubmitOccupancy">
+      <soap12:operation soapAction="https://dpms.hmda.gov.in/BPAMSClient/ResubmitOccupancy" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="tsipass">
+    <wsdl:port name="tsipassSoap" binding="tns:tsipassSoap">
+      <soap:address location="http://45.127.101.85:9092/AutoDCR.TSPMON/tsipass.asmx" />
+    </wsdl:port>
+    <wsdl:port name="tsipassSoap12" binding="tns:tsipassSoap12">
+      <soap12:address location="http://45.127.101.85:9092/AutoDCR.TSPMON/tsipass.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

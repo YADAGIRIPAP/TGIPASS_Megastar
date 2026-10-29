@@ -1,0 +1,174 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
+
+public partial class Dashboard : System.Web.UI.Page
+{
+    //designed by siva as on 29-1-2016 
+    //Purpose : Report for Year wise dashboard
+    //Tables used : All
+    //Stored procedures Used :YearwiseDashboardforAdmin
+
+    General Gen = new General();
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+        if (Session.Count <= 0)
+        {
+            Response.Redirect("../../Index.aspx");
+        }
+
+        if (!IsPostBack)
+        {
+            //FillDetails();
+        }
+
+
+
+        DataSet ds = new DataSet();
+        if (Session["userlevel"].ToString() == "10")
+        {
+            ds = Gen.GrievDashboard(Session["User_Code"].ToString(), "%");
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                //Label4.Text = ds.Tables[0].Rows[0]["total"].ToString();
+                //Label6.Text = ds.Tables[0].Rows[0]["pending"].ToString();
+                //Label12.Text = ds.Tables[0].Rows[0]["redress"].ToString();
+                //Label15.Text = ds.Tables[0].Rows[0]["reject"].ToString();
+            }
+            if (ds != null && ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+            {
+                Label4.Text = ds.Tables[1].Rows[0]["No_of_grievances_received"].ToString();   // Total
+                Label6.Text = ds.Tables[1].Rows[0]["Pending_Within"].ToString();   // Pending Within
+                Label2.Text = ds.Tables[1].Rows[0]["Pending_Beyond"].ToString();   // Pending Beyond
+                Label8.Text = ds.Tables[1].Rows[0]["Pending_TOTAL"].ToString();   // Pending Total
+
+
+                Label12.Text = ds.Tables[1].Rows[0]["Redressed_Within"].ToString();   // Redressed Within
+                Label3.Text = ds.Tables[1].Rows[0]["Redressed_Beyond"].ToString();   // Redressed Beyond
+                Label5.Text = ds.Tables[1].Rows[0]["Redressed_Total"].ToString();   // Redressed Total
+
+                Label15.Text = ds.Tables[1].Rows[0]["Rejected"].ToString();   // Rejected
+            }
+
+        }
+        else if (Session["userlevel"].ToString() == "13")
+        {
+            ds = Gen.GrievDashboard("%", Session["uid"].ToString());
+            //grdDetails.Columns[0].Visible = false;
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+              
+                //Label4.Text = ds.Tables[0].Rows[0]["total"].ToString();
+                //Label6.Text = ds.Tables[0].Rows[0]["pending"].ToString();
+                //Label12.Text = ds.Tables[0].Rows[0]["redress"].ToString();
+                //Label15.Text = ds.Tables[0].Rows[0]["reject"].ToString();
+            }
+            if (ds != null && ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+            {
+                Label4.Text = ds.Tables[1].Rows[0]["No_of_grievances_received"].ToString();   // Total
+                Label6.Text = ds.Tables[1].Rows[0]["Pending_Within"].ToString();   // Pending Within
+                Label2.Text = ds.Tables[1].Rows[0]["Pending_Beyond"].ToString();   // Pending Beyond
+                Label8.Text = ds.Tables[1].Rows[0]["Pending_TOTAL"].ToString();   // Pending Total
+
+
+                Label12.Text = ds.Tables[1].Rows[0]["Redressed_Within"].ToString();   // Redressed Within
+                Label3.Text = ds.Tables[1].Rows[0]["Redressed_Beyond"].ToString();   // Redressed Beyond
+                Label5.Text = ds.Tables[1].Rows[0]["Redressed_Total"].ToString();   // Redressed Total
+
+                Label15.Text = ds.Tables[1].Rows[0]["Rejected"].ToString();   // Rejected
+            }
+        }
+        else
+        {
+            //ds = Gen.GrievDeptwiseDashboard();
+            ////grdDetails.Columns[0].Visible = true;
+
+            //Label16.Text = ds.Tables[0].Rows[0]["Dept_Name"].ToString();
+            //Label4.Text = ds.Tables[0].Rows[0]["total"].ToString();
+            //Label6.Text = ds.Tables[0].Rows[0]["pending"].ToString();
+            //Label12.Text = ds.Tables[0].Rows[0]["regret"].ToString();
+            //Label15.Text = ds.Tables[0].Rows[0]["reject"].ToString();
+        }
+        //if (ds.Tables[0].Rows.Count > 0)
+        //{
+        //    grdDetails.DataSource = ds.Tables[0];
+        //    grdDetails.DataBind();
+        //}
+        //else
+        //{
+        //    grdDetails.DataSource = ds.Tables[0];
+        //    grdDetails.DataBind();
+        //}
+
+    }
+
+    //void FillDetails()
+    //{
+    //    DataSet ds = new DataSet();
+    //    ds = Gen.GetEnterpreneourDashboardDetailsCFO(Session["uid"].ToString());
+    //    if (ds.Tables[0].Rows.Count > 0)
+    //    {
+    //        //labUidNumber.Text = ds.Tables[0].Rows[0]["UID Number"].ToString();
+    //        //labNameandAddress.Text = ds.Tables[0].Rows[0]["Name"].ToString();
+    //        //labLineofActivity.Text = ds.Tables[0].Rows[0]["LineofActivity"].ToString();
+    //        //labTotalInvestment.Text = ds.Tables[0].Rows[0]["Total Investment"].ToString();
+    //        //labCategoryofIndustry.Text = ds.Tables[0].Rows[0]["Category of Industry"].ToString();
+    //        //labDOA.Text = ds.Tables[0].Rows[0]["Date of Application"].ToString();
+    //        //labNameandAddress0.Text = ds.Tables[0].Rows[0]["PropAddress"].ToString();
+    //        Label4.Text = ds.Tables[0].Rows[0]["Quessionaire"].ToString();
+    //      //  Label5.Text = ds.Tables[0].Rows[0]["In Complete (Draft)"].ToString();
+    //        if (ds.Tables[0].Rows[0]["Submitted"].ToString() == "No")
+    //        {
+
+    //            Label6.Text = "Draft";
+    //        }
+    //        else
+    //        {
+    //            Label6.Text = "Submitted";
+    //        }
+    //        Label7.Text = ds.Tables[0].Rows[0]["Approvals Required as per TS-iPASS"].ToString();
+    //        Label8.Text = ds.Tables[0].Rows[0]["Approvals already Obtained"].ToString();
+    //        Label10.Text = ds.Tables[0].Rows[0]["Approvals - Applied now"].ToString();
+    //      //  Label9.Text =  ds.Tables[0].Rows[0]["Approvals - Payment Done"].ToString();
+    //        Label12.Text = ds.Tables[0].Rows[0]["Approvals - Payment not required"].ToString();
+    //        Label11.Text = ds.Tables[0].Rows[0]["Approvals - Yet to be applied"].ToString();
+    //        Label3.Text =  ds.Tables[0].Rows[0]["Queries Raised"].ToString();
+    //        Label13.Text = ds.Tables[0].Rows[0]["Queries Responded"].ToString();
+    //        Label14.Text = ds.Tables[0].Rows[0]["Queries -Yet to Respond"].ToString();
+    //        Label15.Text = ds.Tables[0].Rows[0]["Approval - Payment Required"].ToString();
+    //        Label16.Text = ds.Tables[0].Rows[0]["Approval - Paid for"].ToString();
+    //        Label17.Text = ds.Tables[0].Rows[0]["Approvals - Awaiting Payment"].ToString();
+    //        Label1.Text =  ds.Tables[0].Rows[0]["Approval - Issued"].ToString();
+    //        Label2.Text =  ds.Tables[0].Rows[0]["Approval - Pending"].ToString();
+    //    }
+
+
+    //   // DataSet ds = Gen.YearwiseDashboardforAdmin("2016");
+    //    //if (ds.Tables[0].Rows.Count > 0)
+    //    //{
+    //    //    lbl0.Text = ds.Tables[0].Rows[0]["cnt"].ToString();
+    //    //    lbl1.Text = ds.Tables[1].Rows[0]["cnt"].ToString();
+    //    //    lbl2.Text = ds.Tables[2].Rows[0]["cnt"].ToString();
+    //    //    lbl3.Text = ds.Tables[3].Rows[0]["cnt"].ToString();
+    //    //    lbl4.Text = ds.Tables[4].Rows[0]["cnt"].ToString();
+    //    //    lbl5.Text = ds.Tables[5].Rows[0]["cnt"].ToString();
+    //    //    lbl6.Text = ds.Tables[6].Rows[0]["cnt"].ToString();
+    //    //    lbl7.Text = ds.Tables[7].Rows[0]["cnt"].ToString();
+    //    //    lbl8.Text = ds.Tables[8].Rows[0]["cnt"].ToString();
+    //    //    lbl9.Text = ds.Tables[9].Rows[0]["cnt"].ToString();
+    //    //    lbl10.Text = ds.Tables[10].Rows[0]["cnt"].ToString();
+    //    //    lbl11.Text = ds.Tables[11].Rows[0]["cnt"].ToString();
+    //    //    lbl12.Text = ds.Tables[12].Rows[0]["cnt"].ToString();
+    //    //    lbl13.Text = ds.Tables[13].Rows[0]["cnt"].ToString();   
+    //    //}
+    //}
+
+
+}

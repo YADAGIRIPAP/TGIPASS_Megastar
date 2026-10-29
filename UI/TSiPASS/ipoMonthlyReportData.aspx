@@ -1,0 +1,388 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ipoMonthlyReportData.aspx.cs" MasterPageFile="~/UI/TSiPASS/CCMaster.master" Inherits="UI_TSIPASS_ipoMonthlyReportData" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <script src="../../Resource/Scripts/js/validations.js" type="text/javascript"></script>
+    <style type="text/css">
+        .overlay
+        {
+            position: fixed;
+            z-index: 999;
+            height: 100%;
+            width: 100%;
+            top: 112px;
+            background-color: Gray;
+            filter: alpha(opacity=60);
+            opacity: 0.9;
+            -moz-opacity: 0.9;
+        }
+        
+        .style8
+        {
+            height: 30px;
+        }
+        
+        .style9
+        {
+            width: 27px;
+            height: 30px;
+        }
+    </style>
+    <script type="text/javascript" language="javascript">
+
+        function OpenPopup() {
+
+            window.open("Lookups/LookupBDC.aspx", "List", "scrollbars=yes,resizable=yes,width=1000,height=650;display = block;position=absolute");
+
+            return false;
+        }
+    </script>
+    <%--<script type="text/javascript">
+        function showProgress() {
+            var updateProgress = $get("<%= UpdateProgress.ClientID %>");
+            updateProgress.style.display = "block";
+        }
+    </script>--%>
+    <script type="text/javascript">
+        function RejectValidate() {
+            return confirm('Do you want to reject the record ?');
+        }
+
+        function RejectValidate1() {
+            return alert('Please enter the Remarks');
+        }
+        function RejectValidate2() {
+            return alert('Record Deleted Sucessfully');
+        }
+    </script>
+    <script type="text/javascript" language="javascript">
+        var win = new Object();
+        function Popup(intval) {
+
+            win = window.open("CFEPopup.aspx?UID=" + intval, "List", "scrollbars=yes,resizable=yes,width=780,height=400,left=" + ((window.screen.width / 2) - 320) + ",top=" + ((window.screen.height / 2) - 200) + ";display : block;position:absolute");
+            //win = window.open("RptVillageOraganisationNameClickDetails.aspx?id="+intval, "List", "scrollbars=yes,resizable=yes,width=600,height=400,left=" + ((window.screen.width / 2) - 320) + ",top=" + ((window.screen.height / 2) - 200) + ";display : block;position:absolute");
+
+        }
+    </script>
+
+    <asp:UpdatePanel ID="upd1" runat="server">
+        <ContentTemplate>
+            <div align="left">
+                <ol class="breadcrumb">
+                    You are here &nbsp;!&nbsp; &nbsp; &nbsp;
+                    <li><i class="fa fa-dashboard"></i><a href="Home.aspx"></a></li>
+                    <li class=""><i class="fa fa-fw fa-edit">CFE</i> </li>
+                    <li class="active"><i class="fa fa-edit"></i><a href="#">View Applications</a> </li>
+                </ol>
+            </div>
+            <div align="left">
+                <div class="row" align="left">
+                    <div class="col-lg-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading" align="center">
+                                <h3 class="panel-title">
+                                    Report</h3>
+                            </div>
+                            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                <ContentTemplate>
+                                    <div class="panel-body">
+                                        <table align="center" cellpadding="10" cellspacing="5" style="width: 90%">
+                                            <%--<tr>
+                                                <td align="left" style="padding: 5px; margin: 5px" valign="top">
+                                                    <table cellpadding="7" cellspacing="7" width="100%">
+                                                        <tr>
+                                                            <td valign="top">
+                                                            </td>
+                                                            <td>
+                                                                &nbsp;</td>
+                                                            <td>
+                                                                <asp:Label ID="Label10" runat="server" CssClass="LBLBLACK" Width="180px">Name of Unit</asp:Label>
+                                                            </td>
+                                                            <td>
+                                                                :</td>
+                                                            <td>
+                                                                <asp:TextBox ID="TxtnameofUnit" runat="server" AutoPostBack="True" 
+                                                                    class="form-control txtbox" Height="28px" MaxLength="50" TabIndex="0" 
+                                                                    ValidationGroup="group" Width="180px"></asp:TextBox>
+                                                            </td>
+                                                            <td>
+                                                                &nbsp;</td>
+                                                            <td>
+                                                                <asp:Label ID="Label380" runat="server" CssClass="LBLBLACK" Width="180px">UID Number</asp:Label>
+                                                            </td>
+                                                            <td valign="top">
+                                                                :</td>
+                                                            <td valign="top">
+                                                                <asp:TextBox ID="TxtnameofUnit0" runat="server" AutoPostBack="True" 
+                                                                    class="form-control txtbox" Height="28px" MaxLength="50" TabIndex="0" 
+                                                                    ValidationGroup="group" Width="180px"></asp:TextBox>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="top">
+                                                                &nbsp;</td>
+                                                            <td>
+                                                                &nbsp;</td>
+                                                            <td>
+                                                                &nbsp;</td>
+                                                            <td>
+                                                                &nbsp;</td>
+                                                            <td>
+                                                                &nbsp;</td>
+                                                            <td>
+                                                                &nbsp;</td>
+                                                            <td>
+                                                                &nbsp;</td>
+                                                            <td valign="top">
+                                                                &nbsp;</td>
+                                                            <td valign="top">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="top">
+                                                                &nbsp;</td>
+                                                            <td>
+                                                                &nbsp;</td>
+                                                            <td>
+                                                                <asp:Label ID="Label381" runat="server" CssClass="LBLBLACK" Width="180px">District</asp:Label>
+                                                            </td>
+                                                            <td>
+                                                                :</td>
+                                                            <td>
+                                                                <asp:DropDownList ID="ddldistrict" runat="server" AutoPostBack="True" 
+                                                                    class="form-control txtbox" Height="33px" TabIndex="1" Width="180px">
+                                                                    <asp:ListItem>--Select--</asp:ListItem>
+                                                                </asp:DropDownList>
+                                                            </td>
+                                                            <td>
+                                                                &nbsp;</td>
+                                                            <td>
+                                                                <asp:Label ID="Label382" runat="server" CssClass="LBLBLACK" Width="180px">Level</asp:Label>
+                                                            </td>
+                                                            <td valign="top">
+                                                                :</td>
+                                                            <td valign="top">
+                                                                <asp:DropDownList ID="ddldistrict0" runat="server" class="form-control txtbox" 
+                                                                    Height="33px" TabIndex="1" Width="180px">
+                                                                    <asp:ListItem>--Select--</asp:ListItem>
+                                                                    <asp:ListItem Value="1">State Level</asp:ListItem>
+                                                                    <asp:ListItem Value="2">District Level</asp:ListItem>
+                                                                </asp:DropDownList>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="top">
+                                                                &nbsp;</td>
+                                                            <td>
+                                                                &nbsp;</td>
+                                                            <td>
+                                                                &nbsp;</td>
+                                                            <td>
+                                                                &nbsp;</td>
+                                                            <td align="center" colspan="3">
+                                                                &nbsp;</td>
+                                                            <td valign="top">
+                                                                &nbsp;</td>
+                                                            <td valign="top">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="top">
+                                                                &nbsp;</td>
+                                                            <td>
+                                                                &nbsp;</td>
+                                                            <td>
+                                                                &nbsp;</td>
+                                                            <td>
+                                                                &nbsp;</td>
+                                                            <td align="center" colspan="3">
+                                                                <asp:Button ID="BtnSave0" runat="server" CausesValidation="False" 
+                                                                    CssClass="btn-success" Height="32px" onclick="BtnClear0_Click" TabIndex="10" 
+                                                                    Text="Search" ValidationGroup="group" Width="80px" />
+                                                            </td>
+                                                            <td valign="top">
+                                                                &nbsp;</td>
+                                                            <td valign="top">
+                                                                &nbsp;</td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>--%>
+                                               <tr>
+                                        <td style="padding: 5px; margin: 5px" valign="top" class="auto-style3">
+                                            <table cellpadding="4" cellspacing="5" style="width: 83%; margin-top: 0px;">
+                                                <tr>
+                                                    <td style="padding: 5px; margin: 5px" class="auto-style1" align="right">
+                                                        <asp:Label ID="Label351" runat="server" CssClass="LBLBLACK" Width="165px">Month</asp:Label>
+                                                    </td>
+                                                    <td style="padding: 5px; margin: 5px">
+                                                        :
+                                                    </td>
+                                                    <td style="padding: 5px; margin: 5px">
+                                                        <asp:DropDownList ID="ddlmonth" runat="server" class="form-control txtbox" TabIndex="3"
+                                                            Height="33px" Width="180px" AutoPostBack="True" 
+                                                            >
+                                                            <asp:ListItem>--Select--</asp:ListItem>
+                                                            <asp:ListItem Value="1">January</asp:ListItem>
+                                                            <asp:ListItem Value="2">February</asp:ListItem>
+                                                            <asp:ListItem Value="3">March</asp:ListItem>
+                                                            <asp:ListItem Value="4">April</asp:ListItem>
+                                                            <asp:ListItem Value="5">May</asp:ListItem>
+                                                            <asp:ListItem Value="6">June</asp:ListItem>
+                                                            <asp:ListItem Value="7">July</asp:ListItem>
+                                                            <asp:ListItem Value="8">August</asp:ListItem>
+                                                            <asp:ListItem Value="9">September</asp:ListItem>
+                                                            <asp:ListItem Value="10">October</asp:ListItem>
+                                                            <asp:ListItem Value="11">November</asp:ListItem>
+                                                            <asp:ListItem Value="12">December</asp:ListItem>
+                                                        </asp:DropDownList>
+                                                    </td>
+                                                    <td style="padding: 5px; margin: 5px" class="style7">
+                                                        &nbsp;
+                                                        <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" 
+                                                            ControlToValidate="ddlmonth" ErrorMessage="Please select Month" 
+                                                            InitialValue="--Select--" ValidationGroup="group">*</asp:RequiredFieldValidator>--%>
+                                                    </td>
+                                                      
+                                                    <td style="padding: 5px; margin: 5px" align="left">
+                                                        <asp:Label ID="Label365" runat="server" CssClass="LBLBLACK" Width="113px">Year</asp:Label>
+                                                    </td>
+                                                    <td style="padding: 5px; margin: 5px">
+                                                        :
+                                                    </td>
+                                                    <td style="padding: 5px; margin: 5px">
+                                                        <asp:DropDownList ID="ddlYear" runat="server" class="form-control txtbox" Height="33px"
+                                                             TabIndex="4" 
+                                                            Width="180px" AutoPostBack="True">
+                                                            <asp:ListItem>--Select--</asp:ListItem>
+                                                        </asp:DropDownList>
+                                                    </td>
+                                                    <td style="padding: 5px; margin: 5px">
+                                                        &nbsp;
+                                                        <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" 
+                                                            ControlToValidate="ddlYear" ErrorMessage="Please select Year" 
+                                                            InitialValue="--Select--" ValidationGroup="group">*</asp:RequiredFieldValidator>--%>
+                                                    </td>
+                                                
+                                                      <td style="padding: 5px; margin: 5px" align="left" runat="server" visible="false">
+                                                          <asp:Button ID="BtnSave1" runat="server" CssClass="btn btn-primary" Height="32px"
+                                  TabIndex="10" Text="Submit" ValidationGroup="group" Width="90px"
+                                Visible="true" />
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                                <td valign="top">
+                                            <table cellpadding="4" cellspacing="5" style="width: 83%; margin-top: 0px;">
+                                              
+                                                  
+                                                   
+                                            </table>
+                                        </td>
+                                    </tr>
+                                            <tr>
+                                                <td align="left" style="padding: 5px; margin: 5px" valign="top">
+                                                    <asp:GridView ID="grdDetails" runat="server" AutoGenerateColumns="False" CellPadding="5"
+                                                        ForeColor="#333333" Height="62px" ShowFooter="True"
+                                                        Width="100%" OnRowDataBound="grdDetails_RowDataBound" >
+                                                        <FooterStyle BackColor="#013161" Font-Bold="True" ForeColor="White" />
+                                                        <RowStyle BackColor="#EBF2FE" HorizontalAlign="Left" VerticalAlign="Middle" />
+                                                        <Columns>
+                                                            
+                                                             <asp:BoundField DataField="recordID" HeaderText="Record ID" Visible="false" />
+                                                            
+                                                            <asp:BoundField DataField="IPOName" HeaderText="Name of the Officer" />
+                                                            <asp:BoundField DataField="Designation" HeaderText="Designation" />
+                                                                  <asp:BoundField DataField="Remarks" HeaderText="Officer Remarks" />
+                                                             <asp:BoundField DataField="createdDt" HeaderText="Report Entry Date" />
+                                                            <asp:TemplateField HeaderText="Attachment" Visible="false" >
+                                                                <ItemTemplate >
+                                                                   <asp:HyperLink ID="hprlink" Text="View" runat="server"
+                                                                       NavigateUrl='<%#Eval("FilePath") %>' Target="_blank"></asp:HyperLink>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                             <asp:TemplateField HeaderText="IPO Report" Visible="false">
+                                                                <ItemTemplate >
+                                                                   <asp:HyperLink ID="HyperLink2" runat="server" Text="Click To View" NavigateUrl='<%#Eval("ApplicationStatus") %>' Visible="false" Target="_blank"></asp:HyperLink>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                           
+                                                       <asp:BoundField DataField="gmRemarks" HeaderText="GM Remarks" />
+                                                         <asp:BoundField DataField="gmUpdation" HeaderText="GM Updation" />   
+                                                           <asp:BoundField DataField="gmStatus" HeaderText="GM Status" />   
+                                                             <asp:TemplateField HeaderText="Attachment" Visible="false">
+                                                                <ItemTemplate >
+                                                                   <asp:label ID="lbluserid" Text='<%# Eval("intUserid") %>' runat="server" Visible="false"></asp:label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                        </Columns>
+                                                        <PagerStyle BackColor="#013161" ForeColor="White" HorizontalAlign="Center" />
+                                                        <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                                                        <HeaderStyle BackColor="#013161" Font-Bold="True" ForeColor="White" />
+                                                        <EditRowStyle BackColor="#B9D684" />
+                                                        <AlternatingRowStyle BackColor="White" />
+                                                    </asp:GridView>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 5px; margin: 5px" align="center">
+                                                    &nbsp;<tr>
+                                                        <td align="center" style="padding: 5px; margin: 5px">
+                                                            &nbsp;
+                                                        </td>
+                                                    </tr>
+                                                    <caption>
+                                                        &nbsp;</caption>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 5px; margin: 5px" align="center">
+                                                    <div id="success" runat="server" class="alert alert-success" visible="false">
+                                                        <a aria-label="close" class="close" data-dismiss="alert" href="AddQualification.aspx">
+                                                            ×</a> <strong>Success!</strong><asp:Label ID="lblmsg" runat="server"></asp:Label>
+                                                    </div>
+                                                    <div id="Failure" runat="server" class="alert alert-danger" visible="false">
+                                                        <a aria-label="close" class="close" data-dismiss="alert" href="#">×</a> <strong>Warning!</strong>
+                                                        <asp:Label ID="lblmsg0" runat="server"></asp:Label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <asp:HiddenField ID="hdfID" runat="server" />
+                                        <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="True"
+                                            ShowSummary="False" ValidationGroup="group" />
+                                        <asp:ValidationSummary ID="ValidationSummary2" runat="server" ShowMessageBox="True"
+                                            ShowSummary="False" ValidationGroup="child" />
+                                        <asp:HiddenField ID="hdfFlagID" runat="server" />
+                                    </div>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%--<asp:UpdateProgress ID="UpdateProgress" runat="server" AssociatedUpdatePanelID="updatepanel1">
+                <ProgressTemplate>
+                    <div class="overlay">
+                        <%--<div style=" z-index: 1000; margin-left: 350px;margin-top:200px;opacity: 1;-moz-opacity: 1;">--%>
+                        <%--<div style="z-index: 1000; margin-left: 250px; margin-top: 100px; opacity: 1; -moz-opacity: 1;">
+                            <img alt="" src="../../Resource/Images/Processing.gif" />
+                        </div>
+                    </div>
+                </ProgressTemplate>
+            </asp:UpdateProgress>--%>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+        </ContentTemplate>
+    </asp:UpdatePanel>
+
+    </asp:Content>

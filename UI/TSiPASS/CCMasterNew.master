@@ -1,0 +1,488 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="CCMasterNew.master.cs" Inherits="CCMasterNew" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>TS-iPASS</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="../../Masterfiles/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../../Masterfiles/css/shortcodes.css" rel="stylesheet" type="text/css">
+    <link href="../../Masterfiles/css/responsive.css" rel="stylesheet" type="text/css">
+    <link rel='stylesheet' href="../../Masterfiles/css/layerslider.css" type='text/css' media='all' />
+    <link href="../../Masterfiles/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../../Masterfiles/skins/maroon/style.css" rel="stylesheet" media="all" />
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,900italic,900,700italic,700,400italic,300italic,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Domine:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <script src="../../Masterfiles/js/modernizr-2.6.2.min.js"></script>
+</head>
+<body>
+    <form id="form1" runat="server">
+         <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+        <div class="wrapper">
+            <div class="inner-wrapper">
+                <header>
+                    <div class="top-bar">
+                        <div class="container">
+                            <span id="clock" style="font-size: 12px;"></span>
+
+                            <div class="dt-sc-contact-number">
+                                <ul class="dt-sc-social-icons">
+                                    <li><span class="fa fa-phone"></span>Call us: 7306-600-600</li>
+                                   
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="logo">
+                            <a href="index.html">
+                                <img src="../../Masterfiles/images/logo.jpg"></a>
+                        </div>
+                        <div class="top-head">
+                            <div class="top-img">
+                                <img src="viewpdf.aspx?filepathnew=D:/TS-iPASSFinal/Masterfiles/images/Revanth Reddy CM.JPG">
+                                <h5 class="top-names">Sri. A.Revanth Reddy</h5>
+                                <p class="top-names1">Hon'ble Chief Minister</p>
+                            </div>
+                            <div class="top-img mr0">
+                                <img src="viewpdf.aspx?filepathnew=D:/TS-iPASSFinal/Masterfiles/images/IT Minister.JPG">
+                                <h5 class="top-names">Sri. D.Sridhar Babu</h5>
+                                <p class="top-names1">Hon'ble Minister for Industries</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </header>
+                <div id="main">
+                    <div style="height: 40px; line-height: 40px;">
+                        <div style="background: #1d9a5b;">
+                            <div class="container">
+                                <p style="color: #FFFFFF;" align="right"><i class="fa fa-user"></i> <asp:Label ID="lblwecome" Text="Guest" runat="server" ForeColor="White"></asp:Label> | <i class="fa fa-power-off"></i><a href="../../tsHome.aspx" style="color: #FFFFFF;">Log out</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                          <div class="column dt-sc-one-fourth">
+                            <div id="nav_block">
+                                <div class="left_nav">
+                                    <div id="sidemenu">
+                                        <span class="lhead">Menu</span>
+                                        <ul>
+                                            <li id="TSTDashboard" runat="server"><a href="HomeDashboard.aspx"><i class="fa fa-fw fa-dashboard"></i>Dashboard</a></li>
+                                            <li id="Li3" runat="server"><a href="HomeDeptDashboard.aspx"><i class="fa fa-fw fa-dashboard"></i>Dashboard</a></li>
+                                            <li id="Lindus" runat="server"><a href="HomeIndusDashboard.aspx"><i class="fa fa-fw fa-dashboard"></i>Dashboard</a></li>
+                                            <li id="DICDashboard" runat="server" visible="false"><a href="CollectorDistrictWiseReportDIC.aspx"><i class="fa fa-fw fa-dashboard"></i>Collector Dashboard</a></li>
+                                            <li id="Li5" runat="server"><a href="frmUpdatedetailsbycertificate.aspx"><i class="fa fa-fw fa-dashboard"></i>Upload Certificate</a></li>
+                                            <li id="Li6" runat="server"><a href="frmCFEcertificateProcess.aspx"><i class="fa fa-fw fa-dashboard"></i>Certificate Details</a></li>
+
+                                            <li id="Lidist" runat="server" visible="false"><a href="DistLevelwiseReportUpdate.aspx"><i class="fa fa-fw fa-dashboard"></i>Update District level</a></li>
+
+                                            <li id="Listate" runat="server" visible="false"><a href="StateLevelwiseReportUpdate.aspx"><i class="fa fa-fw fa-dashboard"></i>Update State level</a></li>
+
+                                            <li id="Incentive" runat="server" visible="false"><a href="IncentiveStatusUpdate.aspx"><i class="fa fa-fw fa-dashboard"></i>Update Incentives</a></li>
+
+                                            <li id="Li2" runat="server"><a href="UserList.aspx"><i class="fa fa-fw fa-dashboard"></i>User List</a></li>
+                                            <li id="liapplTrack" visible="false" runat="server"><a href="ApplicationTracker.aspx"><i class="fa fa-fw fa-dashboard"></i>Application Tracker</a></li>
+                                            <li id="liGenCer" class='has-sub' visible="false" runat="server">
+                                                <a href='#'>
+                                                    <i class="fa fa-fw fa-edit"></i>Generated Gertificates</a>
+                                                <ul>
+                                                    <li><a href="CertGenReport.aspx">CFE</a></li>
+                                                    <li><a href="CertGenReport.aspx">CFO</a></li>
+                                                    <%-- <li> <a href="frmCFEDepartmentsViewAppl.aspx"  >Enterprenuer process</a></li>--%>
+                                                </ul>
+                                            </li>
+
+
+
+                                            <%--<li id="Li7Dist" runat="server"><a href="CollectorDistrictWiseReport.aspx"><i class="fa fa-fw fa-dashboard">
+                                        </i>Collector's Dashboard</a></li>--%>
+
+                                            <li id="Li7Dist" class='has-sub' runat="server">
+                                                <a href='#'>
+                                                    <i class="fa fa-fw fa-edit"></i>Collector's Dashboard</a>
+                                                <ul>
+                                                    <li><a href="CollectorDistrictWiseReport.aspx">CFE Dashboard</a></li>
+                                                    <li><a href="CollectorDistrictWiseReportCFO.aspx">CFO Dashboard</a></li>
+                                                    <%-- <li> <a href="frmCFEDepartmentsViewAppl.aspx"  >Enterprenuer process</a></li>--%>
+                                                </ul>
+                                            </li>
+
+
+
+                                            <%--<li id="IPDashboard" runat="server" visible="false"><a href='#'><i class="fa fa-fw fa-dashboard"></i> Dashboard</a></li>--%>
+                                            <%-- <li id="Li2" class='has-sub' runat="server" ><a href='#'><i class="fa fa-fw fa-edit"></i>Department Process</a>
+  <ul>
+         <li> <a href="frmCFEDepartmentsViewAppl.aspx"  >Pre Scrutiny</a></li>
+         <li> <a href="frmCFEDepartmentsApprovalProcess.aspx"  >Approved Cases</a></li>
+         
+         <li> <a href="frmCFEDepartmentsViewAppl.aspx"  >Enterprenuer process</a></li>
+  </ul>
+  
+  
+  </li>--%>
+                                            <li id="Li4" class='has-sub' runat="server"><a href='#'><i class="fa fa-fw fa-edit"></i>Dashboard</a>
+                                                <ul>
+                                                    <li><a href="HomeCommDashboard.aspx">Commissioner Dashboard</a></li>
+                                                    <%-- <li> <a href="frmCFEDepartmentsViewAppl.aspx"  >Enterprenuer process</a></li>--%>
+                                                </ul>
+                                            </li>
+                                            <li id="Masters" class='has-sub' runat="server"><a href='#'><i class="fa fa-fw fa-edit"></i>CFE</a>
+                                                <ul>
+                                                    <li><a href="frmQuesstionniareReg.aspx" target="_blank">Questionnaire</a></li>
+                                                    <li><a href="frmDepartmentApprovalDetails.aspx">Common Application Form</a></li>
+                                                    <li><a href="frmCFEDepartmentsViewApplStatus.aspx">Respond To Query</a></li>
+                                                    <li><a href="frmDepartmentApprovalPaymentDetailsDashboard.aspx">Payment </a></li>
+                                                    <%--<li><a href="AddQualification.aspx" >Education Qualification</a></li>--%>
+                                                    <li><a href="RptApplicationWiseDetailedTraker.aspx">Track Your Application</a></li>
+                                                    <li><a href="CFEPrint.aspx" target="_blank">Print CFE</a></li>
+                                                    <li><a href="SearchDuplicatePrint.aspx" target="_blank">Duplicate Receipt</a></li>
+                                                    <%--<li class='has-sub'><a href='#'>Product 2</a>
+            <ul>
+               <li><a href='#'>Sub Product</a></li>
+               <li><a href='#'>Sub Product</a></li>
+            </ul>
+         </li>--%>
+                                                </ul>
+                                            </li>
+                                            <li id="TST" runat="server" class='has-sub'><a href='#'><i class="fa fa-fw fa-edit"></i>CFO</a>
+                                                <ul>
+                                                    <li><a href="frmQuesstionniareRegCFO.aspx">Questionnaire</a> </li>
+                                                    <li><a href="frmDepartmentApprovalDetailsCFO.aspx">Common Application Form</a> </li>
+                                                    <li><a href="frmCFEDepartmentsViewApplStatusCFO.aspx">Respond To Query</a> </li>
+                                                    <li><a href="frmDepartmentApprovalPaymentDetailsCFO.aspx">Payment</a> </li>
+                                                    <%--<li><a href="PublicWorksApproval.aspx" >Work Approvals</a> </li>--%>
+                                                    <li><a href="#">Track Your Application</a> </li>
+                                                    <li><a href="CFOPrint.aspx" target="_blank">Print CFO</a></li>
+                                                    <%--<li><a href="TSTFinancialApproval.aspx" >Innovoice Approval</a> </li>
+                        <li><a href="TSTPhysicalMonitoring.aspx" >Physical Monitoring</a> </li>--%>
+                                                </ul>
+                                            </li>
+                                            <li id="IP" runat="server" class='has-sub'><a href='#'><i class="fa fa-fw fa-desktop"></i>Renewals</a>
+                                                <ul>
+                                                    <li><a href="frmRenewalOtherServices.aspx">Renewals</a> </li>
+
+                                                </ul>
+                                            </li>
+                                            <li id="Li7" runat="server" visible="false" class='has-sub'><a href='#'><i class="fa fa-fw fa-desktop"></i>Inspection</a>
+                                                <ul>
+                                                    <li><a href="AddNewInspectionUser.aspx">Registration</a> </li>
+                                                </ul>
+                                            </li>
+                                            <li id="liAppeal" visible="false" runat="server" class='has-sub'><a href='#'><i class="fa fa-fw fa-edit"></i>Appealed Applications</a>
+                                                <ul>
+                                                    <li><a href="frmCFEAppealedList.aspx">CFE</a> </li>
+                                                    <li><a href="frmCFOAppealedList.aspx">CFO</a> </li>
+                                                </ul>
+                                            </li>
+                                            <%--<li id="liAppeal" visible="false" runat="server" ><a href="frmCFEAppealedList.aspx"><i class="fa fa-fw fa-edit"></i>Appealed Applications</a></li>--%>
+                                            <li id="Li8ipopmdash" visible="false" runat="server" class='has-sub'><a href='#'><i
+                                                class="fa fa-fw fa-desktop"></i>IPO Periodicals</a>
+                                                <ul>
+                                                    <li><a href="IPOPMSDashboard.aspx">DashBoard</a> </li>
+                                                    <li><a href="IPOWISEReport.aspx" target="_blank">Report</a> </li>
+                                                </ul>
+                                            </li>
+
+                                            <li id="LiGMDashBoard" visible="false" runat="server" class='has-sub'><a href='#'><i
+                                                class="fa fa-fw fa-desktop"></i>IPO Periodicals</a>
+                                                <ul>
+                                                    <li><a href="IpowiseTargetmaster1lat.aspx">Target Entry</a> </li>
+                                                    <li><a href="TSiPASSReport4.aspx">TS-iPASS</a> </li>
+                                                    <li><a href="frmadvanceSbsidy.aspx">Advance Subsidy</a> </li>
+                                                    <li><a href="GMWISEReport.aspx" target="_blank">DashBoard</a> </li>
+                                                </ul>
+                                            </li>
+
+
+                                            <li id="LiCommissionerReport" visible="false" runat="server" class='has-sub'><a href='#'><i
+                                                class="fa fa-fw fa-desktop"></i>IPO Periodicals</a>
+                                                <ul>
+                                                    <li><a href="IPOPeriodcialAbstract.aspx" target="_blank">IPO Wise Report</a> </li>
+                                                </ul>
+                                            </li>
+
+                                            <li id="liInspection" visible="false" runat="server" class='has-sub'><a href='#'><i
+                                                class="fa fa-fw fa-desktop"></i>Inspection</a>
+                                                <ul>
+                                                    <li><a href="InspectionForm.aspx">Upload Inpection</a> </li>
+                                                </ul>
+                                            </li>
+                                            <li id="liApproval" visible="false" runat="server" class='has-sub'><a href='#'><i
+                                                class="fa fa-fw fa-desktop"></i>Approval Document</a>
+                                                <ul>
+                                                    <li><a href="frmApprovelDocument.aspx">CFE Approval Document</a> </li>
+                                                    <li><a href="frmApprovelDocumentCFO.aspx">CFO Approval Document</a> </li>
+                                                </ul>
+                                            </li>
+                                            <li id="lidicpcb" visible="false" runat="server" class='has-sub'><a href='#'><i
+                                                class="fa fa-fw fa-desktop"></i>DIC-PCB</a>
+                                                <ul>
+                                                    <li><a href="frmPollutionTransfer.aspx">Pollution Transfer</a> </li>
+                                                </ul>
+                                            </li>
+                                            <li id="liPayment" visible="false" runat="server" class='has-sub'><a href='#'><i
+                                                class="fa fa-fw fa-inr"></i>Payment</a>
+                                                <ul>
+                                                    <li><a href="frmCFENEFTPayment.aspx">CFE Payment</a> </li>
+                                                    <li><a href="frmCFONEFTPayment.aspx">CFO Payment</a> </li>
+                                                </ul>
+                                            </li>
+                                            <li id="Li8Grievance" runat="server" class='has-sub'><a href='#'><i class="fa fa-fw fa-desktop"></i>Grievance</a>
+                                                <ul>
+                                                    <li><a href="Grievance.aspx">Registration</a> </li>
+                                                </ul>
+                                            </li>
+                                            <li id="BDC" runat="server"><a href="frmOtherServices.aspx"><i class="fa fa-fw fa-edit"></i>Other Services</a>
+                                                <%--<ul>
+                                                <li><a href="BDCMobilizationReg.aspx" >Mobilization</a> </li>
+                                            </ul>--%>
+                                            </li>
+                                            <li id="LiCFEReports" runat="server"><a href="ReportsDashboard.aspx"><i class="fa fa-fw fa-line-chart"></i>CFE Reports </a>
+                                                <ul>
+                                                    <li><a href="frmR1ReportKMR.aspx" target="_blank">R1</a> </li>
+                                                    <li><a href="RptYEARWISEPROGRESS.aspx" target="_blank">R1.1</a> </li>
+
+                                                    <li><a href="RptSTATUSOFPRESCRUTINYDEPARTMENTWISE.aspx" target="_blank">R2.A</a>
+                                                    </li>
+                                                    <li><a href="Rpt1PrescrutinyStatusDepartmentwise.aspx" target="_blank">R2.B</a>
+                                                    </li>
+
+                                                    <li><a href="RptAPPROVALSDEPARTMENTWISE.aspx" target="_blank">R3</a> </li>
+                                                    <li><a href="RptApprovalspendingbeyondtimelimit.aspx" target="_blank">R5</a> </li>
+                                                    <li><a href="RptDEPARTMENTWISEPROGRESS.aspx" target="_blank">R6</a> </li>
+                                                    <li><a href="StageOfImplementationReportold.aspx" target="_blank">TSiPASS-Stage Of Implementation Report</a> </li>
+                                                    <li><a href="TotalReportold.aspx" target="_blank">TSiPASS-District Wise Report</a>
+
+                                                    </li>
+                                                    <li><a href="SectorWiseReportold.aspx" target="_blank">TSiPASS-Sector Wise Report</a>
+                                                    </li>
+                                                    <li><a href="DIstrictwiseExistingList.aspx" target="_blank">District wise details</a>
+                                                    </li>
+                                                    <li><a href="SanctionedIncentives.aspx" target="_blank">Sanctioned Incentives(SLC)</a>
+                                                    </li>
+                                                    <li><a href="SanctionedIncentivesDCIP.aspx" target="_blank">Sanctioned Incentives(DIPC)</a>
+                                                    </li>
+                                                    <li><a href="DepartmentAbstractLatest.aspx" target="_blank">Department Abstract</a>
+                                                    </li>
+                                                    <li id="paymentdet" runat="server" visible="false"><a href="frmCFEpaymentDetails.aspx"
+                                                        target="_blank">payment Details</a> </li>
+                                                    <li><a href="renewalsReportsdashboard.aspx">Renewals Report</a> </li>
+                                                </ul>
+                                            </li>
+                                            <li id="LiCFOReports" runat="server"><a href="ReportsDashboardCFO.aspx"><i class="fa fa-fw fa-line-chart"></i>CFO Reports </a>
+                                                <ul>
+                                                    <li><a href="frmR1ReportKMR.aspx" target="_blank">R1</a> </li>
+                                                    <li><a href="RptYEARWISEPROGRESS.aspx" target="_blank">R1.1</a> </li>
+
+                                                    <li><a href="RptSTATUSOFPRESCRUTINYDEPARTMENTWISE.aspx" target="_blank">R2.A</a>
+                                                    </li>
+                                                    <li><a href="Rpt1PrescrutinyStatusDepartmentwise.aspx" target="_blank">R2.B</a>
+                                                    </li>
+
+                                                    <li><a href="RptAPPROVALSDEPARTMENTWISE.aspx" target="_blank">R3</a> </li>
+                                                    <li><a href="RptApprovalspendingbeyondtimelimit.aspx" target="_blank">R5</a> </li>
+                                                    <li><a href="RptDEPARTMENTWISEPROGRESS.aspx" target="_blank">R6</a> </li>
+                                                    <li><a href="StageOfImplementationReportold.aspx" target="_blank">TSiPASS-Stage Of Implementation Report</a> </li>
+                                                    <li><a href="TotalReportold.aspx" target="_blank">TSiPASS-District Wise Report</a>
+
+                                                    </li>
+                                                    <li><a href="SectorWiseReportold.aspx" target="_blank">TSiPASS-Sector Wise Report</a>
+                                                    </li>
+                                                    <li><a href="DIstrictwiseExistingList.aspx" target="_blank">District wise details</a>
+                                                    </li>
+                                                    <li><a href="SanctionedIncentives.aspx" target="_blank">Sanctioned Incentives(SLC)</a>
+                                                    </li>
+                                                    <li><a href="SanctionedIncentivesDCIP.aspx" target="_blank">Sanctioned Incentives(DIPC)</a>
+                                                    </li>
+                                                    <li><a href="DepartmentAbstractLatest.aspx" target="_blank">Department Abstract</a>
+                                                    </li>
+                                                    <li id="Li9" runat="server" visible="false"><a href="frmCFEpaymentDetails.aspx"
+                                                        target="_blank">payment Details</a> </li>
+                                                    <li><a href="renewalsReportsdashboard.aspx">Renewals Report</a> </li>
+                                                </ul>
+                                            </li>
+                                            <li id="LEODB" runat="server"><a href='EODBDashboard.aspx'><i class="fa fa-fw fa-line-chart"></i>EODB Dashboard</a></li>
+                                            <li id="liMasterData" visible="false" runat="server"><a href='RptMasterData.aspx'><i class="fa fa-fw fa-line-chart"></i>Master Data</a></li>
+                                            <li id="liREJECT" visible="false" runat="server"><a href='RptRejectedquery.aspx'><i class="fa fa-fw fa-line-chart"></i>Rejected Query Details</a></li>
+                                            <%--<li id="LEODB" runat="server" class='has-sub'><a href='#'><i class="fa fa-fw fa-dashboard">
+                                        </i>EODB </a>
+                                            <ul>
+                                                <li><a href="EODBDashboard.aspx">EODB Dashboard</a> </li>
+                                            </ul>
+                                            <ul>
+                                                <li><a href="InspectionProgressReport.aspx">Inspection Report</a> </li>
+                                            </ul>
+                                        </li>--%>
+                                            <li id="liIncentive" runat="server" class='has-sub'><a href='#'><i class="fa fa-fw fa-dashboard"></i>Incentives </a>
+                                                <ul>
+                                                    <li><a href="Incentive Entreprenuer login.doc">Manual</a> </li>
+                                                    <li><a href="../../Incentives.aspx">Incentives</a> </li>
+                                                    <li><a href="../../InscentiveView.aspx">View Incentives</a> </li>
+                                                </ul>
+                                            </li>
+                                            <li id="liRawMaterial" runat="server" class='has-sub'><a href='#'><i class="fa fa-fw fa-dashboard"></i>Raw Material </a>
+                                                <ul>
+                                                    <li><a href="RawMaterialNew.aspx">Raw Material</a> </li>
+                                                    <li><a href="RawMaterialsReportNew1.aspx">View Raw Material</a> </li>
+                                                </ul>
+                                            </li>
+                                            <li id="rawmetrpt" runat="server" class='has-sub'><a href='#'><i class="fa fa-fw fa-dashboard"></i>Raw Material </a>
+                                                <ul>
+                                                    <li><a href="RawMaterialsReport.aspx">Raw Material</a> </li>
+                                                </ul>
+                                            </li>
+                                            <li id="liMinister" runat="server" class='has-sub' visible="false"><a href='#'><i
+                                                class="fa fa-fw fa-dashboard"></i>Reports </a>
+                                                <ul>
+                                                    <li><a href="frmR1ReportKMR.aspx" target="_blank">CM Dashboard</a> </li>
+                                                    <li><a href="DepartmentAbstractLatest.aspx" target="_blank">Department Abstract</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li id="MSMEReport" runat="server" class='has-sub' visible="false"><a href='#'><i
+                                                class="fa fa-fw fa-dashboard"></i>TSI Catalogue(IAs) </a>
+                                                <ul>
+                                                    <li><a href="FrmMSMENew.aspx" target="_blank">TSI Catalogue(IAs)</a> </li>
+                                                    <li><a href="MISEReport.aspx" target="_blank">TSI Catalogue Report</a> </li>
+                                                    <%--<li><a href="DepartmentAbstractLatest.aspx" target="_blank">Department Abstract</a>--%>
+                                                </ul>
+                                            </li>
+                                            <li id="VATManExport" runat="server" class='has-sub' visible="false"><a href='#'><i
+                                                class="fa fa-fw fa-dashboard"></i>VAT Details </a>
+                                                <ul>
+                                                    <li><a href="frmVATManufactureGM.aspx" target="_blank">VAT Details(Manufacture Sector)</a>
+                                                    </li>
+                                                    <%--<li><a href="MISEReport.aspx" target="_blank">TSI Catalogue Report</a> </li>--%>
+                                                    <%--<li><a href="DepartmentAbstractLatest.aspx" target="_blank">Department Abstract</a>--%>
+                                                </ul>
+                                            </li>
+                                            <li id="VATExportslat" runat="server" class='has-sub' visible="false"><a href='#'><i
+                                                class="fa fa-fw fa-dashboard"></i>Exporters details(TS) </a>
+                                                <ul>
+                                                    <li><a href="frmVATExportGM.aspx" target="_blank">Exporters details(TS)</a> </li>
+                                                    <%--<li><a href="MISEReport.aspx" target="_blank">TSI Catalogue Report</a> </li>--%>
+                                                    <%--<li><a href="DepartmentAbstractLatest.aspx" target="_blank">Department Abstract</a>--%>
+                                                </ul>
+                                            </li>
+                                            <%-- <li id="Bankloans" runat="server" class='has-sub' visible="false"><a href='#'><i
+                                            class="fa fa-fw fa-dashboard"></i>bank Loans(IAs) </a>
+                                            <ul>
+                                            <li><a href="GuestInsturction.aspx" target="_blank">Bank Loans(IAs)</a> </li>
+                                            </ul>
+                                        </li>--%>
+                                            <li id="LiBankLoan" runat="server" class='has-sub' visible="false"><a href='#'><i
+                                                class="fa fa-fw fa-dashboard"></i>Bank Loan </a>
+                                                <ul>
+                                                    <li><a href="GuestInsturction.aspx" target="_blank">Loan Application to Bank</a>
+
+                                                    </li>
+                                                    <li><a href="LoanReport.aspx" target="_blank">Loan Report</a> </li>
+                                                    <%--<li><a href="DepartmentAbstractLatest.aspx" target="_blank">Department Abstract</a>--%>
+                                                </ul>
+                                            </li>
+                                            <li id="LiincentiveReport" runat="server" class='has-sub' visible="false"><a href='#'>
+                                                <i class="fa fa-fw fa-dashboard"></i>Incentive Report</a>
+                                                <ul>
+                                                    <li><a href="DistrictWiseIncentiveReport.aspx">District Wise Report</a> </li>
+                                                </ul>
+                                            </li>
+                                            <li id="Li8ipopmdashOLD" runat="server" class='has-sub' visible="false">
+                                                <ul>
+                                                    <li><a href="IPOPMSDashboard.aspx">Performance Dashboard</a> </li>
+                                                </ul>
+                                            </li>
+                                            <li id="Li1" runat="server" class='has-sub'><a href='#'><i class="fa fa-fw fa-wrench"></i>Helpdesk</a>
+                                                <ul>
+                                                    <li><a href="Helpdesk.aspx">Helpdesk Registration</a> </li>
+                                                    <li><a href="viewHelpdesk.aspx">Status </a></li>
+                                                    <li><a href="HDPiaRpt.aspx">Summary </a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href='frmChangePassword.aspx'><i class="fa fa-fw fa-lock"></i>Change Password</a></li>
+                                            <li><a href='../../Home2.aspx'><i class="fa fa-fw fa-power-off"></i>Log out</a></li>
+                                            <li id="LiAdminNew" runat="server" class='has-sub'>
+                                                <a href='#'><i class="fa fa-fw fa-wrench"></i>Admin</a>
+                                                <ul>
+                                                    <li><a href='AdminUploads.aspx'><i class="fa fa-fw fa-power-off"></i>Gallery Uploads</a></li>
+                                                    <li><a href='UserSearch.aspx'><i class="fa fa-fw fa-power-off"></i>User Search</a></li>
+                                                </ul>
+                                            </li>
+                                            <li style="height:1300px">
+
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column dt-sc-three-fourth first">
+                            <div>
+                                <div class="dt-sc-hr-invisible"></div>
+                                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                </asp:ContentPlaceHolder>
+                            </div>
+                        </div>
+                      
+                    </div>
+                    <div class="dt-sc-hr-invisible"></div>
+                </div>
+
+                <footer>
+                    <div class="copyright">
+                        <div class="container">
+                            <div class="col-1 white">
+                                <script type="text/javascript">document.write("&copy; " + new Date().getFullYear() + ". TS-iPASS. All Rights Reserved.");</script>
+                            </div>
+                            <div class="col-2 white">
+                                Designed By <a href="http://www.bitranet.com/" title="Website Designed by BitraNet Pvt. Ltd.," target="_blank">BitraNet</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+
+    </form>
+
+    <a href="#" title="Go to Top" class="back-to-top"><span class="fa fa-angle-up"></span></a>
+    <script type="text/javascript" src="../../Masterfiles/js/jquery.js"></script>
+    <script type="text/javascript" src="../../Masterfiles/js/jquery-migrate.min.js"></script>
+    <script type="text/javascript" src="../../Masterfiles/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="../../Masterfiles/js/jquery-easing-1.3.js"></script>
+    <script type="text/javascript" src="../../Masterfiles/js/jquery.sticky.js"></script>
+    <script type="text/javascript" src="../../Masterfiles/js/jquery.nicescroll.min.js"></script>
+    <script type="text/javascript" src="../../Masterfiles/js/jquery.smartresize.js"></script>
+    <script type="text/javascript" src="../../Masterfiles/js/shortcodes.js"></script>
+    <script type="text/javascript" src="../../Masterfiles/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../../Masterfiles/js/custom.js"></script>
+    <script type="text/javascript" src="../../Masterfiles/js/date.js"></script>
+    <script type="text/javascript" src="../../Masterfiles/js/jquery-transit-modified.js"></script>
+    <script type="text/javascript" src="../../Masterfiles/js/layerslider.kreaturamedia.jquery.js"></script>
+    <script type='text/javascript' src="../../Masterfiles/js/greensock.js"></script>
+    <script type='text/javascript' src="../../Masterfiles/js/layerslider.transitions.js"></script>
+
+    <link rel="stylesheet" href="../../Masterfiles/css/sidemenu.css">
+    <script src="../../Masterfiles/js/sidemenu.js"></script>
+
+
+    <script type="text/javascript">var lsjQuery = jQuery;</script>
+    <script type="text/javascript"> lsjQuery(document).ready(function () { if (typeof lsjQuery.fn.layerSlider == "undefined") { lsShowNotice('layerslider_2', 'jquery'); } else { lsjQuery("#layerslider_2").layerSlider({ responsiveUnder: 1240, layersContainer: 1170, skinsPath: 'js/layerslider/skins/' }) } }); </script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+</body>
+</html>

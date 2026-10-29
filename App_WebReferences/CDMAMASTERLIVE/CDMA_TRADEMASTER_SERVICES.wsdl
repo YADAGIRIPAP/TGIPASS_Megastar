@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://services.dma.com" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://services.dma.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://services.dma.com">
+      <s:element name="GetDistrictList">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetDistrictListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDistrictListResult" type="tns:ArrayOfDistrict_Model" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDistrict_Model">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="District_Model" nillable="true" type="tns:District_Model" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="District_Model">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="I_DSTOBJID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="VC_DSTNAME" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetULBList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="uLB_ModelReq" type="tns:ULB_ModelReq" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ULB_ModelReq">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="I_DSTOBJID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetULBListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetULBListResult" type="tns:ArrayOfULB_ModelRes" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfULB_ModelRes">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ULB_ModelRes" nillable="true" type="tns:ULB_ModelRes" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ULB_ModelRes">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="I_ULBOBJID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="VC_ULBNAME" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCategories">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getCategoriesReq" type="tns:GetCategoriesReq" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetCategoriesReq">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="I_ULBOBJID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCategoriesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCategoriesResult" type="tns:ArrayOfGetCategoriesRes" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfGetCategoriesRes">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="GetCategoriesRes" nillable="true" type="tns:GetCategoriesRes" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GetCategoriesRes">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="I_TRCTGYCODE" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="VC_TRCNAME" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSubCategories">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getSubCategoriesReq" type="tns:GetSubCategoriesReq" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetSubCategoriesReq">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="I_TRCTGYCODE" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSubCategoriesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSubCategoriesResult" type="tns:ArrayOfGetSubCategoriesRes" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfGetSubCategoriesRes">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="GetSubCategoriesRes" nillable="true" type="tns:GetSubCategoriesRes" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GetSubCategoriesRes">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="I_TRSUBCTGYCODE" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="VC_TRSUBCTGYNAME" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTradeFees">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getTradeFeesReq" type="tns:GetTradeFeesReq" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetTradeFeesReq">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="I_TRCTGYCODE" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="I_TRSUBCTGYCODE" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="I_ULBOBJID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTradeFeesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTradeFeesResult" type="tns:GetTradeFeesRes" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetTradeFeesRes">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="LICENCE_FEE" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Relation_type">
+        <s:complexType />
+      </s:element>
+      <s:element name="Relation_typeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Relation_typeResult" type="tns:ArrayOfRelation_type" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfRelation_type">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Relation_type" nillable="true" type="tns:Relation_type" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Relation_type">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="I_RELATYPE_CODE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="I_RELATYPE_NAME" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Trade_status">
+        <s:complexType />
+      </s:element>
+      <s:element name="Trade_statusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Trade_statusResult" type="tns:ArrayOfTrade_Status" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTrade_Status">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Trade_Status" nillable="true" type="tns:Trade_Status" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Trade_Status">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="I_TRADESTATUS_ID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="I_TRADESTATUS_NAME" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetDistrictListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDistrictList" />
+  </wsdl:message>
+  <wsdl:message name="GetDistrictListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDistrictListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetULBListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetULBList" />
+  </wsdl:message>
+  <wsdl:message name="GetULBListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetULBListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCategoriesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCategories" />
+  </wsdl:message>
+  <wsdl:message name="GetCategoriesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSubCategoriesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSubCategories" />
+  </wsdl:message>
+  <wsdl:message name="GetSubCategoriesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSubCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTradeFeesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTradeFees" />
+  </wsdl:message>
+  <wsdl:message name="GetTradeFeesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTradeFeesResponse" />
+  </wsdl:message>
+  <wsdl:message name="Relation_typeSoapIn">
+    <wsdl:part name="parameters" element="tns:Relation_type" />
+  </wsdl:message>
+  <wsdl:message name="Relation_typeSoapOut">
+    <wsdl:part name="parameters" element="tns:Relation_typeResponse" />
+  </wsdl:message>
+  <wsdl:message name="Trade_statusSoapIn">
+    <wsdl:part name="parameters" element="tns:Trade_status" />
+  </wsdl:message>
+  <wsdl:message name="Trade_statusSoapOut">
+    <wsdl:part name="parameters" element="tns:Trade_statusResponse" />
+  </wsdl:message>
+  <wsdl:portType name="CDMA_TRADEMASTER_SERVICESSoap">
+    <wsdl:operation name="GetDistrictList">
+      <wsdl:input message="tns:GetDistrictListSoapIn" />
+      <wsdl:output message="tns:GetDistrictListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetULBList">
+      <wsdl:input message="tns:GetULBListSoapIn" />
+      <wsdl:output message="tns:GetULBListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCategories">
+      <wsdl:input message="tns:GetCategoriesSoapIn" />
+      <wsdl:output message="tns:GetCategoriesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubCategories">
+      <wsdl:input message="tns:GetSubCategoriesSoapIn" />
+      <wsdl:output message="tns:GetSubCategoriesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTradeFees">
+      <wsdl:input message="tns:GetTradeFeesSoapIn" />
+      <wsdl:output message="tns:GetTradeFeesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Relation_type">
+      <wsdl:input message="tns:Relation_typeSoapIn" />
+      <wsdl:output message="tns:Relation_typeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Trade_status">
+      <wsdl:input message="tns:Trade_statusSoapIn" />
+      <wsdl:output message="tns:Trade_statusSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CDMA_TRADEMASTER_SERVICESSoap" type="tns:CDMA_TRADEMASTER_SERVICESSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetDistrictList">
+      <soap:operation soapAction="http://services.dma.com/GetDistrictList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetULBList">
+      <soap:operation soapAction="http://services.dma.com/GetULBList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategories">
+      <soap:operation soapAction="http://services.dma.com/GetCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubCategories">
+      <soap:operation soapAction="http://services.dma.com/GetSubCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTradeFees">
+      <soap:operation soapAction="http://services.dma.com/GetTradeFees" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Relation_type">
+      <soap:operation soapAction="http://services.dma.com/Relation_type" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Trade_status">
+      <soap:operation soapAction="http://services.dma.com/Trade_status" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CDMA_TRADEMASTER_SERVICESSoap12" type="tns:CDMA_TRADEMASTER_SERVICESSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetDistrictList">
+      <soap12:operation soapAction="http://services.dma.com/GetDistrictList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetULBList">
+      <soap12:operation soapAction="http://services.dma.com/GetULBList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategories">
+      <soap12:operation soapAction="http://services.dma.com/GetCategories" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubCategories">
+      <soap12:operation soapAction="http://services.dma.com/GetSubCategories" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTradeFees">
+      <soap12:operation soapAction="http://services.dma.com/GetTradeFees" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Relation_type">
+      <soap12:operation soapAction="http://services.dma.com/Relation_type" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Trade_status">
+      <soap12:operation soapAction="http://services.dma.com/Trade_status" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CDMA_TRADEMASTER_SERVICES">
+    <wsdl:port name="CDMA_TRADEMASTER_SERVICESSoap" binding="tns:CDMA_TRADEMASTER_SERVICESSoap">
+      <soap:address location="https://cdma.cgg.gov.in/cdma_hhd/CDMA_TRADEMASTER_SERVICES.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CDMA_TRADEMASTER_SERVICESSoap12" binding="tns:CDMA_TRADEMASTER_SERVICESSoap12">
+      <soap12:address location="https://cdma.cgg.gov.in/cdma_hhd/CDMA_TRADEMASTER_SERVICES.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

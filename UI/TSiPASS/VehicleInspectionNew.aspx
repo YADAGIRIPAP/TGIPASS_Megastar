@@ -1,0 +1,755 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/UI/TSiPASS/CCMaster.master" CodeFile="VehicleInspectionNew.aspx.cs" Inherits="UI_TSiPASS_VehicleInspectionNew" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+
+    <script src="../../Resource/Scripts/js/validations.js" type="text/javascript"></script>
+    <style type="text/css">
+        .overlay {
+            position: fixed;
+            z-index: 999;
+            height: 100%;
+            width: 100%;
+            top: 112px;
+            background-color: Gray;
+            filter: alpha(opacity=60);
+            opacity: 0.9;
+            -moz-opacity: 0.9;
+        }
+
+        .style5 {
+            width: 300px;
+        }
+    </style>
+    <script type="text/javascript" language="javascript">
+
+        function OpenPopup() {
+
+            window.open("Lookups/LookupVehicleInspetion.aspx", "List", "scrollbars=yes,resizable=yes,width=1000,height=650;display = block;position=absolute");
+
+            return false;
+        }
+    </script>
+    <script type="text/javascript">
+        function showProgress() {
+            var updateProgress = $get("<%= UpdateProgress.ClientID %>");
+            updateProgress.style.display = "block";
+        }
+
+        function NumberhyphenOnly() {
+            var AsciiValue = event.keyCode
+            if ((AsciiValue >= 48 && AsciiValue <= 57) || (AsciiValue == 8 || AsciiValue == 127) || (AsciiValue == 45) || (AsciiValue == 47))
+                event.returnValue = true;
+            else {
+                event.returnValue = false;
+
+                alert("Enter NumericValues, '/', '-' Only");
+            }
+        }
+    </script>
+    <asp:UpdatePanel ID="upd1" runat="server">
+        <ContentTemplate>
+            <div align="left">
+                <ol class="breadcrumb">
+                    You are here &nbsp;!&nbsp; &nbsp; &nbsp;
+                    <li><i class="fa fa-dashboard"></i><a href="Home.aspx"></a></li>
+                    <li class=""><i class="fa fa-fw fa-edit"></i></li>
+                    <li class="active"><i class="fa fa-edit"></i><a href="#"></a></li>
+                </ol>
+            </div>
+            <div align="left">
+                <div class="row" align="left">
+                    <div class="col-lg-11">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading" align="center">
+                                <h3 class="panel-title">Report 3:  VEHICLE INSPECTION</h3>
+                            </div>
+                            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                <ContentTemplate>
+                                    <div class="panel-body">
+                                        <table align="center" cellpadding="10" cellspacing="5" style="width: 90%">
+                                            <tr runat="server" visible="false">
+                                                <td style="padding: 5px; margin: 5px; text-align: center;" valign="top"
+                                                    colspan="3">
+                                                    <asp:Label ID="Label6" runat="server" CssClass="LBLBLACK" Font-Bold="True"
+                                                        Width="136px">Targets Completed</asp:Label>
+                                                    :<asp:Label ID="lblmsg1" runat="server"></asp:Label>
+                                                    /<asp:Label ID="lblmsg2" runat="server"></asp:Label>
+                                                </td>
+                                            </tr>
+                                            <tr runat="server" visible="false">
+                                                <td colspan="2" style="padding: 5px; margin: 5px; text-align: center;"
+                                                    valign="top">&nbsp;
+                                                    <asp:Button ID="btnOrgLookup0" runat="server" CausesValidation="False"
+                                                        CssClass="btn btn-primary" Font-Size="12px" Height="32px"
+                                                        OnClick="btnOrgLookup_Click" Style="position: static" Text="Look Up"
+                                                        ToolTip="Rate Lookup" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False"
+                                                        CellPadding="4" CssClass="GRD" ForeColor="#333333" 
+                                                        Width="100%" Height="62px" PageSize="40"
+                                                        ShowFooter="True"
+                                                         >
+                                                        <RowStyle BackColor="#EBF2FE" CssClass="GRDITEM" HorizontalAlign="Left"
+                                                            VerticalAlign="Middle" />
+                                                        <Columns>
+                                                            <asp:TemplateField>
+                                                                <HeaderTemplate>
+                                                                    Select
+                                                                </HeaderTemplate>
+                                                                    <ItemTemplate>
+                                                                        
+                                                            <asp:CheckBox ID="ChkApproval" runat="server"  AutoPostBack="True" OnCheckedChanged="ChkApproval_CheckedChanged"   />
+                                                            
+                                                        </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                          
+                                               
+                                                            <%-- <asp:BoundField DataField="SLNo" HeaderText="SLNo" />--%>
+                                                            <asp:BoundField DataField="NameofUnit" HeaderText="Name of Unit" />
+
+                                                            <asp:BoundField DataField="DistricName" HeaderText="DistricName" />
+                                                            <asp:BoundField DataField="MandalName" HeaderText="MandalName" />
+                                                            <asp:BoundField DataField="VillageName" HeaderText="VillageName" />
+                                                             
+               
+                                                            <asp:BoundField DataField="DateofInspection" HeaderText="Date of Inspection" DataFormatString="{0:MM-dd-yyyy}" />
+                                                            <asp:BoundField DataField="TypeofIncentive" HeaderText="Type of Incentive" />
+                                                             
+                                                            <asp:BoundField DataField="DistrictId" HeaderText="DistrictId" />
+                                                            <asp:BoundField DataField="MandalId" HeaderText="MandalId" />
+                                                            <asp:BoundField DataField="VillageId" HeaderText="VillageId" />
+                                                            <asp:BoundField DataField="incentiveID" HeaderText="incentiveID" />
+                                                            <asp:BoundField DataField="address" HeaderText="Address"  />
+                                                            <asp:BoundField DataField="VehicleNumber" HeaderText="VehicleNumber"  />
+                                      
+                                                        </Columns>
+                                                        <FooterStyle BackColor="#013161" Font-Bold="True" ForeColor="White" />
+                                                        <PagerStyle BackColor="#013161" ForeColor="White" HorizontalAlign="Center" />
+                                                        <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                                                        <HeaderStyle BackColor="#013161" Font-Bold="True" ForeColor="White"
+                                                            CssClass="GRDHEADER" />
+                                                        <EditRowStyle BackColor="#B9D684" />
+                                                        <AlternatingRowStyle BackColor="White" />
+                                                    </asp:GridView>
+                                                    &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 5px; margin: 5px" valign="top">
+                                                    <table cellpadding="4" cellspacing="5" style="width: 100%">
+                                                        <tr>
+                                                            <td style="padding: 5px; margin: 5px">&nbsp;</td>
+                                                            <td style="width: 200px;">
+                                                                <asp:Label ID="Label438" runat="server" CssClass="LBLBLACK" Font-Bold="True"
+                                                                    Width="180px">IPO Name</asp:Label>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">:</td>
+                                                            <td style="padding: 5px; margin: 5px">
+                                                                <asp:Label ID="Label439" runat="server" CssClass="LBLBLACK" Width="180px"></asp:Label>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">&nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="padding: 5px; margin: 5px">1&nbsp;</td>
+                                                            <td style="width: 200px;">
+                                                                <asp:Label ID="Label437" runat="server" CssClass="LBLBLACK" Width="180px">Year
+                                                                <font color="red">*</font></asp:Label>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">:</td>
+                                                            <td style="padding: 5px; margin: 5px 5px 5px 85px">
+                                                                <asp:DropDownList ID="ddlYear" runat="server" class="form-control txtbox"
+                                                                    Height="33px" TabIndex="1" Width="180px">
+                                                                    <asp:ListItem>--Select--</asp:ListItem>
+                                                                </asp:DropDownList>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">&nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="padding: 5px; margin: 5px">2</td>
+                                                            <td style="width: 200px;">
+                                                                <asp:Label ID="Label436" runat="server" CssClass="LBLBLACK" Width="180px">Month
+                                                                <font color="red">*</font></asp:Label>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">:
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px 5px 5px 85px">
+                                                                <asp:DropDownList ID="ddlMonth" runat="server" class="form-control txtbox"
+                                                                    Height="33px" TabIndex="1" Width="180px">
+                                                                    <asp:ListItem>--Select--</asp:ListItem>
+                                                                    <asp:ListItem Value="1">January</asp:ListItem>
+                                                                    <asp:ListItem Value="2">February</asp:ListItem>
+                                                                    <asp:ListItem Value="3">March</asp:ListItem>
+                                                                    <asp:ListItem Value="4">April</asp:ListItem>
+                                                                    <asp:ListItem Value="5">May</asp:ListItem>
+                                                                    <asp:ListItem Value="6">June</asp:ListItem>
+                                                                    <asp:ListItem Value="7">July</asp:ListItem>
+                                                                    <asp:ListItem Value="8">August</asp:ListItem>
+                                                                    <asp:ListItem Value="9">Sepetmber</asp:ListItem>
+                                                                    <asp:ListItem Value="10">October</asp:ListItem>
+                                                                    <asp:ListItem Value="11">November</asp:ListItem>
+                                                                    <asp:ListItem Value="12">December</asp:ListItem>
+                                                                </asp:DropDownList>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">&nbsp;
+                                                            </td>
+                                                        </tr>
+                                                        <tr runat="server" visible="true">
+                                                            <td style="padding: 5px; margin: 5px">3</td>
+                                                            <td style="width: 200px;">
+                                                                <asp:Label ID="Label387" runat="server" CssClass="LBLBLACK" Width="180px">Total 
+                                                                No of Online Application Recived in the reporting month<font color="red">*</font></asp:Label>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">:</td>
+                                                            <td style="padding: 5px; margin: 5px 5px 5px 85px">
+                                                                <asp:TextBox ID="txtNoOfApplnsReceived" runat="server"
+                                                                    class="form-control txtbox" Height="28px" MaxLength="40" onkeypress="NumberOnly()"
+                                                                    TabIndex="1" ValidationGroup="group" autoComplete="off"
+                                                                    Width="180px"></asp:TextBox>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">
+                                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server"
+                                                                    ControlToValidate="txtNoOfApplnsReceived" ErrorMessage="Please Enter Total 
+                                                                No of Online Application Recived in the reporting month"
+                                                                    ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                            </td>
+                                                        </tr>
+
+
+
+
+                                                        <tr>
+                                                            <td style="padding: 5px; margin: 5px">4&nbsp;</td>
+                                                            <td style="width: 200px;">
+                                                                <asp:Label ID="Label396" runat="server" CssClass="LBLBLACK" Width="180px">No of Vehicles Inspected <font 
+                                                            color="red">*</font></asp:Label>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">:</td>
+                                                            <td style="padding: 5px; margin: 5px 5px 5px 85px">
+                                                                <asp:TextBox ID="lblVehicleInspected" runat="server"
+                                                                    class="form-control txtbox" Height="28px" MaxLength="40" onkeypress="NumberOnly()"
+                                                                    TabIndex="1" ValidationGroup="group" autoComplete="off"
+                                                                    Width="180px" AutoPostBack="True"></asp:TextBox>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">&nbsp;
+                                                            </td>
+                                                        </tr>
+                                                        <tr runat="server" visible="false">
+                                                            <td style="padding: 5px; margin: 5px">1</td>
+                                                            <td style="width: 200px;">
+                                                                <asp:Label ID="Label7" runat="server" CssClass="LBLBLACK" Width="180px">Total 
+                                                                No of Online Application Received <font color="red">*</font></asp:Label>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">:</td>
+                                                            <td style="padding: 5px; margin: 5px">
+                                                                <asp:Label ID="Label432" runat="server" CssClass="LBLBLACK" Width="180px"></asp:Label>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">&nbsp;
+                                                            </td>
+                                                        </tr>
+
+                                                    </table>
+                                                </td>
+                                                <td valign="top">
+                                                    <table cellpadding="4" cellspacing="5" style="width: 100%">
+                                                        <tr runat="server" visible="false">
+                                                            <td style="padding: 5px; margin: 5px">2
+                                                            </td>
+                                                            <td style="width: 200px;">
+                                                                <asp:Label ID="Label433" runat="server" CssClass="LBLBLACK" Width="180px">No of Vehicle Not Inspected <font 
+                                                            color="red">*</font></asp:Label>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">:
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">
+                                                                <asp:TextBox ID="LblVehiclenotInspected" runat="server"
+                                                                    class="form-control txtbox" Height="28px" MaxLength="40" onkeypress="NumberOnly()"
+                                                                    TabIndex="1" ValidationGroup="group" autoComplete="off"
+                                                                    Width="180px"></asp:TextBox>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">&nbsp;
+                                                            </td>
+                                                        </tr>
+                                                        <caption>
+                                                            <br />
+                                                            <br />
+                                                            <tr runat="server" visible="true">
+                                                                <td style="padding: 5px; margin: 5px">5</td>
+                                                                <td style="width: 200px;">
+                                                                    <asp:Label ID="Label10" runat="server" CssClass="LBLBLACK" Width="180px">Inspection
+                                                                Carried out(2nd Friday) <font color="red">*</font></asp:Label>
+                                                                </td>
+                                                                <td style="padding: 5px; margin: 5px">:</td>
+                                                                <td style="padding: 5px; margin: 5px 5px 5px 85px">
+                                                                    <asp:TextBox ID="txtInspectionCarri_2ndFriday" runat="server" class="form-control txtbox" Height="28px" MaxLength="40" onkeypress="NumberOnly()" TabIndex="1" autoComplete="off" ValidationGroup="group" Width="180px"></asp:TextBox>
+                                                                </td>
+                                                                <td style="padding: 5px; margin: 5px">
+                                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server"
+                                                                        ControlToValidate="txtInspectionCarri_2ndFriday" ErrorMessage="Please Enter Inspection
+                                                                Carried out(2nd Friday) Details"
+                                                                        ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                                </td>
+                                                            </tr>
+                                                            <tr runat="server" visible="true">
+                                                                <td style="padding: 5px; margin: 5px">6</td>
+                                                                <td style="width: 200px;">
+                                                                    <asp:Label ID="Label8" runat="server" CssClass="LBLBLACK" Width="180px">Inspection
+                                                                Carried out(4th Friday)<font color="red">*</font></asp:Label>
+                                                                </td>
+                                                                <td style="padding: 5px; margin: 5px">:</td>
+                                                                <td style="padding: 5px; margin: 5px 5px 5px 85px">
+                                                                    <asp:TextBox ID="txtInspectionCarri_4thFriday" runat="server" class="form-control txtbox" Height="28px" MaxLength="40" onkeypress="NumberOnly()" TabIndex="1" ValidationGroup="group" autoComplete="off" Width="180px"></asp:TextBox>
+                                                                </td>
+                                                                <td style="padding: 5px; margin: 5px">
+                                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server"
+                                                                        ControlToValidate="txtInspectionCarri_4thFriday" ErrorMessage="Please Enter Inspection
+                                                                Carried out(4th Friday) Details"
+                                                                        ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                                </td>
+                                                            </tr>
+                                                            <tr runat="server" visible="true">
+                                                                <td style="padding: 5px; margin: 5px">7</td>
+                                                                <td style="width: 200px;">
+                                                                    <asp:Label ID="Label11" runat="server" CssClass="LBLBLACK" Width="180px">Inspection
+                                                                report submitted to GM<font color="red">*</font></asp:Label>
+                                                                </td>
+                                                                <td style="padding: 5px; margin: 5px">:</td>
+                                                                <td style="padding: 5px; margin: 5px 5px 5px 85px">
+                                                                    <asp:TextBox ID="txtInspectionreptAT_GM" runat="server" class="form-control txtbox" Height="28px" MaxLength="40" onkeypress="NumberOnly()" TabIndex="1" autoComplete="off" ValidationGroup="group" Width="180px"></asp:TextBox>
+                                                                </td>
+                                                                <td style="padding: 5px; margin: 5px">
+                                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server"
+                                                                        ControlToValidate="txtInspectionreptAT_GM" ErrorMessage="Please Enter Inspection
+                                                                report submitted to GM Details"
+                                                                        ValidationGroup="group">*</asp:RequiredFieldValidator>
+                                                                </td>
+                                                            </tr>
+                                                        </caption>
+
+
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" style="padding: 5px; margin: 5px" valign="top">
+                                                    <asp:Label ID="Label435" runat="server" Font-Bold="True" Width="300px"
+                                                        Text="Inspection Details :"></asp:Label>
+                                                </td>
+                                                <td valign="top">&nbsp;
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 5px; margin: 5px" valign="top">
+                                                    <table cellpadding="4" cellspacing="5" style="width: 83%">
+                                                        <tr>
+                                                            <td style="padding: 5px; margin: 5px; text-align: left;"></td>
+                                                            <td style="padding: 5px; margin: 5px; text-align: left;">
+                                                                <asp:Label ID="Label14" runat="server" CssClass="LBLBLACK" Width="165px"><b>Whether any Cases Registered or Not</b>
+                                                                    <font id="lbl" runat="server" color="red">*</font></asp:Label>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">:</td>
+                                                            <td style="padding: 5px; margin: 5px; text-align: left;">
+                                                                <asp:RadioButtonList ID="rdIaLa_Lst" runat="server" AutoPostBack="true" RepeatDirection="Horizontal" OnSelectedIndexChanged="rdIaLa_Lst_SelectedIndexChanged">
+                                                                    <asp:ListItem Value="Y" Selected="True">Yes</asp:ListItem>
+                                                                    <asp:ListItem Value="N">No</asp:ListItem>
+                                                                </asp:RadioButtonList>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">
+                                                                <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" 
+                                                            ControlToValidate="txtUnitName" ErrorMessage="Please select Unit Name" 
+                                                            ValidationGroup="child">*</asp:RequiredFieldValidator>--%>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="padding: 5px; margin: 5px; text-align: left;">1
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px; text-align: left;" class="style5">
+                                                                <asp:Label ID="Label431" runat="server" CssClass="LBLBLACK" Width="180px">Name of the Unit<font id="lbl1" runat="server"
+                                                                    color="red">*</font></asp:Label>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">:
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px; width: 192px; text-align: left;">
+                                                                <asp:TextBox ID="txtnameunit" runat="server" class="form-control txtbox" Height="28px"
+                                                                    MaxLength="40" TabIndex="1" ValidationGroup="group" Width="180px" autoComplete="off"></asp:TextBox>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px; width: 10px;">&nbsp;
+                                                               <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
+                                                                    ControlToValidate="txtnameunit" ErrorMessage="Please enter UnitName" 
+                                                                    ValidationGroup="child">*</asp:RequiredFieldValidator>--%>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="padding: 5px; margin: 5px">3&nbsp;</td>
+                                                            <td style="width: 200px;">
+                                                                <asp:Label ID="Label9" runat="server" CssClass="LBLBLACK" Width="180px">Mandal<font
+                                                                    color="red" id="lbl3" runat="server">*</font></asp:Label>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">:
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">
+                                                                <asp:DropDownList ID="ddlUnitMandal1" runat="server" class="form-control txtbox" Visible="true"
+                                                                    TabIndex="3" Height="33px" Width="180px" AutoPostBack="true" OnSelectedIndexChanged="ddlUnitMandal1_SelectedIndexChanged">
+                                                                    <asp:ListItem Value="0">--Select--</asp:ListItem>
+                                                                </asp:DropDownList>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">&nbsp;
+                                                                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                                                                    ControlToValidate="ddlUnitMandal1" ErrorMessage="Please select Mandal" 
+                                                                    InitialValue="--Select--" ValidationGroup="child">*</asp:RequiredFieldValidator>--%>
+                                                            </td>
+                                                        </tr>
+
+
+
+
+                                                        <tr>
+                                                            <td style="padding: 5px; margin: 5px; text-align: left;">5&nbsp;</td>
+                                                            <td style="padding: 5px; margin: 5px; text-align: left;" class="style5">
+                                                                <asp:Label ID="Label4" runat="server" CssClass="LBLBLACK" Width="180px">Address of the Unit<font
+                                                                    color="red" id="lbl8" runat="server">*</font></asp:Label>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">:
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px; text-align: left;">
+                                                                <asp:TextBox ID="txtaddressunit" runat="server" class="form-control txtbox"
+                                                                    Height="40px" MaxLength="500" TabIndex="1"
+                                                                    TextMode="MultiLine" ValidationGroup="group" Width="180px"></asp:TextBox>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">&nbsp;
+                                                                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
+                                                                    ControlToValidate="txtaddressunit" ErrorMessage="Please Enter Address" 
+                                                                    ValidationGroup="child">*</asp:RequiredFieldValidator>--%>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="padding: 5px; margin: 5px; text-align: left;">7</td>
+                                                            <td style="padding: 5px; margin: 5px; text-align: left;" class="style5">
+                                                                <asp:Label ID="Label1" runat="server" CssClass="LBLBLACK" Width="180px">Details of the vehicle<font
+                                                                    color="red" id="lbl9" runat="server">*</font></asp:Label>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">:</td>
+                                                            <td style="padding: 5px; margin: 5px; text-align: left;">
+                                                                <asp:TextBox ID="txtdetailsvehicle" runat="server" class="form-control txtbox"
+                                                                    Height="40px" MaxLength="500" TabIndex="1" autoComplete="off"
+                                                                    TextMode="MultiLine" ValidationGroup="group" Width="180px"
+                                                                    OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">
+                                                                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
+                                                                    ControlToValidate="txtdetailsvehicle" ErrorMessage="Please enter Details of the vehicle" 
+                                                                    ValidationGroup="child">*</asp:RequiredFieldValidator>--%>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="padding: 5px; margin: 5px; text-align: left;">9</td>
+                                                            <td style="padding: 5px; margin: 5px; text-align: left;" class="style5">
+                                                                <asp:Label ID="Label2" runat="server" CssClass="LBLBLACK" Width="180px">Date of Inspection(dd-mm-yyyy)(PLEASE SELECT THE INSPECTION DATE)<font
+                                                                    color="red" id="lbl10" runat="server">*</font></asp:Label>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">:</td>
+                                                            <td style="padding: 5px; margin: 5px; text-align: left;">
+                                                                <asp:TextBox ID="txtDDDate" runat="server" class="form-control txtbox" Height="28px" onpaste="return false"
+                                                                    MaxLength="40" TabIndex="1" ValidationGroup="group" onchange="return txtDOB();"
+                                                                    Width="180px" onkeypress="NumberhyphenOnly()"></asp:TextBox>
+                                                                <cc1:CalendarExtender ID="Calendarextender1" runat="server" Format="dd-MM-yyyy"
+                                                                    PopupButtonID="txtRegDate" TargetControlID="txtDDDate">
+                                                                </cc1:CalendarExtender>
+                                                                <%--<cc1:CalendarExtender ID="txtDDDate_CalendarExtender" runat="server" 
+                                                                    format="MM-dd-yyyy" popupbuttonid="txtRegDate" targetcontrolid="txtDDDate">
+                                                                </cc1:CalendarExtender>--%>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">
+                                                                <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" 
+                                                                    ControlToValidate="txtDDDate" ErrorMessage="Please Enter Date of Inspection" 
+                                                                    ValidationGroup="child">*</asp:RequiredFieldValidator>--%>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                                <td valign="top">
+                                                    <table cellpadding="4" cellspacing="5" style="width: 100%">
+
+                                                        <tr>
+                                                            <td style="padding: 5px; margin: 5px">&nbsp;</td>
+                                                            <td style="width: 200px;"></td>
+                                                            <td style="padding: 5px; margin: 5px">:
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px"></td>
+                                                            <td style="padding: 5px; margin: 5px">&nbsp;
+                                                                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" 
+                                                                    ControlToValidate="ddlcstatus" ErrorMessage="Please select  District " 
+                                                                    InitialValue="--Select--" ValidationGroup="child">*</asp:RequiredFieldValidator>--%>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="padding: 5px; margin: 5px">2&nbsp;</td>
+                                                            <td style="width: 200px;">
+                                                                <asp:Label ID="Label12" runat="server" CssClass="LBLBLACK" Width="180px">District<font
+                                                                    color="red" id="lbl2" runat="server">*</font></asp:Label>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">:
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">
+
+                                                                <asp:DropDownList ID="ddlUnitDIst1" runat="server" class="form-control txtbox" Visible="true"
+                                                                    TabIndex="3" Height="33px" Width="180px" OnSelectedIndexChanged="ddlUnitDIst1_SelectedIndexChanged" AutoPostBack="true">
+                                                                    <asp:ListItem Value="0">--Select--</asp:ListItem>
+                                                                </asp:DropDownList>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">&nbsp;
+                                                                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" 
+                                                                    ControlToValidate="ddlcstatus" ErrorMessage="Please select  District " 
+                                                                    InitialValue="--Select--" ValidationGroup="child">*</asp:RequiredFieldValidator>--%>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="padding: 5px; margin: 5px">4</td>
+                                                            <td style="width: 200px;">
+                                                                <asp:Label ID="Label13" runat="server" CssClass="LBLBLACK" Width="180px">Village<font
+                                                                    color="red" id="lbl4" runat="server">*</font></asp:Label>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">:
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">
+                                                                <asp:DropDownList ID="ddlVillageunit" runat="server" class="form-control txtbox"
+                                                                    TabIndex="3" Height="33px" Width="180px">
+                                                                    <asp:ListItem Value="0">--Select--</asp:ListItem>
+                                                                </asp:DropDownList>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">&nbsp;
+                                                                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" 
+                                                                    ControlToValidate="ddlcstatus" ErrorMessage="Please select Village" 
+                                                                    InitialValue="--Select--" ValidationGroup="child">*</asp:RequiredFieldValidator>--%>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="padding: 5px; margin: 5px">6</td>
+                                                            <td style="width: 200px;">
+                                                                <asp:Label ID="Label5" runat="server" CssClass="LBLBLACK" Width="180px">Type of Incentive<font
+                                                                    color="red" id="lbl5" runat="server">*</font></asp:Label>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">:
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">
+                                                                <asp:DropDownList ID="ddlincentive" runat="server"
+                                                                    class="form-control txtbox"  AutoPostBack="true" Height="33px" TabIndex="1" Width="180px">
+                                                                    <asp:ListItem Value="0">--Select--</asp:ListItem>
+                                                                    <asp:ListItem Value="1">IS</asp:ListItem>
+                                                                    <asp:ListItem Value="2">PV</asp:ListItem>
+
+                                                                </asp:DropDownList>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">&nbsp;
+                                                                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" 
+                                                                    ControlToValidate="ddlincentive" ErrorMessage="Please select Type of Incentive" 
+                                                                    InitialValue="--Select--" ValidationGroup="child">*</asp:RequiredFieldValidator>--%>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="padding: 5px; margin: 5px">8</td>
+                                                            <td style="width: 200px;">
+                                                                <asp:Label ID="Label3" runat="server" CssClass="LBLBLACK" Width="180px">Current Status<font
+                                                                    color="red" id="lbl6" runat="server">*</font></asp:Label>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">:
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">
+                                                                <asp:DropDownList ID="ddlcstatus" runat="server" class="form-control txtbox"
+                                                                    Height="33px" Width="180px" TabIndex="1"
+                                                                    OnSelectedIndexChanged="ddlcstatus_SelectedIndexChanged">
+                                                                    <asp:ListItem Value="0">--Select--</asp:ListItem>
+                                                                    <asp:ListItem Value="1">Working</asp:ListItem>
+                                                                    <asp:ListItem Value="2">Not working</asp:ListItem>
+                                                                    <asp:ListItem Value="3">Inspected</asp:ListItem>
+                                                                    <asp:ListItem Value="4">Not Inspected</asp:ListItem>
+                                                                    <asp:ListItem Value="5">Vehicle not produced</asp:ListItem>
+
+                                                                </asp:DropDownList>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">&nbsp;
+                                                                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" 
+                                                                    ControlToValidate="ddlcstatus" ErrorMessage="Please select Current Status" 
+                                                                    InitialValue="--Select--" ValidationGroup="child">*</asp:RequiredFieldValidator>--%>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="padding: 5px; margin: 5px">10</td>
+                                                            <td style="width: 200px;">
+                                                                <asp:Label ID="Label429" runat="server" CssClass="LBLBLACK" Width="180px">Remarks<font
+                                                                    color="red" id="lbl7" runat="server">*</font></asp:Label>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">:
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">
+                                                                <asp:TextBox ID="txtremark" runat="server" class="form-control txtbox"
+                                                                    Height="40px" MaxLength="500" TabIndex="1" autoComplete="off"
+                                                                    TextMode="MultiLine" ValidationGroup="group" Width="180px"></asp:TextBox>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">&nbsp;
+                                                                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" 
+                                                                    ControlToValidate="txtremark" ErrorMessage="Please Enter Remarks" 
+                                                                    ValidationGroup="child">*</asp:RequiredFieldValidator>--%>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="padding: 5px; margin: 5px; text-align: left;">11&nbsp;</td>
+                                                            <td style="padding: 5px; margin: 5px; text-align: left;">
+                                                                <asp:Label ID="Label445" runat="server" CssClass="LBLBLACK" Width="165px">Upload 
+                                                        Document(Excel only)</asp:Label>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">:</td>
+                                                            <td style="padding: 3px; margin: 5px; text-align: left;">
+                                                                <asp:FileUpload ID="FileUpload1" runat="server"
+                                                                    Height="28px" />
+                                                                <asp:HyperLink ID="lblFileName" runat="server" CssClass="LBLBLACK" Visible="false"
+                                                                    Width="130px"></asp:HyperLink>
+                                                                <br />
+                                                                <asp:Label ID="Label444" runat="server" Visible="False"></asp:Label>
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">&nbsp;</td>
+                                                        </tr>
+
+                                                        <tr id="tr3" runat="server">
+                                                            <td style="padding: 5px; margin: 5px">&nbsp;
+                                                            </td>
+                                                            <td style="width: 200px;">&nbsp;
+                                                                <asp:Button ID="BtnSave2" runat="server" CssClass="btn btn-xs btn-warning"
+                                                                    Height="28px" OnClick="BtnSave2_Click1" TabIndex="10" Text="Add New"
+                                                                    ValidationGroup="child" Width="72px" />
+                                                                &nbsp;
+                                                                <asp:Button ID="BtnClear0" runat="server" CausesValidation="False"
+                                                                    CssClass="btn btn-xs btn-danger" Height="28px" OnClick="BtnClear0_Click2"
+                                                                    TabIndex="10" Text="Cancel" ToolTip="To Clear  the Screen" Width="73px" />
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">&nbsp;
+                                                            </td>
+                                                            <td style="padding: 5px; margin: 5px">&nbsp;</td>
+                                                            <td style="padding: 5px; margin: 5px">&nbsp;
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 5px; margin: 5px" colspan="2" align="center">
+                                                    <asp:GridView ID="gvCertificate0" runat="server" AutoGenerateColumns="False"
+                                                        CellPadding="4" CssClass="GRD" ForeColor="#333333" OnRowDataBound="grdDetails_RowDataBound"
+                                                        Width="100%" Height="62px"
+                                                        OnPageIndexChanging="grdDetails_PageIndexChanging"
+                                                        OnRowCreated="grdDetails_RowCreated"
+                                                        OnSelectedIndexChanged="grdDetails_SelectedIndexChanged" PageSize="40"
+                                                        ShowFooter="True" DataKeyNames="intTrVehicleInspectionid"
+                                                        OnRowDeleting="gvCertificate0_RowDeleting">
+                                                        <RowStyle BackColor="#EBF2FE" CssClass="GRDITEM" HorizontalAlign="Left"
+                                                            VerticalAlign="Middle" />
+                                                        <Columns>
+                                                            <asp:CommandField HeaderText="Edit" ShowSelectButton="True" Visible="False" />
+                                                            <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" />
+                                                            <%-- <asp:BoundField DataField="SLNo" HeaderText="SLNo" />--%>
+                                                            <asp:BoundField DataField="NameofUnit" HeaderText="Name of Unit" />
+                                                            <asp:BoundField DataField="DistricName" HeaderText="DistricName" />
+                                                            <asp:BoundField DataField="MandalName" HeaderText="MandalName" />
+                                                            <asp:BoundField DataField="VillageName" HeaderText="VillageName" />
+                                                            <asp:BoundField DataField="AddressofUnit" HeaderText="Address of Unit" />
+                                                            <asp:BoundField DataField="DetailsofVehicle" HeaderText="Details of vehicle" />
+                                                            <asp:BoundField DataField="DateofInspection" HeaderText="Date of Inspection" DataFormatString="{0:MM-dd-yyyy}" />
+                                                            <asp:BoundField DataField="TypeofIncentive" HeaderText="Type of Incentive" />
+                                                            <asp:BoundField DataField="CurrentStatus" HeaderText="Current Status" />
+                                                            <asp:BoundField DataField="Remarks" HeaderText="Remarks" />
+                                                            <asp:TemplateField HeaderText="Uploaded Doc" ItemStyle-Width="30">
+                                                                <ItemTemplate>
+                                                                    <asp:HyperLink ID="hprlink" runat="server" NavigateUrl='<%# Eval("FilePath") %>'
+                                                                        Text='View' Visible="false" />
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:BoundField DataField="DistrictId" HeaderText="DistrictId" Visible="false" />
+                                                            <asp:BoundField DataField="MandalId" HeaderText="MandalId" Visible="false" />
+                                                            <asp:BoundField DataField="VillageId" HeaderText="VillageId" Visible="false" />
+                                                            <asp:BoundField DataField="WhetherYorN" HeaderText="WhetherYorN" Visible="false" />
+                                                        </Columns>
+                                                        <FooterStyle BackColor="#013161" Font-Bold="True" ForeColor="White" />
+                                                        <PagerStyle BackColor="#013161" ForeColor="White" HorizontalAlign="Center" />
+                                                        <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                                                        <HeaderStyle BackColor="#013161" Font-Bold="True" ForeColor="White"
+                                                            CssClass="GRDHEADER" />
+                                                        <EditRowStyle BackColor="#B9D684" />
+                                                        <AlternatingRowStyle BackColor="White" />
+                                                    </asp:GridView>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center" colspan="2"
+                                                    style="padding: 5px; margin: 5px; text-align: center;">
+                                                    <asp:Button ID="BtnSave1" runat="server" CssClass="btn btn-primary" Height="32px"
+                                                        OnClick="BtnSave_Click" TabIndex="10" Text="Save" Width="90px" />
+                                                    &nbsp;&nbsp;&nbsp; &nbsp;<asp:Button ID="BtnClear" runat="server" CausesValidation="False" CssClass="btn btn-warning"
+                                                        Height="32px" OnClick="BtnClear_Click" TabIndex="10" Text="Clear" ToolTip="To Clear  the Screen"
+                                                        Width="90px" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center" colspan="2" style="padding: 5px; margin: 5px">
+                                                    <div id="success" runat="server" visible="false" class="alert alert-success">
+                                                        <a href="AddQualification.aspx" class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong>Success!</strong><asp:Label ID="lblmsg" runat="server"></asp:Label>
+                                                    </div>
+                                                    <div id="Failure" runat="server" visible="false" class="alert alert-danger">
+                                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong>Warning!</strong>
+                                                        <asp:Label ID="lblmsg0" runat="server"></asp:Label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <asp:HiddenField ID="hdfID" runat="server" />
+                                        <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="True"
+                                            ShowSummary="False" ValidationGroup="group" />
+                                        <asp:ValidationSummary ID="ValidationSummary3" runat="server"
+                                            ShowMessageBox="True" ShowSummary="False" ValidationGroup="group1" />
+                                        <asp:ValidationSummary ID="ValidationSummary2" runat="server" ShowMessageBox="True"
+                                            ShowSummary="False" ValidationGroup="child" />
+                                        <asp:HiddenField ID="hdfFlagID" runat="server" />
+                                        <asp:HiddenField ID="hdfFlagID0" runat="server" />
+                                        <asp:HiddenField ID="hdfpencode" runat="server" />
+                                    </div>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <asp:UpdateProgress ID="UpdateProgress" runat="server" AssociatedUpdatePanelID="updatepanel1">
+                <ProgressTemplate>
+                    <div class="overlay">
+                        <%--<div style=" z-index: 1000; margin-left: 350px;margin-top:200px;opacity: 1;-moz-opacity: 1;">--%>
+                        <div style="z-index: 1000; margin-left: -210px; margin-top: 100px; opacity: 1; -moz-opacity: 1;">
+                            <img alt="" src="../../Resource/Images/Processing.gif" />
+                        </div>
+                    </div>
+                </ProgressTemplate>
+            </asp:UpdateProgress>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+        </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="BtnSave1" />
+            <asp:PostBackTrigger ControlID="BtnSave2"></asp:PostBackTrigger>
+
+        </Triggers>
+    </asp:UpdatePanel>
+    <%--</div>
+       </td>
+        </tr>
+    </table>--%>
+    e
+</asp:Content>

@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tsboilersws.cgg.gov.in/" name="TSBoilerServiceImplService" targetNamespace="http://tsboilersws.cgg.gov.in/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="https://tsboilersws.cgg.gov.in:443/tsBoilers?xsd=1" namespace="http://tsboilersws.cgg.gov.in/" />
+    </xsd:schema>
+  </types>
+  <message name="registrationofBoilers">
+    <part name="parameters" element="tns:registrationofBoilers" />
+  </message>
+  <message name="registrationofBoilersResponse">
+    <part name="parameters" element="tns:registrationofBoilersResponse" />
+  </message>
+  <message name="insertIntoPlanApprovalAdditionalPayment">
+    <part name="parameters" element="tns:insertIntoPlanApprovalAdditionalPayment" />
+  </message>
+  <message name="insertIntoPlanApprovalAdditionalPaymentResponse">
+    <part name="parameters" element="tns:insertIntoPlanApprovalAdditionalPaymentResponse" />
+  </message>
+  <message name="insertIntoErrectionCompletionReport">
+    <part name="parameters" element="tns:insertIntoErrectionCompletionReport" />
+  </message>
+  <message name="insertIntoErrectionCompletionReportResponse">
+    <part name="parameters" element="tns:insertIntoErrectionCompletionReportResponse" />
+  </message>
+  <message name="insertIntoRequestforSteamTest">
+    <part name="parameters" element="tns:insertIntoRequestforSteamTest" />
+  </message>
+  <message name="insertIntoRequestforSteamTestResponse">
+    <part name="parameters" element="tns:insertIntoRequestforSteamTestResponse" />
+  </message>
+  <message name="insertIntoAppealAgainstRejection">
+    <part name="parameters" element="tns:insertIntoAppealAgainstRejection" />
+  </message>
+  <message name="insertIntoAppealAgainstRejectionResponse">
+    <part name="parameters" element="tns:insertIntoAppealAgainstRejectionResponse" />
+  </message>
+  <message name="renewalofBoilers">
+    <part name="parameters" element="tns:renewalofBoilers" />
+  </message>
+  <message name="renewalofBoilersResponse">
+    <part name="parameters" element="tns:renewalofBoilersResponse" />
+  </message>
+  <message name="renewalQueryResponse">
+    <part name="parameters" element="tns:renewalQueryResponse" />
+  </message>
+  <message name="renewalQueryResponseResponse">
+    <part name="parameters" element="tns:renewalQueryResponseResponse" />
+  </message>
+  <message name="renewalRepairsCompletion">
+    <part name="parameters" element="tns:renewalRepairsCompletion" />
+  </message>
+  <message name="renewalRepairsCompletionResponse">
+    <part name="parameters" element="tns:renewalRepairsCompletionResponse" />
+  </message>
+  <message name="renewalRepairerDetails">
+    <part name="parameters" element="tns:renewalRepairerDetails" />
+  </message>
+  <message name="renewalRepairerDetailsResponse">
+    <part name="parameters" element="tns:renewalRepairerDetailsResponse" />
+  </message>
+  <message name="registrationofSteamPipeLine">
+    <part name="parameters" element="tns:registrationofSteamPipeLine" />
+  </message>
+  <message name="registrationofSteamPipeLineResponse">
+    <part name="parameters" element="tns:registrationofSteamPipeLineResponse" />
+  </message>
+  <message name="insertIntoSPLRegPayment">
+    <part name="parameters" element="tns:insertIntoSPLRegPayment" />
+  </message>
+  <message name="insertIntoSPLRegPaymentResponse">
+    <part name="parameters" element="tns:insertIntoSPLRegPaymentResponse" />
+  </message>
+  <message name="insertIntoSPLQueryresponse">
+    <part name="parameters" element="tns:insertIntoSPLQueryresponse" />
+  </message>
+  <message name="insertIntoSPLQueryresponseResponse">
+    <part name="parameters" element="tns:insertIntoSPLQueryresponseResponse" />
+  </message>
+  <message name="insertIntoSPLErrectionCompletionReport">
+    <part name="parameters" element="tns:insertIntoSPLErrectionCompletionReport" />
+  </message>
+  <message name="insertIntoSPLErrectionCompletionReportResponse">
+    <part name="parameters" element="tns:insertIntoSPLErrectionCompletionReportResponse" />
+  </message>
+  <message name="calculateAmount">
+    <part name="parameters" element="tns:calculateAmount" />
+  </message>
+  <message name="calculateAmountResponse">
+    <part name="parameters" element="tns:calculateAmountResponse" />
+  </message>
+  <message name="renewalReschduleSteamTestDate">
+    <part name="parameters" element="tns:renewalReschduleSteamTestDate" />
+  </message>
+  <message name="renewalReschduleSteamTestDateResponse">
+    <part name="parameters" element="tns:renewalReschduleSteamTestDateResponse" />
+  </message>
+  <message name="renewalReschduleInspectionNotice">
+    <part name="parameters" element="tns:renewalReschduleInspectionNotice" />
+  </message>
+  <message name="renewalReschduleInspectionNoticeResponse">
+    <part name="parameters" element="tns:renewalReschduleInspectionNoticeResponse" />
+  </message>
+  <message name="insertIntoRenewalAdditionalPayment">
+    <part name="parameters" element="tns:insertIntoRenewalAdditionalPayment" />
+  </message>
+  <message name="insertIntoRenewalAdditionalPaymentResponse">
+    <part name="parameters" element="tns:insertIntoRenewalAdditionalPaymentResponse" />
+  </message>
+  <message name="insertRenewalInspectionRelatedDocs">
+    <part name="parameters" element="tns:insertRenewalInspectionRelatedDocs" />
+  </message>
+  <message name="insertRenewalInspectionRelatedDocsResponse">
+    <part name="parameters" element="tns:insertRenewalInspectionRelatedDocsResponse" />
+  </message>
+  <message name="scheduleBoilersDepartmentInspection">
+    <part name="parameters" element="tns:scheduleBoilersDepartmentInspection" />
+  </message>
+  <message name="scheduleBoilersDepartmentInspectionResponse">
+    <part name="parameters" element="tns:scheduleBoilersDepartmentInspectionResponse" />
+  </message>
+  <message name="sendDatatoMeeseva">
+    <part name="parameters" element="tns:sendDatatoMeeseva" />
+  </message>
+  <message name="sendDatatoMeesevaResponse">
+    <part name="parameters" element="tns:sendDatatoMeesevaResponse" />
+  </message>
+  <message name="insertMeesevaRenewalPaymentDetails">
+    <part name="parameters" element="tns:insertMeesevaRenewalPaymentDetails" />
+  </message>
+  <message name="insertMeesevaRenewalPaymentDetailsResponse">
+    <part name="parameters" element="tns:insertMeesevaRenewalPaymentDetailsResponse" />
+  </message>
+  <message name="registrationsManufacturer">
+    <part name="parameters" element="tns:registrationsManufacturer" />
+  </message>
+  <message name="registrationsManufacturerResponse">
+    <part name="parameters" element="tns:registrationsManufacturerResponse" />
+  </message>
+  <message name="manufacturerQueryResponse">
+    <part name="parameters" element="tns:manufacturerQueryResponse" />
+  </message>
+  <message name="manufacturerQueryResponseResponse">
+    <part name="parameters" element="tns:manufacturerQueryResponseResponse" />
+  </message>
+  <message name="renewalBoilerManufacturer">
+    <part name="parameters" element="tns:renewalBoilerManufacturer" />
+  </message>
+  <message name="renewalBoilerManufacturerResponse">
+    <part name="parameters" element="tns:renewalBoilerManufacturerResponse" />
+  </message>
+  <message name="manufacturerRenewalQueryResponse">
+    <part name="parameters" element="tns:manufacturerRenewalQueryResponse" />
+  </message>
+  <message name="manufacturerRenewalQueryResponseResponse">
+    <part name="parameters" element="tns:manufacturerRenewalQueryResponseResponse" />
+  </message>
+  <portType name="TSBoilerService">
+    <operation name="registrationofBoilers">
+      <input message="tns:registrationofBoilers" />
+      <output message="tns:registrationofBoilersResponse" />
+    </operation>
+    <operation name="insertIntoPlanApprovalAdditionalPayment">
+      <input message="tns:insertIntoPlanApprovalAdditionalPayment" />
+      <output message="tns:insertIntoPlanApprovalAdditionalPaymentResponse" />
+    </operation>
+    <operation name="insertIntoErrectionCompletionReport">
+      <input message="tns:insertIntoErrectionCompletionReport" />
+      <output message="tns:insertIntoErrectionCompletionReportResponse" />
+    </operation>
+    <operation name="insertIntoRequestforSteamTest">
+      <input message="tns:insertIntoRequestforSteamTest" />
+      <output message="tns:insertIntoRequestforSteamTestResponse" />
+    </operation>
+    <operation name="insertIntoAppealAgainstRejection">
+      <input message="tns:insertIntoAppealAgainstRejection" />
+      <output message="tns:insertIntoAppealAgainstRejectionResponse" />
+    </operation>
+    <operation name="renewalofBoilers">
+      <input message="tns:renewalofBoilers" />
+      <output message="tns:renewalofBoilersResponse" />
+    </operation>
+    <operation name="renewalQueryResponse">
+      <input message="tns:renewalQueryResponse" />
+      <output message="tns:renewalQueryResponseResponse" />
+    </operation>
+    <operation name="renewalRepairsCompletion">
+      <input message="tns:renewalRepairsCompletion" />
+      <output message="tns:renewalRepairsCompletionResponse" />
+    </operation>
+    <operation name="renewalRepairerDetails">
+      <input message="tns:renewalRepairerDetails" />
+      <output message="tns:renewalRepairerDetailsResponse" />
+    </operation>
+    <operation name="registrationofSteamPipeLine">
+      <input message="tns:registrationofSteamPipeLine" />
+      <output message="tns:registrationofSteamPipeLineResponse" />
+    </operation>
+    <operation name="insertIntoSPLRegPayment">
+      <input message="tns:insertIntoSPLRegPayment" />
+      <output message="tns:insertIntoSPLRegPaymentResponse" />
+    </operation>
+    <operation name="insertIntoSPLQueryresponse">
+      <input message="tns:insertIntoSPLQueryresponse" />
+      <output message="tns:insertIntoSPLQueryresponseResponse" />
+    </operation>
+    <operation name="insertIntoSPLErrectionCompletionReport">
+      <input message="tns:insertIntoSPLErrectionCompletionReport" />
+      <output message="tns:insertIntoSPLErrectionCompletionReportResponse" />
+    </operation>
+    <operation name="calculateAmount">
+      <input message="tns:calculateAmount" />
+      <output message="tns:calculateAmountResponse" />
+    </operation>
+    <operation name="renewalReschduleSteamTestDate">
+      <input message="tns:renewalReschduleSteamTestDate" />
+      <output message="tns:renewalReschduleSteamTestDateResponse" />
+    </operation>
+    <operation name="renewalReschduleInspectionNotice">
+      <input message="tns:renewalReschduleInspectionNotice" />
+      <output message="tns:renewalReschduleInspectionNoticeResponse" />
+    </operation>
+    <operation name="insertIntoRenewalAdditionalPayment">
+      <input message="tns:insertIntoRenewalAdditionalPayment" />
+      <output message="tns:insertIntoRenewalAdditionalPaymentResponse" />
+    </operation>
+    <operation name="insertRenewalInspectionRelatedDocs">
+      <input message="tns:insertRenewalInspectionRelatedDocs" />
+      <output message="tns:insertRenewalInspectionRelatedDocsResponse" />
+    </operation>
+    <operation name="scheduleBoilersDepartmentInspection">
+      <input message="tns:scheduleBoilersDepartmentInspection" />
+      <output message="tns:scheduleBoilersDepartmentInspectionResponse" />
+    </operation>
+    <operation name="sendDatatoMeeseva">
+      <input message="tns:sendDatatoMeeseva" />
+      <output message="tns:sendDatatoMeesevaResponse" />
+    </operation>
+    <operation name="insertMeesevaRenewalPaymentDetails">
+      <input message="tns:insertMeesevaRenewalPaymentDetails" />
+      <output message="tns:insertMeesevaRenewalPaymentDetailsResponse" />
+    </operation>
+    <operation name="registrationsManufacturer">
+      <input message="tns:registrationsManufacturer" />
+      <output message="tns:registrationsManufacturerResponse" />
+    </operation>
+    <operation name="manufacturerQueryResponse">
+      <input message="tns:manufacturerQueryResponse" />
+      <output message="tns:manufacturerQueryResponseResponse" />
+    </operation>
+    <operation name="renewalBoilerManufacturer">
+      <input message="tns:renewalBoilerManufacturer" />
+      <output message="tns:renewalBoilerManufacturerResponse" />
+    </operation>
+    <operation name="manufacturerRenewalQueryResponse">
+      <input message="tns:manufacturerRenewalQueryResponse" />
+      <output message="tns:manufacturerRenewalQueryResponseResponse" />
+    </operation>
+  </portType>
+  <binding name="TSBoilerServiceImplPortBinding" type="tns:TSBoilerService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="registrationofBoilers">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertIntoPlanApprovalAdditionalPayment">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertIntoErrectionCompletionReport">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertIntoRequestforSteamTest">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertIntoAppealAgainstRejection">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="renewalofBoilers">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="renewalQueryResponse">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="renewalRepairsCompletion">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="renewalRepairerDetails">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="registrationofSteamPipeLine">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertIntoSPLRegPayment">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertIntoSPLQueryresponse">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertIntoSPLErrectionCompletionReport">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="calculateAmount">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="renewalReschduleSteamTestDate">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="renewalReschduleInspectionNotice">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertIntoRenewalAdditionalPayment">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertRenewalInspectionRelatedDocs">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="scheduleBoilersDepartmentInspection">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="sendDatatoMeeseva">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="insertMeesevaRenewalPaymentDetails">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="registrationsManufacturer">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="manufacturerQueryResponse">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="renewalBoilerManufacturer">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="manufacturerRenewalQueryResponse">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="TSBoilerServiceImplService">
+    <port name="TSBoilerServiceImplPort" binding="tns:TSBoilerServiceImplPortBinding">
+      <soap:address location="https://tsboilersws.cgg.gov.in:443/tsBoilers" />
+    </port>
+  </service>
+</definitions>

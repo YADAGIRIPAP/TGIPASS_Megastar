@@ -1,0 +1,778 @@
+﻿using System;
+using System.Data;
+using System.Configuration;
+using System.Collections;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+using System.Data.SqlClient;
+using System.IO;
+using System.Net;
+using System.Net.Security;
+using System.Net.Mail;
+//using TSIPassBE;
+//using TSIPassBL;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using iTextSharp.text.html.simpleparser;
+using System.Text;
+using System.Threading;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+
+public partial class UI_TSiPASS_IpassPrintReceiptBMW : System.Web.UI.Page
+{
+    #region "Global Variables"
+    BMWClass objbmw = new BMWClass();
+    //PaymentDetailsBL objBL = new PaymentDetailsBL();
+    //PaymentDetailsBE objBE = new PaymentDetailsBE();
+    DataSet ds = new DataSet();
+    DB.DB con = new DB.DB();
+    string constring = ConfigurationManager.ConnectionStrings["TSiPASSSkils"].ToString();
+    public string sEmail;
+    //SMsHttpPostClient objSms = new SMsHttpPostClient();
+
+    //static String username = "cgg-tipass";
+    //static String password = "tip@$$@2016";
+    //static String senderid = "TiPASS";
+
+    static String username = "TSIPASS";
+    static String password = "kcsb@786";
+    static String senderid = "TSIPAS";
+
+    HttpWebRequest request;
+    static Stream dataStream;
+    string responseFromServer = "";
+
+    WebserviceVO webvo = new WebserviceVO();
+
+    General gen = new General();
+    WebClient wc = new WebClient();
+    TSNPDCLService.TsipassWsService tsnpdcl = new TSNPDCLService.TsipassWsService();
+    TSSPDCLService.TSSPDCLIPassService tsspdcl = new TSSPDCLService.TSSPDCLIPassService();
+    FactoryService.TSFactoryServiceImplService factory = new FactoryService.TSFactoryServiceImplService();
+    FireService.Service1 fire = new FireService.Service1();
+    //BoilerService.TSBoilerServiceImplService boiler = new BoilerService.TSBoilerServiceImplService();
+    LabourService.TSLabourServiceImplService labourservice = new LabourService.TSLabourServiceImplService();
+    NALAService.MeeSevaWebService nalaservice = new NALAService.MeeSevaWebService();
+    HMWSSBService.TSiPASSNewConnectionUC hmwssb = new HMWSSBService.TSiPASSNewConnectionUC();
+    BoilerService.TSBoilerServiceImplService BoilerRenewalservice = new BoilerService.TSBoilerServiceImplService();
+    comFunctions obcmf = new comFunctions();
+    #endregion
+    #region "Page_Load"
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+        //Session["Amount"] = "002520.235";
+        //Session["RefNo"] = "CIT";
+        //Session["TranRefNo"] = "JHMP5431889613";
+        try
+        {
+            if (!Page.IsPostBack)
+            {
+                if (Session["Amount"] != null && Session["RefNo"] != null)
+                {
+                    string amount = Session["Amount"].ToString();
+                    string RefNO = Session["RefNo"].ToString();
+                    string TranRefNo = Session["TranRefNo"].ToString();
+                    string[] no;
+                    int Number;
+                    if (amount.Contains("."))
+                    {
+                        no = amount.Split('.');
+                        Number = Convert.ToInt32(no[0]);
+                    }
+                    else
+                    {
+                        Number = Convert.ToInt32(amount);
+                    }
+
+
+                    lblnum2wrds.Text = NumberToText(Number) + " Rupees Only.";
+
+                    // lblPaidat.Text = RefNO + " PG";  //"SBI PG";
+                    ds = BillPaymentReceipt(TranRefNo);
+
+
+                    if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                    {
+                        txtasmtno.Text = ds.Tables[0].Rows[0]["Reference"].ToString();
+                        txtrcptno.Text = TranRefNo;
+                        txtrcptdt.Text = System.DateTime.Now.ToString();
+                        txtname.Text = ds.Tables[0].Rows[0]["IndustryName"].ToString();
+                        txtaddress.Text = ds.Tables[0].Rows[0]["Address"].ToString();
+                        lblMobileNumber.Text = ds.Tables[0].Rows[0]["MobileNo"].ToString();
+                        //  lblMobileNumber.Text = "7702542727";
+                        txtEmailId.Text = ds.Tables[0].Rows[0]["Emailid"].ToString();
+
+                        // txtEmailId.Text = "kmrias@gmail.com";
+
+                        txttotal.Text = Convert.ToDecimal(amount).ToString("#,##0") + " /-";
+
+
+
+                        string message = " Thank you for the payment of Rs." + amount + " for this UID " + txtasmtno.Text + " of TxnID " + TranRefNo + "-TSIPass";
+                        if (lblMobileNumber.Text != "")
+                        {
+                            try
+                            {
+                                // SendSingleSMS(lblMobileNumber.Text, message);
+                                obcmf.SendSingleSMSnew(lblMobileNumber.Text, message, "1007856775026438504");
+                            }
+                            catch (Exception ex)
+                            {
+
+                            }
+                        }
+                        if (txtEmailId.Text != "")
+                        {
+                            var sb = new StringBuilder();
+                            Receipt.RenderControl(new HtmlTextWriter(new StringWriter(sb)));
+
+                            string s = sb.ToString();
+
+
+                            //StringWriter stringWriter = new StringWriter();
+                            //HtmlTextWriter htmlTextWriterw = new HtmlTextWriter(stringWriter);
+                            //Receipt.RenderControl(htmlTextWriterw);
+                            s = s.Replace("px", "");
+
+                            s = s.Replace("<img src=\"../../Resource/Images/telanganalogo.png\" height=\"60\" width=\"60\" />", "");
+
+                            /*StringReader stringReader = new StringReader(s.ToString());
+                            Document pdfDoc = new Document(PageSize.A4, 30f, 25f, 15f, 0.2f);
+                            HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
+                            MemoryStream memoryStream = new MemoryStream();
+                            PdfWriter.GetInstance(pdfDoc, memoryStream);
+                            pdfDoc.Open();
+                            htmlparser.Parse(stringReader);
+                            pdfDoc.Close();
+                            byte[] bytes = memoryStream.ToArray();
+                            memoryStream.Close();
+                            try
+                            {
+                                SendingEmailWithAttachment(txtEmailId.Text, message, bytes);
+                            }
+                            catch (Exception ex)
+                            {
+
+                            } commented on 03/04/2025 sowjanya */
+                        }
+                        //ScriptManager.RegisterStartupScript(Page, this.GetType(), "Key", "<Script>window.open('EncloserList.aspx','popUpWindow','height=600,width=850,status=no,toolbar=no,menubar=no,location=no');</Script>", false);
+                        // ScriptManager.RegisterStartupScript(Page, this.GetType(), "Key", "<Script>window.open('DepartmentService.aspx?UIDNO=" + txtasmtno.Text + "','popUpWindow','height=0,width=1,status=no,toolbar=no,menubar=no,location=no');</Script>", false);
+                        try
+                        {
+                            webservice(txtasmtno.Text);
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+                    else
+                    {
+
+                    }
+                }
+
+            }
+        }
+        catch (Exception ex)
+        {
+
+        }
+        finally
+        {
+
+        }
+    }
+    #endregion
+    #region "Number To Text"
+    public string NumberToText(int number)
+    {
+        if (number == 0) return "Zero";
+        int[] num = new int[4];
+        int first = 0;
+        int u, h, t;
+        System.Text.StringBuilder sb = new System.Text.StringBuilder();
+        if (number < 0)
+        {
+            sb.Append("Minus ");
+            number = -number;
+        }
+        string[] words0 = { "", "One ", "Two ", "Three ", "Four ", "Five ", "Six ", "Seven ", "Eight ", "Nine " };
+        string[] words1 = { "Ten ", "Eleven ", "Twelve ", "Thirteen ", "Fourteen ", "Fifteen ", "Sixteen ", "Seventeen ", "Eighteen ", "Nineteen " };
+        string[] words2 = { "Twenty ", "Thirty ", "Fourty ", "Fifty ", "Sixty ", "Seventy ", "Eighty ", "Ninety " };
+        string[] words3 = { "Thousand ", "Lakh ", "Crore " };
+        num[0] = number % 1000; // units
+        num[1] = number / 1000;
+        num[2] = number / 100000;
+        num[1] = num[1] - 100 * num[2]; // thousands
+        num[3] = number / 10000000; // crores
+        num[2] = num[2] - 100 * num[3]; // lakhs
+        for (int i = 3; i > 0; i--)
+        {
+            if (num[i] != 0)
+            {
+                first = i;
+                break;
+            }
+        }
+        for (int i = first; i >= 0; i--)
+        {
+            if (num[i] == 0) continue;
+            u = num[i] % 10; // ones
+            t = num[i] / 10;
+            h = num[i] / 100; // hundreds
+            t = t - 10 * h; // tens
+            if (h > 0) sb.Append(words0[h] + "Hundred ");
+            if (u > 0 || t > 0)
+            {
+                //if (h > 0 || i == 0) sb.Append("and ");
+                if (t == 0)
+                    sb.Append(words0[u]);
+                else if (t == 1)
+                    sb.Append(words1[u]);
+                else
+                    sb.Append(words2[t - 2] + words0[u]);
+            }
+            if (i != 0) sb.Append(words3[i - 1]);
+        }
+
+
+        // TextBox2.Text = "Rupees " + sb.ToString().TrimEnd() + " Only";
+        return sb.ToString().TrimEnd();
+    }
+    #endregion
+    #region "btnprint_Click"
+    protected void btnprint_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("content-disposition", "attachment;filename=PaymentReceipt.pdf");
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            StringWriter stringWriter = new StringWriter();
+            HtmlTextWriter htmlTextWriterw = new HtmlTextWriter(stringWriter);
+            Receipt.RenderControl(htmlTextWriterw);
+            StringReader stringReader = new StringReader(stringWriter.ToString());
+            Document pdfDoc = new Document(PageSize.A4, 30f, 25f, 15f, 0.2f);
+            HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
+            PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
+            pdfDoc.Open();
+            //iTextSharp.text.Image gifghmc1 = iTextSharp.text.Image.GetInstance(Server.MapPath("images/tsSmalllogo.png"));
+            //gifghmc1.Alignment = iTextSharp.text.Image.ALIGN_MIDDLE;
+            //gifghmc1.ScaleToFit(80, 80);
+            //gifghmc1.Alignment = iTextSharp.text.Image.UNDERLYING;
+            //gifghmc1.SetAbsolutePosition(260, 600);
+            //pdfDoc.Add(gifghmc1);
+            htmlparser.Parse(stringReader);
+            pdfDoc.Close();
+        }
+        catch
+        {
+
+        }
+    }
+    #endregion
+    #region "VerifyRenderingInServerForm"
+    public override void VerifyRenderingInServerForm(Control control)
+    {
+        /* Verifies that the control is rendered */
+                        }
+                        #endregion
+                        #region "SendingEmailWithAttachment"
+                        /// <summary>
+                        ///  Method for sending mail message 
+                        /// </summary>
+                        /// <returns> string</returns>
+                        private string SendingEmailWithAttachment(string receiverMailId, string Message, byte[] bytes)
+    {
+        try
+        {
+            System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
+            //System.Net.NetworkCredential cred = new System.Net.NetworkCredential("tsipass.telangana@gmail.com", "tsipass@2016");
+            //System.Net.NetworkCredential cred = new System.Net.NetworkCredential("tsipass.telangana@gmail.com", "zwcq vlxk gyor lpeg");
+            System.Net.NetworkCredential cred = new System.Net.NetworkCredential("tsipass.telangana@gmail.com", "fqeq nive azke giwb");
+            mail.To.Add(receiverMailId);
+           //mail.From = new MailAddress("tsipass.telangana@gmail.com", "tsipass@2016");
+           // mail.From = new MailAddress("tsipass.telangana@gmail.com", "zwcq vlxk gyor lpeg");
+            mail.From = new MailAddress("tsipass.telangana@gmail.com", "fqeq nive azke giwb");
+            mail.Subject = "Information from e-Telangana State Indistries";
+            mail.Body = "Dear User,<p>" + Message + "</p> <p>Regards,</p> TSIPASS.";
+            mail.ReplyTo = new System.Net.Mail.MailAddress("tsipass.telangana@gmail.com");
+            mail.IsBodyHtml = true;
+
+            Attachment mailAttachmnet;
+            mail.Attachments.Add(new Attachment(new MemoryStream(bytes), "Receipt.pdf"));
+            //ObjMailMessage.Bcc.Add("me2@mail-address.com");
+            mail.Priority = MailPriority.High;
+            System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.gmail.com");
+            smtp.UseDefaultCredentials = false;
+            smtp.EnableSsl = true;
+            smtp.Credentials = cred;
+            smtp.Port = 587;
+            smtp.Send(mail);
+            return "Sent";
+
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+    #endregion
+    #region "Sending SMS to Specified Mobile Number"
+    /// <summary>
+    /// Method for Sending SMS to Specified Mobile Number
+    /// </summary>
+    /// <returns>string</returns>       
+    private string SendSingleSMS(String mobileNo, String message)
+    {
+        try
+        {
+            request = (HttpWebRequest)WebRequest.Create("https://msdgweb.mgov.gov.in/esms/sendsmsrequest");
+            request.ProtocolVersion = HttpVersion.Version10;
+            //((HttpWebRequest)request).UserAgent = ".NET Framework Example Client";
+            ((HttpWebRequest)request).UserAgent = "Mozilla/4.0 (compatible; MSIE 5.0; Windows 98; DigExt)";
+            request.Method = "POST";
+            String smsservicetype = "singlemsg"; //For single message.
+            String query = "username=" + HttpUtility.UrlEncode(username) +
+                "&password=" + HttpUtility.UrlEncode(password) +
+                "&smsservicetype=" + HttpUtility.UrlEncode(smsservicetype) +
+                "&content=" + HttpUtility.UrlEncode("Payment Confirmation from TSIPASS:" + message) +
+                "&mobileno=" + HttpUtility.UrlEncode(mobileNo) +
+                "&senderid=" + HttpUtility.UrlEncode(senderid);
+
+            byte[] byteArray = Encoding.ASCII.GetBytes(query);
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.ContentLength = byteArray.Length;
+            dataStream = request.GetRequestStream();
+            dataStream.Write(byteArray, 0, byteArray.Length);
+            dataStream.Close();
+            WebResponse response = request.GetResponse();
+            String Status = ((HttpWebResponse)response).StatusDescription;
+            dataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(dataStream);
+            responseFromServer = reader.ReadToEnd();
+            reader.Close();
+            dataStream.Close();
+            response.Close();
+
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+
+        }
+        responseFromServer = responseFromServer.Replace("\r\n", string.Empty);
+        return responseFromServer.Trim();
+        // return "402,1,0";
+    }
+    #endregion
+    private DataSet BillPaymentReceipt(string TranRefNo)
+    {
+        try
+        {
+            SqlConnection conn = new SqlConnection(constring);
+            conn.Open();
+            SqlCommand cmd1 = new SqlCommand("[GetBilldeskReceiptBMW]", conn);
+            cmd1.CommandType = CommandType.StoredProcedure;
+            cmd1.Parameters.AddWithValue("@OrderNo", TranRefNo);
+            SqlDataAdapter da1 = new SqlDataAdapter(cmd1);
+            DataSet ds = new DataSet();
+            da1.Fill(ds);
+            conn.Close();
+            return ds;
+
+        }
+        catch (Exception ex)
+        {
+        }
+
+        return null;
+    }
+    protected void btnclose_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Dashboard.aspx");
+    }
+
+
+
+    public void webservice(string UIDNO)
+    {
+        DataSet ds = new DataSet();
+
+        DataSet dsdept = new DataSet();
+        DataTable dt = new DataTable();
+
+        try
+        {
+            //if (Session["objUsrDtl"] != null)
+            //{
+
+            // string UIDNO = Request.QueryString["UIDNO"].ToString();
+            // UIDNO = "MEG01000354445";//"MEG02000064425";//"SML00500064419";//"SML00500064419";
+            ds = objbmw.GetDepartmentonuidBMW(UIDNO);
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                dt = ds.Tables[0];
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    string deptid = dt.Rows[i]["intApprovalid"].ToString();
+                    if (deptid == "166")
+                    {
+                        dsdept = objbmw.getdepartmentdetailsonuidBMW(UIDNO, deptid);
+                        if (deptid == "166")
+                        {
+                            dsdept = objbmw.getdepartmentdetailsonuidBMW(UIDNO, deptid);
+                            if (dsdept != null && dsdept.Tables.Count > 0 && dsdept.Tables[0].Rows.Count > 0)
+                            {
+                                string cafUniqueNo = dsdept.Tables[0].Rows[0]["intQuessionaireid"].ToString();
+                                string transactionId = dsdept.Tables[0].Rows[0]["TransactionNO"].ToString();
+                                string amount = dsdept.Tables[0].Rows[0]["Approval_Fee"].ToString();
+                                string bankName = dsdept.Tables[0].Rows[0]["BankName"].ToString();
+                                string transactionStatus = "S";
+                                string paymentType = "NB";
+                                string indApplication = dsdept.Tables[0].Rows[0]["NICApplicationno"].ToString();
+                                string additionalPayment = "F";
+                                string HCEID = dsdept.Tables[0].Rows[0]["HCEID"].ToString();
+                                //string WEBSERVICE_URL = "http://164.100.163.19/TSPCB/industryRegMaster/updateFeeBmw?cafUniqueNo=" + cafUniqueNo + "&transactionId=" + transactionId + "&amount=" + amount + "&bankName=" + bankName + "&transactionStatus=" + transactionStatus + "&paymentType=" + paymentType + "&indApplicationNo=" + indApplication + "&additionalPayment=" + additionalPayment + "";
+                                string WEBSERVICE_URL = "https://tsocmms.nic.in/TLNPCB/industryRegMaster/updateFeeBmw?cafUniqueNo=" + cafUniqueNo + "&transactionId=" + transactionId + "&amount=" + amount + "&bankName=" + bankName + "&transactionStatus=" + transactionStatus + "&paymentType=" + paymentType + "&indApplicationNo=" + indApplication + "&additionalPayment=" + additionalPayment + "";
+
+
+                                //string jsonData = "{\"cafUniqueNo\" : \""+cafUniqueNo+"\", \"transactionId\":\""+transactionId+"\" , \"amount\":\""+amount+"\" , \"bankName\":\""+bankName+"\" , \"transactionStatus\":\"S\" , \"paymentType\":\"NB\"}";
+                                //string jsonData = "cafUniqueNo" : \"" + cafUniqueNo + "\", \"transactionId\":\"" + transactionId + "\" , \"amount\":\"" + amount + "\" , \"bankName\":\"" + bankName + "\" , \"transactionStatus\":\"S\" , \"paymentType\":\"NB\"}";
+                                try
+                                {
+                                    var webRequest = System.Net.WebRequest.Create(WEBSERVICE_URL);
+                                    if (webRequest != null)
+                                    {
+                                        webRequest.Method = "GET";
+                                        webRequest.Timeout = 20000;
+                                        webRequest.ContentType = "application/x-www-form-urlencoded";
+
+                                        //using (System.IO.Stream s = webRequest.GetRequestStream())
+                                        //{
+                                        //    using (System.IO.StreamWriter sw = new System.IO.StreamWriter(s))
+                                        //        sw.Write(jsonData);
+                                        //}
+
+                                        using (System.IO.Stream s = webRequest.GetResponse().GetResponseStream())
+                                        {
+                                            using (System.IO.StreamReader sr = new System.IO.StreamReader(s))
+                                            {
+                                                var jsonResponse = sr.ReadToEnd();
+                                                System.Diagnostics.Debug.WriteLine(String.Format("Response: {0}", jsonResponse));
+                                                if (jsonResponse.Contains("Payment Status Updated SuccessFully"))//Fee submitted successfully"))
+                                                {
+                                                    objbmw.UpdateDepartwebserviceflagBMW(UIDNO, deptid, "C", jsonResponse, "Y");
+                                                    //int k = gen.InsertDeptDateTracingBMW("1", dsdept.Tables[0].Rows[0]["HCEID"].ToString(), UIDNO, System.DateTime.Now.ToString("MM/dd/yyyy"), null, null, null, null, "BMW", "166");
+                                                }
+                                                else
+                                                {
+                                                    //string labourouterrormsg = labourout.status + ',' + labourout.uID + ',' + labourout.officerDetails;
+                                                    objbmw.UpdateDepartwebserviceflagBMW(UIDNO, deptid, "C", jsonResponse, "N");
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    System.Diagnostics.Debug.WriteLine(ex.ToString());
+                                }
+
+                            }
+                        }
+                        //if (dsdept != null && dsdept.Tables.Count > 0 && dsdept.Tables[0].Rows.Count > 0)
+                        //{
+                        //    string cafUniqueNo = dsdept.Tables[0].Rows[0]["intQuessionaireid"].ToString();
+                        //    string transactionId = dsdept.Tables[0].Rows[0]["TransactionNO"].ToString();
+                        //    string amount = dsdept.Tables[0].Rows[0]["Approval_Fee"].ToString();
+                        //    string bankName = dsdept.Tables[0].Rows[0]["BankName"].ToString();
+                        //    string transactionStatus = "S";
+                        //    string paymentType = "NB";
+                        //    string indApplication = dsdept.Tables[0].Rows[0]["NICApplicationno"].ToString();
+                        //    string additionalPayment = "F";
+
+                        //    //string WEBSERVICE_URL = "http://164.100.163.19/TSPCB/industryRegMaster/updateFeeBmw?cafUniqueNo=" + cafUniqueNo + "&transactionId=" + transactionId + "&amount=" + amount + "&bankName=" + bankName + "&transactionStatus=" + transactionStatus + "&paymentType=" + paymentType + "&indApplicationNo=" + indApplication + "&additionalPayment=" + additionalPayment + "";
+                        //    string WEBSERVICE_URL = "http://tsocmms.nic.in/TLNPCB/industryRegMaster/updateFeeBmw?cafUniqueNo=" + cafUniqueNo + "&transactionId=" + transactionId + "&amount=" + amount + "&bankName=" + bankName + "&transactionStatus=" + transactionStatus + "&paymentType=" + paymentType + "&indApplicationNo=" + indApplication + "&additionalPayment=" + additionalPayment + "";
+
+
+                        //    //string jsonData = "{\"cafUniqueNo\" : \""+cafUniqueNo+"\", \"transactionId\":\""+transactionId+"\" , \"amount\":\""+amount+"\" , \"bankName\":\""+bankName+"\" , \"transactionStatus\":\"S\" , \"paymentType\":\"NB\"}";
+                        //    //string jsonData = "cafUniqueNo" : \"" + cafUniqueNo + "\", \"transactionId\":\"" + transactionId + "\" , \"amount\":\"" + amount + "\" , \"bankName\":\"" + bankName + "\" , \"transactionStatus\":\"S\" , \"paymentType\":\"NB\"}";
+                        //    try
+                        //    {
+                        //        var webRequest = System.Net.WebRequest.Create(WEBSERVICE_URL);
+                        //        if (webRequest != null)
+                        //        {
+                        //            webRequest.Method = "GET";
+                        //            webRequest.Timeout = 20000;
+                        //            webRequest.ContentType = "application/x-www-form-urlencoded";
+
+                        //            //using (System.IO.Stream s = webRequest.GetRequestStream())
+                        //            //{
+                        //            //    using (System.IO.StreamWriter sw = new System.IO.StreamWriter(s))
+                        //            //        sw.Write(jsonData);
+                        //            //}
+
+                        //            using (System.IO.Stream s = webRequest.GetResponse().GetResponseStream())
+                        //            {
+                        //                using (System.IO.StreamReader sr = new System.IO.StreamReader(s))
+                        //                {
+                        //                    var jsonResponse = sr.ReadToEnd();
+                        //                    System.Diagnostics.Debug.WriteLine(String.Format("Response: {0}", jsonResponse));
+                        //                    if (jsonResponse.Contains("Fee submitted successfully"))
+                        //                    {
+                        //                        UpdateDepartwebserviceflag(UIDNO, deptid, "C", jsonResponse, "Y");
+                        //                        //int k = gen.InsertDeptDateTracing("20", dsdept.Tables[0].Rows[0]["intQuessionaireid"].ToString(), UIDNO, System.DateTime.Now.ToString("MM/dd/yyyy"), null, null, null, null, "CFE", "20");
+                        //                    }
+                        //                    else
+                        //                    {
+                        //                        //string labourouterrormsg = labourout.status + ',' + labourout.uID + ',' + labourout.officerDetails;
+                        //                        UpdateDepartwebserviceflag(UIDNO, deptid, "C", jsonResponse, "N");
+                        //                    }
+                        //                }
+                        //            }
+                        //        }
+                        //    }
+                        //    catch (Exception ex)
+                        //    {
+                        //        System.Diagnostics.Debug.WriteLine(ex.ToString());
+                        //    }
+
+                        //}
+                    }
+
+                }
+
+
+            }
+            // additional Payment Dtls
+            if (ds != null && ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+            {
+                DataTable dtadd = new DataTable();
+                dtadd = ds.Tables[1];
+                for (int i = 0; i < dtadd.Rows.Count; i++)
+                {
+                    string deptid = dtadd.Rows[i]["intApprovalid"].ToString();
+                    if (deptid == "166")
+                    {
+                        //DataSet dsdept = new DataSet();
+
+                        dsdept = objbmw.getAdditionalPaymentDetailsBMW(UIDNO, deptid);
+                        if (dsdept != null && dsdept.Tables.Count > 0 && dsdept.Tables[0].Rows.Count > 0)
+                        {
+                            string cafUniqueNo = dsdept.Tables[0].Rows[0]["intQuessionaireid"].ToString();
+                            string transactionId = dsdept.Tables[0].Rows[0]["TransactionNO"].ToString();
+                            string amount = dsdept.Tables[0].Rows[0]["Approval_Fee"].ToString();
+                            string bankName = dsdept.Tables[0].Rows[0]["BankName"].ToString();
+                            string transactionStatus = "S";
+                            string paymentType = "NB";
+                            string indApplication = dsdept.Tables[0].Rows[0]["NICApplicationno"].ToString();
+                            string additionalPayment = "T";
+
+                            //string WEBSERVICE_URL = "http://164.100.163.19/TLWSC/updateFee?cafUniqueNo=" + cafUniqueNo + "&indApplicationNo=" + indApplication + "&transactionId=" + transactionId + "&amount=" + amount + "&bankName=" + bankName + "&transactionStatus=" + transactionStatus + "&paymentType=" + paymentType + "&additionalPayment=" + additionalPayment + "";
+
+                            string WEBSERVICE_URL1 = "https://tsocmms.nic.in/TLWS/updateCl?cafUniqueNo=" + cafUniqueNo + "&indApplicationNo=" + indApplication + "&remark=" + "AdditionalAmountSubmitted" + "&urlSingle=" + "";
+
+                            try
+                            {
+                                var webRequest = System.Net.WebRequest.Create(WEBSERVICE_URL1);
+                                if (webRequest != null)
+                                {
+                                    webRequest.Method = "GET";
+                                    webRequest.Timeout = 20000;
+                                    webRequest.ContentType = "application/x-www-form-urlencoded";
+
+                                    //using (System.IO.Stream s = webRequest.GetRequestStream())
+                                    //{
+                                    //    using (System.IO.StreamWriter sw = new System.IO.StreamWriter(s))
+                                    //        sw.Write(jsonData);
+                                    //}
+
+                                    using (System.IO.Stream s = webRequest.GetResponse().GetResponseStream())
+                                    {
+                                        using (System.IO.StreamReader sr = new System.IO.StreamReader(s))
+                                        {
+                                            var jsonResponse = sr.ReadToEnd();
+                                            System.Diagnostics.Debug.WriteLine(String.Format("Response: {0}", jsonResponse));
+                                            if (jsonResponse.Contains("submitted successfully"))
+                                            {
+                                                gen.UpdateDepartwebserviceflagCFO(UIDNO, deptid, "AP", jsonResponse, "Y");
+                                            }
+                                            else
+                                            {
+                                                //string labourouterrormsg = labourout.status + ',' + labourout.uID + ',' + labourout.officerDetails;
+                                                gen.UpdateDepartwebserviceflagREN(UIDNO, deptid, "AP", jsonResponse, "N");
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                            }
+
+
+                            string WEBSERVICE_URL = "https://tsocmms.nic.in/TLWS/updateFee?cafUniqueNo=" + cafUniqueNo + "&transactionId=" + transactionId + "&amount=" + amount + "&bankName=" + bankName + "&transactionStatus=" + transactionStatus + "&paymentType=" + paymentType + "&indApplicationNo=" + indApplication + "&additionalPayment=" + additionalPayment + "";
+
+
+                            //string jsonData = "{\"cafUniqueNo\" : \""+cafUniqueNo+"\", \"transactionId\":\""+transactionId+"\" , \"amount\":\""+amount+"\" , \"bankName\":\""+bankName+"\" , \"transactionStatus\":\"S\" , \"paymentType\":\"NB\"}";
+                            //string jsonData = "cafUniqueNo" : \"" + cafUniqueNo + "\", \"transactionId\":\"" + transactionId + "\" , \"amount\":\"" + amount + "\" , \"bankName\":\"" + bankName + "\" , \"transactionStatus\":\"S\" , \"paymentType\":\"NB\"}";
+                            try
+                            {
+                                var webRequest = System.Net.WebRequest.Create(WEBSERVICE_URL);
+                                if (webRequest != null)
+                                {
+                                    webRequest.Method = "GET";
+                                    webRequest.Timeout = 20000;
+                                    webRequest.ContentType = "application/x-www-form-urlencoded";
+
+                                    //using (System.IO.Stream s = webRequest.GetRequestStream())
+                                    //{
+                                    //    using (System.IO.StreamWriter sw = new System.IO.StreamWriter(s))
+                                    //        sw.Write(jsonData);
+                                    //}
+
+                                    using (System.IO.Stream s = webRequest.GetResponse().GetResponseStream())
+                                    {
+                                        using (System.IO.StreamReader sr = new System.IO.StreamReader(s))
+                                        {
+                                            var jsonResponse = sr.ReadToEnd();
+                                            System.Diagnostics.Debug.WriteLine(String.Format("Response: {0}", jsonResponse));
+                                            if (jsonResponse.Contains("Fee submitted successfully"))
+                                            {
+                                                gen.UpdateDepartwebserviceflagCFO(UIDNO, deptid, "AP", jsonResponse, "Y");
+                                            }
+                                            else
+                                            {
+                                                //string labourouterrormsg = labourout.status + ',' + labourout.uID + ',' + labourout.officerDetails;
+                                                gen.UpdateDepartwebserviceflagREN(UIDNO, deptid, "AP", jsonResponse, "Y");
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                            }
+                        }
+                    }
+                }
+            }
+            StringBuilder sbScript = new StringBuilder();
+            string sScript;
+            sbScript.Append("<script>");
+            sbScript.Append(" window.close();");
+            sbScript.Append("</script>");
+
+            sScript = sbScript.ToString();
+
+            ScriptManager.RegisterStartupScript(Page, this.GetType(), "Key", sScript, false);
+
+            // }
+        }
+        catch (Exception ex)
+        {
+            //  lblmsg.Text = ex.Message;
+            //lblmsg.Visible = true;
+        }
+    }
+
+    public DataSet getdepartmentdetailsonuidBMW(string uidno, string deptid)
+    {
+        con.OpenConnection();
+        SqlDataAdapter da;
+        DataSet ds = new DataSet();
+        try
+        {
+            da = new SqlDataAdapter("USP_GETDETAILS_DEPARTMENT_SERVICE_BMW", con.GetConnection);
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            if (uidno.Trim() != "" || uidno.Trim() != null)
+            {
+                da.SelectCommand.Parameters.Add("@UIDNO", SqlDbType.VarChar).Value = uidno.ToString();
+            }
+            else
+            {
+                da.SelectCommand.Parameters.Add("@UIDNO", SqlDbType.VarChar).Value = null;
+            }
+            if (deptid.Trim() != "" || deptid.Trim() != null)
+            {
+                da.SelectCommand.Parameters.Add("@DEPARTMENTID", SqlDbType.VarChar).Value = deptid.ToString();
+            }
+            else
+            {
+                da.SelectCommand.Parameters.Add("@DEPARTMENTID", SqlDbType.VarChar).Value = null;
+            }
+            da.Fill(ds);
+            return ds;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        finally
+        {
+            con.CloseConnection();
+        }
+    }
+
+    public int UpdateDepartwebserviceflag(string uidno, string deptid, string flag, string output, string statusflag)
+    {
+        SqlCommand com = new SqlCommand();
+        com.CommandType = CommandType.StoredProcedure;
+        com.CommandText = "USP_UPD_DEPTCOMMONFEILDS_BMW";
+
+        if (uidno == "" || uidno == null)
+            com.Parameters.Add("@UIDNO", SqlDbType.VarChar).Value = DBNull.Value;
+        else
+            com.Parameters.Add("@UIDNO", SqlDbType.VarChar).Value = uidno.Trim();
+
+        if (deptid == "" || deptid == null)
+            com.Parameters.Add("@DEPTID", SqlDbType.VarChar).Value = DBNull.Value;
+        else
+            com.Parameters.Add("@DEPTID", SqlDbType.VarChar).Value = deptid.Trim();
+
+        if (flag == "" || flag == null)
+            com.Parameters.Add("@FLAG", SqlDbType.VarChar).Value = DBNull.Value;
+        else
+            com.Parameters.Add("@FLAG", SqlDbType.VarChar).Value = flag.Trim();
+
+        if (statusflag == "" || statusflag == null)
+            com.Parameters.Add("@STATUSFLAG", SqlDbType.VarChar).Value = DBNull.Value;
+        else
+            com.Parameters.Add("@STATUSFLAG", SqlDbType.VarChar).Value = statusflag.Trim();
+
+        if (output == "" || output == null)
+            com.Parameters.Add("@OUTPUT", SqlDbType.VarChar).Value = DBNull.Value;
+        else
+            com.Parameters.Add("@OUTPUT", SqlDbType.VarChar).Value = output.Trim();
+
+        con.OpenConnection();
+        com.Connection = con.GetConnection;
+
+        try
+        {
+            //return com.ExecuteNonQuery();
+            return Convert.ToInt32(com.ExecuteScalar());
+        }
+        catch (Exception ex)
+        {
+
+            throw ex;
+            return 0;
+        }
+        finally
+        {
+            com.Dispose();
+            con.CloseConnection();
+        }
+    }
+}

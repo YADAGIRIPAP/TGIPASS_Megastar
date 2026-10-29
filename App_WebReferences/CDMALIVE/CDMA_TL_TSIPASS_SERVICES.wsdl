@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://services.dma.com" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://services.dma.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://services.dma.com">
+      <s:element name="TL_TSIPASS_Registration">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sAVENEWTRADEREQ" type="tns:SAVENEWTRADEREQ" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SAVENEWTRADEREQ">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="VC_SUR_NAME" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VC_NAME" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VC_RELATION" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VC_REL_SUR_NAME" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VC_REL_NAME" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VC_PANNO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="I_AADHARNO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VC_OWNER_DRNO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VC_APP_STREET" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VC_OWNER_CITY" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="I_APP_DISTRICT" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VC_OWNER_PINCODE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VC_EMAIL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="I_MOBILE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VC_TRADE_TITLE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VC_TRADE_NAT" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DT_TRADE_FROM_DATE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DT_TRADE_TO_DATE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VC_TRADE_DOORNO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VC_TRADE_STREET" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VC_TRADE_CITY" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="I_TRADE_DISTRICT" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VC_TRADE_ULB" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="VC_TRADE_PIN" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="I_ASMT_NO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VC_TRADE_CAT" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VC_TRADE_SUB_CAT" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="I_LENGTH" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="I_WIDTH" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="I_PLINTH_AREA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VC_TRADE_EMAIL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="I_TRADE_MOB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VC_IDPROOF" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VC_LEASE_DEED" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="intQuessionaireCFOid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="intCFOEnterpid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Uidno" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TRADE_FEE" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="TL_TSIPASS_RegistrationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TL_TSIPASS_RegistrationResult" type="tns:SAVENEWTRADERES" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SAVENEWTRADERES">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Trade_Amount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Trade_ApplicationNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="message" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="TL_TSIPASS_Payment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="iNSERTPAYMENTSREQ" type="tns:INSERTPAYMENTSREQ" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="INSERTPAYMENTSREQ">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="I_APPLICATIONNO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PAYMODE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="I_ANNUAL_LIC_FEE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PAYMENT_MERCHANTID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="TL_TSIPASS_PaymentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TL_TSIPASS_PaymentResult" type="tns:INSERTPAYMENTSRES" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="INSERTPAYMENTSRES">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TINNO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DOC_URL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="message" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="TL_TSIPASS_RegistrationSoapIn">
+    <wsdl:part name="parameters" element="tns:TL_TSIPASS_Registration" />
+  </wsdl:message>
+  <wsdl:message name="TL_TSIPASS_RegistrationSoapOut">
+    <wsdl:part name="parameters" element="tns:TL_TSIPASS_RegistrationResponse" />
+  </wsdl:message>
+  <wsdl:message name="TL_TSIPASS_PaymentSoapIn">
+    <wsdl:part name="parameters" element="tns:TL_TSIPASS_Payment" />
+  </wsdl:message>
+  <wsdl:message name="TL_TSIPASS_PaymentSoapOut">
+    <wsdl:part name="parameters" element="tns:TL_TSIPASS_PaymentResponse" />
+  </wsdl:message>
+  <wsdl:portType name="CDMA_TL_TSIPASS_SERVICESSoap">
+    <wsdl:operation name="TL_TSIPASS_Registration">
+      <wsdl:input message="tns:TL_TSIPASS_RegistrationSoapIn" />
+      <wsdl:output message="tns:TL_TSIPASS_RegistrationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TL_TSIPASS_Payment">
+      <wsdl:input message="tns:TL_TSIPASS_PaymentSoapIn" />
+      <wsdl:output message="tns:TL_TSIPASS_PaymentSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CDMA_TL_TSIPASS_SERVICESSoap" type="tns:CDMA_TL_TSIPASS_SERVICESSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="TL_TSIPASS_Registration">
+      <soap:operation soapAction="http://services.dma.com/TL_TSIPASS_Registration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TL_TSIPASS_Payment">
+      <soap:operation soapAction="http://services.dma.com/TL_TSIPASS_Payment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CDMA_TL_TSIPASS_SERVICESSoap12" type="tns:CDMA_TL_TSIPASS_SERVICESSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="TL_TSIPASS_Registration">
+      <soap12:operation soapAction="http://services.dma.com/TL_TSIPASS_Registration" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TL_TSIPASS_Payment">
+      <soap12:operation soapAction="http://services.dma.com/TL_TSIPASS_Payment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CDMA_TL_TSIPASS_SERVICES">
+    <wsdl:port name="CDMA_TL_TSIPASS_SERVICESSoap" binding="tns:CDMA_TL_TSIPASS_SERVICESSoap">
+      <soap:address location="https://cdma.cgg.gov.in/cdma_hhd/CDMA_TL_TSIPASS_SERVICES.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CDMA_TL_TSIPASS_SERVICESSoap12" binding="tns:CDMA_TL_TSIPASS_SERVICESSoap12">
+      <soap12:address location="https://cdma.cgg.gov.in/cdma_hhd/CDMA_TL_TSIPASS_SERVICES.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

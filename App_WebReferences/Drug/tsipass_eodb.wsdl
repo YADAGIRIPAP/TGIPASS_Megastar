@@ -1,0 +1,1401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="MFGProductCategory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WS_UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="WS_Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MFGProductCategoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MFGProductCategoryResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MSTMFGMarket">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WS_UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="WS_Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MSTMFGMarketResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MSTMFGMarketResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MSTApprovalSought">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WS_UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="WS_Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MSTApprovalSoughtResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MSTApprovalSoughtResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Licensetype">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WS_UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="WS_Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LicensetypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LicensetypeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LicenseSubtype">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WS_UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="WS_Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LicenseSubtypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LicenseSubtypeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LicenseMode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WS_UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="WS_Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LicenseModeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LicenseModeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LicenseDocuments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WS_UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="WS_Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LicenseDocumentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LicenseDocumentsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenderMST">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WS_UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="WS_Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenderMSTResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GenderMSTResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TypeofFirm">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WS_UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="WS_Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TypeofFirmResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TypeofFirmResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FirmDetailsSubmit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="obj" type="tns:TSIPass_CLsFirmREGDtls" />
+            <s:element minOccurs="0" maxOccurs="1" name="WS_UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="WS_Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TSIPass_CLsFirmREGDtls">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FrimName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TypeOfFrim" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TinNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PAN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Statecode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Dist_code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MandCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="vill_code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MobileNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Pincode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PDist_code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PMandCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Pvill_code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PMobileNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PPincode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LicenseNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ApplicantId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LicenseType_Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LicenseSubType_Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LicenseMode_Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirmId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TSIpassID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ApplicantName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ApplicantAadharid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TsIpassuserid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="QUESSIONAIREID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ENTREPRENEURID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="FirmDetailsSubmitResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FirmDetailsSubmitResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SalesStaffDetailsSubmit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="obj" type="tns:TSIPass_CLsRPCPDtls" />
+            <s:element minOccurs="0" maxOccurs="1" name="WS_UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="WS_Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TSIPass_CLsRPCPDtls">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Ts_Staffid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StaffName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SQulification" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SExperience" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RPNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RPCertificateIssuedDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RPCertificateValidUp" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RPDateofJoining" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TypeOfStaff" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirmId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirmSno" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Applicantid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TSIpassID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RP_CP_Photo" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="Filetype" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LicenseType_Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LicenseSubType_Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LicenseMode_Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SalesStaffDetailsSubmitResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SalesStaffDetailsSubmitResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MFGStaffDetailsSubmit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="obj" type="tns:TSIPass_MFGStaff" />
+            <s:element minOccurs="0" maxOccurs="1" name="WS_UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="WS_Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TSIPass_MFGStaff">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Ts_Staffid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StaffName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SQulification" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SExperience" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Aadharno" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ApprovalSought" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirmId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirmSno" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Applicantid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TSIpassID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Photo" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="Filetype" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LicenseType_Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LicenseSubType_Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LicenseMode_Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="MFGStaffDetailsSubmitResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MFGStaffDetailsSubmitResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConstitutionDtlsSubmit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="obj" type="tns:TSIPass_CLsConstitutionDtls" />
+            <s:element minOccurs="0" maxOccurs="1" name="WS_UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="WS_Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TSIPass_CLsConstitutionDtls">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Ts_Consid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CDesig" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Gender" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CPDateofJoining" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Aadharno" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MobileNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirmId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirmSno" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Applicantid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TSIpassID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Photo" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="Filetype" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LicenseType_Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LicenseSubType_Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LicenseMode_Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ConstitutionDtlsSubmitResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConstitutionDtlsSubmitResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PaymentDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="obj" type="tns:TSIPass_CLsPaymentDtls" />
+            <s:element minOccurs="0" maxOccurs="1" name="WS_UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="WS_Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TSIPass_CLsPaymentDtls">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Ts_Payid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirmId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirmSno" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Applicantid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TSIpassID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LicenseType_Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LicenseSubType_Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LicenseMode_Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeptCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DDOCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HOAccount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RemitterName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Amount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentRemarks" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TreasuryDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BankStatus" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ChallanNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeptTransid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BankTransid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TreasuryBankCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BankDate" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PaymentDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PaymentDetailsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="obj" type="tns:TSIPass_CLsUploadDocsDtls" />
+            <s:element minOccurs="0" maxOccurs="1" name="WS_UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="WS_Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TSIPass_CLsUploadDocsDtls">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Ts_DOCid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirmId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirmSno" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Applicantid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TSIpassID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Photo" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="Filetype" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LicenseType_Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LicenseSubType_Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LicenseMode_Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UploadDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UploadDetailsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProductDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="obj" type="tns:TSIPass_CLsProductDtls" />
+            <s:element minOccurs="0" maxOccurs="1" name="WS_UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="WS_Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TSIPass_CLsProductDtls">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Ts_Podid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirmId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirmSno" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Applicantid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TSIpassID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LicenseType_Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LicenseSubType_Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LicenseMode_Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Genreic_name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Brand_name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Composition" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Packsize" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Market" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Specific_Quantity" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PCategory" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ProductDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProductDetailsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ApplicationSubmit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="obj" type="tns:TSIPass_CLsApplsubmt" />
+            <s:element minOccurs="0" maxOccurs="1" name="WS_UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="WS_Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TSIPass_CLsApplsubmt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Ts_Podid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirmId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirmSno" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Applicantid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TSIpassID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LicenseType_Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LicenseSubType_Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LicenseMode_Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ApplicationSubmitResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ApplicationSubmitResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFirmLicenseDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="licenseid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="WS_UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="WS_Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFirmLicenseDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFirmLicenseDetailsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="MFGProductCategorySoapIn">
+    <wsdl:part name="parameters" element="tns:MFGProductCategory" />
+  </wsdl:message>
+  <wsdl:message name="MFGProductCategorySoapOut">
+    <wsdl:part name="parameters" element="tns:MFGProductCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="MSTMFGMarketSoapIn">
+    <wsdl:part name="parameters" element="tns:MSTMFGMarket" />
+  </wsdl:message>
+  <wsdl:message name="MSTMFGMarketSoapOut">
+    <wsdl:part name="parameters" element="tns:MSTMFGMarketResponse" />
+  </wsdl:message>
+  <wsdl:message name="MSTApprovalSoughtSoapIn">
+    <wsdl:part name="parameters" element="tns:MSTApprovalSought" />
+  </wsdl:message>
+  <wsdl:message name="MSTApprovalSoughtSoapOut">
+    <wsdl:part name="parameters" element="tns:MSTApprovalSoughtResponse" />
+  </wsdl:message>
+  <wsdl:message name="LicensetypeSoapIn">
+    <wsdl:part name="parameters" element="tns:Licensetype" />
+  </wsdl:message>
+  <wsdl:message name="LicensetypeSoapOut">
+    <wsdl:part name="parameters" element="tns:LicensetypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="LicenseSubtypeSoapIn">
+    <wsdl:part name="parameters" element="tns:LicenseSubtype" />
+  </wsdl:message>
+  <wsdl:message name="LicenseSubtypeSoapOut">
+    <wsdl:part name="parameters" element="tns:LicenseSubtypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="LicenseModeSoapIn">
+    <wsdl:part name="parameters" element="tns:LicenseMode" />
+  </wsdl:message>
+  <wsdl:message name="LicenseModeSoapOut">
+    <wsdl:part name="parameters" element="tns:LicenseModeResponse" />
+  </wsdl:message>
+  <wsdl:message name="LicenseDocumentsSoapIn">
+    <wsdl:part name="parameters" element="tns:LicenseDocuments" />
+  </wsdl:message>
+  <wsdl:message name="LicenseDocumentsSoapOut">
+    <wsdl:part name="parameters" element="tns:LicenseDocumentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GenderMSTSoapIn">
+    <wsdl:part name="parameters" element="tns:GenderMST" />
+  </wsdl:message>
+  <wsdl:message name="GenderMSTSoapOut">
+    <wsdl:part name="parameters" element="tns:GenderMSTResponse" />
+  </wsdl:message>
+  <wsdl:message name="TypeofFirmSoapIn">
+    <wsdl:part name="parameters" element="tns:TypeofFirm" />
+  </wsdl:message>
+  <wsdl:message name="TypeofFirmSoapOut">
+    <wsdl:part name="parameters" element="tns:TypeofFirmResponse" />
+  </wsdl:message>
+  <wsdl:message name="FirmDetailsSubmitSoapIn">
+    <wsdl:part name="parameters" element="tns:FirmDetailsSubmit" />
+  </wsdl:message>
+  <wsdl:message name="FirmDetailsSubmitSoapOut">
+    <wsdl:part name="parameters" element="tns:FirmDetailsSubmitResponse" />
+  </wsdl:message>
+  <wsdl:message name="SalesStaffDetailsSubmitSoapIn">
+    <wsdl:part name="parameters" element="tns:SalesStaffDetailsSubmit" />
+  </wsdl:message>
+  <wsdl:message name="SalesStaffDetailsSubmitSoapOut">
+    <wsdl:part name="parameters" element="tns:SalesStaffDetailsSubmitResponse" />
+  </wsdl:message>
+  <wsdl:message name="MFGStaffDetailsSubmitSoapIn">
+    <wsdl:part name="parameters" element="tns:MFGStaffDetailsSubmit" />
+  </wsdl:message>
+  <wsdl:message name="MFGStaffDetailsSubmitSoapOut">
+    <wsdl:part name="parameters" element="tns:MFGStaffDetailsSubmitResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConstitutionDtlsSubmitSoapIn">
+    <wsdl:part name="parameters" element="tns:ConstitutionDtlsSubmit" />
+  </wsdl:message>
+  <wsdl:message name="ConstitutionDtlsSubmitSoapOut">
+    <wsdl:part name="parameters" element="tns:ConstitutionDtlsSubmitResponse" />
+  </wsdl:message>
+  <wsdl:message name="PaymentDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:PaymentDetails" />
+  </wsdl:message>
+  <wsdl:message name="PaymentDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:PaymentDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UploadDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:UploadDetails" />
+  </wsdl:message>
+  <wsdl:message name="UploadDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:UploadDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ProductDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:ProductDetails" />
+  </wsdl:message>
+  <wsdl:message name="ProductDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:ProductDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ApplicationSubmitSoapIn">
+    <wsdl:part name="parameters" element="tns:ApplicationSubmit" />
+  </wsdl:message>
+  <wsdl:message name="ApplicationSubmitSoapOut">
+    <wsdl:part name="parameters" element="tns:ApplicationSubmitResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFirmLicenseDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFirmLicenseDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetFirmLicenseDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFirmLicenseDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="MFGProductCategoryHttpGetIn">
+    <wsdl:part name="WS_UserName" type="s:string" />
+    <wsdl:part name="WS_Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MFGProductCategoryHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="MSTMFGMarketHttpGetIn">
+    <wsdl:part name="WS_UserName" type="s:string" />
+    <wsdl:part name="WS_Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MSTMFGMarketHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="MSTApprovalSoughtHttpGetIn">
+    <wsdl:part name="WS_UserName" type="s:string" />
+    <wsdl:part name="WS_Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MSTApprovalSoughtHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="LicensetypeHttpGetIn">
+    <wsdl:part name="WS_UserName" type="s:string" />
+    <wsdl:part name="WS_Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LicensetypeHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="LicenseSubtypeHttpGetIn">
+    <wsdl:part name="WS_UserName" type="s:string" />
+    <wsdl:part name="WS_Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LicenseSubtypeHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="LicenseModeHttpGetIn">
+    <wsdl:part name="WS_UserName" type="s:string" />
+    <wsdl:part name="WS_Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LicenseModeHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="LicenseDocumentsHttpGetIn">
+    <wsdl:part name="WS_UserName" type="s:string" />
+    <wsdl:part name="WS_Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LicenseDocumentsHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GenderMSTHttpGetIn">
+    <wsdl:part name="WS_UserName" type="s:string" />
+    <wsdl:part name="WS_Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GenderMSTHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="TypeofFirmHttpGetIn">
+    <wsdl:part name="WS_UserName" type="s:string" />
+    <wsdl:part name="WS_Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TypeofFirmHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetFirmLicenseDetailsHttpGetIn">
+    <wsdl:part name="licenseid" type="s:string" />
+    <wsdl:part name="WS_UserName" type="s:string" />
+    <wsdl:part name="WS_Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetFirmLicenseDetailsHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="MFGProductCategoryHttpPostIn">
+    <wsdl:part name="WS_UserName" type="s:string" />
+    <wsdl:part name="WS_Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MFGProductCategoryHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="MSTMFGMarketHttpPostIn">
+    <wsdl:part name="WS_UserName" type="s:string" />
+    <wsdl:part name="WS_Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MSTMFGMarketHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="MSTApprovalSoughtHttpPostIn">
+    <wsdl:part name="WS_UserName" type="s:string" />
+    <wsdl:part name="WS_Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MSTApprovalSoughtHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="LicensetypeHttpPostIn">
+    <wsdl:part name="WS_UserName" type="s:string" />
+    <wsdl:part name="WS_Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LicensetypeHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="LicenseSubtypeHttpPostIn">
+    <wsdl:part name="WS_UserName" type="s:string" />
+    <wsdl:part name="WS_Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LicenseSubtypeHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="LicenseModeHttpPostIn">
+    <wsdl:part name="WS_UserName" type="s:string" />
+    <wsdl:part name="WS_Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LicenseModeHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="LicenseDocumentsHttpPostIn">
+    <wsdl:part name="WS_UserName" type="s:string" />
+    <wsdl:part name="WS_Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LicenseDocumentsHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GenderMSTHttpPostIn">
+    <wsdl:part name="WS_UserName" type="s:string" />
+    <wsdl:part name="WS_Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GenderMSTHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="TypeofFirmHttpPostIn">
+    <wsdl:part name="WS_UserName" type="s:string" />
+    <wsdl:part name="WS_Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TypeofFirmHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetFirmLicenseDetailsHttpPostIn">
+    <wsdl:part name="licenseid" type="s:string" />
+    <wsdl:part name="WS_UserName" type="s:string" />
+    <wsdl:part name="WS_Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetFirmLicenseDetailsHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="TSIPass_EodbSoap">
+    <wsdl:operation name="MFGProductCategory">
+      <wsdl:input message="tns:MFGProductCategorySoapIn" />
+      <wsdl:output message="tns:MFGProductCategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MSTMFGMarket">
+      <wsdl:input message="tns:MSTMFGMarketSoapIn" />
+      <wsdl:output message="tns:MSTMFGMarketSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MSTApprovalSought">
+      <wsdl:input message="tns:MSTApprovalSoughtSoapIn" />
+      <wsdl:output message="tns:MSTApprovalSoughtSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Licensetype">
+      <wsdl:input message="tns:LicensetypeSoapIn" />
+      <wsdl:output message="tns:LicensetypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LicenseSubtype">
+      <wsdl:input message="tns:LicenseSubtypeSoapIn" />
+      <wsdl:output message="tns:LicenseSubtypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LicenseMode">
+      <wsdl:input message="tns:LicenseModeSoapIn" />
+      <wsdl:output message="tns:LicenseModeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LicenseDocuments">
+      <wsdl:input message="tns:LicenseDocumentsSoapIn" />
+      <wsdl:output message="tns:LicenseDocumentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GenderMST">
+      <wsdl:input message="tns:GenderMSTSoapIn" />
+      <wsdl:output message="tns:GenderMSTSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TypeofFirm">
+      <wsdl:input message="tns:TypeofFirmSoapIn" />
+      <wsdl:output message="tns:TypeofFirmSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FirmDetailsSubmit">
+      <wsdl:input message="tns:FirmDetailsSubmitSoapIn" />
+      <wsdl:output message="tns:FirmDetailsSubmitSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SalesStaffDetailsSubmit">
+      <wsdl:input message="tns:SalesStaffDetailsSubmitSoapIn" />
+      <wsdl:output message="tns:SalesStaffDetailsSubmitSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MFGStaffDetailsSubmit">
+      <wsdl:input message="tns:MFGStaffDetailsSubmitSoapIn" />
+      <wsdl:output message="tns:MFGStaffDetailsSubmitSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConstitutionDtlsSubmit">
+      <wsdl:input message="tns:ConstitutionDtlsSubmitSoapIn" />
+      <wsdl:output message="tns:ConstitutionDtlsSubmitSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PaymentDetails">
+      <wsdl:input message="tns:PaymentDetailsSoapIn" />
+      <wsdl:output message="tns:PaymentDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadDetails">
+      <wsdl:input message="tns:UploadDetailsSoapIn" />
+      <wsdl:output message="tns:UploadDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProductDetails">
+      <wsdl:input message="tns:ProductDetailsSoapIn" />
+      <wsdl:output message="tns:ProductDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ApplicationSubmit">
+      <wsdl:input message="tns:ApplicationSubmitSoapIn" />
+      <wsdl:output message="tns:ApplicationSubmitSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFirmLicenseDetails">
+      <wsdl:input message="tns:GetFirmLicenseDetailsSoapIn" />
+      <wsdl:output message="tns:GetFirmLicenseDetailsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="TSIPass_EodbHttpGet">
+    <wsdl:operation name="MFGProductCategory">
+      <wsdl:input message="tns:MFGProductCategoryHttpGetIn" />
+      <wsdl:output message="tns:MFGProductCategoryHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MSTMFGMarket">
+      <wsdl:input message="tns:MSTMFGMarketHttpGetIn" />
+      <wsdl:output message="tns:MSTMFGMarketHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MSTApprovalSought">
+      <wsdl:input message="tns:MSTApprovalSoughtHttpGetIn" />
+      <wsdl:output message="tns:MSTApprovalSoughtHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Licensetype">
+      <wsdl:input message="tns:LicensetypeHttpGetIn" />
+      <wsdl:output message="tns:LicensetypeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LicenseSubtype">
+      <wsdl:input message="tns:LicenseSubtypeHttpGetIn" />
+      <wsdl:output message="tns:LicenseSubtypeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LicenseMode">
+      <wsdl:input message="tns:LicenseModeHttpGetIn" />
+      <wsdl:output message="tns:LicenseModeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LicenseDocuments">
+      <wsdl:input message="tns:LicenseDocumentsHttpGetIn" />
+      <wsdl:output message="tns:LicenseDocumentsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GenderMST">
+      <wsdl:input message="tns:GenderMSTHttpGetIn" />
+      <wsdl:output message="tns:GenderMSTHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TypeofFirm">
+      <wsdl:input message="tns:TypeofFirmHttpGetIn" />
+      <wsdl:output message="tns:TypeofFirmHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFirmLicenseDetails">
+      <wsdl:input message="tns:GetFirmLicenseDetailsHttpGetIn" />
+      <wsdl:output message="tns:GetFirmLicenseDetailsHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="TSIPass_EodbHttpPost">
+    <wsdl:operation name="MFGProductCategory">
+      <wsdl:input message="tns:MFGProductCategoryHttpPostIn" />
+      <wsdl:output message="tns:MFGProductCategoryHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MSTMFGMarket">
+      <wsdl:input message="tns:MSTMFGMarketHttpPostIn" />
+      <wsdl:output message="tns:MSTMFGMarketHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MSTApprovalSought">
+      <wsdl:input message="tns:MSTApprovalSoughtHttpPostIn" />
+      <wsdl:output message="tns:MSTApprovalSoughtHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Licensetype">
+      <wsdl:input message="tns:LicensetypeHttpPostIn" />
+      <wsdl:output message="tns:LicensetypeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LicenseSubtype">
+      <wsdl:input message="tns:LicenseSubtypeHttpPostIn" />
+      <wsdl:output message="tns:LicenseSubtypeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LicenseMode">
+      <wsdl:input message="tns:LicenseModeHttpPostIn" />
+      <wsdl:output message="tns:LicenseModeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LicenseDocuments">
+      <wsdl:input message="tns:LicenseDocumentsHttpPostIn" />
+      <wsdl:output message="tns:LicenseDocumentsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GenderMST">
+      <wsdl:input message="tns:GenderMSTHttpPostIn" />
+      <wsdl:output message="tns:GenderMSTHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TypeofFirm">
+      <wsdl:input message="tns:TypeofFirmHttpPostIn" />
+      <wsdl:output message="tns:TypeofFirmHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFirmLicenseDetails">
+      <wsdl:input message="tns:GetFirmLicenseDetailsHttpPostIn" />
+      <wsdl:output message="tns:GetFirmLicenseDetailsHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TSIPass_EodbSoap" type="tns:TSIPass_EodbSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="MFGProductCategory">
+      <soap:operation soapAction="http://tempuri.org/MFGProductCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MSTMFGMarket">
+      <soap:operation soapAction="http://tempuri.org/MSTMFGMarket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MSTApprovalSought">
+      <soap:operation soapAction="http://tempuri.org/MSTApprovalSought" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Licensetype">
+      <soap:operation soapAction="http://tempuri.org/Licensetype" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LicenseSubtype">
+      <soap:operation soapAction="http://tempuri.org/LicenseSubtype" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LicenseMode">
+      <soap:operation soapAction="http://tempuri.org/LicenseMode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LicenseDocuments">
+      <soap:operation soapAction="http://tempuri.org/LicenseDocuments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenderMST">
+      <soap:operation soapAction="http://tempuri.org/GenderMST" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TypeofFirm">
+      <soap:operation soapAction="http://tempuri.org/TypeofFirm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FirmDetailsSubmit">
+      <soap:operation soapAction="http://tempuri.org/FirmDetailsSubmit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SalesStaffDetailsSubmit">
+      <soap:operation soapAction="http://tempuri.org/SalesStaffDetailsSubmit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MFGStaffDetailsSubmit">
+      <soap:operation soapAction="http://tempuri.org/MFGStaffDetailsSubmit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConstitutionDtlsSubmit">
+      <soap:operation soapAction="http://tempuri.org/ConstitutionDtlsSubmit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PaymentDetails">
+      <soap:operation soapAction="http://tempuri.org/PaymentDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadDetails">
+      <soap:operation soapAction="http://tempuri.org/UploadDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProductDetails">
+      <soap:operation soapAction="http://tempuri.org/ProductDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApplicationSubmit">
+      <soap:operation soapAction="http://tempuri.org/ApplicationSubmit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFirmLicenseDetails">
+      <soap:operation soapAction="http://tempuri.org/GetFirmLicenseDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TSIPass_EodbSoap12" type="tns:TSIPass_EodbSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="MFGProductCategory">
+      <soap12:operation soapAction="http://tempuri.org/MFGProductCategory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MSTMFGMarket">
+      <soap12:operation soapAction="http://tempuri.org/MSTMFGMarket" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MSTApprovalSought">
+      <soap12:operation soapAction="http://tempuri.org/MSTApprovalSought" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Licensetype">
+      <soap12:operation soapAction="http://tempuri.org/Licensetype" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LicenseSubtype">
+      <soap12:operation soapAction="http://tempuri.org/LicenseSubtype" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LicenseMode">
+      <soap12:operation soapAction="http://tempuri.org/LicenseMode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LicenseDocuments">
+      <soap12:operation soapAction="http://tempuri.org/LicenseDocuments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenderMST">
+      <soap12:operation soapAction="http://tempuri.org/GenderMST" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TypeofFirm">
+      <soap12:operation soapAction="http://tempuri.org/TypeofFirm" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FirmDetailsSubmit">
+      <soap12:operation soapAction="http://tempuri.org/FirmDetailsSubmit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SalesStaffDetailsSubmit">
+      <soap12:operation soapAction="http://tempuri.org/SalesStaffDetailsSubmit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MFGStaffDetailsSubmit">
+      <soap12:operation soapAction="http://tempuri.org/MFGStaffDetailsSubmit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConstitutionDtlsSubmit">
+      <soap12:operation soapAction="http://tempuri.org/ConstitutionDtlsSubmit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PaymentDetails">
+      <soap12:operation soapAction="http://tempuri.org/PaymentDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadDetails">
+      <soap12:operation soapAction="http://tempuri.org/UploadDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProductDetails">
+      <soap12:operation soapAction="http://tempuri.org/ProductDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApplicationSubmit">
+      <soap12:operation soapAction="http://tempuri.org/ApplicationSubmit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFirmLicenseDetails">
+      <soap12:operation soapAction="http://tempuri.org/GetFirmLicenseDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TSIPass_EodbHttpGet" type="tns:TSIPass_EodbHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="MFGProductCategory">
+      <http:operation location="/MFGProductCategory" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MSTMFGMarket">
+      <http:operation location="/MSTMFGMarket" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MSTApprovalSought">
+      <http:operation location="/MSTApprovalSought" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Licensetype">
+      <http:operation location="/Licensetype" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LicenseSubtype">
+      <http:operation location="/LicenseSubtype" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LicenseMode">
+      <http:operation location="/LicenseMode" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LicenseDocuments">
+      <http:operation location="/LicenseDocuments" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenderMST">
+      <http:operation location="/GenderMST" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TypeofFirm">
+      <http:operation location="/TypeofFirm" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFirmLicenseDetails">
+      <http:operation location="/GetFirmLicenseDetails" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TSIPass_EodbHttpPost" type="tns:TSIPass_EodbHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="MFGProductCategory">
+      <http:operation location="/MFGProductCategory" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MSTMFGMarket">
+      <http:operation location="/MSTMFGMarket" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MSTApprovalSought">
+      <http:operation location="/MSTApprovalSought" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Licensetype">
+      <http:operation location="/Licensetype" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LicenseSubtype">
+      <http:operation location="/LicenseSubtype" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LicenseMode">
+      <http:operation location="/LicenseMode" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LicenseDocuments">
+      <http:operation location="/LicenseDocuments" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenderMST">
+      <http:operation location="/GenderMST" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TypeofFirm">
+      <http:operation location="/TypeofFirm" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFirmLicenseDetails">
+      <http:operation location="/GetFirmLicenseDetails" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TSIPass_Eodb">
+    <wsdl:port name="TSIPass_EodbSoap" binding="tns:TSIPass_EodbSoap">
+      <soap:address location="http://odls.telangana.gov.in/tsipass_eodb.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TSIPass_EodbSoap12" binding="tns:TSIPass_EodbSoap12">
+      <soap12:address location="http://odls.telangana.gov.in/tsipass_eodb.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TSIPass_EodbHttpGet" binding="tns:TSIPass_EodbHttpGet">
+      <http:address location="http://odls.telangana.gov.in/tsipass_eodb.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TSIPass_EodbHttpPost" binding="tns:TSIPass_EodbHttpPost">
+      <http:address location="http://odls.telangana.gov.in/tsipass_eodb.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

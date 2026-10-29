@@ -1,0 +1,707 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="InsertApplicantFireDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="XMLInsertApplicantFireDetails" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertApplicantFireDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertApplicantFireDetailsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StoreMeansOfEscape">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="XMLMeansOfEscape" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StoreMeansOfEscapeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StoreMeansOfEscapeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StoreFloorwiseApplicantDtls">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="XMLFloorwiseApplicantDtls" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StoreFloorwiseApplicantDtlsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StoreFloorwiseApplicantDtlsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StoreFireFightingInstallations">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="XMLFireFightingInstallations" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StoreFireFightingInstallationsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StoreFireFightingInstallationsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StoreUploadDocuments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="XMLUploadDoc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StoreUploadDocumentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StoreUploadDocumentsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PaymentDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Challanno" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="bankdate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BankName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Amount" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PaymentDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PaymentDetailsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StoreQueryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FilePath" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Remark" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StoreQueryResponseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StoreQueryResponseResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Appealed">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Uid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="entrepreneurId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="remarks" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="docurl" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AppealedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppealedResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="InsertApplicantFireDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertApplicantFireDetails" />
+  </wsdl:message>
+  <wsdl:message name="InsertApplicantFireDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertApplicantFireDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="StoreMeansOfEscapeSoapIn">
+    <wsdl:part name="parameters" element="tns:StoreMeansOfEscape" />
+  </wsdl:message>
+  <wsdl:message name="StoreMeansOfEscapeSoapOut">
+    <wsdl:part name="parameters" element="tns:StoreMeansOfEscapeResponse" />
+  </wsdl:message>
+  <wsdl:message name="StoreFloorwiseApplicantDtlsSoapIn">
+    <wsdl:part name="parameters" element="tns:StoreFloorwiseApplicantDtls" />
+  </wsdl:message>
+  <wsdl:message name="StoreFloorwiseApplicantDtlsSoapOut">
+    <wsdl:part name="parameters" element="tns:StoreFloorwiseApplicantDtlsResponse" />
+  </wsdl:message>
+  <wsdl:message name="StoreFireFightingInstallationsSoapIn">
+    <wsdl:part name="parameters" element="tns:StoreFireFightingInstallations" />
+  </wsdl:message>
+  <wsdl:message name="StoreFireFightingInstallationsSoapOut">
+    <wsdl:part name="parameters" element="tns:StoreFireFightingInstallationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="StoreUploadDocumentsSoapIn">
+    <wsdl:part name="parameters" element="tns:StoreUploadDocuments" />
+  </wsdl:message>
+  <wsdl:message name="StoreUploadDocumentsSoapOut">
+    <wsdl:part name="parameters" element="tns:StoreUploadDocumentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="PaymentDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:PaymentDetails" />
+  </wsdl:message>
+  <wsdl:message name="PaymentDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:PaymentDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="StoreQueryResponseSoapIn">
+    <wsdl:part name="parameters" element="tns:StoreQueryResponse" />
+  </wsdl:message>
+  <wsdl:message name="StoreQueryResponseSoapOut">
+    <wsdl:part name="parameters" element="tns:StoreQueryResponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="AppealedSoapIn">
+    <wsdl:part name="parameters" element="tns:Appealed" />
+  </wsdl:message>
+  <wsdl:message name="AppealedSoapOut">
+    <wsdl:part name="parameters" element="tns:AppealedResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertApplicantFireDetailsHttpGetIn">
+    <wsdl:part name="XMLInsertApplicantFireDetails" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertApplicantFireDetailsHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreMeansOfEscapeHttpGetIn">
+    <wsdl:part name="XMLMeansOfEscape" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreMeansOfEscapeHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreFloorwiseApplicantDtlsHttpGetIn">
+    <wsdl:part name="XMLFloorwiseApplicantDtls" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreFloorwiseApplicantDtlsHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreFireFightingInstallationsHttpGetIn">
+    <wsdl:part name="XMLFireFightingInstallations" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreFireFightingInstallationsHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreUploadDocumentsHttpGetIn">
+    <wsdl:part name="XMLUploadDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreUploadDocumentsHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="PaymentDetailsHttpGetIn">
+    <wsdl:part name="UID" type="s:string" />
+    <wsdl:part name="Challanno" type="s:string" />
+    <wsdl:part name="bankdate" type="s:string" />
+    <wsdl:part name="BankName" type="s:string" />
+    <wsdl:part name="Amount" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PaymentDetailsHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreQueryResponseHttpGetIn">
+    <wsdl:part name="UID" type="s:string" />
+    <wsdl:part name="FilePath" type="s:string" />
+    <wsdl:part name="Remark" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreQueryResponseHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="AppealedHttpGetIn">
+    <wsdl:part name="Uid" type="s:string" />
+    <wsdl:part name="entrepreneurId" type="s:string" />
+    <wsdl:part name="remarks" type="s:string" />
+    <wsdl:part name="docurl" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AppealedHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertApplicantFireDetailsHttpPostIn">
+    <wsdl:part name="XMLInsertApplicantFireDetails" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertApplicantFireDetailsHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreMeansOfEscapeHttpPostIn">
+    <wsdl:part name="XMLMeansOfEscape" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreMeansOfEscapeHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreFloorwiseApplicantDtlsHttpPostIn">
+    <wsdl:part name="XMLFloorwiseApplicantDtls" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreFloorwiseApplicantDtlsHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreFireFightingInstallationsHttpPostIn">
+    <wsdl:part name="XMLFireFightingInstallations" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreFireFightingInstallationsHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreUploadDocumentsHttpPostIn">
+    <wsdl:part name="XMLUploadDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreUploadDocumentsHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="PaymentDetailsHttpPostIn">
+    <wsdl:part name="UID" type="s:string" />
+    <wsdl:part name="Challanno" type="s:string" />
+    <wsdl:part name="bankdate" type="s:string" />
+    <wsdl:part name="BankName" type="s:string" />
+    <wsdl:part name="Amount" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PaymentDetailsHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreQueryResponseHttpPostIn">
+    <wsdl:part name="UID" type="s:string" />
+    <wsdl:part name="FilePath" type="s:string" />
+    <wsdl:part name="Remark" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreQueryResponseHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="AppealedHttpPostIn">
+    <wsdl:part name="Uid" type="s:string" />
+    <wsdl:part name="entrepreneurId" type="s:string" />
+    <wsdl:part name="remarks" type="s:string" />
+    <wsdl:part name="docurl" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AppealedHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="Service1Soap">
+    <wsdl:operation name="InsertApplicantFireDetails">
+      <wsdl:input message="tns:InsertApplicantFireDetailsSoapIn" />
+      <wsdl:output message="tns:InsertApplicantFireDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreMeansOfEscape">
+      <wsdl:input message="tns:StoreMeansOfEscapeSoapIn" />
+      <wsdl:output message="tns:StoreMeansOfEscapeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreFloorwiseApplicantDtls">
+      <wsdl:input message="tns:StoreFloorwiseApplicantDtlsSoapIn" />
+      <wsdl:output message="tns:StoreFloorwiseApplicantDtlsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreFireFightingInstallations">
+      <wsdl:input message="tns:StoreFireFightingInstallationsSoapIn" />
+      <wsdl:output message="tns:StoreFireFightingInstallationsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreUploadDocuments">
+      <wsdl:input message="tns:StoreUploadDocumentsSoapIn" />
+      <wsdl:output message="tns:StoreUploadDocumentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PaymentDetails">
+      <wsdl:input message="tns:PaymentDetailsSoapIn" />
+      <wsdl:output message="tns:PaymentDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreQueryResponse">
+      <wsdl:input message="tns:StoreQueryResponseSoapIn" />
+      <wsdl:output message="tns:StoreQueryResponseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Appealed">
+      <wsdl:input message="tns:AppealedSoapIn" />
+      <wsdl:output message="tns:AppealedSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="Service1HttpGet">
+    <wsdl:operation name="InsertApplicantFireDetails">
+      <wsdl:input message="tns:InsertApplicantFireDetailsHttpGetIn" />
+      <wsdl:output message="tns:InsertApplicantFireDetailsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreMeansOfEscape">
+      <wsdl:input message="tns:StoreMeansOfEscapeHttpGetIn" />
+      <wsdl:output message="tns:StoreMeansOfEscapeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreFloorwiseApplicantDtls">
+      <wsdl:input message="tns:StoreFloorwiseApplicantDtlsHttpGetIn" />
+      <wsdl:output message="tns:StoreFloorwiseApplicantDtlsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreFireFightingInstallations">
+      <wsdl:input message="tns:StoreFireFightingInstallationsHttpGetIn" />
+      <wsdl:output message="tns:StoreFireFightingInstallationsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreUploadDocuments">
+      <wsdl:input message="tns:StoreUploadDocumentsHttpGetIn" />
+      <wsdl:output message="tns:StoreUploadDocumentsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PaymentDetails">
+      <wsdl:input message="tns:PaymentDetailsHttpGetIn" />
+      <wsdl:output message="tns:PaymentDetailsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreQueryResponse">
+      <wsdl:input message="tns:StoreQueryResponseHttpGetIn" />
+      <wsdl:output message="tns:StoreQueryResponseHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Appealed">
+      <wsdl:input message="tns:AppealedHttpGetIn" />
+      <wsdl:output message="tns:AppealedHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="Service1HttpPost">
+    <wsdl:operation name="InsertApplicantFireDetails">
+      <wsdl:input message="tns:InsertApplicantFireDetailsHttpPostIn" />
+      <wsdl:output message="tns:InsertApplicantFireDetailsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreMeansOfEscape">
+      <wsdl:input message="tns:StoreMeansOfEscapeHttpPostIn" />
+      <wsdl:output message="tns:StoreMeansOfEscapeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreFloorwiseApplicantDtls">
+      <wsdl:input message="tns:StoreFloorwiseApplicantDtlsHttpPostIn" />
+      <wsdl:output message="tns:StoreFloorwiseApplicantDtlsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreFireFightingInstallations">
+      <wsdl:input message="tns:StoreFireFightingInstallationsHttpPostIn" />
+      <wsdl:output message="tns:StoreFireFightingInstallationsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreUploadDocuments">
+      <wsdl:input message="tns:StoreUploadDocumentsHttpPostIn" />
+      <wsdl:output message="tns:StoreUploadDocumentsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PaymentDetails">
+      <wsdl:input message="tns:PaymentDetailsHttpPostIn" />
+      <wsdl:output message="tns:PaymentDetailsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreQueryResponse">
+      <wsdl:input message="tns:StoreQueryResponseHttpPostIn" />
+      <wsdl:output message="tns:StoreQueryResponseHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Appealed">
+      <wsdl:input message="tns:AppealedHttpPostIn" />
+      <wsdl:output message="tns:AppealedHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Service1Soap" type="tns:Service1Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertApplicantFireDetails">
+      <soap:operation soapAction="http://tempuri.org/InsertApplicantFireDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreMeansOfEscape">
+      <soap:operation soapAction="http://tempuri.org/StoreMeansOfEscape" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreFloorwiseApplicantDtls">
+      <soap:operation soapAction="http://tempuri.org/StoreFloorwiseApplicantDtls" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreFireFightingInstallations">
+      <soap:operation soapAction="http://tempuri.org/StoreFireFightingInstallations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreUploadDocuments">
+      <soap:operation soapAction="http://tempuri.org/StoreUploadDocuments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PaymentDetails">
+      <soap:operation soapAction="http://tempuri.org/PaymentDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreQueryResponse">
+      <soap:operation soapAction="http://tempuri.org/StoreQueryResponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Appealed">
+      <soap:operation soapAction="http://tempuri.org/Appealed" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Service1Soap12" type="tns:Service1Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertApplicantFireDetails">
+      <soap12:operation soapAction="http://tempuri.org/InsertApplicantFireDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreMeansOfEscape">
+      <soap12:operation soapAction="http://tempuri.org/StoreMeansOfEscape" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreFloorwiseApplicantDtls">
+      <soap12:operation soapAction="http://tempuri.org/StoreFloorwiseApplicantDtls" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreFireFightingInstallations">
+      <soap12:operation soapAction="http://tempuri.org/StoreFireFightingInstallations" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreUploadDocuments">
+      <soap12:operation soapAction="http://tempuri.org/StoreUploadDocuments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PaymentDetails">
+      <soap12:operation soapAction="http://tempuri.org/PaymentDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreQueryResponse">
+      <soap12:operation soapAction="http://tempuri.org/StoreQueryResponse" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Appealed">
+      <soap12:operation soapAction="http://tempuri.org/Appealed" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Service1HttpGet" type="tns:Service1HttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="InsertApplicantFireDetails">
+      <http:operation location="/InsertApplicantFireDetails" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreMeansOfEscape">
+      <http:operation location="/StoreMeansOfEscape" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreFloorwiseApplicantDtls">
+      <http:operation location="/StoreFloorwiseApplicantDtls" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreFireFightingInstallations">
+      <http:operation location="/StoreFireFightingInstallations" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreUploadDocuments">
+      <http:operation location="/StoreUploadDocuments" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PaymentDetails">
+      <http:operation location="/PaymentDetails" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreQueryResponse">
+      <http:operation location="/StoreQueryResponse" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Appealed">
+      <http:operation location="/Appealed" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Service1HttpPost" type="tns:Service1HttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="InsertApplicantFireDetails">
+      <http:operation location="/InsertApplicantFireDetails" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreMeansOfEscape">
+      <http:operation location="/StoreMeansOfEscape" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreFloorwiseApplicantDtls">
+      <http:operation location="/StoreFloorwiseApplicantDtls" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreFireFightingInstallations">
+      <http:operation location="/StoreFireFightingInstallations" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreUploadDocuments">
+      <http:operation location="/StoreUploadDocuments" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PaymentDetails">
+      <http:operation location="/PaymentDetails" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreQueryResponse">
+      <http:operation location="/StoreQueryResponse" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Appealed">
+      <http:operation location="/Appealed" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="Service1Soap" binding="tns:Service1Soap">
+      <soap:address location="http://tsfire.cgg.gov.in/firews/Service1.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Service1Soap12" binding="tns:Service1Soap12">
+      <soap12:address location="http://tsfire.cgg.gov.in/firews/Service1.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Service1HttpGet" binding="tns:Service1HttpGet">
+      <http:address location="http://tsfire.cgg.gov.in/firews/Service1.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Service1HttpPost" binding="tns:Service1HttpPost">
+      <http:address location="http://tsfire.cgg.gov.in/firews/Service1.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

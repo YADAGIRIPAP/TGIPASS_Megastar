@@ -1,0 +1,583 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
+//created by suresh as on 13-1-2016 
+//tables is td_BDCDet,tbl_Users
+//procedures CheckUserid,insrtBDC,deleteBDC,getBDCbyID
+public partial class TSTBDCReg1 : System.Web.UI.Page
+{
+    decimal district11, district12, district13, state11, state12, state13;
+    int delete = 0;
+    comFunctions cmf = new comFunctions();
+    General Gen = new General();
+    DataRow dtrdr;
+    DataTable myDtNewRecdr = new DataTable();
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        //if (Session["user"] != null && Session["user"] != "")
+        //{ }
+        //else
+        //{
+        //    Response.Redirect("/Account/Login.aspx?link=" + System.Web.HttpContext.Current.Request.Url.PathAndQuery);
+        //}
+        DataSet ds = new DataSet();
+        if (Session["userlevel"].ToString() == "1")
+        {
+            lblHeading.Text = "IPO'S Report";
+            lblHeading2.Text = "IPO'S Report";
+        }
+        else
+        {
+            lblHeading.Text = "IPO'S Report";
+            lblHeading2.Text = "IPO'S Report";
+        }
+        if (!IsPostBack)
+        {
+            int year = DateTime.Now.Year - 5;
+
+            for (int Y = year; Y <= DateTime.Now.Year; Y++)
+            {
+
+                ddlYear.Items.Add(new ListItem(Y.ToString(), Y.ToString()));
+            }
+
+            ddlYear.SelectedValue = DateTime.Now.Year.ToString();
+         ddlMonth.SelectedIndex = DateTime.Now.Month;
+          
+            fillGrid();
+
+
+            //ds = Gen.DistrictWiseReport();
+
+
+           // grdDetails.DataSource = ds.Tables[0];
+            //grdDetails.DataBind();
+        }
+
+
+    }
+
+    void fillGrid()
+    {
+
+
+        DataSet ds = new DataSet();
+
+        ds = Gen.GetIPODashboard(ddlYear.SelectedValue.ToString(), ddlMonth.SelectedValue.ToString(), Session["uid"].ToString(),"%", Session["uid"].ToString());
+        if (ds.Tables[0].Rows.Count > 0)
+        {
+
+            grdDetails.DataSource = ds.Tables[0];
+            grdDetails.DataBind();
+
+        }
+        else
+        {
+            grdDetails.DataSource = null;
+            grdDetails.DataBind();
+        }
+
+
+    }
+
+    protected void getIPOS()
+    {
+
+       
+    }
+    protected void btnOrgLookup_Click(object sender, EventArgs e)
+    {
+
+    }
+    protected void BtnSave_Click(object sender, EventArgs e)
+    {
+
+
+
+    }
+    void clear()
+    {
+
+
+
+
+    }
+
+
+    protected void BtnClear0_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("GMWISEReport.aspx");
+
+    }
+    void FillDetails()
+    {
+
+
+    }
+    protected void BtnClear_Click(object sender, EventArgs e)
+    {
+
+    }
+    protected void ddlState_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+    void getcounties()
+    {
+
+    }
+    protected void ddlCounties_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+    void getPayams()
+    {
+
+    }
+    protected void ddlState_SelectedIndexChanged1(object sender, EventArgs e)
+    {
+
+    }
+    protected void ddlCounties_SelectedIndexChanged1(object sender, EventArgs e)
+    {
+
+    }
+    protected void BtnSave2_Click(object sender, EventArgs e)
+    {
+
+        try
+        {
+
+
+
+        }
+        catch (Exception ex)
+        {
+            // lblmsg.Text = ex.ToString();
+        }
+        finally
+        {
+
+        }
+
+    }
+
+
+
+    protected void ddlProp_intDistrictid_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void grdDetails_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+
+
+            e.Row.Cells[29].Text = "8 of 8";
+            int cnt = 0;
+            if (e.Row.Cells[6].Text == "0")
+            {
+                cnt = cnt + 1;  
+            }
+            if (e.Row.Cells[9].Text == "0")
+            {
+                cnt = cnt + 1;
+            }
+            if (e.Row.Cells[12].Text == "0")
+            {
+                cnt = cnt + 1;
+            }
+            if (e.Row.Cells[15].Text == "0")
+            {
+                cnt = cnt + 1;
+            }
+            if (e.Row.Cells[18].Text == "0")
+            {
+                cnt = cnt + 1;
+            }
+            if (e.Row.Cells[21].Text == "0")
+            {
+                cnt = cnt + 1;
+            }
+            if (e.Row.Cells[24].Text == "0")
+            {
+                cnt = cnt + 1;
+            }
+            if (e.Row.Cells[28].Text == "0")
+            {
+                cnt = cnt + 1;
+            }
+           
+            e.Row.Cells[29].Text = cnt.ToString() + " of 8";
+           
+            DropDownList ddlStatus = (DropDownList)e.Row.Cells[30].FindControl("ddlStatus");
+
+            TextBox txtPromotor = (TextBox)e.Row.Cells[30].FindControl("txtPromotor");
+
+            Label Label378 = (Label)e.Row.Cells[30].FindControl("Label378");
+            Button BtnSave = (Button)e.Row.Cells[30].FindControl("BtnSave");
+
+            //Label Label379 = (Label)e.Row.Cells[30].FindControl("Label379");
+
+            HiddenField hdfApplID = (HiddenField)e.Row.Cells[30].FindControl("hdfApplID");
+            hdfApplID.Value = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "intUserid")).Trim();
+
+            if (hdfApplID.Value == "1094")
+            {
+                e.Row.Cells[29].Text = "8 of 8";
+            }
+            HiddenField hdfApplID0 = (HiddenField)e.Row.Cells[30].FindControl("hdfApplID0");
+            hdfApplID0.Value = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "VI_Year")).Trim();
+
+            HiddenField hdfApplID1 = (HiddenField)e.Row.Cells[30].FindControl("hdfApplID1");
+            hdfApplID1.Value = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "intMonthid")).Trim();
+
+
+            //if (e.Row.Cells[29].Text == "8 of 8")
+            //{
+
+            //    ddlStatus.Enabled = true;
+            //    txtPromotor.Enabled = true;
+            //    Label378.Enabled = true;
+            //    BtnSave.Enabled = true;
+
+
+            //}
+            //else
+            //{
+
+            //    ddlStatus.Enabled = false;
+            //   // txtPromotor.Visible = false;
+            //    //Label378.Visible = false;
+            //    BtnSave.Enabled = false;
+
+
+            //}
+
+
+            HyperLink h1 = (HyperLink)e.Row.Cells[2].Controls[0];
+            h1.Target = "_blank";
+            h1.NavigateUrl = "IPOPMSDashboardDrildown.aspx?uid=" + Convert.ToString(DataBinder.Eval(e.Row.DataItem, "intUserid")).Trim()+"&Year="+ddlYear.SelectedValue.ToString()+"&Month="+ddlMonth.SelectedValue.ToString();
+
+
+
+
+            HyperLink h2 = (HyperLink)e.Row.Cells[7].Controls[0];
+            h2.Target = "_blank";
+            h2.NavigateUrl = "IPODrilRedirect.aspx?uid=" + Convert.ToString(DataBinder.Eval(e.Row.DataItem, "intUserid")).Trim() + "&Year=" + ddlYear.SelectedValue.ToString() + "&Month=" + ddlMonth.SelectedValue.ToString() + "&form=1000";
+
+
+
+            HyperLink h3 = (HyperLink)e.Row.Cells[10].Controls[0];
+            h3.Target = "_blank";
+            h3.NavigateUrl = "IPODrilRedirect.aspx?uid=" + Convert.ToString(DataBinder.Eval(e.Row.DataItem, "intUserid")).Trim() + "&Year=" + ddlYear.SelectedValue.ToString() + "&Month=" + ddlMonth.SelectedValue.ToString() + "&form=1001";
+
+
+            HyperLink h4 = (HyperLink)e.Row.Cells[13].Controls[0];
+            h4.Target = "_blank";
+            h4.NavigateUrl = "IPODrilRedirect.aspx?uid=" + Convert.ToString(DataBinder.Eval(e.Row.DataItem, "intUserid")).Trim() + "&Year=" + ddlYear.SelectedValue.ToString() + "&Month=" + ddlMonth.SelectedValue.ToString() + "&form=1002";
+
+
+            HyperLink h8 = (HyperLink)e.Row.Cells[15].Controls[0];
+            h8.Target = "_blank";
+            h8.NavigateUrl = "IPODrilRedirect.aspx?uid=" + Convert.ToString(DataBinder.Eval(e.Row.DataItem, "intUserid")).Trim() + "&Year=" + ddlYear.SelectedValue.ToString() + "&Month=" + ddlMonth.SelectedValue.ToString() + "&form=1003&Status=Pending";
+
+            HyperLink h9 = (HyperLink)e.Row.Cells[16].Controls[0];
+            h9.Target = "_blank";
+            h9.NavigateUrl = "IPODrilRedirect.aspx?uid=" + Convert.ToString(DataBinder.Eval(e.Row.DataItem, "intUserid")).Trim() + "&Year=" + ddlYear.SelectedValue.ToString() + "&Month=" + ddlMonth.SelectedValue.ToString() + "&form=1003&Status=Completed";
+
+
+            HyperLink h5 = (HyperLink)e.Row.Cells[19].Controls[0];
+            h5.Target = "_blank";
+            h5.NavigateUrl = "IPODrilRedirect.aspx?uid=" + Convert.ToString(DataBinder.Eval(e.Row.DataItem, "intUserid")).Trim() + "&Year=" + ddlYear.SelectedValue.ToString() + "&Month=" + ddlMonth.SelectedValue.ToString() + "&form=1004";
+
+
+            HyperLink h10 = (HyperLink)e.Row.Cells[24].Controls[0];
+            h10.Target = "_blank";
+            h10.NavigateUrl = "IPODrilRedirect.aspx?uid=" + Convert.ToString(DataBinder.Eval(e.Row.DataItem, "intUserid")).Trim() + "&Year=" + ddlYear.SelectedValue.ToString() + "&Month=" + ddlMonth.SelectedValue.ToString() + "&form=1005&Status=Pending";
+
+
+            HyperLink h11 = (HyperLink)e.Row.Cells[25].Controls[0];
+            h11.Target = "_blank";
+            h11.NavigateUrl = "IPODrilRedirect.aspx?uid=" + Convert.ToString(DataBinder.Eval(e.Row.DataItem, "intUserid")).Trim() + "&Year=" + ddlYear.SelectedValue.ToString() + "&Month=" + ddlMonth.SelectedValue.ToString() + "&form=1005&Status=Completed";
+
+
+            HyperLink h6 = (HyperLink)e.Row.Cells[22].Controls[0];
+            h6.Target = "_blank";
+            h6.NavigateUrl = "IPODrilRedirect.aspx?uid=" + Convert.ToString(DataBinder.Eval(e.Row.DataItem, "intUserid")).Trim() + "&Year=" + ddlYear.SelectedValue.ToString() + "&Month=" + ddlMonth.SelectedValue.ToString() + "&form=1006";
+
+
+            HyperLink h7 = (HyperLink)e.Row.Cells[28].Controls[0];
+            h7.Target = "_blank";
+            h7.NavigateUrl = "IPODrilRedirect.aspx?uid=" + Convert.ToString(DataBinder.Eval(e.Row.DataItem, "intUserid")).Trim() + "&Year=" + ddlYear.SelectedValue.ToString() + "&Month=" + ddlMonth.SelectedValue.ToString() + "&form=1007";
+
+
+
+        }
+        //    decimal district1 = Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "District Level"));
+        //    district11 = district1 + district11;
+
+        //    decimal state1 = Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "State Level"));
+        //    state11 = state1 + state11;
+
+
+        //    decimal district2 = Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "District Level1"));
+        //    district12 = district2 + district12;
+
+
+        //    decimal state2 = Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "State Level1"));
+        //    state12 = state2 + state12;
+
+        //    decimal district3 = Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "District Level2"));
+        //    district13 = district3 + district13;
+
+        //    decimal state3 = Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "State Level2"));
+        //    state13 = state3 + state13;
+
+        //    HyperLink h1 = (HyperLink)e.Row.Cells[2].Controls[0];
+        //    h1.Target = "_blank";
+        //    h1.NavigateUrl = "CommissionerDashboardDrilldown.aspx?Stage=1&District=" + Convert.ToString(DataBinder.Eval(e.Row.DataItem, "DistrictId")).Trim();
+
+        //    HyperLink h2 = (HyperLink)e.Row.Cells[3].Controls[0];
+        //    h2.Target = "_blank";
+        //    h2.NavigateUrl = "CommissionerDashboardDrilldown.aspx?Stage=2&District=" + Convert.ToString(DataBinder.Eval(e.Row.DataItem, "DistrictId")).Trim();
+
+        //    HyperLink h3 = (HyperLink)e.Row.Cells[4].Controls[0];
+        //    h3.Target = "_blank";
+        //    h3.NavigateUrl = "CommissionerDashboardDrilldown.aspx?Stage=3&District=" + Convert.ToString(DataBinder.Eval(e.Row.DataItem, "DistrictId")).Trim();
+
+        //    HyperLink h4 = (HyperLink)e.Row.Cells[5].Controls[0];
+        //    h4.Target = "_blank";
+        //    h4.NavigateUrl = "CommissionerDashboardDrilldown.aspx?Stage=4&District=" + Convert.ToString(DataBinder.Eval(e.Row.DataItem, "DistrictId")).Trim();
+
+        //    HyperLink h5 = (HyperLink)e.Row.Cells[6].Controls[0];
+        //    h5.Target = "_blank";
+        //    h5.NavigateUrl = "CommissionerDashboardDrilldown.aspx?Stage=5&District=" + Convert.ToString(DataBinder.Eval(e.Row.DataItem, "DistrictId")).Trim();
+
+        //    HyperLink h6 = (HyperLink)e.Row.Cells[7].Controls[0];
+        //    h6.Target = "_blank";
+        //    h6.NavigateUrl = "CommissionerApproval.aspx?Stage=6&District=" + Convert.ToString(DataBinder.Eval(e.Row.DataItem, "DistrictId")).Trim();
+
+        //}
+
+        //if (e.Row.RowType == DataControlRowType.Footer)
+        //{
+
+        //    e.Row.Cells[1].Text = "Total";
+        //    e.Row.Cells[2].Text = district11.ToString();
+        //    e.Row.Cells[3].Text = state11.ToString();
+        //    e.Row.Cells[4].Text = district12.ToString();
+        //    e.Row.Cells[5].Text = state12.ToString();
+        //    e.Row.Cells[6].Text = district13.ToString();
+        //    e.Row.Cells[7].Text = state13.ToString();
+        //}
+
+    }
+    protected void grdDetails_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+    protected void grdDetails_RowCreated(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.Header)
+        {
+            GridView HeaderGrid = (GridView)sender;
+            GridViewRow HeaderGridRow = new GridViewRow(0, 0, DataControlRowType.Header, DataControlRowState.Insert);
+
+            TableCell HeaderCell = new TableCell();
+            HeaderCell = new TableCell();
+            HeaderCell.ColumnSpan = 5;
+            HeaderCell.RowSpan = 0;
+            HeaderCell.Font.Bold = true;
+            HeaderCell.Text = "";
+            HeaderGridRow.Cells.Add(HeaderCell);
+
+            HeaderCell = new TableCell();
+            HeaderCell.ColumnSpan = 3;
+            HeaderCell.RowSpan = 0;
+            HeaderCell.Font.Bold = true;
+            HeaderCell.Text = "Bank Visit";
+            HeaderCell.HorizontalAlign = HorizontalAlign.Center;
+            HeaderGridRow.Cells.Add(HeaderCell);
+            grdDetails.Controls[0].Controls.AddAt(0, HeaderGridRow);
+
+            HeaderCell = new TableCell();
+            HeaderCell.ColumnSpan = 3;
+            HeaderCell.RowSpan = 0;
+            HeaderCell.Font.Bold = true;
+            HeaderCell.Text = "Bank Loan";
+            HeaderCell.HorizontalAlign = HorizontalAlign.Center;
+            HeaderGridRow.Cells.Add(HeaderCell);
+            grdDetails.Controls[0].Controls.AddAt(0, HeaderGridRow);
+
+            HeaderCell = new TableCell();
+            HeaderCell.ColumnSpan = 3;
+            HeaderCell.RowSpan = 0;
+            HeaderCell.Font.Bold = true;
+            HeaderCell.Text = "Vehicle Inspection";
+            HeaderCell.HorizontalAlign = HorizontalAlign.Center;
+            HeaderGridRow.Cells.Add(HeaderCell);
+            grdDetails.Controls[0].Controls.AddAt(0, HeaderGridRow);
+
+            HeaderCell = new TableCell();
+            HeaderCell.ColumnSpan = 3;
+            HeaderCell.RowSpan = 0;
+            HeaderCell.Font.Bold = true;
+            HeaderCell.Text = "TSiPASS";
+            HeaderCell.HorizontalAlign = HorizontalAlign.Center;
+            HeaderGridRow.Cells.Add(HeaderCell);
+            grdDetails.Controls[0].Controls.AddAt(0, HeaderGridRow);
+
+            HeaderCell = new TableCell();
+            HeaderCell.ColumnSpan = 3;
+            HeaderCell.RowSpan = 0;
+            HeaderCell.Font.Bold = true;
+            HeaderCell.Text = "PMEGP & Mudra";
+            HeaderCell.HorizontalAlign = HorizontalAlign.Center;
+            HeaderGridRow.Cells.Add(HeaderCell);
+            grdDetails.Controls[0].Controls.AddAt(0, HeaderGridRow);
+
+            HeaderCell = new TableCell();
+            HeaderCell.ColumnSpan = 3;
+            HeaderCell.RowSpan = 0;
+            HeaderCell.Font.Bold = true;
+            HeaderCell.Text = "Closed Units";
+            HeaderCell.HorizontalAlign = HorizontalAlign.Center;
+            HeaderGridRow.Cells.Add(HeaderCell);
+            grdDetails.Controls[0].Controls.AddAt(0, HeaderGridRow);
+
+
+            HeaderCell = new TableCell();
+            HeaderCell.ColumnSpan = 3;
+            HeaderCell.RowSpan = 0;
+            HeaderCell.Font.Bold = true;
+            HeaderCell.Text = "Advance Subsidy";
+            HeaderCell.HorizontalAlign = HorizontalAlign.Center;
+            HeaderGridRow.Cells.Add(HeaderCell);
+            grdDetails.Controls[0].Controls.AddAt(0, HeaderGridRow);
+
+            HeaderCell = new TableCell();
+            HeaderCell.ColumnSpan = 3;
+            HeaderCell.RowSpan = 0;
+            HeaderCell.Font.Bold = true;
+            HeaderCell.Text = "Industrial Catalogue";
+            HeaderCell.HorizontalAlign = HorizontalAlign.Center;
+            HeaderGridRow.Cells.Add(HeaderCell);
+
+
+            HeaderCell = new TableCell();
+            HeaderCell.ColumnSpan = 2;
+            HeaderCell.RowSpan = 0;
+            HeaderCell.Font.Bold = true;
+            HeaderCell.Text = "";
+            HeaderGridRow.Cells.Add(HeaderCell);
+
+            grdDetails.Controls[0].Controls.AddAt(0, HeaderGridRow);
+        }
+    }
+    protected void ddlStatus_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        DropDownList ddlStatus = (DropDownList)sender;
+        GridViewRow row = (GridViewRow)ddlStatus.NamingContainer;
+        TextBox txtPromotor = (TextBox)row.FindControl("txtPromotor");
+
+        Label Label378 = (Label)row.FindControl("Label378");
+
+        if (ddlStatus.SelectedValue.ToString() == "Rejected" || ddlStatus.SelectedValue.ToString() == "Approved with Justification")
+        {
+            txtPromotor.Visible = true;
+            Label378.Visible = true;
+
+            //  Label379.Visible = false;
+            // txtAmount.Visible = false;
+
+        }
+        else
+        {
+
+            txtPromotor.Visible = false;
+            Label378.Visible = false;
+
+
+        }
+
+
+
+
+
+
+
+    }
+    protected void BtnSave_Click1(object sender, EventArgs e)
+    {
+
+        Button BtnSave = (Button)sender;
+
+        GridViewRow row = (GridViewRow)BtnSave.NamingContainer;
+        HiddenField hdfApplID = (HiddenField)row.FindControl("hdfApplID");
+
+        HiddenField hdfApplID0 = (HiddenField)row.FindControl("hdfApplID0");
+        HiddenField hdfApplID1 = (HiddenField)row.FindControl("hdfApplID1");
+
+        DropDownList ddlStatus = (DropDownList)row.FindControl("ddlStatus");
+        TextBox txtPromotor = (TextBox)row.FindControl("txtPromotor");
+
+
+        if (ddlStatus.SelectedValue.ToString() == "--Select--")
+        {
+            Failure.Visible = true;
+
+            success.Visible = false;
+
+            lblmsg.Text = "Please Select Status";
+
+            return;
+
+
+        }
+
+       // int result = 0;
+
+       // result=Gen.updateIPOStatus
+
+        int result = 0;
+
+        result = Gen.updateIPOStatusDetails(hdfApplID.Value, hdfApplID0.Value, hdfApplID1.Value, ddlStatus.SelectedValue.ToString(), txtPromotor.Text, Session["uid"].ToString());
+
+        if (result != 999)
+        {
+
+
+            lblmsg.Text = "Updated Successfully";
+            success.Visible = true;
+            Failure.Visible = false;
+
+
+        }
+        else
+        {
+
+            lblmsg.Text = "Not Updated";
+            success.Visible = false;
+            Failure.Visible = true;
+
+        }
+
+
+
+
+
+
+
+
+    }
+}

@@ -1,0 +1,414 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,200);
+
+
+#cssmenu, #cssmenu ul, #cssmenu ul li, #cssmenu ul li a {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    list-style: none;
+    line-height: 1;
+    display: block;
+    position: relative;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#cssmenu {
+    width: 230px;
+    font-family: Raleway, sans-serif;
+    /*color: #ffffff;*/
+    color: #1D9A5B;
+}
+
+    #cssmenu ul ul {
+        display: none;
+    }
+
+    #cssmenu > ul > li.active > ul {
+        display: block;
+    }
+
+.align-right {
+    float: right;
+}
+
+/*adds border top to first nav box */
+#cssmenu > ul > li:first-child {
+    border-top: 1px #e5e5e5 solid;
+}
+
+/*adds border to bottom nav boxes*/
+#cssmenu > ul > li {
+    border-bottom: 1px #e5e5e5 solid;
+}
+
+    #cssmenu > ul > li > a {
+        padding: 16px 22px;
+        cursor: pointer;
+        z-index: 2;
+        font-size: 16px;
+        text-decoration: none;
+        color:white;
+        background:  #1D9A5B;
+        -webkit-transition: color .2s ease;
+        -o-transition: color .2s ease;
+        transition: color .2s ease;
+    }
+
+        #cssmenu > ul > li > a:hover {
+            color: #d8f3f0;
+        }
+
+#cssmenu ul > li.has-sub > a:after {
+    position: absolute;
+    right: 26px;
+    top: 19px;
+    z-index: 5;
+    display: block;
+    height: 10px;
+    width: 2px;
+    background: #ffffff;
+    content: "";
+    -webkit-transition: all 0.1s ease-out;
+    -moz-transition: all 0.1s ease-out;
+    -ms-transition: all 0.1s ease-out;
+    -o-transition: all 0.1s ease-out;
+    transition: all 0.1s ease-out;
+}
+
+#cssmenu ul > li.has-sub > a:before {
+    position: absolute;
+    right: 22px;
+    top: 23px;
+    display: block;
+    width: 10px;
+    height: 2px;
+    background: #ffffff;
+    content: "";
+    -webkit-transition: all 0.1s ease-out;
+    -moz-transition: all 0.1s ease-out;
+    -ms-transition: all 0.1s ease-out;
+    -o-transition: all 0.1s ease-out;
+    transition: all 0.1s ease-out;
+}
+
+#cssmenu ul > li.has-sub.open > a:after, #cssmenu ul > li.has-sub.open > a:before {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+#cssmenu ul ul li a {
+    padding: 14px 22px;
+    cursor: pointer;
+    z-index: 2;
+    font-size: 14px;
+    text-decoration: none;
+    color: #000 !important;
+    background:  #f5f5dc;
+    -webkit-transition: color .2s ease;
+    -o-transition: color .2s ease;
+    transition: color .2s ease;
+    border: 1px #e5e5e5 solid;
+}
+
+#cssmenu ul ul ul li a {
+    padding-left: 32px;
+}
+
+#cssmenu ul ul li a:hover {
+    color: #ffffff;
+}
+
+#cssmenu ul ul > li.has-sub > a:after {
+    top: 16px;
+    right: 26px;
+    background: #dddddd;
+}
+
+#cssmenu ul ul > li.has-sub > a:before {
+    top: 20px;
+    background: #dddddd;
+}
+
+#DashBoardmenu, #DashBoardmenu ul, #DashBoardmenu ul li, #DashBoardmenu ul li a {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    list-style: none; /* line-height: 1; */
+    display: block;
+    position: relative;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+#DashBoardmenu {
+    width: 230px; /* font-family: Raleway, sans-serif; */ /* color: #ffffff; */
+}
+
+    #DashBoardmenu ul ul {
+        display: none;
+    }
+
+    #DashBoardmenu > ul > li.active > ul {
+        display: block;
+    }
+
+.align-right {
+    float: right;
+}
+
+#DashBoardmenu > ul > li > a {
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 2;
+    font-size: 18px;
+    text-decoration: none;
+    color: #337ab7; /* background: #337ab7; */
+    -webkit-transition: color .2s ease;
+    -o-transition: color .2s ease;
+    transition: color .2s ease;
+    border: 2px solid #ddd;
+}
+
+    #DashBoardmenu > ul > li > a:hover {
+        /* color: #d8f3f0; */ /* color: #fff; */ /* text-decoration: none; */ /* background-color: #f5f5f5; */ /* color: #555; */
+        text-decoration: none;
+        background-color: #f5f5f5;
+    }
+
+#DashBoardmenu ul > li.has-sub > a:after {
+    position: absolute;
+    right: 26px;
+    top: 19px;
+    z-index: 5;
+    display: block;
+    height: 10px;
+    width: 2px;
+    background: #337ab7;
+    content: "";
+    -webkit-transition: all 0.1s ease-out;
+    -moz-transition: all 0.1s ease-out;
+    -ms-transition: all 0.1s ease-out;
+    -o-transition: all 0.1s ease-out;
+    transition: all 0.1s ease-out;
+}
+
+#DashBoardmenu ul > li.has-sub > a:before {
+    position: absolute;
+    right: 22px;
+    top: 23px;
+    display: block;
+    width: 10px;
+    height: 2px;
+    background: #337ab7;
+    content: "";
+    -webkit-transition: all 0.1s ease-out;
+    -moz-transition: all 0.1s ease-out;
+    -ms-transition: all 0.1s ease-out;
+    -o-transition: all 0.1s ease-out;
+    transition: all 0.1s ease-out;
+}
+
+#DashBoardmenu ul > li.has-sub.open > a:after, #DashBoardmenu ul > li.has-sub.open > a:before {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+#DashBoardmenu ul ul li a {
+    /* padding: 14px 22px; */ /* cursor: pointer; */ /* z-index: 2; */ /* font-size: 14px; */ /* text-decoration: none; */
+    color: #49505a; /* background: #49505a; */ /* -webkit-transition: color .2s ease; */
+    -o-transition: color .2s ease; /* transition: color .2s ease; */
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+#DashBoardmenu ul ul ul li a {
+    padding-left: 32px;
+}
+
+#DashBoardmenu ul ul li a:hover {
+    /* color: #ffffff; */
+}
+
+#DashBoardmenu ul ul > li.has-sub > a:after {
+    top: 16px;
+    right: 26px;
+    background: #dddddd;
+}
+
+#DashBoardmenu ul ul > li.has-sub > a:before {
+    top: 20px;
+    background: #dddddd;
+}
+
+
+
+
+
+#cssmenu h2{
+display:block; 
+-webkit-border-top-left-radius: 5px;
+-webkit-border-top-right-radius: 5px;
+-moz-border-radius-topleft: 5px;
+-moz-border-radius-topright: 5px;
+border-top-left-radius: 5px;
+border-top-right-radius: 5px;
+padding:5px 0 5px 8px;
+}
+
+
+#cssmenu,
+#cssmenu ul,
+#cssmenu ul li,
+#cssmenu ul li a {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  list-style: none;
+  line-height: 1;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#cssmenu ul li a{
+	display:block; font-size:16px;
+}
+
+#cssmenu {
+  /* width: 100%; */
+  color: #ffffff;
+}
+#cssmenu ul ul {
+  display: none;
+}
+.align-right {
+  float: right;
+}
+#cssmenu > ul > li > a {
+  padding: 12px;
+  border-bottom: 1px dotted #dad8ee;
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+}
+#cssmenu > ul > li > a:hover,
+#cssmenu > ul > li.active > a,
+#cssmenu > ul > li.open > a {
+  color: #FFF;
+  background: #be8c2f;
+}
+#cssmenu > ul > li.open > a {
+  border-bottom: 1px dotted #5d58ac;
+}
+#cssmenu > ul > li:last-child > a,
+#cssmenu > ul > li.last > a {
+  border-bottom: 0;
+}
+.holder {
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.holder::after,
+.holder::before {
+  display: block;
+  position: absolute;
+  content: "";
+  width: 6px;
+  height: 6px;
+  right: 13px;
+  z-index: 10;
+  -webkit-transform: rotate(-135deg);
+  -moz-transform: rotate(-135deg);
+  -ms-transform: rotate(-135deg);
+  -o-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+}
+.holder::after {
+  top: 8px;
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
+}
+#cssmenu > ul > li > a:hover > span::after,
+#cssmenu > ul > li.active > a > span::after,
+#cssmenu > ul > li.open > a > span::after {
+  border-color: #FFF;
+  
+}
+.holder::before {
+}
+#cssmenu ul ul li a {
+  cursor: pointer;
+  border-bottom:1px dotted #5d58ac;
+  padding: 10px 20px;
+  z-index: 1;
+  text-decoration: none;
+  font-size: 13px;
+  color:black;
+  background: #f5f5dc;
+}
+#cssmenu ul ul li:hover > a,
+#cssmenu ul ul li.open > a,
+#cssmenu ul ul li.active > a {
+  background: #be8c2f;
+  color: #000;
+}
+#cssmenu ul ul li:first-child > a {
+  box-shadow: none;
+}
+#cssmenu ul ul ul li:first-child > a {
+}
+#cssmenu ul ul ul li a {
+  padding-left: 30px;
+}
+#cssmenu > ul > li > ul > li:last-child > a,
+#cssmenu > ul > li > ul > li.last > a {
+  border-bottom: 0;
+}
+#cssmenu > ul > li > ul > li.open:last-child > a,
+#cssmenu > ul > li > ul > li.last.open > a {
+  border-bottom: 1px dotted #dad8ee;
+}
+#cssmenu > ul > li > ul > li.open:last-child > ul > li:last-child > a {
+  border-bottom: 0;
+}
+#cssmenu ul ul li.has-sub > a::after {
+  display: block;
+  position: absolute;
+  content: "";
+  width: 5px;
+  height: 5px;
+  right: 20px;
+  z-index: 10;
+  top: 11.5px;
+  border-top: 2px solid #eeeeee;
+  border-left: 2px solid #eeeeee;
+  -webkit-transform: rotate(-135deg);
+  -moz-transform: rotate(-135deg);
+  -ms-transform: rotate(-135deg);
+  -o-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+}
+#cssmenu ul ul li.active > a::after,
+#cssmenu ul ul li.open > a::after,
+#cssmenu ul ul li > a:hover::after {
+  border-color: #ffffff;
+}

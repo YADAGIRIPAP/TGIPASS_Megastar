@@ -1,0 +1,64 @@
+﻿body
+{
+}
+.EU_TableScroll
+{
+	max-height: 275px;
+	overflow: auto;
+	border: 1px solid #ccc;
+}
+
+.EU_DataTable
+{
+	border-collapse: collapse;
+	}
+.EU_DataTable tr th
+{
+	background-color: #3c454f;
+	color: #ffffff;
+    /*color: #797979;*/
+	padding: 1px 1px 1px 1px;
+	border: 1px solid #cccccc;
+    font-family: 'Ruda', sans-serif;
+	/*font-family: Arial, Helvetica, sans-serif;*/
+	font-size: 13px;
+	font-weight: normal;
+	text-transform: capitalize;
+    }
+.EU_DataTable tr:nth-child(2n+2)
+{
+	background-color: #f3f4f5;
+}
+
+.EU_DataTable tr:nth-child(2n+1) td
+{
+	background-color: #d6dadf;
+	color: #454545;
+}
+.EU_DataTable tr td
+{
+	padding: 1px 1px 1px 1px;
+	color: #454545;
+     /*color: #797979;*/
+	 font-family: 'Ruda', sans-serif;
+	font-size: 13px;
+	border: 1px solid #cccccc;
+	vertical-align: middle;
+}
+.EU_DataTable tr td:first-child
+{
+	text-align: center;
+}
+
+
+
+ .mGrid { width: 100%; background-color: #fff; margin: 5px 0 10px 0; border: solid 1px #525252; border-collapse:collapse; }
+    .mGrid td { padding: 2px; border: solid 1px #c1c1c1; color: #717171; }
+    .mGrid th { padding: 4px 2px; color: #fff; background: #424242 url(grd_head.png) repeat-x top; border-left: solid 1px #525252; font-size: 0.9em; }
+            .mGrid .alt { background: #fcfcfc url(grd_alt.png) repeat-x top; }
+            .mGrid .pgr {background: #424242 url(grd_pgr.png) repeat-x top; }
+    .mGrid .pgr table { margin: 5px 0; }
+    .mGrid .pgr td { border-width: 0; padding: 0 6px; border-left: solid 1px #666; font-weight: bold; color: #fff; line-height: 12px; }  
+    .mGrid .pgr a { color: #666; text-decoration: none; }
+    .mGrid .pgr a:hover { color: #000; text-decoration: none; }
+

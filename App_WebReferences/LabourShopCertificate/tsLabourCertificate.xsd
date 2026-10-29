@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tslabourws.cgg.gov.in/" targetNamespace="http://tslabourws.cgg.gov.in/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="certificateUpdation" type="tns:certificateUpdation" />
+  <xs:element name="certificateUpdationResponse" type="tns:certificateUpdationResponse" />
+  <xs:complexType name="certificateUpdation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="uID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="certificateUpdationResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

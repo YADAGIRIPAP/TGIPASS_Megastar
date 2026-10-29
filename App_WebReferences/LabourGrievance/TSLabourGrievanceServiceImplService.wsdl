@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tslabourGrievanceRegsws.cgg.gov.in/" name="TSLabourGrievanceServiceImplService" targetNamespace="http://tslabourGrievanceRegsws.cgg.gov.in/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="https://tslabourgrievancews.cgg.gov.in:443/tsLabourGR?xsd=1" namespace="http://tslabourGrievanceRegsws.cgg.gov.in/" />
+    </xsd:schema>
+  </types>
+  <message name="grievanceRegistration">
+    <part name="parameters" element="tns:grievanceRegistration" />
+  </message>
+  <message name="grievanceRegistrationResponse">
+    <part name="parameters" element="tns:grievanceRegistrationResponse" />
+  </message>
+  <portType name="TSLabourGrievanceService">
+    <operation name="grievanceRegistration">
+      <input message="tns:grievanceRegistration" />
+      <output message="tns:grievanceRegistrationResponse" />
+    </operation>
+  </portType>
+  <binding name="TSLabourGrievanceServiceImplPortBinding" type="tns:TSLabourGrievanceService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="grievanceRegistration">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="TSLabourGrievanceServiceImplService">
+    <port name="TSLabourGrievanceServiceImplPort" binding="tns:TSLabourGrievanceServiceImplPortBinding">
+      <soap:address location="https://tslabourgrievancews.cgg.gov.in:443/tsLabourGR" />
+    </port>
+  </service>
+</definitions>

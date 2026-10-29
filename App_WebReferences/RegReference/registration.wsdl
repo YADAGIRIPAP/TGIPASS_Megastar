@@ -1,0 +1,1984 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetCmdtyDtls">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCmdtyDtlsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCmdtyDtlsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRNR">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetRNRResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRNRResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GeteMailRegdDtls">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="streMail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPwd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GeteMailRegdDtlsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GeteMailRegdDtlsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAllLinkedCircles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strDivCd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAllLinkedCirclesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getAllLinkedCirclesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRNRDtls">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RNR" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRNRDtlsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRNRDtlsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegStepOneInsUpd">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StrRNR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrEntrRegTyp" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrCstRegFlag" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrCstDlrRegTyp" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrApplDt" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrCircleCd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrEntrName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrSno" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrDrNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrStreet" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrLocation" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrCity" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrStateName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrDistName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPIN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrEmail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrInstUid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Command" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strTIN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegStepOneInsUpdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegStepOneInsUpdResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegStepTwoInsUpd">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StrRNR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrEntrOccStatus" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrOwnerName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrSno" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrUid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrPartnerTyp" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrFatherName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrDrNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrStreet" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrLocation" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrCity" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrStateName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrDistName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strPIN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrInstUid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strDob" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strFrTaxPrd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strEstTax" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strBusStatus" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegStepTwoInsUpdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegStepTwoInsUpdResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegStepFourUpdate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StrRNR" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="StrBank" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrBankAcno" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrBankCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrBankAdd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrPan" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrPTno" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LandLine" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Mobile" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrAcComputerised" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrInstUid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegStepFourUpdateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegStepFourUpdateResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegStepThirdInsUpd">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RNR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DtBusAct">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="DtVatComm">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="DtCstComm">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegStepThirdInsUpdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegStepThirdInsUpdResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegStepFiveIns">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="rnr" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serial_no" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="door_no" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="street" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="location" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="type" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="district_name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="state_name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pin" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegStepFiveInsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RegStepFiveInsResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegStepFiveUpd">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="rnr" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serial_no" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="door_no" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="street" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="location" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="type" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="district_name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="state_name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pin" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegStepFiveUpdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RegStepFiveUpdResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegStepFiveDel">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="rnr" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serial_no" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegStepFiveDelResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RegStepFiveDelResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegStepSixIns">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="rnr" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serial_no" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="uid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="father_name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="door_no" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="street" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="location" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="partner_type" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="district_name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="state_name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pin" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email_id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="country" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegStepSixInsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RegStepSixInsResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegStepSixUpd">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="rnr" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serial_no" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="uid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="father_name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="door_no" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="street" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="location" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="partner_type" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="district_name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="state_name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pin" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email_id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="country" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegStepSixUpdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RegStepSixUpdResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegStepSixDel">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="rnr" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serial_no" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegStepSixDelResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RegStepSixDelResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRNRStatusDtls">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RNR" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRNRStatusDtlsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRNRStatusDtlsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAppEntryStat">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StrRNR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StrStatus" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAppEntryStatResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateAppEntryStatResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTINSelect">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TIN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTINSelectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTINSelectResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getpartnerBusiness">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strRNR" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getpartnerBusinessResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getpartnerBusinessResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMaxSNo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strRNR" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMaxSNoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMaxSNoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRnrPartnerDtls">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StrRnrNum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRnrPartnerDtlsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRnrPartnerDtlsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTINDtlsforRCPrinting">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TIN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTINDtlsforRCPrintingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTINDtlsforRCPrintingResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTINDtls">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TIN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTINDtlsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTINDtlsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDlrStpMenu">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strUserType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strTIN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDlrStpMenuResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDlrStpMenuResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCircleddl">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCircleddlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCircleddlResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Getformddl">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ddltype" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetformddlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetformddlResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Getinstrumentddl">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetinstrumentddlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetinstrumentddlResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBankddl">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetBankddlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBankddlResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserCircleddl">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strUserID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="strAppID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserCircleddlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserCircleddlResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTableDataset">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TableName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TableCondCol" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TableCondVal" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTableDatasetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTableDatasetResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTableDatasetOrderby">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TableName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TableCondCol" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TableCondVal" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TableOrderCol" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTableDatasetOrderbyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTableDatasetOrderbyResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTINRegStatusDtls">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TIN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTINRegStatusDtlsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTINRegStatusDtlsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDtlsRNR">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strRNR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strMailID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strQry" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDtlsRNRResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDtlsRNRResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTINAddBuss">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TIN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTINAddBussResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTINAddBussResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTINPartnerDtls">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strTIN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTINPartnerDtlsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTINPartnerDtlsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateIsLoginDlr">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateIsLoginDlrResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateIsLoginDlrResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateIsLoginSTP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateIsLoginSTPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateIsLoginSTPResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCSTComm">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TIN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCSTCommResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCSTCommResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTINAddBusiness">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TIN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTINAddBusinessResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTINAddBusinessResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetCmdtyDtlsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCmdtyDtls" />
+  </wsdl:message>
+  <wsdl:message name="GetCmdtyDtlsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCmdtyDtlsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRNRSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRNR" />
+  </wsdl:message>
+  <wsdl:message name="GetRNRSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRNRResponse" />
+  </wsdl:message>
+  <wsdl:message name="GeteMailRegdDtlsSoapIn">
+    <wsdl:part name="parameters" element="tns:GeteMailRegdDtls" />
+  </wsdl:message>
+  <wsdl:message name="GeteMailRegdDtlsSoapOut">
+    <wsdl:part name="parameters" element="tns:GeteMailRegdDtlsResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAllLinkedCirclesSoapIn">
+    <wsdl:part name="parameters" element="tns:getAllLinkedCircles" />
+  </wsdl:message>
+  <wsdl:message name="getAllLinkedCirclesSoapOut">
+    <wsdl:part name="parameters" element="tns:getAllLinkedCirclesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRNRDtlsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRNRDtls" />
+  </wsdl:message>
+  <wsdl:message name="GetRNRDtlsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRNRDtlsResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegStepOneInsUpdSoapIn">
+    <wsdl:part name="parameters" element="tns:RegStepOneInsUpd" />
+  </wsdl:message>
+  <wsdl:message name="RegStepOneInsUpdSoapOut">
+    <wsdl:part name="parameters" element="tns:RegStepOneInsUpdResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegStepTwoInsUpdSoapIn">
+    <wsdl:part name="parameters" element="tns:RegStepTwoInsUpd" />
+  </wsdl:message>
+  <wsdl:message name="RegStepTwoInsUpdSoapOut">
+    <wsdl:part name="parameters" element="tns:RegStepTwoInsUpdResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegStepFourUpdateSoapIn">
+    <wsdl:part name="parameters" element="tns:RegStepFourUpdate" />
+  </wsdl:message>
+  <wsdl:message name="RegStepFourUpdateSoapOut">
+    <wsdl:part name="parameters" element="tns:RegStepFourUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegStepThirdInsUpdSoapIn">
+    <wsdl:part name="parameters" element="tns:RegStepThirdInsUpd" />
+  </wsdl:message>
+  <wsdl:message name="RegStepThirdInsUpdSoapOut">
+    <wsdl:part name="parameters" element="tns:RegStepThirdInsUpdResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegStepFiveInsSoapIn">
+    <wsdl:part name="parameters" element="tns:RegStepFiveIns" />
+  </wsdl:message>
+  <wsdl:message name="RegStepFiveInsSoapOut">
+    <wsdl:part name="parameters" element="tns:RegStepFiveInsResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegStepFiveUpdSoapIn">
+    <wsdl:part name="parameters" element="tns:RegStepFiveUpd" />
+  </wsdl:message>
+  <wsdl:message name="RegStepFiveUpdSoapOut">
+    <wsdl:part name="parameters" element="tns:RegStepFiveUpdResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegStepFiveDelSoapIn">
+    <wsdl:part name="parameters" element="tns:RegStepFiveDel" />
+  </wsdl:message>
+  <wsdl:message name="RegStepFiveDelSoapOut">
+    <wsdl:part name="parameters" element="tns:RegStepFiveDelResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegStepSixInsSoapIn">
+    <wsdl:part name="parameters" element="tns:RegStepSixIns" />
+  </wsdl:message>
+  <wsdl:message name="RegStepSixInsSoapOut">
+    <wsdl:part name="parameters" element="tns:RegStepSixInsResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegStepSixUpdSoapIn">
+    <wsdl:part name="parameters" element="tns:RegStepSixUpd" />
+  </wsdl:message>
+  <wsdl:message name="RegStepSixUpdSoapOut">
+    <wsdl:part name="parameters" element="tns:RegStepSixUpdResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegStepSixDelSoapIn">
+    <wsdl:part name="parameters" element="tns:RegStepSixDel" />
+  </wsdl:message>
+  <wsdl:message name="RegStepSixDelSoapOut">
+    <wsdl:part name="parameters" element="tns:RegStepSixDelResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRNRStatusDtlsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRNRStatusDtls" />
+  </wsdl:message>
+  <wsdl:message name="GetRNRStatusDtlsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRNRStatusDtlsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAppEntryStatSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateAppEntryStat" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAppEntryStatSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateAppEntryStatResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTINSelectSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTINSelect" />
+  </wsdl:message>
+  <wsdl:message name="GetTINSelectSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTINSelectResponse" />
+  </wsdl:message>
+  <wsdl:message name="getpartnerBusinessSoapIn">
+    <wsdl:part name="parameters" element="tns:getpartnerBusiness" />
+  </wsdl:message>
+  <wsdl:message name="getpartnerBusinessSoapOut">
+    <wsdl:part name="parameters" element="tns:getpartnerBusinessResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMaxSNoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMaxSNo" />
+  </wsdl:message>
+  <wsdl:message name="GetMaxSNoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMaxSNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRnrPartnerDtlsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRnrPartnerDtls" />
+  </wsdl:message>
+  <wsdl:message name="GetRnrPartnerDtlsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRnrPartnerDtlsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTINDtlsforRCPrintingSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTINDtlsforRCPrinting" />
+  </wsdl:message>
+  <wsdl:message name="GetTINDtlsforRCPrintingSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTINDtlsforRCPrintingResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTINDtlsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTINDtls" />
+  </wsdl:message>
+  <wsdl:message name="GetTINDtlsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTINDtlsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDlrStpMenuSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDlrStpMenu" />
+  </wsdl:message>
+  <wsdl:message name="GetDlrStpMenuSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDlrStpMenuResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCircleddlSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCircleddl" />
+  </wsdl:message>
+  <wsdl:message name="GetCircleddlSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCircleddlResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetformddlSoapIn">
+    <wsdl:part name="parameters" element="tns:Getformddl" />
+  </wsdl:message>
+  <wsdl:message name="GetformddlSoapOut">
+    <wsdl:part name="parameters" element="tns:GetformddlResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetinstrumentddlSoapIn">
+    <wsdl:part name="parameters" element="tns:Getinstrumentddl" />
+  </wsdl:message>
+  <wsdl:message name="GetinstrumentddlSoapOut">
+    <wsdl:part name="parameters" element="tns:GetinstrumentddlResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBankddlSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBankddl" />
+  </wsdl:message>
+  <wsdl:message name="GetBankddlSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBankddlResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserCircleddlSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserCircleddl" />
+  </wsdl:message>
+  <wsdl:message name="GetUserCircleddlSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserCircleddlResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTableDatasetSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTableDataset" />
+  </wsdl:message>
+  <wsdl:message name="GetTableDatasetSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTableDatasetResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTableDatasetOrderbySoapIn">
+    <wsdl:part name="parameters" element="tns:GetTableDatasetOrderby" />
+  </wsdl:message>
+  <wsdl:message name="GetTableDatasetOrderbySoapOut">
+    <wsdl:part name="parameters" element="tns:GetTableDatasetOrderbyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTINRegStatusDtlsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTINRegStatusDtls" />
+  </wsdl:message>
+  <wsdl:message name="GetTINRegStatusDtlsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTINRegStatusDtlsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDtlsRNRSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDtlsRNR" />
+  </wsdl:message>
+  <wsdl:message name="GetDtlsRNRSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDtlsRNRResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTINAddBussSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTINAddBuss" />
+  </wsdl:message>
+  <wsdl:message name="GetTINAddBussSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTINAddBussResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTINPartnerDtlsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTINPartnerDtls" />
+  </wsdl:message>
+  <wsdl:message name="GetTINPartnerDtlsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTINPartnerDtlsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateIsLoginDlrSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateIsLoginDlr" />
+  </wsdl:message>
+  <wsdl:message name="UpdateIsLoginDlrSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateIsLoginDlrResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateIsLoginSTPSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateIsLoginSTP" />
+  </wsdl:message>
+  <wsdl:message name="UpdateIsLoginSTPSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateIsLoginSTPResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCSTCommSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCSTComm" />
+  </wsdl:message>
+  <wsdl:message name="GetCSTCommSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCSTCommResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTINAddBusinessSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTINAddBusiness" />
+  </wsdl:message>
+  <wsdl:message name="GetTINAddBusinessSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTINAddBusinessResponse" />
+  </wsdl:message>
+  <wsdl:portType name="RegistrationSoap">
+    <wsdl:operation name="GetCmdtyDtls">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Service is used to fetch the Commodity list from master</wsdl:documentation>
+      <wsdl:input message="tns:GetCmdtyDtlsSoapIn" />
+      <wsdl:output message="tns:GetCmdtyDtlsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRNR">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Service will Fetch the RNR for Registration application</wsdl:documentation>
+      <wsdl:input message="tns:GetRNRSoapIn" />
+      <wsdl:output message="tns:GetRNRSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GeteMailRegdDtls">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Method Is Used To Fetch the CFH forms Details from CDSC</wsdl:documentation>
+      <wsdl:input message="tns:GeteMailRegdDtlsSoapIn" />
+      <wsdl:output message="tns:GeteMailRegdDtlsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllLinkedCircles">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"> To Display all the Linked Circles</wsdl:documentation>
+      <wsdl:input message="tns:getAllLinkedCirclesSoapIn" />
+      <wsdl:output message="tns:getAllLinkedCirclesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRNRDtls">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Methos is used to fetch the data based on RNR</wsdl:documentation>
+      <wsdl:input message="tns:GetRNRDtlsSoapIn" />
+      <wsdl:output message="tns:GetRNRDtlsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegStepOneInsUpd">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Service is used to Insert/Update Registration Step One based on rnr</wsdl:documentation>
+      <wsdl:input message="tns:RegStepOneInsUpdSoapIn" />
+      <wsdl:output message="tns:RegStepOneInsUpdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegStepTwoInsUpd">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Service is used to Insert/Update Registration Step Two based on rnr</wsdl:documentation>
+      <wsdl:input message="tns:RegStepTwoInsUpdSoapIn" />
+      <wsdl:output message="tns:RegStepTwoInsUpdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegStepFourUpdate">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Service is used to Insert/Update Registration Step Four based on rnr</wsdl:documentation>
+      <wsdl:input message="tns:RegStepFourUpdateSoapIn" />
+      <wsdl:output message="tns:RegStepFourUpdateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegStepThirdInsUpd">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Service is used to Insert/Update Registration Step Three based on rnr</wsdl:documentation>
+      <wsdl:input message="tns:RegStepThirdInsUpdSoapIn" />
+      <wsdl:output message="tns:RegStepThirdInsUpdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegStepFiveIns">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Service is used to Insert Registration Step Five</wsdl:documentation>
+      <wsdl:input message="tns:RegStepFiveInsSoapIn" />
+      <wsdl:output message="tns:RegStepFiveInsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegStepFiveUpd">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Service is used to Update Registration Step Five based on rnr and sno</wsdl:documentation>
+      <wsdl:input message="tns:RegStepFiveUpdSoapIn" />
+      <wsdl:output message="tns:RegStepFiveUpdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegStepFiveDel">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Service is used to delete Registration Step Five based on rnr and Sno</wsdl:documentation>
+      <wsdl:input message="tns:RegStepFiveDelSoapIn" />
+      <wsdl:output message="tns:RegStepFiveDelSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegStepSixIns">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Service is used to Insert Registration Step Six based on rnr</wsdl:documentation>
+      <wsdl:input message="tns:RegStepSixInsSoapIn" />
+      <wsdl:output message="tns:RegStepSixInsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegStepSixUpd">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Service is used to Update Registration Step Six based on rnr</wsdl:documentation>
+      <wsdl:input message="tns:RegStepSixUpdSoapIn" />
+      <wsdl:output message="tns:RegStepSixUpdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegStepSixDel">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Service is used to delete Registration Step Six based on rnr and Sno</wsdl:documentation>
+      <wsdl:input message="tns:RegStepSixDelSoapIn" />
+      <wsdl:output message="tns:RegStepSixDelSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRNRStatusDtls">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Methos is used to fetch the data based on RNR</wsdl:documentation>
+      <wsdl:input message="tns:GetRNRStatusDtlsSoapIn" />
+      <wsdl:output message="tns:GetRNRStatusDtlsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppEntryStat">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Service is used to Update the application_entry_status based on rnr from reg_enterprise_tmp</wsdl:documentation>
+      <wsdl:input message="tns:UpdateAppEntryStatSoapIn" />
+      <wsdl:output message="tns:UpdateAppEntryStatSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTINSelect">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Service will Perform retrieving data from reg_enterprise_tmp</wsdl:documentation>
+      <wsdl:input message="tns:GetTINSelectSoapIn" />
+      <wsdl:output message="tns:GetTINSelectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getpartnerBusiness">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Method is used to get Queries from reg_place_of_business_tmp</wsdl:documentation>
+      <wsdl:input message="tns:getpartnerBusinessSoapIn" />
+      <wsdl:output message="tns:getpartnerBusinessSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMaxSNo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Method Is Used To Fetch the Max SNo in reg_place_of_business_tmp,reg_partners_tmp based on RNR</wsdl:documentation>
+      <wsdl:input message="tns:GetMaxSNoSoapIn" />
+      <wsdl:output message="tns:GetMaxSNoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRnrPartnerDtls">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Service will Perform retrieving data from reg_partners_tmp based on RNR</wsdl:documentation>
+      <wsdl:input message="tns:GetRnrPartnerDtlsSoapIn" />
+      <wsdl:output message="tns:GetRnrPartnerDtlsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTINDtlsforRCPrinting">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Methos is used to fetch the data based on TIN to print RC</wsdl:documentation>
+      <wsdl:input message="tns:GetTINDtlsforRCPrintingSoapIn" />
+      <wsdl:output message="tns:GetTINDtlsforRCPrintingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTINDtls">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Methos is used to fetch the data based on TIN</wsdl:documentation>
+      <wsdl:input message="tns:GetTINDtlsSoapIn" />
+      <wsdl:output message="tns:GetTINDtlsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDlrStpMenu">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Method Is Used To Get the Menu for dealers and STP</wsdl:documentation>
+      <wsdl:input message="tns:GetDlrStpMenuSoapIn" />
+      <wsdl:output message="tns:GetDlrStpMenuSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCircleddl">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Service is used to get all active circle for dropdown</wsdl:documentation>
+      <wsdl:input message="tns:GetCircleddlSoapIn" />
+      <wsdl:output message="tns:GetCircleddlSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Getformddl">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Service is used to get all active forms for dropdown</wsdl:documentation>
+      <wsdl:input message="tns:GetformddlSoapIn" />
+      <wsdl:output message="tns:GetformddlSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Getinstrumentddl">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Service is used to get all active instrument for dropdown</wsdl:documentation>
+      <wsdl:input message="tns:GetinstrumentddlSoapIn" />
+      <wsdl:output message="tns:GetinstrumentddlSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBankddl">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Service is used to get all active instrument for dropdown</wsdl:documentation>
+      <wsdl:input message="tns:GetBankddlSoapIn" />
+      <wsdl:output message="tns:GetBankddlSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserCircleddl">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Service is used to get all active circle for dropdown based on login userID</wsdl:documentation>
+      <wsdl:input message="tns:GetUserCircleddlSoapIn" />
+      <wsdl:output message="tns:GetUserCircleddlSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTableDataset">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Service will Perform fetching data set for theser abd get dabke daya table Name in parameters</wsdl:documentation>
+      <wsdl:input message="tns:GetTableDatasetSoapIn" />
+      <wsdl:output message="tns:GetTableDatasetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTableDatasetOrderby">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Service will Perform fetching data set for theser abd get dabke daya table Name in parameters</wsdl:documentation>
+      <wsdl:input message="tns:GetTableDatasetOrderbySoapIn" />
+      <wsdl:output message="tns:GetTableDatasetOrderbySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTINRegStatusDtls">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Methos is used to fetch the TIN Registration Dtls to update Reg Status</wsdl:documentation>
+      <wsdl:input message="tns:GetTINRegStatusDtlsSoapIn" />
+      <wsdl:output message="tns:GetTINRegStatusDtlsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDtlsRNR">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Method Is Used To Fetch the * from reg_enterprise_tmp based on RNR or E-MailID</wsdl:documentation>
+      <wsdl:input message="tns:GetDtlsRNRSoapIn" />
+      <wsdl:output message="tns:GetDtlsRNRSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTINAddBuss">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Methods is used to fetch the data based on TIN for RC Printing</wsdl:documentation>
+      <wsdl:input message="tns:GetTINAddBussSoapIn" />
+      <wsdl:output message="tns:GetTINAddBussSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTINPartnerDtls">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Service will Perform retrieving data from dealer_partners based on TIN</wsdl:documentation>
+      <wsdl:input message="tns:GetTINPartnerDtlsSoapIn" />
+      <wsdl:output message="tns:GetTINPartnerDtlsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateIsLoginDlr">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This method is used to Insert online user credentials</wsdl:documentation>
+      <wsdl:input message="tns:UpdateIsLoginDlrSoapIn" />
+      <wsdl:output message="tns:UpdateIsLoginDlrSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateIsLoginSTP">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This method is used to Insert online user credentials</wsdl:documentation>
+      <wsdl:input message="tns:UpdateIsLoginSTPSoapIn" />
+      <wsdl:output message="tns:UpdateIsLoginSTPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCSTComm">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Methods is used to fetch the list of CST commodities based on TIN</wsdl:documentation>
+      <wsdl:input message="tns:GetCSTCommSoapIn" />
+      <wsdl:output message="tns:GetCSTCommSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTINAddBusiness">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This Methods is used to fetch the data based on TIN for RC Printing</wsdl:documentation>
+      <wsdl:input message="tns:GetTINAddBusinessSoapIn" />
+      <wsdl:output message="tns:GetTINAddBusinessSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RegistrationSoap" type="tns:RegistrationSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetCmdtyDtls">
+      <soap:operation soapAction="http://tempuri.org/GetCmdtyDtls" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRNR">
+      <soap:operation soapAction="http://tempuri.org/GetRNR" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GeteMailRegdDtls">
+      <soap:operation soapAction="http://tempuri.org/GeteMailRegdDtls" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllLinkedCircles">
+      <soap:operation soapAction="http://tempuri.org/getAllLinkedCircles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRNRDtls">
+      <soap:operation soapAction="http://tempuri.org/GetRNRDtls" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegStepOneInsUpd">
+      <soap:operation soapAction="http://tempuri.org/RegStepOneInsUpd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegStepTwoInsUpd">
+      <soap:operation soapAction="http://tempuri.org/RegStepTwoInsUpd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegStepFourUpdate">
+      <soap:operation soapAction="http://tempuri.org/RegStepFourUpdate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegStepThirdInsUpd">
+      <soap:operation soapAction="http://tempuri.org/RegStepThirdInsUpd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegStepFiveIns">
+      <soap:operation soapAction="http://tempuri.org/RegStepFiveIns" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegStepFiveUpd">
+      <soap:operation soapAction="http://tempuri.org/RegStepFiveUpd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegStepFiveDel">
+      <soap:operation soapAction="http://tempuri.org/RegStepFiveDel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegStepSixIns">
+      <soap:operation soapAction="http://tempuri.org/RegStepSixIns" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegStepSixUpd">
+      <soap:operation soapAction="http://tempuri.org/RegStepSixUpd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegStepSixDel">
+      <soap:operation soapAction="http://tempuri.org/RegStepSixDel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRNRStatusDtls">
+      <soap:operation soapAction="http://tempuri.org/GetRNRStatusDtls" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppEntryStat">
+      <soap:operation soapAction="http://tempuri.org/UpdateAppEntryStat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTINSelect">
+      <soap:operation soapAction="http://tempuri.org/GetTINSelect" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getpartnerBusiness">
+      <soap:operation soapAction="http://tempuri.org/getpartnerBusiness" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMaxSNo">
+      <soap:operation soapAction="http://tempuri.org/GetMaxSNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRnrPartnerDtls">
+      <soap:operation soapAction="http://tempuri.org/GetRnrPartnerDtls" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTINDtlsforRCPrinting">
+      <soap:operation soapAction="http://tempuri.org/GetTINDtlsforRCPrinting" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTINDtls">
+      <soap:operation soapAction="http://tempuri.org/GetTINDtls" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDlrStpMenu">
+      <soap:operation soapAction="http://tempuri.org/GetDlrStpMenu" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCircleddl">
+      <soap:operation soapAction="http://tempuri.org/GetCircleddl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Getformddl">
+      <soap:operation soapAction="http://tempuri.org/Getformddl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Getinstrumentddl">
+      <soap:operation soapAction="http://tempuri.org/Getinstrumentddl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBankddl">
+      <soap:operation soapAction="http://tempuri.org/GetBankddl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserCircleddl">
+      <soap:operation soapAction="http://tempuri.org/GetUserCircleddl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTableDataset">
+      <soap:operation soapAction="http://tempuri.org/GetTableDataset" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTableDatasetOrderby">
+      <soap:operation soapAction="http://tempuri.org/GetTableDatasetOrderby" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTINRegStatusDtls">
+      <soap:operation soapAction="http://tempuri.org/GetTINRegStatusDtls" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDtlsRNR">
+      <soap:operation soapAction="http://tempuri.org/GetDtlsRNR" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTINAddBuss">
+      <soap:operation soapAction="http://tempuri.org/GetTINAddBuss" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTINPartnerDtls">
+      <soap:operation soapAction="http://tempuri.org/GetTINPartnerDtls" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateIsLoginDlr">
+      <soap:operation soapAction="http://tempuri.org/UpdateIsLoginDlr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateIsLoginSTP">
+      <soap:operation soapAction="http://tempuri.org/UpdateIsLoginSTP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCSTComm">
+      <soap:operation soapAction="http://tempuri.org/GetCSTComm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTINAddBusiness">
+      <soap:operation soapAction="http://tempuri.org/GetTINAddBusiness" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="RegistrationSoap12" type="tns:RegistrationSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetCmdtyDtls">
+      <soap12:operation soapAction="http://tempuri.org/GetCmdtyDtls" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRNR">
+      <soap12:operation soapAction="http://tempuri.org/GetRNR" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GeteMailRegdDtls">
+      <soap12:operation soapAction="http://tempuri.org/GeteMailRegdDtls" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllLinkedCircles">
+      <soap12:operation soapAction="http://tempuri.org/getAllLinkedCircles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRNRDtls">
+      <soap12:operation soapAction="http://tempuri.org/GetRNRDtls" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegStepOneInsUpd">
+      <soap12:operation soapAction="http://tempuri.org/RegStepOneInsUpd" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegStepTwoInsUpd">
+      <soap12:operation soapAction="http://tempuri.org/RegStepTwoInsUpd" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegStepFourUpdate">
+      <soap12:operation soapAction="http://tempuri.org/RegStepFourUpdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegStepThirdInsUpd">
+      <soap12:operation soapAction="http://tempuri.org/RegStepThirdInsUpd" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegStepFiveIns">
+      <soap12:operation soapAction="http://tempuri.org/RegStepFiveIns" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegStepFiveUpd">
+      <soap12:operation soapAction="http://tempuri.org/RegStepFiveUpd" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegStepFiveDel">
+      <soap12:operation soapAction="http://tempuri.org/RegStepFiveDel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegStepSixIns">
+      <soap12:operation soapAction="http://tempuri.org/RegStepSixIns" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegStepSixUpd">
+      <soap12:operation soapAction="http://tempuri.org/RegStepSixUpd" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegStepSixDel">
+      <soap12:operation soapAction="http://tempuri.org/RegStepSixDel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRNRStatusDtls">
+      <soap12:operation soapAction="http://tempuri.org/GetRNRStatusDtls" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppEntryStat">
+      <soap12:operation soapAction="http://tempuri.org/UpdateAppEntryStat" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTINSelect">
+      <soap12:operation soapAction="http://tempuri.org/GetTINSelect" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getpartnerBusiness">
+      <soap12:operation soapAction="http://tempuri.org/getpartnerBusiness" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMaxSNo">
+      <soap12:operation soapAction="http://tempuri.org/GetMaxSNo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRnrPartnerDtls">
+      <soap12:operation soapAction="http://tempuri.org/GetRnrPartnerDtls" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTINDtlsforRCPrinting">
+      <soap12:operation soapAction="http://tempuri.org/GetTINDtlsforRCPrinting" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTINDtls">
+      <soap12:operation soapAction="http://tempuri.org/GetTINDtls" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDlrStpMenu">
+      <soap12:operation soapAction="http://tempuri.org/GetDlrStpMenu" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCircleddl">
+      <soap12:operation soapAction="http://tempuri.org/GetCircleddl" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Getformddl">
+      <soap12:operation soapAction="http://tempuri.org/Getformddl" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Getinstrumentddl">
+      <soap12:operation soapAction="http://tempuri.org/Getinstrumentddl" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBankddl">
+      <soap12:operation soapAction="http://tempuri.org/GetBankddl" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserCircleddl">
+      <soap12:operation soapAction="http://tempuri.org/GetUserCircleddl" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTableDataset">
+      <soap12:operation soapAction="http://tempuri.org/GetTableDataset" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTableDatasetOrderby">
+      <soap12:operation soapAction="http://tempuri.org/GetTableDatasetOrderby" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTINRegStatusDtls">
+      <soap12:operation soapAction="http://tempuri.org/GetTINRegStatusDtls" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDtlsRNR">
+      <soap12:operation soapAction="http://tempuri.org/GetDtlsRNR" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTINAddBuss">
+      <soap12:operation soapAction="http://tempuri.org/GetTINAddBuss" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTINPartnerDtls">
+      <soap12:operation soapAction="http://tempuri.org/GetTINPartnerDtls" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateIsLoginDlr">
+      <soap12:operation soapAction="http://tempuri.org/UpdateIsLoginDlr" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateIsLoginSTP">
+      <soap12:operation soapAction="http://tempuri.org/UpdateIsLoginSTP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCSTComm">
+      <soap12:operation soapAction="http://tempuri.org/GetCSTComm" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTINAddBusiness">
+      <soap12:operation soapAction="http://tempuri.org/GetTINAddBusiness" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Registration">
+    <wsdl:port name="RegistrationSoap" binding="tns:RegistrationSoap">
+      <soap:address location="https://tgct.gov.in/WebService_Others/registration.asmx" />
+    </wsdl:port>
+    <wsdl:port name="RegistrationSoap12" binding="tns:RegistrationSoap12">
+      <soap12:address location="https://tgct.gov.in/WebService_Others/registration.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

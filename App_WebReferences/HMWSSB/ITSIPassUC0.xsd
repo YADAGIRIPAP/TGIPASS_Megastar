@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://test.hyderabadwater.gov.in:9235/CTL/ERP/EIF/CommonService/IL/ITSIPassUC?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CTL.ERP.EIF.FAS.Model.Domain" />
+  <xs:element name="GetPerformanceIndicatorDetails">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPerformanceIndicatorDetailsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/CTL.ERP.EIF.FAS.Model.Domain" minOccurs="0" name="GetPerformanceIndicatorDetailsResult" nillable="true" type="q1:PerfomanceIndicatorDetailsModel" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tradelicense.service.cpris/" xmlns:ns1="http://jaxb.dev.java.net/array" targetNamespace="http://tradelicense.service.cpris/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://epanchayat.telangana.gov.in:443/htax/TradelicenseNew?xsd=2" namespace="http://jaxb.dev.java.net/array" />
+  <xs:element name="getAnnualFee" type="tns:getAnnualFee" />
+  <xs:element name="getAnnualFeeResponse" type="tns:getAnnualFeeResponse" />
+  <xs:element name="getDistrictList" type="tns:getDistrictList" />
+  <xs:element name="getDistrictListResponse" type="tns:getDistrictListResponse" />
+  <xs:element name="getFinyear" type="tns:getFinyear" />
+  <xs:element name="getFinyearResponse" type="tns:getFinyearResponse" />
+  <xs:element name="getMandalList" type="tns:getMandalList" />
+  <xs:element name="getMandalListResponse" type="tns:getMandalListResponse" />
+  <xs:element name="getPanchayatList" type="tns:getPanchayatList" />
+  <xs:element name="getPanchayatListResponse" type="tns:getPanchayatListResponse" />
+  <xs:element name="getPriodFromToFinyear" type="tns:getPriodFromToFinyear" />
+  <xs:element name="getPriodFromToFinyearResponse" type="tns:getPriodFromToFinyearResponse" />
+  <xs:element name="getRenewalTradeDetails" type="tns:getRenewalTradeDetails" />
+  <xs:element name="getRenewalTradeDetailsResponse" type="tns:getRenewalTradeDetailsResponse" />
+  <xs:element name="saveRenewalTradeDetails" type="tns:saveRenewalTradeDetails" />
+  <xs:element name="saveRenewalTradeDetailsResponse" type="tns:saveRenewalTradeDetailsResponse" />
+  <xs:element name="saveTradeLicenseNew" type="tns:saveTradeLicenseNew" />
+  <xs:element name="saveTradeLicenseNewResponse" type="tns:saveTradeLicenseNewResponse" />
+  <xs:element name="subtradecode" type="tns:subtradecode" />
+  <xs:element name="subtradecodeResponse" type="tns:subtradecodeResponse" />
+  <xs:element name="tradeLicenseFor" type="tns:tradeLicenseFor" />
+  <xs:element name="tradeLicenseForResponse" type="tns:tradeLicenseForResponse" />
+  <xs:element name="tradeforcode" type="tns:tradeforcode" />
+  <xs:element name="tradeforcodeResponse" type="tns:tradeforcodeResponse" />
+  <xs:element name="updateTradeLicenseNew" type="tns:updateTradeLicenseNew" />
+  <xs:element name="updateTradeLicenseNewResponse" type="tns:updateTradeLicenseNewResponse" />
+  <xs:complexType name="getDistrictList">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="user" type="xs:string" />
+      <xs:element minOccurs="0" name="password" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getDistrictListResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:tradeNewBean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tradeNewBean">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="aadharNo" type="xs:string" />
+      <xs:element minOccurs="0" name="addr" type="xs:string" />
+      <xs:element minOccurs="0" name="annualLCDemand" type="xs:string" />
+      <xs:element minOccurs="0" name="annualLicenseFee" type="xs:string" />
+      <xs:element minOccurs="0" name="appldate" type="xs:string" />
+      <xs:element minOccurs="0" name="buildingOwner" type="xs:string" />
+      <xs:element minOccurs="0" name="deptLCReq" type="xs:string" />
+      <xs:element minOccurs="0" name="deptLCReqDet" type="xs:string" />
+      <xs:element minOccurs="0" name="dept_licDetails" type="xs:string" />
+      <xs:element minOccurs="0" name="dept_licence" type="xs:string" />
+      <xs:element minOccurs="0" name="deptdoc_status" type="xs:string" />
+      <xs:element minOccurs="0" name="distCode" type="xs:string" />
+      <xs:element minOccurs="0" name="distName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="dist_list" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="doorno" type="xs:string" />
+      <xs:element minOccurs="0" name="doorno2" type="xs:string" />
+      <xs:element minOccurs="0" name="dwcertificate" type="xs:string" />
+      <xs:element minOccurs="0" name="email" type="xs:string" />
+      <xs:element minOccurs="0" name="FOrBOrEName" type="xs:string" />
+      <xs:element minOccurs="0" name="fatherName" type="xs:string" />
+      <xs:element minOccurs="0" name="fathersurName" type="xs:string" />
+      <xs:element minOccurs="0" name="fax" type="xs:string" />
+      <xs:element minOccurs="0" name="fdate" type="xs:string" />
+      <xs:element minOccurs="0" name="fee" type="xs:string" />
+      <xs:element minOccurs="0" name="finyear" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="finyearList" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="gencertificate" type="xs:string" />
+      <xs:element minOccurs="0" name="gender" type="xs:string" />
+      <xs:element minOccurs="0" name="gncertificate" type="xs:string" />
+      <xs:element minOccurs="0" name="gpCode" type="xs:string" />
+      <xs:element minOccurs="0" name="gpName" type="xs:string" />
+      <xs:element minOccurs="0" name="gpStatus" type="xs:string" />
+      <xs:element minOccurs="0" name="gp_username" type="xs:string" />
+      <xs:element minOccurs="0" name="gst_tan" type="xs:string" />
+      <xs:element minOccurs="0" name="id" type="xs:string" />
+      <xs:element minOccurs="0" name="id_number" type="xs:string" />
+      <xs:element minOccurs="0" name="id_status_proofs" type="xs:string" />
+      <xs:element minOccurs="0" name="id_type" type="xs:string" />
+      <xs:element minOccurs="0" name="installationfee" type="xs:string" />
+      <xs:element minOccurs="0" name="lgdcode" type="xs:string" />
+      <xs:element minOccurs="0" name="license_from" type="xs:string" />
+      <xs:element minOccurs="0" name="license_to" type="xs:string" />
+      <xs:element minOccurs="0" name="license_year" type="xs:string" />
+      <xs:element minOccurs="0" name="locality" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="localityList" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="mandCode" type="xs:string" />
+      <xs:element minOccurs="0" name="mandName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="mand_list" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="mobileNo" type="xs:string" />
+      <xs:element minOccurs="0" name="name" type="xs:string" />
+      <xs:element minOccurs="0" name="officeName" type="xs:string" />
+      <xs:element minOccurs="0" name="officeid" type="xs:string" />
+      <xs:element minOccurs="0" name="ownership_status" type="xs:string" />
+      <xs:element minOccurs="0" name="panTanNo" type="xs:string" />
+      <xs:element minOccurs="0" name="phoneno" type="xs:string" />
+      <xs:element minOccurs="0" name="proAdd1" type="xs:string" />
+      <xs:element minOccurs="0" name="proAdd2" type="xs:string" />
+      <xs:element minOccurs="0" name="proDistrict" type="xs:string" />
+      <xs:element minOccurs="0" name="proMandal" type="xs:string" />
+      <xs:element minOccurs="0" name="proPincode" type="xs:string" />
+      <xs:element minOccurs="0" name="proState" type="xs:string" />
+      <xs:element minOccurs="0" name="proVillage" type="xs:string" />
+      <xs:element minOccurs="0" name="proposedLOrEBuilding" type="xs:string" />
+      <xs:element minOccurs="0" name="ROrLDeedDate" type="xs:string" />
+      <xs:element minOccurs="0" name="ROrLDeedNo" type="xs:string" />
+      <xs:element minOccurs="0" name="ROrLFromDate" type="xs:string" />
+      <xs:element minOccurs="0" name="ROrLToDate" type="xs:string" />
+      <xs:element minOccurs="0" name="rblock" type="xs:string" />
+      <xs:element minOccurs="0" name="reason1" type="xs:string" />
+      <xs:element minOccurs="0" name="reason2" type="xs:string" />
+      <xs:element minOccurs="0" name="reason3" type="xs:string" />
+      <xs:element minOccurs="0" name="refno" type="xs:string" />
+      <xs:element minOccurs="0" name="remarks" type="xs:string" />
+      <xs:element minOccurs="0" name="rentLeasOwn" type="xs:string" />
+      <xs:element minOccurs="0" name="rentLeaseAgrmnt" type="xs:string" />
+      <xs:element minOccurs="0" name="rentLeaseDDate" type="xs:string" />
+      <xs:element minOccurs="0" name="rentLeaseDNo" type="xs:string" />
+      <xs:element minOccurs="0" name="rentLeasePrdFrom" type="xs:string" />
+      <xs:element minOccurs="0" name="rentLeasePrdTo" type="xs:string" />
+      <xs:element minOccurs="0" name="repdate" type="xs:string" />
+      <xs:element minOccurs="0" name="resId" type="xs:string" />
+      <xs:element minOccurs="0" name="resoldate" type="xs:string" />
+      <xs:element minOccurs="0" name="resolno" type="xs:string" />
+      <xs:element minOccurs="0" name="respMsg" type="xs:string" />
+      <xs:element minOccurs="0" name="rname" type="xs:string" />
+      <xs:element minOccurs="0" name="rtype" type="xs:string" />
+      <xs:element minOccurs="0" name="rward" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="rwardList" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="shopEstbFirmAadhRegNo" type="xs:string" />
+      <xs:element minOccurs="0" name="shopEstbFirmOwnName" type="xs:string" />
+      <xs:element minOccurs="0" name="status" type="xs:string" />
+      <xs:element minOccurs="0" name="status_code" type="xs:string" />
+      <xs:element minOccurs="0" name="subTrade" type="xs:string" />
+      <xs:element minOccurs="0" name="subTradeDesc" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="subTradeList" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="surName" type="xs:string" />
+      <xs:element minOccurs="0" name="surname" type="xs:string" />
+      <xs:element minOccurs="0" name="tangst_status" type="xs:string" />
+      <xs:element minOccurs="0" name="taxrecpt_status" type="xs:string" />
+      <xs:element minOccurs="0" name="tdate" type="xs:string" />
+      <xs:element minOccurs="0" name="title" type="xs:string" />
+      <xs:element minOccurs="0" name="tlsPrdFrom" type="xs:string" />
+      <xs:element minOccurs="0" name="tlsPrdTo" type="xs:string" />
+      <xs:element minOccurs="0" name="trade" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tradeList" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="trade_code" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="trade_list" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" name="trade_name" type="xs:string" />
+      <xs:element minOccurs="0" name="tradedesc" type="xs:string" />
+      <xs:element minOccurs="0" name="tradefor" type="xs:string" />
+      <xs:element minOccurs="0" name="tradeforName" type="xs:string" />
+      <xs:element minOccurs="0" name="tradeforcode" type="xs:string" />
+      <xs:element minOccurs="0" name="username" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="village_list" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getRenewalTradeDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="officeid" type="xs:string" />
+      <xs:element minOccurs="0" name="licenseno" type="xs:string" />
+      <xs:element minOccurs="0" name="finyear" type="xs:string" />
+      <xs:element minOccurs="0" name="user" type="xs:string" />
+      <xs:element minOccurs="0" name="password" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getRenewalTradeDetailsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:tradeRenewalBean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tradeRenewalBean">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="annualLicenseFee" type="xs:string" />
+      <xs:element minOccurs="0" name="distCode" type="xs:string" />
+      <xs:element minOccurs="0" name="distName" type="xs:string" />
+      <xs:element minOccurs="0" name="doorno" type="xs:string" />
+      <xs:element minOccurs="0" name="FOrBOrEName" type="xs:string" />
+      <xs:element minOccurs="0" name="gpCode" type="xs:string" />
+      <xs:element minOccurs="0" name="gpName" type="xs:string" />
+      <xs:element minOccurs="0" name="license_from" type="xs:string" />
+      <xs:element minOccurs="0" name="license_number" type="xs:string" />
+      <xs:element minOccurs="0" name="license_to" type="xs:string" />
+      <xs:element minOccurs="0" name="license_year" type="xs:string" />
+      <xs:element minOccurs="0" name="locality" type="xs:string" />
+      <xs:element minOccurs="0" name="mandCode" type="xs:string" />
+      <xs:element minOccurs="0" name="mandName" type="xs:string" />
+      <xs:element minOccurs="0" name="officeName" type="xs:string" />
+      <xs:element minOccurs="0" name="officeid" type="xs:string" />
+      <xs:element minOccurs="0" name="renewal_status" type="xs:string" />
+      <xs:element minOccurs="0" name="resp_msg" type="xs:string" />
+      <xs:element minOccurs="0" name="status_code" type="xs:string" />
+      <xs:element minOccurs="0" name="subTrade" type="xs:string" />
+      <xs:element minOccurs="0" name="subTradeDesc" type="xs:string" />
+      <xs:element minOccurs="0" name="trade" type="xs:string" />
+      <xs:element minOccurs="0" name="tradeForDesc" type="xs:string" />
+      <xs:element minOccurs="0" name="tradeforcode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tradeforcode">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tradeforcode" type="xs:string" />
+      <xs:element minOccurs="0" name="user" type="xs:string" />
+      <xs:element minOccurs="0" name="password" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tradeforcodeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:tradeNewBean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getPanchayatList">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="distCode" type="xs:string" />
+      <xs:element minOccurs="0" name="mandCode" type="xs:string" />
+      <xs:element minOccurs="0" name="user" type="xs:string" />
+      <xs:element minOccurs="0" name="password" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getPanchayatListResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:tradeNewBean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="saveRenewalTradeDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tradeforcode" type="xs:string" />
+      <xs:element minOccurs="0" name="tradefordesc" type="xs:string" />
+      <xs:element minOccurs="0" name="tradecode" type="xs:string" />
+      <xs:element minOccurs="0" name="tradecodedesc" type="xs:string" />
+      <xs:element minOccurs="0" name="subtradecode" type="xs:string" />
+      <xs:element minOccurs="0" name="subtradesc" type="xs:string" />
+      <xs:element minOccurs="0" name="officeid" type="xs:string" />
+      <xs:element minOccurs="0" name="licenseno" type="xs:string" />
+      <xs:element minOccurs="0" name="finyear" type="xs:string" />
+      <xs:element minOccurs="0" name="licensefrom" type="xs:string" />
+      <xs:element minOccurs="0" name="licenseto" type="xs:string" />
+      <xs:element minOccurs="0" name="mobileno" type="xs:string" />
+      <xs:element minOccurs="0" name="annualLicenseFee" type="xs:string" />
+      <xs:element minOccurs="0" name="user" type="xs:string" />
+      <xs:element minOccurs="0" name="password" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="saveRenewalTradeDetailsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:tradeRenewalBean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getPriodFromToFinyear">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tradeforcode" type="xs:string" />
+      <xs:element minOccurs="0" name="finyear" type="xs:string" />
+      <xs:element minOccurs="0" name="user" type="xs:string" />
+      <xs:element minOccurs="0" name="password" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getPriodFromToFinyearResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:tradeNewBean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAnnualFee">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tradeforcode" type="xs:string" />
+      <xs:element minOccurs="0" name="tradecode" type="xs:string" />
+      <xs:element minOccurs="0" name="subtradecode" type="xs:string" />
+      <xs:element minOccurs="0" name="subtradedesc" type="xs:string" />
+      <xs:element minOccurs="0" name="officeid" type="xs:string" />
+      <xs:element minOccurs="0" name="user" type="xs:string" />
+      <xs:element minOccurs="0" name="password" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAnnualFeeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:tradeNewBean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="saveTradeLicenseNew">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="dist_code" type="xs:string" />
+      <xs:element minOccurs="0" name="mand_code" type="xs:string" />
+      <xs:element minOccurs="0" name="officeid" type="xs:string" />
+      <xs:element minOccurs="0" name="rent_lease_periodFrom" type="xs:string" />
+      <xs:element minOccurs="0" name="lgdcode" type="xs:string" />
+      <xs:element minOccurs="0" name="applicantsurname" type="xs:string" />
+      <xs:element minOccurs="0" name="finyear" type="xs:string" />
+      <xs:element minOccurs="0" name="applicantname" type="xs:string" />
+      <xs:element minOccurs="0" name="gender" type="xs:string" />
+      <xs:element minOccurs="0" name="rtype" type="xs:string" />
+      <xs:element minOccurs="0" name="appl_fh_name" type="xs:string" />
+      <xs:element minOccurs="0" name="mobileno" type="xs:string" />
+      <xs:element minOccurs="0" name="email" type="xs:string" />
+      <xs:element minOccurs="0" name="hno" type="xs:string" />
+      <xs:element minOccurs="0" name="street" type="xs:string" />
+      <xs:element minOccurs="0" name="pincode" type="xs:string" />
+      <xs:element minOccurs="0" name="tradelicenseforcode" type="xs:string" />
+      <xs:element minOccurs="0" name="tradecode" type="xs:string" />
+      <xs:element minOccurs="0" name="subtradecode" type="xs:string" />
+      <xs:element minOccurs="0" name="annualfee" type="xs:string" />
+      <xs:element minOccurs="0" name="installationfee" type="xs:string" />
+      <xs:element minOccurs="0" name="nameoffirm" type="xs:string" />
+      <xs:element minOccurs="0" name="licensepriodFrom" type="xs:string" />
+      <xs:element minOccurs="0" name="licensePriodTo" type="xs:string" />
+      <xs:element minOccurs="0" name="proposedlicense" type="xs:string" />
+      <xs:element minOccurs="0" name="rent_lease_no" type="xs:string" />
+      <xs:element minOccurs="0" name="ownername" type="xs:string" />
+      <xs:element minOccurs="0" name="licence_Yes_No" type="xs:string" />
+      <xs:element minOccurs="0" name="rent_lease_date" type="xs:string" />
+      <xs:element minOccurs="0" name="rent_lease_periodTo" type="xs:string" />
+      <xs:element minOccurs="0" name="licens_details" type="xs:string" />
+      <xs:element minOccurs="0" name="tan_gst_no" type="xs:string" />
+      <xs:element minOccurs="0" name="owner_ship_doc_status" type="xs:string" />
+      <xs:element minOccurs="0" name="idtype" type="xs:string" />
+      <xs:element minOccurs="0" name="idnumber" type="xs:string" />
+      <xs:element minOccurs="0" name="ownershipdocpath" type="xs:string" />
+      <xs:element minOccurs="0" name="idproofdocpath" type="xs:string" />
+      <xs:element minOccurs="0" name="questionerid" type="xs:string" />
+      <xs:element minOccurs="0" name="uid" type="xs:string" />
+      <xs:element minOccurs="0" name="enterpreneurid" type="xs:string" />
+      <xs:element minOccurs="0" name="transaction_no" type="xs:string" />
+      <xs:element minOccurs="0" name="transaction_date" type="xs:string" />
+      <xs:element minOccurs="0" name="bankname" type="xs:string" />
+      <xs:element minOccurs="0" name="amout" type="xs:string" />
+      <xs:element minOccurs="0" name="user" type="xs:string" />
+      <xs:element minOccurs="0" name="password" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="saveTradeLicenseNewResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:tradeNewBean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="subtradecode">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="tradecode" type="xs:string" />
+      <xs:element minOccurs="0" name="user" type="xs:string" />
+      <xs:element minOccurs="0" name="password" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="subtradecodeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:tradeNewBean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tradeLicenseFor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="user" type="xs:string" />
+      <xs:element minOccurs="0" name="password" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tradeLicenseForResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:tradeNewBean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getFinyear">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="user" type="xs:string" />
+      <xs:element minOccurs="0" name="password" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getFinyearResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="ns1:stringArray" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateTradeLicenseNew">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="applid" type="xs:string" />
+      <xs:element minOccurs="0" name="officeid" type="xs:string" />
+      <xs:element minOccurs="0" name="rent_lease_periodFrom" type="xs:string" />
+      <xs:element minOccurs="0" name="lgdcode" type="xs:string" />
+      <xs:element minOccurs="0" name="applicantsurname" type="xs:string" />
+      <xs:element minOccurs="0" name="finyear" type="xs:string" />
+      <xs:element minOccurs="0" name="applicantname" type="xs:string" />
+      <xs:element minOccurs="0" name="gender" type="xs:string" />
+      <xs:element minOccurs="0" name="rtype" type="xs:string" />
+      <xs:element minOccurs="0" name="appl_fh_name" type="xs:string" />
+      <xs:element minOccurs="0" name="mobileno" type="xs:string" />
+      <xs:element minOccurs="0" name="email" type="xs:string" />
+      <xs:element minOccurs="0" name="hno" type="xs:string" />
+      <xs:element minOccurs="0" name="street" type="xs:string" />
+      <xs:element minOccurs="0" name="pincode" type="xs:string" />
+      <xs:element minOccurs="0" name="tradelicenseforcode" type="xs:string" />
+      <xs:element minOccurs="0" name="tradecode" type="xs:string" />
+      <xs:element minOccurs="0" name="subtradecode" type="xs:string" />
+      <xs:element minOccurs="0" name="annualfee" type="xs:string" />
+      <xs:element minOccurs="0" name="installationfee" type="xs:string" />
+      <xs:element minOccurs="0" name="nameoffirm" type="xs:string" />
+      <xs:element minOccurs="0" name="licensepriodFrom" type="xs:string" />
+      <xs:element minOccurs="0" name="licensePriodTo" type="xs:string" />
+      <xs:element minOccurs="0" name="proposedlicense" type="xs:string" />
+      <xs:element minOccurs="0" name="rent_lease_no" type="xs:string" />
+      <xs:element minOccurs="0" name="ownername" type="xs:string" />
+      <xs:element minOccurs="0" name="licence_Yes_No" type="xs:string" />
+      <xs:element minOccurs="0" name="rent_lease_date" type="xs:string" />
+      <xs:element minOccurs="0" name="rent_lease_periodTo" type="xs:string" />
+      <xs:element minOccurs="0" name="licens_details" type="xs:string" />
+      <xs:element minOccurs="0" name="tan_gst_no" type="xs:string" />
+      <xs:element minOccurs="0" name="owner_ship_doc_status" type="xs:string" />
+      <xs:element minOccurs="0" name="idtype" type="xs:string" />
+      <xs:element minOccurs="0" name="idnumber" type="xs:string" />
+      <xs:element minOccurs="0" name="ownershipdocpath" type="xs:string" />
+      <xs:element minOccurs="0" name="idproofdocpath" type="xs:string" />
+      <xs:element minOccurs="0" name="questionerid" type="xs:string" />
+      <xs:element minOccurs="0" name="user" type="xs:string" />
+      <xs:element minOccurs="0" name="password" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateTradeLicenseNewResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:tradeNewBean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getMandalList">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="distCode" type="xs:string" />
+      <xs:element minOccurs="0" name="user" type="xs:string" />
+      <xs:element minOccurs="0" name="password" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getMandalListResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:tradeNewBean" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

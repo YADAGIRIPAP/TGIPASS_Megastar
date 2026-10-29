@@ -1,0 +1,385 @@
+ public DataSet CountyWiseReportNew(string IPName, string TypeofIP)
+    {
+        con.OpenConnection();
+        SqlDataAdapter da;
+        DataSet ds = new DataSet();
+        try
+        {
+            da = new SqlDataAdapter("CountywiseReport", con.GetConnection);
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+
+            //if (Created_by.Trim() == "" || Created_by.Trim() == null)
+            //    da.SelectCommand.Parameters.Add("@Created_by", SqlDbType.VarChar).Value = "%";
+            //else
+            //    da.SelectCommand.Parameters.Add("@Created_by", SqlDbType.VarChar).Value = Created_by.ToString();
+
+
+            if (IPName.Trim() == "" || IPName.Trim() == null)
+                da.SelectCommand.Parameters.Add("@intTST", SqlDbType.VarChar).Value = "%";
+            else
+                da.SelectCommand.Parameters.Add("@intTST", SqlDbType.VarChar).Value = IPName.ToString();
+
+            if (TypeofIP.Trim() == "" || TypeofIP.Trim() == null || TypeofIP.Trim() == "--Select--")
+                da.SelectCommand.Parameters.Add("@intIP", SqlDbType.VarChar).Value = "%";
+            else
+                da.SelectCommand.Parameters.Add("@intIP", SqlDbType.VarChar).Value = TypeofIP.ToString();
+
+            da.Fill(ds);
+            return ds;
+
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        finally
+        {
+            con.CloseConnection();
+        }
+    }
+
+    public DataSet CountywisereportByType(string IPName, string TypeofIP)
+    {
+        con.OpenConnection();
+        SqlDataAdapter da;
+        DataSet ds = new DataSet();
+        try
+        {
+            da = new SqlDataAdapter("CountywisereportByType", con.GetConnection);
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+
+            //if (Created_by.Trim() == "" || Created_by.Trim() == null)
+            //    da.SelectCommand.Parameters.Add("@Created_by", SqlDbType.VarChar).Value = "%";
+            //else
+            //    da.SelectCommand.Parameters.Add("@Created_by", SqlDbType.VarChar).Value = Created_by.ToString();
+
+
+            if (IPName.Trim() == "" || IPName.Trim() == null)
+                da.SelectCommand.Parameters.Add("@intTST", SqlDbType.VarChar).Value = "%";
+            else
+                da.SelectCommand.Parameters.Add("@intTST", SqlDbType.VarChar).Value = IPName.ToString();
+
+            if (TypeofIP.Trim() == "" || TypeofIP.Trim() == null || TypeofIP.Trim() == "--Select--")
+                da.SelectCommand.Parameters.Add("@intIP", SqlDbType.VarChar).Value = "%";
+            else
+                da.SelectCommand.Parameters.Add("@intIP", SqlDbType.VarChar).Value = TypeofIP.ToString();
+
+            da.Fill(ds);
+            return ds;
+
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        finally
+        {
+            con.CloseConnection();
+        }
+    }
+
+
+
+    public DataSet PayamwiseReportNew(string IPName, string TypeofIP)
+    {
+        con.OpenConnection();
+        SqlDataAdapter da;
+        DataSet ds = new DataSet();
+        try
+        {
+            da = new SqlDataAdapter("PayamwiseReport", con.GetConnection);
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+
+            //if (Created_by.Trim() == "" || Created_by.Trim() == null)
+            //    da.SelectCommand.Parameters.Add("@Created_by", SqlDbType.VarChar).Value = "%";
+            //else
+            //    da.SelectCommand.Parameters.Add("@Created_by", SqlDbType.VarChar).Value = Created_by.ToString();
+
+
+            if (IPName.Trim() == "" || IPName.Trim() == null)
+                da.SelectCommand.Parameters.Add("@intTST", SqlDbType.VarChar).Value = "%";
+            else
+                da.SelectCommand.Parameters.Add("@intTST", SqlDbType.VarChar).Value = IPName.ToString();
+
+            if (TypeofIP.Trim() == "" || TypeofIP.Trim() == null || TypeofIP.Trim() == "--Select--")
+                da.SelectCommand.Parameters.Add("@intIP", SqlDbType.VarChar).Value = "%";
+            else
+                da.SelectCommand.Parameters.Add("@intIP", SqlDbType.VarChar).Value = TypeofIP.ToString();
+
+            da.Fill(ds);
+            return ds;
+
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        finally
+        {
+            con.CloseConnection();
+        }
+    }
+
+    public DataSet PayamwisereportByTypeNew(string IPName, string TypeofIP)
+    {
+        con.OpenConnection();
+        SqlDataAdapter da;
+        DataSet ds = new DataSet();
+        try
+        {
+            da = new SqlDataAdapter("PayamwisereportByType", con.GetConnection);
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+
+            //if (Created_by.Trim() == "" || Created_by.Trim() == null)
+            //    da.SelectCommand.Parameters.Add("@Created_by", SqlDbType.VarChar).Value = "%";
+            //else
+            //    da.SelectCommand.Parameters.Add("@Created_by", SqlDbType.VarChar).Value = Created_by.ToString();
+
+
+            if (IPName.Trim() == "" || IPName.Trim() == null)
+                da.SelectCommand.Parameters.Add("@intTST", SqlDbType.VarChar).Value = "%";
+            else
+                da.SelectCommand.Parameters.Add("@intTST", SqlDbType.VarChar).Value = IPName.ToString();
+
+            if (TypeofIP.Trim() == "" || TypeofIP.Trim() == null || TypeofIP.Trim() == "--Select--")
+                da.SelectCommand.Parameters.Add("@intIP", SqlDbType.VarChar).Value = "%";
+            else
+                da.SelectCommand.Parameters.Add("@intIP", SqlDbType.VarChar).Value = TypeofIP.ToString();
+
+            da.Fill(ds);
+            return ds;
+
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        finally
+        {
+            con.CloseConnection();
+        }
+    }
+
+
+    public DataSet TypesofWorkswiseReport()
+    {
+        con.OpenConnection();
+        SqlDataAdapter da;
+        DataSet ds = new DataSet();
+        try
+        {
+            da = new SqlDataAdapter("TypesofWorkswiseReport", con.GetConnection);
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+
+            //if (Created_by.Trim() == "" || Created_by.Trim() == null)
+            //    da.SelectCommand.Parameters.Add("@Created_by", SqlDbType.VarChar).Value = "%";
+            //else
+            //    da.SelectCommand.Parameters.Add("@Created_by", SqlDbType.VarChar).Value = Created_by.ToString();
+
+
+            //if (IPName.Trim() == "" || IPName.Trim() == null)
+            //    da.SelectCommand.Parameters.Add("@intTST", SqlDbType.VarChar).Value = "%";
+            //else
+            //    da.SelectCommand.Parameters.Add("@intTST", SqlDbType.VarChar).Value = IPName.ToString();
+
+            //if (TypeofIP.Trim() == "" || TypeofIP.Trim() == null || TypeofIP.Trim() == "--Select--")
+            //    da.SelectCommand.Parameters.Add("@intIP", SqlDbType.VarChar).Value = "%";
+            //else
+            //    da.SelectCommand.Parameters.Add("@intIP", SqlDbType.VarChar).Value = TypeofIP.ToString();
+
+            da.Fill(ds);
+            return ds;
+
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        finally
+        {
+            con.CloseConnection();
+        }
+    }
+
+
+    public DataSet FundDisbursedReports(string IPName, string TypeofIP)
+    {
+        con.OpenConnection();
+        SqlDataAdapter da;
+        DataSet ds = new DataSet();
+        try
+        {
+            da = new SqlDataAdapter("FundDisbursedReports", con.GetConnection);
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+
+            //if (Created_by.Trim() == "" || Created_by.Trim() == null)
+            //    da.SelectCommand.Parameters.Add("@Created_by", SqlDbType.VarChar).Value = "%";
+            //else
+            //    da.SelectCommand.Parameters.Add("@Created_by", SqlDbType.VarChar).Value = Created_by.ToString();
+
+
+            if (IPName.Trim() == "" || IPName.Trim() == null)
+                da.SelectCommand.Parameters.Add("@intTST", SqlDbType.VarChar).Value = "%";
+            else
+                da.SelectCommand.Parameters.Add("@intTST", SqlDbType.VarChar).Value = IPName.ToString();
+
+            if (TypeofIP.Trim() == "" || TypeofIP.Trim() == null || TypeofIP.Trim() == "--Select--")
+                da.SelectCommand.Parameters.Add("@intIP", SqlDbType.VarChar).Value = "%";
+            else
+                da.SelectCommand.Parameters.Add("@intIP", SqlDbType.VarChar).Value = TypeofIP.ToString();
+
+            da.Fill(ds);
+            return ds;
+
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        finally
+        {
+            con.CloseConnection();
+        }
+    }
+
+
+    public DataSet WagespaidReport(string IPName, string TypeofIP)
+    {
+        con.OpenConnection();
+        SqlDataAdapter da;
+        DataSet ds = new DataSet();
+        try
+        {
+            da = new SqlDataAdapter("WagespaidReport", con.GetConnection);
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+
+            //if (Created_by.Trim() == "" || Created_by.Trim() == null)
+            //    da.SelectCommand.Parameters.Add("@Created_by", SqlDbType.VarChar).Value = "%";
+            //else
+            //    da.SelectCommand.Parameters.Add("@Created_by", SqlDbType.VarChar).Value = Created_by.ToString();
+
+
+            if (IPName.Trim() == "" || IPName.Trim() == null)
+                da.SelectCommand.Parameters.Add("@intTST", SqlDbType.VarChar).Value = "%";
+            else
+                da.SelectCommand.Parameters.Add("@intTST", SqlDbType.VarChar).Value = IPName.ToString();
+
+            if (TypeofIP.Trim() == "" || TypeofIP.Trim() == null || TypeofIP.Trim() == "--Select--")
+                da.SelectCommand.Parameters.Add("@intIP", SqlDbType.VarChar).Value = "%";
+            else
+                da.SelectCommand.Parameters.Add("@intIP", SqlDbType.VarChar).Value = TypeofIP.ToString();
+
+            da.Fill(ds);
+            return ds;
+
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        finally
+        {
+            con.CloseConnection();
+        }
+    }
+
+
+
+
+    public DataSet BomawiseReport(string IPName, string TypeofIP)
+    {
+        con.OpenConnection();
+        SqlDataAdapter da;
+        DataSet ds = new DataSet();
+        try
+        {
+            da = new SqlDataAdapter("BomawiseReport", con.GetConnection);
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+
+            //if (Created_by.Trim() == "" || Created_by.Trim() == null)
+            //    da.SelectCommand.Parameters.Add("@Created_by", SqlDbType.VarChar).Value = "%";
+            //else
+            //    da.SelectCommand.Parameters.Add("@Created_by", SqlDbType.VarChar).Value = Created_by.ToString();
+
+
+            if (IPName.Trim() == "" || IPName.Trim() == null)
+                da.SelectCommand.Parameters.Add("@intTST", SqlDbType.VarChar).Value = "%";
+            else
+                da.SelectCommand.Parameters.Add("@intTST", SqlDbType.VarChar).Value = IPName.ToString();
+
+            if (TypeofIP.Trim() == "" || TypeofIP.Trim() == null || TypeofIP.Trim() == "--Select--")
+                da.SelectCommand.Parameters.Add("@intIP", SqlDbType.VarChar).Value = "%";
+            else
+                da.SelectCommand.Parameters.Add("@intIP", SqlDbType.VarChar).Value = TypeofIP.ToString();
+
+            da.Fill(ds);
+            return ds;
+
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        finally
+        {
+            con.CloseConnection();
+        }
+    }
+
+    public DataSet BomawisereportByType(string IPName, string TypeofIP)
+    {
+        con.OpenConnection();
+        SqlDataAdapter da;
+        DataSet ds = new DataSet();
+        try
+        {
+            da = new SqlDataAdapter("BomawisereportByType", con.GetConnection);
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+
+            //if (Created_by.Trim() == "" || Created_by.Trim() == null)
+            //    da.SelectCommand.Parameters.Add("@Created_by", SqlDbType.VarChar).Value = "%";
+            //else
+            //    da.SelectCommand.Parameters.Add("@Created_by", SqlDbType.VarChar).Value = Created_by.ToString();
+
+
+            if (IPName.Trim() == "" || IPName.Trim() == null)
+                da.SelectCommand.Parameters.Add("@intTST", SqlDbType.VarChar).Value = "%";
+            else
+                da.SelectCommand.Parameters.Add("@intTST", SqlDbType.VarChar).Value = IPName.ToString();
+
+            if (TypeofIP.Trim() == "" || TypeofIP.Trim() == null || TypeofIP.Trim() == "--Select--")
+                da.SelectCommand.Parameters.Add("@intIP", SqlDbType.VarChar).Value = "%";
+            else
+                da.SelectCommand.Parameters.Add("@intIP", SqlDbType.VarChar).Value = TypeofIP.ToString();
+
+            da.Fill(ds);
+            return ds;
+
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+        finally
+        {
+            con.CloseConnection();
+        }
+    }

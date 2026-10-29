@@ -1,0 +1,867 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="InsertApplicantFireDetails_CFO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="XMLInsertApplicantFireDetails" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertApplicantFireDetails_CFOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertApplicantFireDetails_CFOResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StoreMeansOfEscape_CFO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="XMLMeansOfEscape" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StoreMeansOfEscape_CFOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StoreMeansOfEscape_CFOResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StoreFloorwiseApplicantDtls_CFO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="XMLFloorwiseApplicantDtls" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StoreFloorwiseApplicantDtls_CFOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StoreFloorwiseApplicantDtls_CFOResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StoreFireFightingInstallations_CFO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="XMLFireFightingInstallations" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StoreFireFightingInstallations_CFOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StoreFireFightingInstallations_CFOResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StoreUploadDocuments_CFO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="XMLUploadDoc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StoreUploadDocuments_CFOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StoreUploadDocuments_CFOResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PaymentDetails_CFO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Challanno" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="bankdate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BankName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Amount" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PaymentDetails_CFOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PaymentDetails_CFOResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StoreQueryResponse_CFO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FilePath" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Remark" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StoreQueryResponse_CFOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StoreQueryResponse_CFOResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Appealed">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Uid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="entrepreneurId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="remarks" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="docurl" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AppealedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppealedResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertApplicantFireDetails_RENEWAL">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="XMLInsertApplicantFireDetails" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertApplicantFireDetails_RENEWALResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertApplicantFireDetails_RENEWALResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UIDbaseduploaddocuments_CFO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="XMLUploadDoc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UIDbaseduploaddocuments_CFOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UIDbaseduploaddocuments_CFOResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="InsertApplicantFireDetails_CFOSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertApplicantFireDetails_CFO" />
+  </wsdl:message>
+  <wsdl:message name="InsertApplicantFireDetails_CFOSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertApplicantFireDetails_CFOResponse" />
+  </wsdl:message>
+  <wsdl:message name="StoreMeansOfEscape_CFOSoapIn">
+    <wsdl:part name="parameters" element="tns:StoreMeansOfEscape_CFO" />
+  </wsdl:message>
+  <wsdl:message name="StoreMeansOfEscape_CFOSoapOut">
+    <wsdl:part name="parameters" element="tns:StoreMeansOfEscape_CFOResponse" />
+  </wsdl:message>
+  <wsdl:message name="StoreFloorwiseApplicantDtls_CFOSoapIn">
+    <wsdl:part name="parameters" element="tns:StoreFloorwiseApplicantDtls_CFO" />
+  </wsdl:message>
+  <wsdl:message name="StoreFloorwiseApplicantDtls_CFOSoapOut">
+    <wsdl:part name="parameters" element="tns:StoreFloorwiseApplicantDtls_CFOResponse" />
+  </wsdl:message>
+  <wsdl:message name="StoreFireFightingInstallations_CFOSoapIn">
+    <wsdl:part name="parameters" element="tns:StoreFireFightingInstallations_CFO" />
+  </wsdl:message>
+  <wsdl:message name="StoreFireFightingInstallations_CFOSoapOut">
+    <wsdl:part name="parameters" element="tns:StoreFireFightingInstallations_CFOResponse" />
+  </wsdl:message>
+  <wsdl:message name="StoreUploadDocuments_CFOSoapIn">
+    <wsdl:part name="parameters" element="tns:StoreUploadDocuments_CFO" />
+  </wsdl:message>
+  <wsdl:message name="StoreUploadDocuments_CFOSoapOut">
+    <wsdl:part name="parameters" element="tns:StoreUploadDocuments_CFOResponse" />
+  </wsdl:message>
+  <wsdl:message name="PaymentDetails_CFOSoapIn">
+    <wsdl:part name="parameters" element="tns:PaymentDetails_CFO" />
+  </wsdl:message>
+  <wsdl:message name="PaymentDetails_CFOSoapOut">
+    <wsdl:part name="parameters" element="tns:PaymentDetails_CFOResponse" />
+  </wsdl:message>
+  <wsdl:message name="StoreQueryResponse_CFOSoapIn">
+    <wsdl:part name="parameters" element="tns:StoreQueryResponse_CFO" />
+  </wsdl:message>
+  <wsdl:message name="StoreQueryResponse_CFOSoapOut">
+    <wsdl:part name="parameters" element="tns:StoreQueryResponse_CFOResponse" />
+  </wsdl:message>
+  <wsdl:message name="AppealedSoapIn">
+    <wsdl:part name="parameters" element="tns:Appealed" />
+  </wsdl:message>
+  <wsdl:message name="AppealedSoapOut">
+    <wsdl:part name="parameters" element="tns:AppealedResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertApplicantFireDetails_RENEWALSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertApplicantFireDetails_RENEWAL" />
+  </wsdl:message>
+  <wsdl:message name="InsertApplicantFireDetails_RENEWALSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertApplicantFireDetails_RENEWALResponse" />
+  </wsdl:message>
+  <wsdl:message name="UIDbaseduploaddocuments_CFOSoapIn">
+    <wsdl:part name="parameters" element="tns:UIDbaseduploaddocuments_CFO" />
+  </wsdl:message>
+  <wsdl:message name="UIDbaseduploaddocuments_CFOSoapOut">
+    <wsdl:part name="parameters" element="tns:UIDbaseduploaddocuments_CFOResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertApplicantFireDetails_CFOHttpGetIn">
+    <wsdl:part name="XMLInsertApplicantFireDetails" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertApplicantFireDetails_CFOHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreMeansOfEscape_CFOHttpGetIn">
+    <wsdl:part name="XMLMeansOfEscape" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreMeansOfEscape_CFOHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreFloorwiseApplicantDtls_CFOHttpGetIn">
+    <wsdl:part name="XMLFloorwiseApplicantDtls" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreFloorwiseApplicantDtls_CFOHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreFireFightingInstallations_CFOHttpGetIn">
+    <wsdl:part name="XMLFireFightingInstallations" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreFireFightingInstallations_CFOHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreUploadDocuments_CFOHttpGetIn">
+    <wsdl:part name="XMLUploadDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreUploadDocuments_CFOHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="PaymentDetails_CFOHttpGetIn">
+    <wsdl:part name="UID" type="s:string" />
+    <wsdl:part name="Challanno" type="s:string" />
+    <wsdl:part name="bankdate" type="s:string" />
+    <wsdl:part name="BankName" type="s:string" />
+    <wsdl:part name="Amount" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PaymentDetails_CFOHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreQueryResponse_CFOHttpGetIn">
+    <wsdl:part name="UID" type="s:string" />
+    <wsdl:part name="FilePath" type="s:string" />
+    <wsdl:part name="Remark" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreQueryResponse_CFOHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="AppealedHttpGetIn">
+    <wsdl:part name="Uid" type="s:string" />
+    <wsdl:part name="entrepreneurId" type="s:string" />
+    <wsdl:part name="remarks" type="s:string" />
+    <wsdl:part name="docurl" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AppealedHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertApplicantFireDetails_RENEWALHttpGetIn">
+    <wsdl:part name="XMLInsertApplicantFireDetails" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertApplicantFireDetails_RENEWALHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UIDbaseduploaddocuments_CFOHttpGetIn">
+    <wsdl:part name="XMLUploadDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UIDbaseduploaddocuments_CFOHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertApplicantFireDetails_CFOHttpPostIn">
+    <wsdl:part name="XMLInsertApplicantFireDetails" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertApplicantFireDetails_CFOHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreMeansOfEscape_CFOHttpPostIn">
+    <wsdl:part name="XMLMeansOfEscape" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreMeansOfEscape_CFOHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreFloorwiseApplicantDtls_CFOHttpPostIn">
+    <wsdl:part name="XMLFloorwiseApplicantDtls" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreFloorwiseApplicantDtls_CFOHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreFireFightingInstallations_CFOHttpPostIn">
+    <wsdl:part name="XMLFireFightingInstallations" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreFireFightingInstallations_CFOHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreUploadDocuments_CFOHttpPostIn">
+    <wsdl:part name="XMLUploadDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreUploadDocuments_CFOHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="PaymentDetails_CFOHttpPostIn">
+    <wsdl:part name="UID" type="s:string" />
+    <wsdl:part name="Challanno" type="s:string" />
+    <wsdl:part name="bankdate" type="s:string" />
+    <wsdl:part name="BankName" type="s:string" />
+    <wsdl:part name="Amount" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PaymentDetails_CFOHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreQueryResponse_CFOHttpPostIn">
+    <wsdl:part name="UID" type="s:string" />
+    <wsdl:part name="FilePath" type="s:string" />
+    <wsdl:part name="Remark" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="StoreQueryResponse_CFOHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="AppealedHttpPostIn">
+    <wsdl:part name="Uid" type="s:string" />
+    <wsdl:part name="entrepreneurId" type="s:string" />
+    <wsdl:part name="remarks" type="s:string" />
+    <wsdl:part name="docurl" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AppealedHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertApplicantFireDetails_RENEWALHttpPostIn">
+    <wsdl:part name="XMLInsertApplicantFireDetails" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertApplicantFireDetails_RENEWALHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UIDbaseduploaddocuments_CFOHttpPostIn">
+    <wsdl:part name="XMLUploadDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UIDbaseduploaddocuments_CFOHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="Service1Soap">
+    <wsdl:operation name="InsertApplicantFireDetails_CFO">
+      <wsdl:input message="tns:InsertApplicantFireDetails_CFOSoapIn" />
+      <wsdl:output message="tns:InsertApplicantFireDetails_CFOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreMeansOfEscape_CFO">
+      <wsdl:input message="tns:StoreMeansOfEscape_CFOSoapIn" />
+      <wsdl:output message="tns:StoreMeansOfEscape_CFOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreFloorwiseApplicantDtls_CFO">
+      <wsdl:input message="tns:StoreFloorwiseApplicantDtls_CFOSoapIn" />
+      <wsdl:output message="tns:StoreFloorwiseApplicantDtls_CFOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreFireFightingInstallations_CFO">
+      <wsdl:input message="tns:StoreFireFightingInstallations_CFOSoapIn" />
+      <wsdl:output message="tns:StoreFireFightingInstallations_CFOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreUploadDocuments_CFO">
+      <wsdl:input message="tns:StoreUploadDocuments_CFOSoapIn" />
+      <wsdl:output message="tns:StoreUploadDocuments_CFOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PaymentDetails_CFO">
+      <wsdl:input message="tns:PaymentDetails_CFOSoapIn" />
+      <wsdl:output message="tns:PaymentDetails_CFOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreQueryResponse_CFO">
+      <wsdl:input message="tns:StoreQueryResponse_CFOSoapIn" />
+      <wsdl:output message="tns:StoreQueryResponse_CFOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Appealed">
+      <wsdl:input message="tns:AppealedSoapIn" />
+      <wsdl:output message="tns:AppealedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertApplicantFireDetails_RENEWAL">
+      <wsdl:input message="tns:InsertApplicantFireDetails_RENEWALSoapIn" />
+      <wsdl:output message="tns:InsertApplicantFireDetails_RENEWALSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UIDbaseduploaddocuments_CFO">
+      <wsdl:input message="tns:UIDbaseduploaddocuments_CFOSoapIn" />
+      <wsdl:output message="tns:UIDbaseduploaddocuments_CFOSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="Service1HttpGet">
+    <wsdl:operation name="InsertApplicantFireDetails_CFO">
+      <wsdl:input message="tns:InsertApplicantFireDetails_CFOHttpGetIn" />
+      <wsdl:output message="tns:InsertApplicantFireDetails_CFOHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreMeansOfEscape_CFO">
+      <wsdl:input message="tns:StoreMeansOfEscape_CFOHttpGetIn" />
+      <wsdl:output message="tns:StoreMeansOfEscape_CFOHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreFloorwiseApplicantDtls_CFO">
+      <wsdl:input message="tns:StoreFloorwiseApplicantDtls_CFOHttpGetIn" />
+      <wsdl:output message="tns:StoreFloorwiseApplicantDtls_CFOHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreFireFightingInstallations_CFO">
+      <wsdl:input message="tns:StoreFireFightingInstallations_CFOHttpGetIn" />
+      <wsdl:output message="tns:StoreFireFightingInstallations_CFOHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreUploadDocuments_CFO">
+      <wsdl:input message="tns:StoreUploadDocuments_CFOHttpGetIn" />
+      <wsdl:output message="tns:StoreUploadDocuments_CFOHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PaymentDetails_CFO">
+      <wsdl:input message="tns:PaymentDetails_CFOHttpGetIn" />
+      <wsdl:output message="tns:PaymentDetails_CFOHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreQueryResponse_CFO">
+      <wsdl:input message="tns:StoreQueryResponse_CFOHttpGetIn" />
+      <wsdl:output message="tns:StoreQueryResponse_CFOHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Appealed">
+      <wsdl:input message="tns:AppealedHttpGetIn" />
+      <wsdl:output message="tns:AppealedHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertApplicantFireDetails_RENEWAL">
+      <wsdl:input message="tns:InsertApplicantFireDetails_RENEWALHttpGetIn" />
+      <wsdl:output message="tns:InsertApplicantFireDetails_RENEWALHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UIDbaseduploaddocuments_CFO">
+      <wsdl:input message="tns:UIDbaseduploaddocuments_CFOHttpGetIn" />
+      <wsdl:output message="tns:UIDbaseduploaddocuments_CFOHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="Service1HttpPost">
+    <wsdl:operation name="InsertApplicantFireDetails_CFO">
+      <wsdl:input message="tns:InsertApplicantFireDetails_CFOHttpPostIn" />
+      <wsdl:output message="tns:InsertApplicantFireDetails_CFOHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreMeansOfEscape_CFO">
+      <wsdl:input message="tns:StoreMeansOfEscape_CFOHttpPostIn" />
+      <wsdl:output message="tns:StoreMeansOfEscape_CFOHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreFloorwiseApplicantDtls_CFO">
+      <wsdl:input message="tns:StoreFloorwiseApplicantDtls_CFOHttpPostIn" />
+      <wsdl:output message="tns:StoreFloorwiseApplicantDtls_CFOHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreFireFightingInstallations_CFO">
+      <wsdl:input message="tns:StoreFireFightingInstallations_CFOHttpPostIn" />
+      <wsdl:output message="tns:StoreFireFightingInstallations_CFOHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreUploadDocuments_CFO">
+      <wsdl:input message="tns:StoreUploadDocuments_CFOHttpPostIn" />
+      <wsdl:output message="tns:StoreUploadDocuments_CFOHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PaymentDetails_CFO">
+      <wsdl:input message="tns:PaymentDetails_CFOHttpPostIn" />
+      <wsdl:output message="tns:PaymentDetails_CFOHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StoreQueryResponse_CFO">
+      <wsdl:input message="tns:StoreQueryResponse_CFOHttpPostIn" />
+      <wsdl:output message="tns:StoreQueryResponse_CFOHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Appealed">
+      <wsdl:input message="tns:AppealedHttpPostIn" />
+      <wsdl:output message="tns:AppealedHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertApplicantFireDetails_RENEWAL">
+      <wsdl:input message="tns:InsertApplicantFireDetails_RENEWALHttpPostIn" />
+      <wsdl:output message="tns:InsertApplicantFireDetails_RENEWALHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UIDbaseduploaddocuments_CFO">
+      <wsdl:input message="tns:UIDbaseduploaddocuments_CFOHttpPostIn" />
+      <wsdl:output message="tns:UIDbaseduploaddocuments_CFOHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Service1Soap" type="tns:Service1Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertApplicantFireDetails_CFO">
+      <soap:operation soapAction="http://tempuri.org/InsertApplicantFireDetails_CFO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreMeansOfEscape_CFO">
+      <soap:operation soapAction="http://tempuri.org/StoreMeansOfEscape_CFO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreFloorwiseApplicantDtls_CFO">
+      <soap:operation soapAction="http://tempuri.org/StoreFloorwiseApplicantDtls_CFO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreFireFightingInstallations_CFO">
+      <soap:operation soapAction="http://tempuri.org/StoreFireFightingInstallations_CFO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreUploadDocuments_CFO">
+      <soap:operation soapAction="http://tempuri.org/StoreUploadDocuments_CFO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PaymentDetails_CFO">
+      <soap:operation soapAction="http://tempuri.org/PaymentDetails_CFO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreQueryResponse_CFO">
+      <soap:operation soapAction="http://tempuri.org/StoreQueryResponse_CFO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Appealed">
+      <soap:operation soapAction="http://tempuri.org/Appealed" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertApplicantFireDetails_RENEWAL">
+      <soap:operation soapAction="http://tempuri.org/InsertApplicantFireDetails_RENEWAL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UIDbaseduploaddocuments_CFO">
+      <soap:operation soapAction="http://tempuri.org/UIDbaseduploaddocuments_CFO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Service1Soap12" type="tns:Service1Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertApplicantFireDetails_CFO">
+      <soap12:operation soapAction="http://tempuri.org/InsertApplicantFireDetails_CFO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreMeansOfEscape_CFO">
+      <soap12:operation soapAction="http://tempuri.org/StoreMeansOfEscape_CFO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreFloorwiseApplicantDtls_CFO">
+      <soap12:operation soapAction="http://tempuri.org/StoreFloorwiseApplicantDtls_CFO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreFireFightingInstallations_CFO">
+      <soap12:operation soapAction="http://tempuri.org/StoreFireFightingInstallations_CFO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreUploadDocuments_CFO">
+      <soap12:operation soapAction="http://tempuri.org/StoreUploadDocuments_CFO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PaymentDetails_CFO">
+      <soap12:operation soapAction="http://tempuri.org/PaymentDetails_CFO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreQueryResponse_CFO">
+      <soap12:operation soapAction="http://tempuri.org/StoreQueryResponse_CFO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Appealed">
+      <soap12:operation soapAction="http://tempuri.org/Appealed" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertApplicantFireDetails_RENEWAL">
+      <soap12:operation soapAction="http://tempuri.org/InsertApplicantFireDetails_RENEWAL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UIDbaseduploaddocuments_CFO">
+      <soap12:operation soapAction="http://tempuri.org/UIDbaseduploaddocuments_CFO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Service1HttpGet" type="tns:Service1HttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="InsertApplicantFireDetails_CFO">
+      <http:operation location="/InsertApplicantFireDetails_CFO" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreMeansOfEscape_CFO">
+      <http:operation location="/StoreMeansOfEscape_CFO" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreFloorwiseApplicantDtls_CFO">
+      <http:operation location="/StoreFloorwiseApplicantDtls_CFO" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreFireFightingInstallations_CFO">
+      <http:operation location="/StoreFireFightingInstallations_CFO" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreUploadDocuments_CFO">
+      <http:operation location="/StoreUploadDocuments_CFO" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PaymentDetails_CFO">
+      <http:operation location="/PaymentDetails_CFO" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreQueryResponse_CFO">
+      <http:operation location="/StoreQueryResponse_CFO" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Appealed">
+      <http:operation location="/Appealed" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertApplicantFireDetails_RENEWAL">
+      <http:operation location="/InsertApplicantFireDetails_RENEWAL" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UIDbaseduploaddocuments_CFO">
+      <http:operation location="/UIDbaseduploaddocuments_CFO" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Service1HttpPost" type="tns:Service1HttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="InsertApplicantFireDetails_CFO">
+      <http:operation location="/InsertApplicantFireDetails_CFO" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreMeansOfEscape_CFO">
+      <http:operation location="/StoreMeansOfEscape_CFO" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreFloorwiseApplicantDtls_CFO">
+      <http:operation location="/StoreFloorwiseApplicantDtls_CFO" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreFireFightingInstallations_CFO">
+      <http:operation location="/StoreFireFightingInstallations_CFO" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreUploadDocuments_CFO">
+      <http:operation location="/StoreUploadDocuments_CFO" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PaymentDetails_CFO">
+      <http:operation location="/PaymentDetails_CFO" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StoreQueryResponse_CFO">
+      <http:operation location="/StoreQueryResponse_CFO" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Appealed">
+      <http:operation location="/Appealed" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertApplicantFireDetails_RENEWAL">
+      <http:operation location="/InsertApplicantFireDetails_RENEWAL" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UIDbaseduploaddocuments_CFO">
+      <http:operation location="/UIDbaseduploaddocuments_CFO" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="Service1Soap" binding="tns:Service1Soap">
+      <soap:address location="https://fire.telangana.gov.in/firecfows/Service1.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Service1Soap12" binding="tns:Service1Soap12">
+      <soap12:address location="https://fire.telangana.gov.in/firecfows/Service1.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Service1HttpGet" binding="tns:Service1HttpGet">
+      <http:address location="https://fire.telangana.gov.in/firecfows/Service1.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Service1HttpPost" binding="tns:Service1HttpPost">
+      <http:address location="https://fire.telangana.gov.in/firecfows/Service1.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

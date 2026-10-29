@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tsfactoriesws.cgg.gov.in/" targetNamespace="http://tsfactoriesws.cgg.gov.in/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="insertIntoGrantLicense" type="tns:insertIntoGrantLicense" />
+  <xs:element name="insertIntoGrantLicenseAdditionalPayment" type="tns:insertIntoGrantLicenseAdditionalPayment" />
+  <xs:element name="insertIntoGrantLicenseAdditionalPaymentResponse" type="tns:insertIntoGrantLicenseAdditionalPaymentResponse" />
+  <xs:element name="insertIntoGrantLicenseResponse" type="tns:insertIntoGrantLicenseResponse" />
+  <xs:element name="updateAppealAgainstRejectionCFO" type="tns:updateAppealAgainstRejectionCFO" />
+  <xs:element name="updateAppealAgainstRejectionCFOResponse" type="tns:updateAppealAgainstRejectionCFOResponse" />
+  <xs:complexType name="updateAppealAgainstRejectionCFO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="UpdateAppealAgainstRejectionCFODetails" type="tns:UpdateAppealAgainstRejectionCFO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="UpdateAppealAgainstRejectionCFO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="aadharCardOrPanCardAttachments" nillable="true" type="tns:aadharCardOrPanCard" />
+      <xs:element minOccurs="0" name="amountToBePaid" type="xs:string" />
+      <xs:element minOccurs="0" name="applicationID" type="xs:string" />
+      <xs:element minOccurs="0" name="applicationStageID" type="xs:string" />
+      <xs:element minOccurs="0" name="applicationStatus" type="xs:string" />
+      <xs:element minOccurs="0" name="applicationSubmittedDate" type="xs:string" />
+      <xs:element minOccurs="0" name="communicationAddress" type="xs:string" />
+      <xs:element minOccurs="0" name="entrepreneurID" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryDistrictID" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryDoorNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryLocality" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryMandalID" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryName" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryOccupationDateByOccupier" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="factoryOccupierAndManagerPhotoIDProofAttachments" nillable="true" type="tns:factoryOccupierAndManagerPhotoIDProof" />
+      <xs:element minOccurs="0" name="factoryPinCode" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryType" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryVillageID" type="xs:string" />
+      <xs:element minOccurs="0" name="horsePowerToBeInstalledRegular" type="xs:string" />
+      <xs:element minOccurs="0" name="horsePowerToBeInstalledRegularUnits" type="xs:string" />
+      <xs:element minOccurs="0" name="horsePowerToBeInstalledStandby" type="xs:string" />
+      <xs:element minOccurs="0" name="horsePowerToBeInstalledStandbyUnits" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="inCaseChangeOfDirectorsFormNo32Attachments" nillable="true" type="tns:inCaseChangeOfDirectorsFormNo32" />
+      <xs:element minOccurs="0" name="isOldApplication" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="latestListOfPartnersOrDirectorsAttachments" nillable="true" type="tns:latestListOfPartnersOrDirectors" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="machineryAttachments" nillable="true" type="tns:machinery" />
+      <xs:element minOccurs="0" name="managerDistrict" type="xs:string" />
+      <xs:element minOccurs="0" name="managerDoorNo" type="xs:string" />
+      <xs:element minOccurs="0" name="managerFullName" type="xs:string" />
+      <xs:element minOccurs="0" name="managerLocality" type="xs:string" />
+      <xs:element minOccurs="0" name="managerMailId" type="xs:string" />
+      <xs:element minOccurs="0" name="managerMandal" type="xs:string" />
+      <xs:element minOccurs="0" name="managerMobileNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="managerPinCode" type="xs:string" />
+      <xs:element minOccurs="0" name="managerVillage" type="xs:string" />
+      <xs:element minOccurs="0" name="natureOfManufacturingProcessMain" type="xs:string" />
+      <xs:element minOccurs="0" name="natureOfManufacturingProcessSecondary" type="xs:string" />
+      <xs:element minOccurs="0" name="noOfyearsSelectedToPayLicenceFee" type="xs:string" />
+      <xs:element minOccurs="0" name="occupierDistrict" type="xs:string" />
+      <xs:element minOccurs="0" name="occupierDoorNo" type="xs:string" />
+      <xs:element minOccurs="0" name="occupierFullName" type="xs:string" />
+      <xs:element minOccurs="0" name="occupierLocality" type="xs:string" />
+      <xs:element minOccurs="0" name="occupierMailId" type="xs:string" />
+      <xs:element minOccurs="0" name="occupierMandal" type="xs:string" />
+      <xs:element minOccurs="0" name="occupierMobileNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="occupierOtherStatePostalAddress" type="xs:string" />
+      <xs:element minOccurs="0" name="occupierPinCode" type="xs:string" />
+      <xs:element minOccurs="0" name="occupierPositionInFactory" type="xs:string" />
+      <xs:element minOccurs="0" name="occupierState" type="xs:string" />
+      <xs:element minOccurs="0" name="occupierVillage" type="xs:string" />
+      <xs:element minOccurs="0" name="ownerDistrict" type="xs:string" />
+      <xs:element minOccurs="0" name="ownerDoorNo" type="xs:string" />
+      <xs:element minOccurs="0" name="ownerFullName" type="xs:string" />
+      <xs:element minOccurs="0" name="ownerLocality" type="xs:string" />
+      <xs:element minOccurs="0" name="ownerMailId" type="xs:string" />
+      <xs:element minOccurs="0" name="ownerMandal" type="xs:string" />
+      <xs:element minOccurs="0" name="ownerMobileNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="ownerOtherStatePostalAddress" type="xs:string" />
+      <xs:element minOccurs="0" name="ownerPinCode" type="xs:string" />
+      <xs:element minOccurs="0" name="ownerState" type="xs:string" />
+      <xs:element minOccurs="0" name="ownerVillage" type="xs:string" />
+      <xs:element minOccurs="0" name="paidAmount" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="partnershipDeedAttachments" nillable="true" type="tns:partnershipDeed" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="passPortSizePhotographWithSignatureAttachments" nillable="true" type="tns:passPortSizePhotographWithSignature" />
+      <xs:element minOccurs="0" name="paymentStatus" type="xs:string" />
+      <xs:element minOccurs="0" name="plansReferenceApprovedByChiefInspectorIfApplicable" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="plansReferenceApprovedByDirectorOfFactoriesAttachments" nillable="true" type="tns:plansReferenceApprovedByDirectorOfFactories" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="proposedInventoriesOfChemicalsUsedAttachments" nillable="true" type="tns:proposedInventoriesOfChemicalsUsed" />
+      <xs:element minOccurs="0" name="questionaireID" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="registeredSaleDeedOrLeaseDeedAttachments" nillable="true" type="tns:registeredSaleDeedOrLeaseDeed" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="selfComplianceChecklistAttachments" nillable="true" type="tns:selfComplianceChecklist" />
+      <xs:element minOccurs="0" name="systemIP" type="xs:string" />
+      <xs:element minOccurs="0" name="userID" type="xs:string" />
+      <xs:element minOccurs="0" name="userMailID" type="xs:string" />
+      <xs:element minOccurs="0" name="userMobileNumber" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="workersListAttachments" nillable="true" type="tns:workersList" />
+      <xs:element minOccurs="0" name="workersToBeEmployedAdolescentsFemale" type="xs:string" />
+      <xs:element minOccurs="0" name="workersToBeEmployedAdolescentsMale" type="xs:string" />
+      <xs:element minOccurs="0" name="workersToBeEmployedAdolescentsTrans" type="xs:string" />
+      <xs:element minOccurs="0" name="workersToBeEmployedAdultsFemale" type="xs:string" />
+      <xs:element minOccurs="0" name="workersToBeEmployedAdultsMale" type="xs:string" />
+      <xs:element minOccurs="0" name="workersToBeEmployedAdultsTrans" type="xs:string" />
+      <xs:element minOccurs="0" name="workersToBeEmployedChildrenFemale" type="xs:string" />
+      <xs:element minOccurs="0" name="workersToBeEmployedChildrenMale" type="xs:string" />
+      <xs:element minOccurs="0" name="workersToBeEmployedChildrenTrans" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="aadharCardOrPanCard">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="factoryOccupierAndManagerPhotoIDProof">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="inCaseChangeOfDirectorsFormNo32">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="latestListOfPartnersOrDirectors">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="machinery">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="partnershipDeed">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="passPortSizePhotographWithSignature">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="plansReferenceApprovedByDirectorOfFactories">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="proposedInventoriesOfChemicalsUsed">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="registeredSaleDeedOrLeaseDeed">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="selfComplianceChecklist">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="workersList">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateAppealAgainstRejectionCFOResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertIntoGrantLicenseAdditionalPayment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GrantLicenseAdditionalPaymentDetails" type="tns:grantLicenseAdditionalPayment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="grantLicenseAdditionalPayment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="applicationID" type="xs:string" />
+      <xs:element minOccurs="0" name="bankAmount" type="xs:string" />
+      <xs:element minOccurs="0" name="bankDate" type="xs:string" />
+      <xs:element minOccurs="0" name="bankName" type="xs:string" />
+      <xs:element minOccurs="0" name="challanNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="harithanidhiamount" type="xs:string" />
+      <xs:element minOccurs="0" name="harithanidhibankamount" type="xs:string" />
+      <xs:element minOccurs="0" name="harithanidhibankdate" type="xs:string" />
+      <xs:element minOccurs="0" name="harithanidhibankname" type="xs:string" />
+      <xs:element minOccurs="0" name="harithanidhibankstatus" type="xs:string" />
+      <xs:element minOccurs="0" name="harithanidhichallanno" type="xs:string" />
+      <xs:element minOccurs="0" name="paymentStatus" type="xs:string" />
+      <xs:element minOccurs="0" name="systemIP" type="xs:string" />
+      <xs:element minOccurs="0" name="userID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertIntoGrantLicenseAdditionalPaymentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:grantLicenseResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="grantLicenseResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="allottedOfficer" type="xs:string" />
+      <xs:element minOccurs="0" name="applicationId" type="xs:string" />
+      <xs:element minOccurs="0" name="certificatePath" type="xs:string" />
+      <xs:element minOccurs="0" name="entrepreneurId" type="xs:string" />
+      <xs:element minOccurs="0" name="questionaireId" type="xs:string" />
+      <xs:element minOccurs="0" name="registrationNo" type="xs:string" />
+      <xs:element minOccurs="0" name="remarks" type="xs:string" />
+      <xs:element minOccurs="0" name="result" type="xs:string" />
+      <xs:element minOccurs="0" name="status" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertIntoGrantLicense">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GrantLicenseDetail" type="tns:grantLicense" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="grantLicense">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="aadharCardOrPanCardAttachments" nillable="true" type="tns:aadharCardOrPanCard" />
+      <xs:element minOccurs="0" name="amountToBePaid" type="xs:string" />
+      <xs:element minOccurs="0" name="applicationID" type="xs:string" />
+      <xs:element minOccurs="0" name="applicationStageID" type="xs:string" />
+      <xs:element minOccurs="0" name="applicationStatus" type="xs:string" />
+      <xs:element minOccurs="0" name="applicationSubmittedDate" type="xs:string" />
+      <xs:element minOccurs="0" name="communicationAddress" type="xs:string" />
+      <xs:element minOccurs="0" name="entrepreneurID" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryDistrictID" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryDoorNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryLocality" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryMandalID" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryName" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryOccupationDateByOccupier" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="factoryOccupierAndManagerPhotoIDProofAttachments" nillable="true" type="tns:factoryOccupierAndManagerPhotoIDProof" />
+      <xs:element minOccurs="0" name="factoryPinCode" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryType" type="xs:string" />
+      <xs:element minOccurs="0" name="factoryVillageID" type="xs:string" />
+      <xs:element minOccurs="0" name="horsePowerToBeInstalledRegular" type="xs:string" />
+      <xs:element minOccurs="0" name="horsePowerToBeInstalledRegularUnits" type="xs:string" />
+      <xs:element minOccurs="0" name="horsePowerToBeInstalledStandby" type="xs:string" />
+      <xs:element minOccurs="0" name="horsePowerToBeInstalledStandbyUnits" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="inCaseChangeOfDirectorsFormNo32Attachments" nillable="true" type="tns:inCaseChangeOfDirectorsFormNo32" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="latestListOfPartnersOrDirectorsAttachments" nillable="true" type="tns:latestListOfPartnersOrDirectors" />
+      <xs:element minOccurs="0" name="machineryAttachment" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="machineryAttachments" nillable="true" type="tns:machinery" />
+      <xs:element minOccurs="0" name="managerDistrict" type="xs:string" />
+      <xs:element minOccurs="0" name="managerDoorNo" type="xs:string" />
+      <xs:element minOccurs="0" name="managerFullName" type="xs:string" />
+      <xs:element minOccurs="0" name="managerLocality" type="xs:string" />
+      <xs:element minOccurs="0" name="managerMailId" type="xs:string" />
+      <xs:element minOccurs="0" name="managerMandal" type="xs:string" />
+      <xs:element minOccurs="0" name="managerMobileNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="managerPinCode" type="xs:string" />
+      <xs:element minOccurs="0" name="managerVillage" type="xs:string" />
+      <xs:element minOccurs="0" name="natureOfManufacturingProcessMain" type="xs:string" />
+      <xs:element minOccurs="0" name="natureOfManufacturingProcessSecondary" type="xs:string" />
+      <xs:element minOccurs="0" name="noOfyearsSelectedToPayLicenceFee" type="xs:string" />
+      <xs:element minOccurs="0" name="occupierDistrict" type="xs:string" />
+      <xs:element minOccurs="0" name="occupierDoorNo" type="xs:string" />
+      <xs:element minOccurs="0" name="occupierFullName" type="xs:string" />
+      <xs:element minOccurs="0" name="occupierLocality" type="xs:string" />
+      <xs:element minOccurs="0" name="occupierMailId" type="xs:string" />
+      <xs:element minOccurs="0" name="occupierMandal" type="xs:string" />
+      <xs:element minOccurs="0" name="occupierMobileNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="occupierOtherStatePostalAddress" type="xs:string" />
+      <xs:element minOccurs="0" name="occupierPinCode" type="xs:string" />
+      <xs:element minOccurs="0" name="occupierPositionInFactory" type="xs:string" />
+      <xs:element minOccurs="0" name="occupierState" type="xs:string" />
+      <xs:element minOccurs="0" name="occupierVillage" type="xs:string" />
+      <xs:element minOccurs="0" name="ownerDistrict" type="xs:string" />
+      <xs:element minOccurs="0" name="ownerDoorNo" type="xs:string" />
+      <xs:element minOccurs="0" name="ownerFullName" type="xs:string" />
+      <xs:element minOccurs="0" name="ownerLocality" type="xs:string" />
+      <xs:element minOccurs="0" name="ownerMailId" type="xs:string" />
+      <xs:element minOccurs="0" name="ownerMandal" type="xs:string" />
+      <xs:element minOccurs="0" name="ownerMobileNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="ownerOtherStatePostalAddress" type="xs:string" />
+      <xs:element minOccurs="0" name="ownerPinCode" type="xs:string" />
+      <xs:element minOccurs="0" name="ownerState" type="xs:string" />
+      <xs:element minOccurs="0" name="ownerVillage" type="xs:string" />
+      <xs:element minOccurs="0" name="paidAmount" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="partnershipDeedAttachments" nillable="true" type="tns:partnershipDeed" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="passPortSizePhotographWithSignatureAttachments" nillable="true" type="tns:passPortSizePhotographWithSignature" />
+      <xs:element minOccurs="0" name="paymentStatus" type="xs:string" />
+      <xs:element minOccurs="0" name="plansReferenceApprovedByChiefInspectorIfApplicable" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="plansReferenceApprovedByDirectorOfFactoriesAttachments" nillable="true" type="tns:plansReferenceApprovedByDirectorOfFactories" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="proposedInventoriesOfChemicalsUsedAttachments" nillable="true" type="tns:proposedInventoriesOfChemicalsUsed" />
+      <xs:element minOccurs="0" name="questionaireID" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="registeredSaleDeedOrLeaseDeedAttachments" nillable="true" type="tns:registeredSaleDeedOrLeaseDeed" />
+      <xs:element minOccurs="0" name="selfComplianceChecklistAttachment" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="selfComplianceChecklistAttachments" nillable="true" type="tns:selfComplianceChecklist" />
+      <xs:element minOccurs="0" name="systemIP" type="xs:string" />
+      <xs:element minOccurs="0" name="userID" type="xs:string" />
+      <xs:element minOccurs="0" name="userMailID" type="xs:string" />
+      <xs:element minOccurs="0" name="userMobileNumber" type="xs:string" />
+      <xs:element minOccurs="0" name="workersListAttachment" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="workersListAttachments" nillable="true" type="tns:workersList" />
+      <xs:element minOccurs="0" name="workersToBeEmployedAdolescentsFemale" type="xs:string" />
+      <xs:element minOccurs="0" name="workersToBeEmployedAdolescentsMale" type="xs:string" />
+      <xs:element minOccurs="0" name="workersToBeEmployedAdolescentsTrans" type="xs:string" />
+      <xs:element minOccurs="0" name="workersToBeEmployedAdultsFemale" type="xs:string" />
+      <xs:element minOccurs="0" name="workersToBeEmployedAdultsMale" type="xs:string" />
+      <xs:element minOccurs="0" name="workersToBeEmployedAdultsTrans" type="xs:string" />
+      <xs:element minOccurs="0" name="workersToBeEmployedChildrenFemale" type="xs:string" />
+      <xs:element minOccurs="0" name="workersToBeEmployedChildrenMale" type="xs:string" />
+      <xs:element minOccurs="0" name="workersToBeEmployedChildrenTrans" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertIntoGrantLicenseResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

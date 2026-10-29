@@ -1,0 +1,1643 @@
+﻿<%@ Page Title="" Language="VB" MasterPageFile="~/DealerMstInner.master"AutoEventWireup="false"
+    CodeFile="NewRegistration.aspx.vb" Inherits="Registration_NewRegistration" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+
+    <script type="text/javascript">
+        function CheckBoxValidation() {
+            if (window.document.all("ContentPlaceHolder1_WizardReg_RbReg").checked == false) {
+                alert("Select Registration Type");
+                return false;
+            }
+            if (window.document.all("ContentPlaceHolder1_WizardReg_RbRegCST").checked == false) {
+                alert("Select CST Registration Yes/No");
+                return false;
+            }
+        }
+
+        function TextBoxValidation() {
+            if ((event.keyCode >= 65) && (event.keyCode <= 90)) {
+                event.keyCode = event.keyCode;
+                return true;
+            }
+            if ((event.keyCode >= 97) && (event.keyCode <= 122)) {
+                event.keyCode = event.keyCode;
+                return true;
+            }
+            if ((event.keyCode >= 47) && (event.keyCode <= 57)) {
+                event.keyCode = event.keyCode;
+                return true;
+            }
+            if ((event.keyCode = 32)) {
+                event.keyCode = event.keyCode;
+                return true;
+            }
+            else {
+                event.keyCode = 0;
+            }
+        }
+
+        function checknum() {
+            if ((event.keyCode >= 48) && (event.keyCode <= 57)) {
+                event.keyCode = event.keyCode;
+            }
+            else {
+                event.keyCode = 0;
+            }
+        }
+
+        function FormatDate(dv) {
+            var dvalue = dv.value + "";
+            var patt = /^\d{4}[\-]\d{2}[\-]\d{2}$/;
+            var result = patt.test(dvalue);
+            if (result) {
+                return true;
+            } else if (dvalue.length == 8) {
+                var d = dvalue.split("");
+                var i = 0;
+                var m = d[i + 2] + "" + d[i + 3];
+                var dd = d[i] + "" + d[i + 1];
+                //alert("len =8"+d[i+2]);
+                if ((parseInt(m) <= 12) && (parseInt(dd) <= 31)) {
+                    //var dd = d[i + 4] + "" + d[i + 5] + "" + d[i + 6] + "" + d[i + 7] + "-" + m + "-" + dd;
+                    var dd = dd + "-" + m + "-" + d[i + 4] + "" + d[i + 5] + "" + d[i + 6] + "" + d[i + 7];
+                    dv.value = dd;
+                } else {
+                    alert("Please Enter correct date in DDMMYYYY  format !");
+                    dv.value = "";
+                }
+            } else {
+                alert("Please Enter correct date in DDMMYYYY  format !");
+                dv.value = "";
+            }
+        }
+
+
+    </script>
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+            <div class="PageHead">
+                VAT and CST Registration Form</div>
+            <asp:Wizard ID="WizardReg" runat="server" CssClass="wizard1" DisplaySideBar="false"
+                FinishCompleteButtonText="Finish" ActiveStepIndex="0">
+                <FinishNavigationTemplate>
+                    <asp:Button ID="FinishPreviousButton" runat="server" CausesValidation="False" CommandName="MovePrevious"
+                        Text="Previous" />
+                    <asp:Button ID="FinishButton" runat="server" CommandName="MoveComplete" Text="Finish" />
+                </FinishNavigationTemplate>
+                <StepNavigationTemplate>
+                    <asp:Button ID="StepPreviousButton" runat="server" CausesValidation="False" CommandName="MovePrevious"
+                        Text="Previous" />
+                    <asp:Button ID="StepNextButton" runat="server" CommandName="MoveNext" Text="Next" />
+                </StepNavigationTemplate>
+                <WizardSteps>
+                    <asp:WizardStep runat="server" Title="Step 1">
+                        <fieldset class="step">
+                            <legend>Step1</legend>
+                            <table width="98%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td>
+                                        <h3>
+                                            <asp:Label ID="LblRNR" runat="server"></asp:Label></h3>
+                                        <br />
+                                        <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <td width="141" align="right" class="RegText" style="padding-top: 4px;">
+                                                    Registration Type <span style="color: Red;">*</span>
+                                                </td>
+                                                <td width="153" align="left" class="RegText" valign="top">
+                                                    <asp:RadioButtonList ID="RbReg" runat="server" RepeatDirection="Horizontal" AutoPostBack="True">
+                                                        <asp:ListItem Value="R">Regular</asp:ListItem>
+                                                        <asp:ListItem Value="S">Startup</asp:ListItem>
+                                                    </asp:RadioButtonList>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator30" runat="server" ControlToValidate="RbReg"
+                                                        ErrorMessage="Select Registration Type" SetFocusOnError="True" CssClass="errMsg"></asp:RequiredFieldValidator>
+                                                </td>
+                                                <td width="100" align="right" class="RegText" style="padding-top: 4px;">
+                                                    Act <span style="color: Red;">*</span>
+                                                </td>
+                                                <td width="160" align="left" class="RegText" valign="top">
+                                                    <asp:RadioButtonList ID="RbRegACT" runat="server" RepeatDirection="Horizontal" AutoPostBack="True">
+                                                        <asp:ListItem Value="VAT">VAT</asp:ListItem>
+                                                        <asp:ListItem Value="TOT">TOT</asp:ListItem>
+                                                    </asp:RadioButtonList>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator31" runat="server" ControlToValidate="RbRegACT"
+                                                        ErrorMessage="Select ACT" SetFocusOnError="True" CssClass="errMsg"></asp:RequiredFieldValidator>
+                                                </td>
+                                                <td width="150" align="right" class="RegText" style="padding-top: 4px;">
+                                                    CST Registration <span style="color: Red;">*</span>
+                                                </td>
+                                                <td width="252" align="left" class="RegText" valign="top">
+                                                    <asp:RadioButtonList ID="RbRegCST" runat="server" RepeatDirection="Horizontal">
+                                                        <asp:ListItem Value="Y">Yes</asp:ListItem>
+                                                        <asp:ListItem Value="N">No</asp:ListItem>
+                                                    </asp:RadioButtonList>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="RbRegCST"
+                                                        ErrorMessage="Select CST Registration" SetFocusOnError="True" CssClass="errMsg"></asp:RequiredFieldValidator>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="right" class="RegText">
+                                                    Application Date <span style="color: Red;">*</span>
+                                                </td>
+                                                <td align="left" class="RegText" valign="top">
+                                                    <asp:TextBox ID="TxtAppDt" runat="server" CssClass="textBox" AutoComplete="off"></asp:TextBox><br />
+                                                    <asp:CalendarExtender ID="TextBox2_CalendarExtender" runat="server" Enabled="True"
+                                                        Format="dd-MM-yyyy" TargetControlID="TxtAppDt">
+                                                    </asp:CalendarExtender>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="TxtAppDt"
+                                                        Display="Dynamic" ErrorMessage="Date required" CssClass="errMsg"></asp:RequiredFieldValidator><span
+                                                            class="hint">(DD-MM-YYYY)</span>
+                                                </td>
+                                                <td align="right" class="RegText">
+                                                    Division <span style="color: Red;">*</span>
+                                                </td>
+                                                <td align="left" class="RegText" valign="top">
+                                                    <asp:DropDownList ID="DdlDivisions" runat="server" AutoPostBack="True" CssClass="textBox">
+                                                    </asp:DropDownList>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator29" runat="server" ControlToValidate="DdlDivisions"
+                                                        CssClass="errMsg" Display="Dynamic" ErrorMessage="Select Division" InitialValue="sel"
+                                                        SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                </td>
+                                                <td align="right" class="RegText">
+                                                    Circle <span style="color: Red;">*</span>
+                                                </td>
+                                                <td align="left" class="RegText" valign="top">
+                                                    <asp:DropDownList ID="DdlCircles" runat="server" CssClass="textBox">
+                                                    </asp:DropDownList>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="DdlCircles"
+                                                        Display="Dynamic" ErrorMessage="Select Circle" CssClass="errMsg" InitialValue="sel"
+                                                        SetFocusOnError="true"></asp:RequiredFieldValidator>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <fieldset class="field4">
+                                            <legend>Enterprise Name and Address</legend>
+                                            <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                    <td width="180" align="left" class="RegText">
+                                                        PAN&nbsp; <span style="color: Red;">*</span>
+                                                    </td>
+                                                    <td colspan="3" align="left" class="displayText" valign="top">
+                                                        <asp:TextBox ID="TxtPAN_new" runat="server" CssClass="formTxtBox" MaxLength="10"
+                                                            AutoComplete="off"></asp:TextBox>
+                                                        <span class="hint">(A to Z, 0-9 only) (Ex:BHOPA1234A)</span><br />
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator28" runat="server" ControlToValidate="TxtPAN_new"
+                                                            Display="Dynamic" ErrorMessage="PAN required" CssClass="errMsg"></asp:RequiredFieldValidator>
+                                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator14" runat="server"
+                                                            ControlToValidate="TxtPAN_new" ErrorMessage="A to Z, 0 to 9 only (Ex:BHOPA1234A)"
+                                                            CssClass="errMsg" Display="Dynamic" ValidationExpression="^[a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}$"></asp:RegularExpressionValidator>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="RegText" width="180">
+                                                        Name <span style="color: Red;">*</span>
+                                                    </td>
+                                                    <td align="left" class="displayText" colspan="3" valign="top">
+                                                        <asp:TextBox ID="TxtEntName" runat="server" AutoComplete="off" CssClass="formTxtBox"
+                                                            MaxLength="75" Width="275px"></asp:TextBox>
+                                                        <span class="hint">(A to Z, 0 to 9, &amp;, / and Space only) (Max 100 Characters)</span><br />
+                                                        <asp:RequiredFieldValidator ID="RfvName" runat="server" ControlToValidate="TxtEntName"
+                                                            CssClass="errMsg" Display="Dynamic" ErrorMessage="Enterprise Name required"></asp:RequiredFieldValidator>
+                                                        <asp:RegularExpressionValidator ID="RevName" runat="server" ControlToValidate="TxtEntName"
+                                                            CssClass="errMsg" Display="Dynamic" ErrorMessage="Enter Valid Name" ValidationExpression="^[a-zA-Z0-9 / &amp;]*$"></asp:RegularExpressionValidator>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="RegText">
+                                                        Door Number <span style="color: Red;">*</span>
+                                                    </td>
+                                                    <td colspan="3" align="left" class="displayText" valign="top">
+                                                        <asp:TextBox ID="TxtEntDrNo" runat="server" CssClass="formTxtBox" MaxLength="75"
+                                                            AutoComplete="off"></asp:TextBox>
+                                                        <span class="hint">(A to Z, 0 to 9, / and Space only) (Max 75 Characters) </span>
+                                                        <br />
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TxtEntDrNo"
+                                                            Display="Dynamic" ErrorMessage="Enterprise Door No required" CssClass="errMsg"></asp:RequiredFieldValidator>
+                                                        <asp:RegularExpressionValidator ID="RevDrNo" runat="server" ControlToValidate="TxtEntDrNo"
+                                                            Display="Dynamic" ErrorMessage="Enter Valid Door No" CssClass="errMsg" ValidationExpression="^[a-zA-Z0-9 /]*$"></asp:RegularExpressionValidator>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="RegText">
+                                                        Road/Street/Building Name <span style="color: Red;">*</span>
+                                                    </td>
+                                                    <td colspan="3" align="left" class="displayText" valign="top">
+                                                        <asp:TextBox ID="TxtEntStreet" runat="server" CssClass="formTxtBox" MaxLength="75"
+                                                            AutoComplete="off"></asp:TextBox>
+                                                        <span class="hint">(A to Z, 0 to 9, / and Space only) (Max 75 Characters) </span>
+                                                        <br />
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TxtEntStreet"
+                                                            Display="Dynamic" ErrorMessage="Enterprise Road/Street/Building Name required"
+                                                            CssClass="errMsg"></asp:RequiredFieldValidator>
+                                                        <asp:RegularExpressionValidator ID="RevStreet" runat="server" ControlToValidate="TxtEntStreet"
+                                                            Display="Dynamic" ErrorMessage="Enter Valid Street" CssClass="errMsg" ValidationExpression="^[a-zA-Z0-9 /]*$"></asp:RegularExpressionValidator>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="RegText">
+                                                        Locality <span style="color: Red;">*</span>
+                                                    </td>
+                                                    <td colspan="3" align="left" class="displayText" valign="top">
+                                                        <asp:TextBox ID="TxtEntLocality" runat="server" CssClass="formTxtBox" MaxLength="75"
+                                                            ToolTip=""></asp:TextBox>
+                                                        <span class="hint">(A to Z, 0 to 9, / and Space only) (Max 75 Characters) </span>
+                                                        <br />
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="TxtEntLocality"
+                                                            Display="Dynamic" ErrorMessage="Enterprise Locality required" CssClass="errMsg"></asp:RequiredFieldValidator>
+                                                        <asp:RegularExpressionValidator ID="RevLocality" runat="server" ControlToValidate="TxtEntLocality"
+                                                            Display="Dynamic" ErrorMessage="Enter Valid Locality" CssClass="errMsg" ValidationExpression="^[a-zA-Z0-9 /]*$"></asp:RegularExpressionValidator>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="RegText">
+                                                        City/Town/Village <span style="color: Red;">*</span>
+                                                    </td>
+                                                    <td colspan="3" align="left" class="displayText" valign="top">
+                                                        <asp:TextBox ID="TxtEntCity" runat="server" CssClass="formTxtBox" MaxLength="60"
+                                                            AutoComplete="off"></asp:TextBox>
+                                                        <span class="hint">(A to Z, 0 to 9, / and Space only) (Max 60 Characters)</span><br />
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="TxtEntCity"
+                                                            Display="Dynamic" ErrorMessage="Enterprise City required" CssClass="errMsg"></asp:RequiredFieldValidator>
+                                                        <asp:RegularExpressionValidator ID="RevCity" runat="server" ControlToValidate="TxtEntCity"
+                                                            Display="Dynamic" ErrorMessage="Enter Valid City" CssClass="errMsg" ValidationExpression="^[a-zA-Z0-9 /]*$"></asp:RegularExpressionValidator>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="RegText">
+                                                        District <span style="color: Red;">*</span>
+                                                    </td>
+                                                    <td align="left" width="210" class="displayText" valign="top">
+                                                        <asp:DropDownList ID="DdlDistrict" runat="server" CausesValidation="True" CssClass="textBox">
+                                                        </asp:DropDownList>
+                                                        <br />
+                                                        <asp:RequiredFieldValidator ID="RfvDist" runat="server" ControlToValidate="DdlDistrict"
+                                                            Display="Dynamic" ErrorMessage="Select District" CssClass="errMsg" InitialValue="sel"
+                                                            SetFocusOnError="true"></asp:RequiredFieldValidator>
+                                                    </td>
+                                                    <td class="RegText" width="90" valign="top">
+                                                        PIN <span style="color: Red;">*</span>
+                                                    </td>
+                                                    <td width="320" align="left" class="displayText" valign="top">
+                                                        <asp:TextBox ID="TxtPIN" runat="server" CssClass="formTxtBox" Width="100px" onkeypress="checknum()"
+                                                            MaxLength="6" AutoComplete="off"></asp:TextBox>
+                                                        <span class="hint">(6 Digits)</span>
+                                                        <br />
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="TxtPIN"
+                                                            Display="Dynamic" ErrorMessage="Enterprise PIN required" CssClass="errMsg"></asp:RequiredFieldValidator>&nbsp;
+                                                        <asp:RegularExpressionValidator ID="RevPIN" runat="server" ControlToValidate="TxtPIN"
+                                                            ErrorMessage="6 Digits" CssClass="errMsg" Display="Dynamic" ValidationExpression="^5[0-9]{5}$"></asp:RegularExpressionValidator>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="RegText">
+                                                        email<span style="color: Red;">*</span>
+                                                    </td>
+                                                    <td align="left" class="displayText" valign="top">
+                                                        <asp:TextBox ID="TxtEMail" runat="server" CssClass="textBox200" 
+                                                            AutoComplete="off"></asp:TextBox><br />
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </fieldset>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                    </asp:WizardStep>
+                    <asp:WizardStep runat="server" Title="Step 2">
+                        <fieldset class="step">
+                            <legend>Step 2</legend>
+                            <table width="98%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td>
+                                        <table width="98%" border="0" align="center" cellpadding="8" cellspacing="0">
+                                            <tr>
+                                                <td width="180" align="left" class="formText">
+                                                    Registration No.
+                                                </td>
+                                                <td align="left" class="formText">
+                                                    <h3>
+                                                        <asp:Label ID="LblAppNo2" runat="server"></asp:Label></h3>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="formText" width="257">
+                                                    <span class="formTxtBox">Enterprise&nbsp;Occupancy&nbsp;Status <span style="color: Red;">
+                                                        *</span></span>
+                                                </td>
+                                                <td align="left" class="formText">
+                                                    <asp:DropDownList ID="DdlOccupancy" runat="server" CssClass="textBox">
+                                                        <asp:ListItem Selected="True" Value="sel">--Select--</asp:ListItem>
+                                                        <asp:ListItem>Owned</asp:ListItem>
+                                                        <asp:ListItem>Rented</asp:ListItem>
+                                                        <asp:ListItem>Leased</asp:ListItem>
+                                                        <asp:ListItem>Rent Free</asp:ListItem>
+                                                        <asp:ListItem>Others</asp:ListItem>
+                                                    </asp:DropDownList>
+                                                    &nbsp;
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator22" runat="server" ControlToValidate="DdlOccupancy"
+                                                        CssClass="errMsg" Display="Dynamic" ErrorMessage="Select Enterprise Occupancy Status"
+                                                        InitialValue="sel" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <fieldset class="field4">
+                                            <legend>Owner (Responsible Person) Name and Address</legend>
+                                            <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                    <td class="RegText" align="left" width="180">
+                                                        Name (As in Adhaar Card) <span style="color: Red;">*</span>
+                                                    </td>
+                                                    <td colspan="3" valign="top" align="left">
+                                                        <asp:TextBox ID="TxtOwnerName" runat="server" class="formTxtBox" AutoComplete="off"
+                                                            MaxLength="75"></asp:TextBox>
+                                                        <span class="hint">(A to Z and Space only) (Max 75 Characters)</span>
+                                                        <br />
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TxtOwnerName"
+                                                            Display="Dynamic" ErrorMessage="Owner Name required" CssClass="errMsg"></asp:RequiredFieldValidator>
+                                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TxtOwnerName"
+                                                            Display="Dynamic" ErrorMessage="Enter Valid Name" CssClass="errMsg" ValidationExpression="^[a-zA-Z ]*$"></asp:RegularExpressionValidator>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="RegText">
+                                                        Father Name <span style="color: Red;">*</span>
+                                                    </td>
+                                                    <td colspan="3" align="left" class="displayText" valign="top">
+                                                        <asp:TextBox ID="TxtOwnerFatherName" runat="server" class="formTxtBox" Width="275px"
+                                                            AutoComplete="off" MaxLength="50"></asp:TextBox>
+                                                        <span class="hint">(A to Z and Space only) (Max 50 Characters)</span><br />
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TxtOwnerFatherName"
+                                                            Display="Dynamic" ErrorMessage="Owner Father Name required" CssClass="errMsg"></asp:RequiredFieldValidator>
+                                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="TxtOwnerFatherName"
+                                                            Display="Dynamic" ErrorMessage="Enter Valid Name" CssClass="errMsg" ValidationExpression="^[a-zA-Z ]*$"></asp:RegularExpressionValidator>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="RegText">
+                                                        Date of Birth <span style="color: Red;">*</span>
+                                                    </td>
+                                                    <td colspan="3" align="left" class="displayText" valign="top">
+                                                        <asp:TextBox ID="TxtOwnerDOB" runat="server" onkeypress="checknum()" onblur="FormatDate(this)"
+                                                            class="formTxtBox" AutoComplete="off"></asp:TextBox>
+                                                        <span class="hint">(DDMMYYYY)</span><br />
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator41" runat="server" ControlToValidate="TxtOwnerDOB"
+                                                            Display="Dynamic" ErrorMessage="DOB Required" CssClass="errMsg"></asp:RequiredFieldValidator>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="RegText">
+                                                        UID <span style="color: Red;">*</span>
+                                                    </td>
+                                                    <td colspan="3" align="left" class="displayText" valign="top">
+                                                        <asp:TextBox ID="TtUID" runat="server" CssClass="formTxtBox" MaxLength="12" onkeypress="checknum()"
+                                                            AutoComplete="off"></asp:TextBox>
+                                                        <span class="hint">(12 digits, If not issued enter 999999999999)</span>
+                                                        <br />
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="TtUID"
+                                                            Display="Dynamic" ErrorMessage="UID required" CssClass="errMsg"></asp:RequiredFieldValidator>
+                                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="TtUID"
+                                                            ErrorMessage="Enter Valid UID" CssClass="errMsg" Display="Dynamic" ValidationExpression="^[0-9]{12}$"></asp:RegularExpressionValidator>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="RegText">
+                                                        Door Number <span style="color: Red;">*</span>
+                                                    </td>
+                                                    <td colspan="3" align="left" class="displayText" valign="top">
+                                                        <asp:TextBox ID="TxtOwnerDrNo" runat="server" CssClass="formTxtBox" MaxLength="75"
+                                                            AutoComplete="off"></asp:TextBox>
+                                                        <span class="hint">(A to Z, 0 to 9, space, / only) (Max 75 Characters)</span><br />
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ControlToValidate="TxtOwnerDrNo"
+                                                            Display="Dynamic" ErrorMessage="Door No required" CssClass="errMsg"></asp:RequiredFieldValidator>
+                                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ControlToValidate="TxtOwnerDrNo"
+                                                            Display="Dynamic" ErrorMessage="Enter Valid Door No" CssClass="errMsg" ValidationExpression="^[a-zA-Z0-9 /]*$"></asp:RegularExpressionValidator>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="RegText">
+                                                        Road/Street/Building Name <span style="color: Red;">*</span>
+                                                    </td>
+                                                    <td colspan="3" align="left" class="displayText" valign="top">
+                                                        <asp:TextBox ID="TxtOwnerStreet" runat="server" CssClass="formTxtBox" MaxLength="75"
+                                                            AutoComplete="off"></asp:TextBox>
+                                                        <span class="hint">(A to Z, 0 to 9, Space , / only) (Max 75 Characters)</span>
+                                                        <br />
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ControlToValidate="TxtOwnerStreet"
+                                                            Display="Dynamic" ErrorMessage="Road/Street/Building Name required" CssClass="errMsg"></asp:RequiredFieldValidator>
+                                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server" ControlToValidate="TxtOwnerStreet"
+                                                            Display="Dynamic" ErrorMessage="Enter Valid Street" CssClass="errMsg" ValidationExpression="^[a-zA-Z0-9 /]*$"></asp:RegularExpressionValidator>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="RegText">
+                                                        Locality <span style="color: Red;">*</span>
+                                                    </td>
+                                                    <td colspan="3" align="left" class="displayText" valign="top">
+                                                        <asp:TextBox ID="TxtOwnerLocality" runat="server" CssClass="formTxtBox" MaxLength="75"
+                                                            AutoComplete="off"></asp:TextBox>
+                                                        <span class="hint">(A to Z, 0 to 9, /, Space only) (Max 75 Characters)</span><br />
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ControlToValidate="TxtOwnerLocality"
+                                                            Display="Dynamic" ErrorMessage="Locality required" CssClass="errMsg"></asp:RequiredFieldValidator>
+                                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator6" runat="server" ControlToValidate="TxtOwnerLocality"
+                                                            Display="Dynamic" ErrorMessage="Enter Valid Locality" CssClass="errMsg" ValidationExpression="^[a-zA-Z0-9 /]*$"></asp:RegularExpressionValidator>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="RegText">
+                                                        City/Town/Village <span style="color: Red;">*</span>
+                                                    </td>
+                                                    <td colspan="3" align="left" class="displayText" valign="top">
+                                                        <asp:TextBox ID="TxtOwnerCity" runat="server" CssClass="formTxtBox" MaxLength="60"
+                                                            AutoComplete="off"></asp:TextBox>
+                                                        <span class="hint">(A to Z, 0 to 9, Space Only) (Max 60 Characters)</span><br />
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ControlToValidate="TxtOwnerCity"
+                                                            Display="Dynamic" ErrorMessage="City required" CssClass="errMsg"></asp:RequiredFieldValidator>
+                                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator7" runat="server" ControlToValidate="TxtOwnerCity"
+                                                            Display="Dynamic" ErrorMessage="Enter Valid City" CssClass="errMsg" ValidationExpression="^[a-zA-Z0-9 ]*$"></asp:RegularExpressionValidator>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="RegText">
+                                                        District <span style="color: Red;">*</span>
+                                                    </td>
+                                                    <td align="left" width="210" valign="top">
+                                                        <asp:DropDownList ID="DdlOwnerDist" runat="server" AutoCompleteMode="Append" CssClass="textBox">
+                                                        </asp:DropDownList>
+                                                        <br />
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ControlToValidate="DdlOwnerDist"
+                                                            Display="Dynamic" ErrorMessage="Select District" CssClass="errMsg" InitialValue="sel"
+                                                            SetFocusOnError="true"></asp:RequiredFieldValidator>
+                                                    </td>
+                                                    <td width="90" class="RegText">
+                                                        PIN <span style="color: Red;">*</span>
+                                                    </td>
+                                                    <td width="320" align="left" class="displayText" valign="top">
+                                                        <asp:TextBox ID="TxtOwnerPIN" runat="server" CssClass="formTxtBox" MaxLength="6"
+                                                            Width="100px" onkeypress="checknum()" AutoComplete="off"></asp:TextBox>
+                                                        <span class="hint">(6 Digits)</span><br />
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator17" runat="server" ControlToValidate="TxtOwnerPIN"
+                                                            Display="Dynamic" ErrorMessage="Enterprise PIN required" CssClass="errMsg"></asp:RequiredFieldValidator>
+                                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator8" runat="server" ControlToValidate="TxtOwnerPIN"
+                                                            ErrorMessage="PIN should be 6 digit and start with 5" CssClass="errMsg" Display="Dynamic"
+                                                            ValidationExpression="^5[0-9]{5}$"></asp:RegularExpressionValidator>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="RegText">
+                                                        First Tax Period<span style="color: Red;">*</span>
+                                                    </td>
+                                                    <td align="left" class="formText" colspan="3" valign="top">
+                                                        <asp:DropDownList ID="DdlTaxPrdYear" runat="server" CssClass="textBox" AutoCompleteMode="Append">
+                                                        </asp:DropDownList>
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator18" runat="server" ControlToValidate="DdlTaxPrdYear"
+                                                            Display="Dynamic" ErrorMessage="Select" CssClass="errMsg" InitialValue="sel"
+                                                            SetFocusOnError="true"></asp:RequiredFieldValidator>
+                                                        <asp:DropDownList ID="DdlTaxPrdMonth" runat="server" CssClass="textBox" AutoCompleteMode="Append"
+                                                            AutoPostBack="True">
+                                                        </asp:DropDownList>
+                                                        <br />
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator19" runat="server" ControlToValidate="DdlTaxPrdMonth"
+                                                            Display="Dynamic" ErrorMessage="Select" CssClass="errMsg" InitialValue="sel"
+                                                            SetFocusOnError="true"></asp:RequiredFieldValidator>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="RegText">
+                                                        Estimated Total Taxable Sales in First 12 Months
+                                                    </td>
+                                                    <td align="left" class="formText" colspan="3" valign="top">
+                                                        <asp:TextBox ID="TxtEstTax" runat="server" CssClass="formTxtBox" MaxLength="4" ToolTip="Rupees in Lakhs"
+                                                            Width="100px" onkeypress="checknum()" Text="0" AutoComplete="off"></asp:TextBox>
+                                                        <span class="hint">(<del>र</del> in Lakhs)</span>
+                                                        <asp:CompareValidator ID="cmpmin" runat="server" ControlToValidate="TxtEstTax" Operator="GreaterThanEqual"
+                                                            Display="Dynamic" Type="Double" SetFocusOnError="true" ValueToCompare="7.5" ErrorMessage="Amount should be greater than or equal to Rs.7.5 Lakhs"
+                                                            CssClass="errMsg">
+                                                        </asp:CompareValidator>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="RegText">
+                                                        Status of Business <span style="color: Red;">*</span>
+                                                    </td>
+                                                    <td align="left" class="formText" colspan="3" valign="top">
+                                                        <asp:DropDownList ID="DdlBusStatus" runat="server" CssClass="textBox" AutoCompleteMode="Append">
+                                                        </asp:DropDownList>
+                                                        <br />
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator20" runat="server" ControlToValidate="DdlBusStatus"
+                                                            Display="Dynamic" ErrorMessage="Select Status of Business" CssClass="errMsg"
+                                                            InitialValue="sel" SetFocusOnError="true"></asp:RequiredFieldValidator>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </fieldset>
+                                        <%--completed--%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                    </asp:WizardStep>
+                    <asp:WizardStep runat="server" Title="Step 3">
+                        <fieldset class="step">
+                            <legend>Step 3</legend>
+                            <table width="98%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td>
+                                        <asp:HiddenField ID="hdn_BusinessActivity" runat="server" />
+                                        <asp:HiddenField ID="hdn_Commodities" runat="server" />
+                                        <asp:HiddenField ID="hdn_Interstate" runat="server" />
+                                        <table width="99%" border="0" align="center" cellpadding="5" cellspacing="0">
+                                            <tr>
+                                                <td align="left" class="formText">
+                                                    Registration No.
+                                                </td>
+                                                <td align="left" class="formText">
+                                                    <h3>
+                                                        <asp:Label ID="LblAppNo3" runat="server"></asp:Label></h3>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="formText" width="200">
+                                                    &nbsp;
+                                                </td>
+                                                <td align="left" class="formText">
+                                                    Please Click on Item for Selection
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="formText" width="200">
+                                                    Principal Business Activity <span style="color: Red;">*</span>
+                                                </td>
+                                                <td align="left" class="formText">
+                                                    <div class="divScroll">
+                                                        <ul class="divScroll">
+                                                            <li class="divScrollLi280" style="border-width: 1px; border-color: #000000; border-style: solid;">
+                                                                <asp:ListBox ID="LBoxBusinessActivity" runat="server" CssClass="border0" Height="150px"
+                                                                    Width="100%"></asp:ListBox>
+                                                            </li>
+                                                            <li>
+                                                                <asp:Button ID="btnBusActAdd" ClientIDMode="Static" runat="server" CssClass="addBtn1"
+                                                                    Text="Add" />
+                                                            </li>
+                                                            <li class="divScrollLi280" style="border-width: 1px; border-color: #000000; border-style: solid;">
+                                                                <asp:ListBox ID="LBoxSelBusinessActivity" runat="server" CssClass="border0" Height="150px"
+                                                                    ReadOnly="True" Width="100%"></asp:ListBox>
+                                                            </li>
+                                                            <li>
+                                                                <asp:Button ID="btnBusActRemove" ClientIDMode="Static" runat="server" CssClass="removeBtn1"
+                                                                    Text="Remove" />
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="formText" valign="top">
+                                                    Principal Commodities <span style="color: Red;">*</span>
+                                                </td>
+                                                <td align="left" class="formText">
+                                                    <div class="divScroll">
+                                                        <ul class="divScroll">
+                                                            <li style="border-width: 1px; border-color: #000000; border-style: solid;" class="divScrollLi280">
+                                                                <asp:ListBox ID="LBoxCommodity" Width="100%" Height="150px" runat="server" CssClass="border0">
+                                                                </asp:ListBox>
+                                                            </li>
+                                                            <li>
+                                                                <asp:Button ID="btnCommodityAdd" runat="server" Text="Add" CssClass="addBtn1" /></li>
+                                                            <li class="divScrollLi280" style="border-width: 1px; border-color: #000000; border-style: solid;">
+                                                                <asp:ListBox ID="LBoxSelCommodity" runat="server" Width="100%" CssClass="border0"
+                                                                    ReadOnly="True" Height="150px"></asp:ListBox>
+                                                            </li>
+                                                            <li>
+                                                                <asp:Button ID="btnCommodityRemove" runat="server" Text="Remove" CssClass="removeBtn1" /></li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <fieldset id="CSTComm" runat="server" class="field4" style="padding-left: 10px; padding-bottom: 10px;">
+                                            <legend>Details of goods ordinarily purchased by the dealer in interstate trade:</legend>
+                                            <div class="formText">
+                                                For resale/Use in manufactutre of goods or processing of goods for sale/Use in the
+                                                mining/Use in the generation of distribution of electricity/Use in the packing of
+                                                goods for sale or resale/Use in the telecommunication network</div>
+                                            <br />
+                                            &nbsp;
+                                            <div class="divScroll" style="padding-left: 208px;">
+                                                <ul class="divScroll">
+                                                    <li style="border-width: 1px; border-color: #000000; border-style: solid;" class="divScrollLi280">
+                                                        <asp:ListBox ID="LBoxInterstate" CssClass="border0" Visible="false" Width="100%"
+                                                            Height="150px" runat="server"></asp:ListBox>
+                                                    </li>
+                                                    <li>
+                                                        <asp:Button ID="btnInterstateAdd" runat="server" Text="Add" CssClass="addBtn1" /></li>
+                                                    <li class="divScrollLi280" style="border-width: 1px; border-color: #000000; border-style: solid;">
+                                                        <asp:ListBox ID="LBoxSelInterstate" Visible="false" runat="server" Width="100%" CssClass="border0"
+                                                            ReadOnly="True" Height="150px"></asp:ListBox>
+                                                    </li>
+                                                    <li>
+                                                        <asp:Button ID="btnInterstateRemove" runat="server" Text="Remove" CssClass="removeBtn1" /></li>
+                                                </ul>
+                                            </div>
+                                        </fieldset>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                    </asp:WizardStep>
+                    <asp:WizardStep runat="server" Title="Step 4">
+                        <fieldset class="step">
+                            <legend>Step 4</legend>
+                            <table width="98%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td valign="top">
+                                        <br />
+                                        <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <td width="200" align="left" class="RegText">
+                                                    Registration No.
+                                                </td>
+                                                <td align="left" class="formText" valign="top">
+                                                    <h3>
+                                                        <asp:Label ID="LblAppNo4" runat="server"></asp:Label></h3>
+                                                </td>
+                                                <td width="100" align="left" class="formText">
+                                                    &nbsp;
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <fieldset class="field4">
+                                            <legend>Bank Details</legend>
+                                            <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                    <td width="200" align="left" class="RegText">
+                                                        Bank Name <span style="color: Red;">*</span>
+                                                    </td>
+                                                    <td width="650" align="left" valign="top">
+                                                        <asp:DropDownList ID="DdlBank" runat="server" AutoCompleteMode="Append" MaxLength="0">
+                                                        </asp:DropDownList>
+                                                        <br />
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator21" runat="server" ControlToValidate="DdlBank"
+                                                            CssClass="errMsg" Display="Dynamic" ErrorMessage="Select Bank" InitialValue="sel"
+                                                            SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="RegText">
+                                                        Account Number <span style="color: Red;">*</span>
+                                                    </td>
+                                                    <td align="left" class="displayText" valign="top">
+                                                        <asp:TextBox ID="TxtBnkAccNo" runat="server" CssClass="formTxtBox" MaxLength="20"
+                                                            onkeypress="checknum()" AutoComplete="off"></asp:TextBox>
+                                                        <span class="hint">(Min of 4 Digits) </span>
+                                                        <br />
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator23" runat="server" ControlToValidate="TxtBnkAccNo"
+                                                            Display="Dynamic" ErrorMessage="Account No. required" CssClass="errMsg"></asp:RequiredFieldValidator>
+                                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator9" runat="server" ControlToValidate="TxtBnkAccNo"
+                                                            ErrorMessage="Account No. should be Numeric and minimum of 4 digit" CssClass="errMsg"
+                                                            Display="Dynamic" ValidationExpression="^[0-9]{4,20}$"></asp:RegularExpressionValidator>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="RegText">
+                                                        Branch Code
+                                                    </td>
+                                                    <td align="left" valign="top">
+                                                        <asp:TextBox ID="TxtBnkCode" runat="server" CssClass="formTxtBox" AutoComplete="off"
+                                                            MaxLength="10"></asp:TextBox>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="RegText">
+                                                        Branch Address <span style="color: Red;">*</span>
+                                                    </td>
+                                                    <td align="left" class="displayText">
+                                                        <asp:TextBox ID="TxtBnkAdd" runat="server" CssClass="formTxtBox" Rows="3" TextMode="MultiLine"></asp:TextBox>
+                                                        <span class="hint">(A to Z, 0-9, / and Space only) &nbsp; (Maximum 100)</span><br />
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator24" runat="server" ControlToValidate="TxtBnkAdd"
+                                                            Display="Dynamic" ErrorMessage="Bank Address required" CssClass="errMsg"></asp:RequiredFieldValidator>&nbsp;
+                                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator10" runat="server"
+                                                            ControlToValidate="TxtBnkAdd" ErrorMessage="A to Z, 0 to 9, / and Space only (Maximum 100)"
+                                                            CssClass="errMsg" Display="Dynamic" ValidationExpression="^[a-zA-Z0-9 / ]*$"></asp:RegularExpressionValidator>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </fieldset>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table width="850" border="0" align="center" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <td width="188" align="left" class="RegText">
+                                                    PAN <span style="color: Red;">*</span>
+                                                </td>
+                                                <td width="650" align="left" class="displayText" valign="top">
+                                                    <asp:TextBox ID="TxtPAN" runat="server" CssClass="formTxtBox" MaxLength="10" AutoComplete="off"
+                                                        ReadOnly="true"></asp:TextBox>
+                                                    <%--<span class="hint">(A to Z, 0-9 only) (Ex:BHOPA1234A)</span><br />
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator25" runat="server" ControlToValidate="TxtPAN"
+                                                        Display="Dynamic" ErrorMessage="PAN required" CssClass="errMsg"></asp:RequiredFieldValidator>
+                                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator11" runat="server"
+                                                        ControlToValidate="TxtPAN" ErrorMessage="A to Z, 0 to 9 only (Ex:BHOPA1234A)"
+                                                        CssClass="errMsg" Display="Dynamic" ValidationExpression="^[a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}$"></asp:RegularExpressionValidator>--%>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="RegText">
+                                                    Profession Tax Number
+                                                </td>
+                                                <td align="left" class="displayText" valign="top">
+                                                    <asp:TextBox ID="TxtPTNo" runat="server" CssClass="formTxtBox" MaxLength="11" onkeypress="checknum()"
+                                                        AutoComplete="off"></asp:TextBox>
+                                                    <span class="hint">(11 digits)</span>
+                                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator12" runat="server"
+                                                        ControlToValidate="TxtPTNo" ErrorMessage="0 to 9 only" CssClass="errMsg" Display="Dynamic"
+                                                        ValidationExpression="^[0-9]{11}$"></asp:RegularExpressionValidator>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="RegText" valign="top">
+                                                    LandLine<span style="color: Red;">*</span> <span class="hint" style="float: right;
+                                                        padding-top: 3px;">+91</span>
+                                                </td>
+                                                <td align="left" class="displayText" valign="top">
+                                                    <asp:TextBox ID="TxtLandLine" runat="server" CssClass="formTxtBox" MaxLength="10"
+                                                        onkeypress="checknum()" AutoComplete="off"></asp:TextBox>
+                                                    <span class="hint">(10 digits) (Ex:4023456789)</span><br />
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator26" runat="server" ControlToValidate="TxtLandLine"
+                                                        Display="Dynamic" ErrorMessage="Land Line No. required" CssClass="errMsg"></asp:RequiredFieldValidator>&nbsp;
+                                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator13" runat="server"
+                                                        ControlToValidate="TxtLandLine" ErrorMessage="Should be 10 digit (Ex:4023456789)"
+                                                        CssClass="errMsg" Display="Dynamic" ValidationExpression="^[0-9]{10}$"></asp:RegularExpressionValidator>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="RegText">
+                                                    Mobile<span style="color: Red;">*</span>
+                                                </td>
+                                                <td align="left" class="displayText" valign="top">
+                                                    <asp:TextBox ID="TxtMobile" runat="server" CssClass="formTxtBox" MaxLength="10" onkeypress="checknum()"
+                                                        AutoComplete="off"></asp:TextBox>
+                                                    <span class="hint">(10 digits) (Ex:9423456789)</span><br />
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator27" runat="server" ControlToValidate="TxtMobile"
+                                                        Display="Dynamic" ErrorMessage="Mobile No. required" CssClass="errMsg"></asp:RequiredFieldValidator>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="formText">
+                                                    Accounts Computerized <span style="color: Red;">*</span>
+                                                </td>
+                                                <td align="left" class="formText">
+                                                    <asp:RadioButtonList ID="RbAcc" runat="server" RepeatDirection="Horizontal">
+                                                        <asp:ListItem Value="Y">Yes</asp:ListItem>
+                                                        <asp:ListItem Value="N">No</asp:ListItem>
+                                                    </asp:RadioButtonList>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                    </asp:WizardStep>
+                    <asp:WizardStep ID="WizardStep1" runat="server" Title="Step 5">
+                        <fieldset class="step6">
+                            <legend>Step 5</legend>
+                            <table width="98%" border="0" cellspacing="0" cellpadding="0" align="center">
+                                <tr>
+                                    <td valign="top" align="left">
+                                        <br />
+                                        <table width="98%" border="0" align="left" cellpadding="5" cellspacing="0">
+                                            <tr>
+                                                <td width="100" align="left" class="formText">
+                                                    Registration No.
+                                                </td>
+                                                <td align="left" class="formText" width="300">
+                                                    <h3>
+                                                        <asp:Label ID="LblAppNo5" runat="server"></asp:Label>
+                                                    </h3>
+                                                </td>
+                                                <td align="left" class="formText">
+                                                    &nbsp;
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" class="formText" colspan="3">
+                                                    <b>If you have additional place of business fill the details below otherwise click next
+                                                        button to proceed</b>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <fieldset class="field4" runat="server" id="AddBus">
+                                            <legend>Additional Places of Business Address</legend>
+                                            <asp:GridView ID="gvPartnerBusiness" runat="server" AutoGenerateColumns="False" CellPadding="4"
+                                                DataKeyNames="serial_no" Width="99%" GridLines="None" ShowFooter="True" SkinID="Masters">
+                                                <%--<AlternatingRowStyle BackColor="White" ForeColor="#284775" />--%>
+                                                <Columns>
+                                                    <asp:BoundField DataField="serial_no" HeaderText="slno" Visible="False" />
+                                                    <asp:TemplateField HeaderText="Door No">
+                                                        <EditItemTemplate>
+                                                            <asp:TextBox ID="DoorNoEdit_txt" CssClass="textBox" onkeypress="TextBoxValidation()"
+                                                                MaxLength="75" runat="server" Text='<%# Eval("door_no") %>'></asp:TextBox>
+                                                            <br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator42" runat="server" ControlToValidate="DoorNoEdit_txt"
+                                                                ErrorMessage="DoorNo." CssClass="errMsg" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </EditItemTemplate>
+                                                        <FooterTemplate>
+                                                            <asp:TextBox ID="DoorNoFoot_txt" CssClass="textBox" onkeypress="TextBoxValidation()"
+                                                                MaxLength="75" runat="server" Text='<%# Eval("door_no") %>'></asp:TextBox>
+                                                            <br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator43" runat="server" ControlToValidate="DoorNoFoot_txt"
+                                                                ErrorMessage="DoorNo." CssClass="errMsg" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                            <asp:RegularExpressionValidator ID="RevDrNostep5" runat="server" ControlToValidate="DoorNoFoot_txt"
+                                                                Display="Dynamic" ErrorMessage="(A to Z, 0 to 9, / and Space only) (Max 75 Characters)"
+                                                                CssClass="errMsg" ValidationExpression="^[a-zA-Z0-9 /]*$"></asp:RegularExpressionValidator>
+                                                        </FooterTemplate>
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="DoorNo_lbl" runat="server" Text='<%# Eval("door_no") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Road/ Street/ Building">
+                                                        <EditItemTemplate>
+                                                            <asp:TextBox ID="RoadStreetBuildEdit_txt" runat="server" onkeypress="TextBoxValidation()"
+                                                                MaxLength="75" CssClass="textBox" Text='<%# Eval("street") %>'></asp:TextBox>
+                                                            <br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator44" runat="server" ControlToValidate="RoadStreetBuildEdit_txt"
+                                                                ErrorMessage="Enter Street" CssClass="errMsg" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </EditItemTemplate>
+                                                        <FooterTemplate>
+                                                            <asp:TextBox ID="StreetFoot_txt" CssClass="textBox" onkeypress="TextBoxValidation()"
+                                                                MaxLength="75" runat="server" Text='<%# Eval("street") %>'></asp:TextBox>
+                                                            <br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator45" runat="server" ControlToValidate="StreetFoot_txt"
+                                                                ErrorMessage="Enter Street" CssClass="errMsg" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </FooterTemplate>
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="Street_lbl" runat="server" Text='<%# Eval("street") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Locality">
+                                                        <EditItemTemplate>
+                                                            <asp:TextBox ID="LocalityEdit_txt" runat="server" CssClass="textBox" onkeypress="TextBoxValidation()"
+                                                                MaxLength="75" Text='<%# Eval("location") %>'></asp:TextBox><br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator46" runat="server" ControlToValidate="LocalityEdit_txt"
+                                                                ErrorMessage="Enter Locality" CssClass="errMsg" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </EditItemTemplate>
+                                                        <FooterTemplate>
+                                                            <asp:TextBox ID="LocalityFoot_txt" runat="server" CssClass="textBox" onkeypress="TextBoxValidation()"
+                                                                MaxLength="75" Text='<%# Eval("location") %>'></asp:TextBox><br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator47" runat="server" ControlToValidate="LocalityFoot_txt"
+                                                                ErrorMessage="Enter Locality" CssClass="errMsg" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </FooterTemplate>
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="locality_lbl" runat="server" Text='<%# Eval("location") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="State">
+                                                        <EditItemTemplate>
+                                                            <asp:DropDownList ID="DdlState" runat="server" AutoPostBack="true" CssClass="textBox"
+                                                                OnSelectedIndexChanged="DdlState_SelectedIndexChanged1">
+                                                            </asp:DropDownList>
+                                                            <br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator31" runat="server" CssClass="errMsg"
+                                                                ControlToValidate="DdlState" ErrorMessage="Select State" InitialValue="SELECT"
+                                                                SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </EditItemTemplate>
+                                                        <FooterTemplate>
+                                                            <asp:DropDownList ID="StateFoot_ddl" runat="server" AutoPostBack="True" CssClass="textBox"
+                                                                OnSelectedIndexChanged="StateFoot_ddl_SelectedIndexChanged1">
+                                                            </asp:DropDownList>
+                                                            <br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator32" runat="server" ControlToValidate="StateFoot_ddl"
+                                                                ErrorMessage="Select State" CssClass="errMsg" InitialValue="SELECT" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </FooterTemplate>
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="state_lbl" runat="server" Text='<%# Eval("state_name") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="District">
+                                                        <EditItemTemplate>
+                                                            <asp:DropDownList ID="DdlParternerDist" runat="server" CssClass="textBox">
+                                                            </asp:DropDownList>
+                                                            <asp:TextBox ID="DistrictEdit_txt" runat="server" MaxLength="50" onkeypress="TextBoxValidation()"
+                                                                CssClass="textBox" Text='<%# Eval("district_name") %>' Visible="False"></asp:TextBox>
+                                                            <br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator33" runat="server" ControlToValidate="DdlParternerDist"
+                                                                ErrorMessage="Select District" CssClass="errMsg" InitialValue="SELECT" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </EditItemTemplate>
+                                                        <FooterTemplate>
+                                                            <asp:DropDownList ID="DistrictFoot_ddl" runat="server" CssClass="textBox">
+                                                            </asp:DropDownList>
+                                                            <asp:TextBox ID="DistrictFoot_txt" runat="server" MaxLength="50" onkeypress="TextBoxValidation()"
+                                                                CssClass="textBox" Text='<%# Eval("district_name") %>' Visible="False"></asp:TextBox>
+                                                            <br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator34" runat="server" ControlToValidate="DistrictFoot_ddl"
+                                                                ErrorMessage="Select District" CssClass="errMsg" InitialValue="SELECT" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </FooterTemplate>
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="District_lbl" runat="server" Text='<%# Eval("district_name") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Branch/Godown">
+                                                        <EditItemTemplate>
+                                                            <asp:DropDownList ID="ddlEditType" runat="server" CssClass="textBox">
+                                                                <asp:ListItem>SELECT</asp:ListItem>
+                                                                <asp:ListItem Value="BRNC">Branches</asp:ListItem>
+                                                                <asp:ListItem Value="GODN">Godowns</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                            <br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator35" runat="server" ControlToValidate="ddlEditType"
+                                                                ErrorMessage="Select Type" CssClass="errMsg" InitialValue="SELECT" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </EditItemTemplate>
+                                                        <FooterTemplate>
+                                                            <asp:DropDownList ID="ddlFootType" runat="server" CssClass="textBox">
+                                                                <asp:ListItem>SELECT</asp:ListItem>
+                                                                <asp:ListItem Value="BRNC">Branches</asp:ListItem>
+                                                                <asp:ListItem Value="GODN">Godowns</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                            <br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator36" runat="server" ControlToValidate="ddlFootType"
+                                                                ErrorMessage="Select Type" CssClass="errMsg" InitialValue="SELECT" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </FooterTemplate>
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="type_lbl" runat="server" Text='<%# Eval("type") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="City">
+                                                        <EditItemTemplate>
+                                                            <asp:TextBox ID="CityEdit_txt" runat="server" CssClass="textBox" onkeypress="TextBoxValidation()"
+                                                                MaxLength="60" Text='<%# Eval("city") %>'></asp:TextBox><br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator48" runat="server" ControlToValidate="CityEdit_txt"
+                                                                ErrorMessage="Select City" CssClass="errMsg" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </EditItemTemplate>
+                                                        <FooterTemplate>
+                                                            <asp:TextBox ID="CityFoot_txt" runat="server" CssClass="textBox" MaxLength="60" onkeypress="TextBoxValidation()"
+                                                                Text='<%# Eval("city") %>'></asp:TextBox><br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator49" runat="server" ControlToValidate="CityFoot_txt"
+                                                                ErrorMessage="Select City" CssClass="errMsg" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </FooterTemplate>
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="city_lbl" runat="server" Text='<%# Eval("city") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Pin/ Zip">
+                                                        <EditItemTemplate>
+                                                            <asp:TextBox ID="PinZipEdit_txt" CssClass="textBox" runat="server" onkeypress="checknum()"
+                                                                MaxLength="6" Text='<%# Eval("pin") %>'></asp:TextBox><br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator50" runat="server" ControlToValidate="PinZipEdit_txt"
+                                                                ErrorMessage="Enter Pin" CssClass="errMsg" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </EditItemTemplate>
+                                                        <FooterTemplate>
+                                                            <asp:TextBox ID="PinFoot_txt" runat="server" CssClass="textBox" onkeypress="checknum()"
+                                                                MaxLength="6" Text='<%# Eval("pin") %>'></asp:TextBox><br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator51" runat="server" CssClass="errMsg"
+                                                                ControlToValidate="PinFoot_txt" ErrorMessage="Enter Pin" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </FooterTemplate>
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="pin_lbl" runat="server" Text='<%# Eval("pin") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Modifications">
+                                                        <EditItemTemplate>
+                                                            <div class="icon">
+                                                                <ul class="icon">
+                                                                    <li>
+                                                                        <asp:Button ID="Update_btn" runat="server" CommandName="Update" Text="Update" CssClass="updateBtn"
+                                                                            ToolTip="Update" />
+                                                                    </li>
+                                                                    <li>
+                                                                        <asp:Button ID="Cancel_btn" runat="server" CausesValidation="false" CommandName="Cancel"
+                                                                            Text="Cancel" CssClass="cancelBtn" ToolTip="Cancel" /></li></ul>
+                                                            </div>
+                                                        </EditItemTemplate>
+                                                        <FooterTemplate>
+                                                            <div class="icon">
+                                                                <ul class="icon">
+                                                                    <li>
+                                                                        <asp:Button ID="Insert_btn" runat="server" CommandName="Insert" Text="Add" ToolTip="Insert"
+                                                                            CssClass="addBtn" /></li>
+                                                                    <li>
+                                                                        <asp:Button ID="Cancelfoor_btn" runat="server" CausesValidation="false" CommandName="Cancel"
+                                                                            Text="Cancel" CssClass="cancelBtn" ToolTip="Cancel" /></li></ul>
+                                                                <br />
+                                                                <br />
+                                                            </div>
+                                                        </FooterTemplate>
+                                                        <ItemTemplate>
+                                                            <div class="icon">
+                                                                <ul class="icon">
+                                                                    <li>
+                                                                        <asp:Button ID="Edit_btn" runat="server" CausesValidation="false" CommandName="Edit"
+                                                                            Text="Edit" CssClass="editBtn" ToolTip="Edit" /></li>
+                                                                    <li>
+                                                                        <asp:Button ID="Delete_btn" runat="server" CausesValidation="false" CommandName="Delete"
+                                                                            Text="Delete" CssClass="deleteBtn" ToolTip="Delete" /></li></ul>
+                                                            </div>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                                <%--                    <EditRowStyle BackColor="#999999" />
+                    <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                    <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                    <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                    <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                    <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                    <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                    <SortedDescendingHeaderStyle BackColor="#6F8DAE" />--%>
+                                            </asp:GridView>
+                                            (Enter A to Z, 0 to 9, / only)
+                                        </fieldset>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                    </asp:WizardStep>
+                    <asp:WizardStep ID="WizardStep2" runat="server" Title="Step 6">
+                        <fieldset class="step6">
+                            <legend>Step 6</legend>
+                            <table width="98%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td valign="top" align="left">
+                                        <br />
+                                        <table width="98%" border="0" align="left" cellpadding="5" cellspacing="0">
+                                            <tr>
+                                                <td align="left" class="formText" width="100">
+                                                    Registration No
+                                                </td>
+                                                <td width="300" align="left">
+                                                    <h3>
+                                                        <asp:Label ID="LblAppNo6" runat="server"></asp:Label></h3>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" colspan="3" class="formText">
+                                                    <b>If You Have Partners&nbsp; fill the details below otherwise click Submit button to
+                                                        Submit the Application</b>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <fieldset class="field4" runat="server" id="AddPartners">
+                                            <legend>Partner/Director Address</legend>
+                                            <asp:GridView ID="GvwBusiness" runat="server" AutoGenerateColumns="False" CellPadding="4"
+                                                DataKeyNames="serial_no" SkinID="Masters" GridLines="None" ShowFooter="True">
+                                                <Columns>
+                                                    <asp:BoundField DataField="serial_no" HeaderText="slno" Visible="False" />
+                                                    <asp:TemplateField HeaderText="Partner/Director Name">
+                                                        <EditItemTemplate>
+                                                            <asp:TextBox ID="PartDirectNameEdit_txt" runat="server" MaxLength="75" CssClass="textBox"
+                                                                Text='<%# Eval("name") %>'></asp:TextBox><br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator52" runat="server" ControlToValidate="PartDirectNameEdit_txt"
+                                                                ErrorMessage="Partner Name" CssClass="errMsg" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </EditItemTemplate>
+                                                        <FooterTemplate>
+                                                            <asp:TextBox ID="namefoot_txt" runat="server" MaxLength="75" Text='<%# Eval("name") %>'
+                                                                CssClass="textBox"></asp:TextBox><br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator53" runat="server" ControlToValidate="namefoot_txt"
+                                                                ErrorMessage="Partner Name" CssClass="errMsg" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </FooterTemplate>
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="PartDirName_lbl" runat="server" Text='<%# Eval("name") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Father Name">
+                                                        <EditItemTemplate>
+                                                            <asp:TextBox ID="FatherNameEdit_txt" runat="server" MaxLength="50" CssClass="textBox"
+                                                                Text='<%# Eval("father_name") %>'></asp:TextBox><br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator54" runat="server" ControlToValidate="FatherNameEdit_txt"
+                                                                ErrorMessage="Father Name" CssClass="errMsg" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </EditItemTemplate>
+                                                        <FooterTemplate>
+                                                            <asp:TextBox ID="FatherNameFoot_txt" runat="server" MaxLength="50" CssClass="textBox"
+                                                                Text='<%# Eval("father_name") %>'></asp:TextBox><br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator55" runat="server" ControlToValidate="FatherNameFoot_txt"
+                                                                ErrorMessage="Father Name" CssClass="errMsg" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </FooterTemplate>
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="FatherName_lbl" runat="server" Text='<%# Eval("father_name") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Door No">
+                                                        <EditItemTemplate>
+                                                            <asp:TextBox ID="DoorNoEdit_txt" runat="server" MaxLength="75" Text='<%# Eval("door_no") %>'
+                                                                onkeypress="TextBoxValidation()" CssClass="textBox"></asp:TextBox><br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator56" runat="server" ControlToValidate="DoorNoEdit_txt"
+                                                                ErrorMessage="DoorNo" CssClass="errMsg" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </EditItemTemplate>
+                                                        <FooterTemplate>
+                                                            <asp:TextBox ID="DoorNoFoot_txt" runat="server" MaxLength="75" Text='<%# Eval("door_no") %>'
+                                                                onkeypress="TextBoxValidation()" CssClass="textBox"></asp:TextBox><br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator57" runat="server" ControlToValidate="DoorNoFoot_txt"
+                                                                ErrorMessage="DoorNo" CssClass="errMsg" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </FooterTemplate>
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="DoorNo_lbl" runat="server" Text='<%# Eval("door_no") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Road/ Street/ Building">
+                                                        <EditItemTemplate>
+                                                            <asp:TextBox ID="RoadStreetBuildEdit_txt" runat="server" MaxLength="75" CssClass="textBox"
+                                                                onkeypress="TextBoxValidation()" Text='<%# Eval("street") %>'></asp:TextBox><br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator58" runat="server" ControlToValidate="RoadStreetBuildEdit_txt"
+                                                                ErrorMessage="Street" CssClass="errMsg" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </EditItemTemplate>
+                                                        <FooterTemplate>
+                                                            <asp:TextBox ID="StreetFoot_txt" runat="server" MaxLength="75" Text='<%# Eval("street") %>'
+                                                                onkeypress="TextBoxValidation()" CssClass="textBox"></asp:TextBox><br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator59" runat="server" ControlToValidate="StreetFoot_txt"
+                                                                ErrorMessage="Street" CssClass="errMsg" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </FooterTemplate>
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="Street_lbl" runat="server" Text='<%# Eval("street") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Locality">
+                                                        <EditItemTemplate>
+                                                            <asp:TextBox ID="LocalityEdit_txt" runat="server" MaxLength="75" CssClass="textBox"
+                                                                onkeypress="TextBoxValidation()" Text='<%# Eval("location") %>'></asp:TextBox><br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator60" runat="server" ControlToValidate="LocalityEdit_txt"
+                                                                ErrorMessage="Locality" CssClass="errMsg" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </EditItemTemplate>
+                                                        <FooterTemplate>
+                                                            <asp:TextBox ID="LocalityFoot_txt" runat="server" MaxLength="75" CssClass="textBox"
+                                                                onkeypress="TextBoxValidation()" Text='<%# Eval("location") %>'></asp:TextBox><br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator61" runat="server" ControlToValidate="LocalityFoot_txt"
+                                                                ErrorMessage="Locality" CssClass="errMsg" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </FooterTemplate>
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="locality_lbl" runat="server" Text='<%# Eval("location") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Country">
+                                                        <EditItemTemplate>
+                                                            <asp:DropDownList ID="DdlCountry" runat="server" AutoPostBack="true" CssClass="textBox"
+                                                                OnSelectedIndexChanged="DdlCountry_SelectedIndexChanged">
+                                                            </asp:DropDownList>
+                                                            <br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator29" runat="server" CssClass="errMsg"
+                                                                ControlToValidate="DdlCountry" ErrorMessage="Select Country" InitialValue="SELECT"
+                                                                SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </EditItemTemplate>
+                                                        <FooterTemplate>
+                                                            <asp:DropDownList ID="CountryFoot_ddl" runat="server" AutoPostBack="True" CssClass="textBox"
+                                                                OnSelectedIndexChanged="CountryFoot_ddl_SelectedIndexChanged">
+                                                            </asp:DropDownList>
+                                                            <br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator30" runat="server" ControlToValidate="CountryFoot_ddl"
+                                                                ErrorMessage="Select Country" CssClass="errMsg" InitialValue="SELECT" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </FooterTemplate>
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="Country_lbl" runat="server" Text='<%# Eval("country") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="State">
+                                                        <EditItemTemplate>
+                                                            <asp:DropDownList ID="DdlState" runat="server" AutoPostBack="true" CssClass="textBox"
+                                                                OnSelectedIndexChanged="DdlState_SelectedIndexChanged">
+                                                            </asp:DropDownList>
+                                                            <asp:TextBox ID="State_txt" runat="server" MaxLength="50" onkeypress="TextBoxValidation()"
+                                                                Text='<%# Eval("state_name") %>' CssClass="textBox" Visible="False"></asp:TextBox><br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator37" runat="server" ControlToValidate="DdlState"
+                                                                ErrorMessage="Select State" InitialValue="SELECT" CssClass="errMsg" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </EditItemTemplate>
+                                                        <FooterTemplate>
+                                                            <asp:DropDownList ID="StateFoot_ddl" runat="server" AutoPostBack="True" CssClass="textBox"
+                                                                OnSelectedIndexChanged="StateFoot_ddl_SelectedIndexChanged">
+                                                            </asp:DropDownList>
+                                                            <asp:TextBox ID="StateFoot_txt" runat="server" onkeypress="TextBoxValidation()" MaxLength="50"
+                                                                Text='<%# Eval("state_name") %>' CssClass="textBox" Visible="False"></asp:TextBox><br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator38" runat="server" ControlToValidate="StateFoot_ddl"
+                                                                ErrorMessage="Select State" CssClass="errMsg" InitialValue="SELECT" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                            <%-- sdfgsdfg --%>
+                                                        </FooterTemplate>
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="state_lbl" runat="server" Text='<%# Eval("state_name") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="District">
+                                                        <EditItemTemplate>
+                                                            <asp:DropDownList ID="DdlParternerDist" runat="server" CssClass="textBox">
+                                                            </asp:DropDownList>
+                                                            <asp:TextBox ID="DistrictEdit_txt" onkeypress="TextBoxValidation()" runat="server"
+                                                                CssClass="textBox" MaxLength="50" Text='<%# Eval("district_name") %>' Visible="False"></asp:TextBox><br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator39" runat="server" ControlToValidate="DdlParternerDist"
+                                                                ErrorMessage="Select District" CssClass="errMsg" InitialValue="SELECT" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </EditItemTemplate>
+                                                        <FooterTemplate>
+                                                            <asp:DropDownList ID="DistrictFoot_ddl" runat="server" CssClass="textBox">
+                                                            </asp:DropDownList>
+                                                            <asp:TextBox ID="DistrictFoot_txt" onkeypress="TextBoxValidation()" runat="server"
+                                                                CssClass="textBox" MaxLength="50" Text='<%# Eval("district_name") %>' Visible="False"></asp:TextBox><br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator40" runat="server" CssClass="errMsg"
+                                                                ControlToValidate="DistrictFoot_ddl" ErrorMessage="Select District" InitialValue="SELECT"
+                                                                SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </FooterTemplate>
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="District_lbl" runat="server" Text='<%# Eval("district_name") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="City">
+                                                        <EditItemTemplate>
+                                                            <asp:TextBox ID="CityEdit_txt" onkeypress="TextBoxValidation()" runat="server" MaxLength="60"
+                                                                Text='<%# Eval("city") %>' CssClass="textBox"></asp:TextBox><br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator62" runat="server" ControlToValidate="CityEdit_txt"
+                                                                ErrorMessage="Enter City" CssClass="errMsg" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </EditItemTemplate>
+                                                        <FooterTemplate>
+                                                            <asp:TextBox ID="CityFoot_txt" onkeypress="TextBoxValidation()" runat="server" MaxLength="60"
+                                                                Text='<%# Eval("city") %>' CssClass="textBox"></asp:TextBox><br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator63" runat="server" ControlToValidate="CityFoot_txt"
+                                                                ErrorMessage="Enter City" CssClass="errMsg" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </FooterTemplate>
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="city_lbl" runat="server" Text='<%# Eval("city") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Pin/ Zip">
+                                                        <EditItemTemplate>
+                                                            <asp:TextBox ID="PinZipEdit_txt" runat="server" Text='<%# Eval("pin") %>' CssClass="textBox"
+                                                                onkeypress="checknum()" MaxLength="6"></asp:TextBox><br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator64" runat="server" ControlToValidate="PinZipEdit_txt"
+                                                                ErrorMessage="Enter Pin" CssClass="errMsg" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </EditItemTemplate>
+                                                        <FooterTemplate>
+                                                            <asp:TextBox runat="server" Text='<%# Eval("pin") %>' CssClass="textBox" onkeypress="checknum()"
+                                                                MaxLength="6" ID="PinFoot_txt"></asp:TextBox><br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator65" runat="server" CssClass="errMsg"
+                                                                ControlToValidate="PinFoot_txt" ErrorMessage="Enter Pin" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </FooterTemplate>
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="pin_lbl" runat="server" Text='<%# Eval("pin") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="UID">
+                                                        <EditItemTemplate>
+                                                            <asp:TextBox ID="UidEdit_txt" runat="server" Text='<%# Eval("uid") %>' CssClass="textBox"
+                                                                onkeypress="checknum()" MaxLength="12"></asp:TextBox><br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator66" runat="server" CssClass="errMsg"
+                                                                ControlToValidate="UidEdit_txt" ErrorMessage="Enter UID" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </EditItemTemplate>
+                                                        <FooterTemplate>
+                                                            <asp:TextBox ID="UidFoot_txt" runat="server" Text='<%# Eval("uid") %>' CssClass="textBox"
+                                                                onkeypress="checknum()" MaxLength="12"></asp:TextBox><br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator67" runat="server" CssClass="errMsg"
+                                                                ControlToValidate="UidFoot_txt" ErrorMessage="Enter UID" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </FooterTemplate>
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="uid_lbl" runat="server" Text='<%# Eval("uid") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Email">
+                                                        <EditItemTemplate>
+                                                            <asp:TextBox ID="EmailEdit_txt" runat="server" MaxLength="50" Text='<%# Eval("email_id") %>'
+                                                                CssClass="textBox"></asp:TextBox><br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator68" runat="server" ControlToValidate="EmailEdit_txt"
+                                                                ErrorMessage="Enter Email" CssClass="errMsg" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                        </EditItemTemplate>
+                                                        <FooterTemplate>
+                                                            <asp:TextBox ID="EmailFoot_txt" runat="server" MaxLength="50" Text='<%# Eval("email_id") %>'
+                                                                CssClass="textBox"></asp:TextBox><br />
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator69" runat="server" ControlToValidate="EmailFoot_txt"
+                                                                ErrorMessage="Enter Email" CssClass="errMsg" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                            <asp:RegularExpressionValidator ID="RegularExpressionValidator15" runat="server"
+                                                                ControlToValidate="EmailFoot_txt" CssClass="errMsg" Display="Dynamic" ErrorMessage="Invalid E-Mail ID"
+                                                                ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                                                        </FooterTemplate>
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="email_lbl" runat="server" Text='<%# Eval("email_id") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Modifications">
+                                                        <EditItemTemplate>
+                                                            <div class="icon">
+                                                                <ul class="icon">
+                                                                    <li>
+                                                                        <asp:Button ID="Update_btn" runat="server" CommandName="Update" CssClass="updateBtn"
+                                                                            Text="Update" ToolTip="Update" /></li>
+                                                                    <li>
+                                                                        <asp:Button ID="Cancel_btn" runat="server" CausesValidation="false" CommandName="Cancel"
+                                                                            Text="Cancel" CssClass="cancelBtn" ToolTip="Cancel" /></li>
+                                                                </ul>
+                                                            </div>
+                                                        </EditItemTemplate>
+                                                        <FooterTemplate>
+                                                            <div class="icon">
+                                                                <ul class="icon">
+                                                                    <li>
+                                                                        <asp:Button ID="Insert_btn" runat="server" CommandName="Insert" Text="Add" CssClass="addBtn"
+                                                                            ToolTip="Insert" /></li>
+                                                                    <li>
+                                                                        <asp:Button ID="Cancelfoor_btn" runat="server" CausesValidation="false" CommandName="Cancel"
+                                                                            Text="Cancel" CssClass="cancelBtn" ToolTip="Cancel" /></li>
+                                                                </ul>
+                                                            </div>
+                                                        </FooterTemplate>
+                                                        <ItemTemplate>
+                                                            <div class="icon">
+                                                                <ul class="icon">
+                                                                    <li>
+                                                                        <asp:Button ID="Edit_btn" runat="server" CausesValidation="false" CommandName="Edit"
+                                                                            Text="Edit" CssClass="editBtn" toop="Edit" ToolTip="Edit" /></li>
+                                                                    <li>
+                                                                        <asp:Button ID="Delete_btn" runat="server" CausesValidation="false" CommandName="Delete"
+                                                                            Text="Delete" CssClass="deleteBtn" ToolTip="Delete" /></li>
+                                                                </ul>
+                                                            </div>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                            </asp:GridView>
+                                            (Enter A to Z, 0 to 9, / only)
+                                        </fieldset>
+                                    </td>
+                                    <br />
+                                </tr>
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                    </asp:WizardStep>
+                    <%--<asp:WizardStep ID="WizardStep3" runat="server" Title="Step 7">
+                        <fieldset class="step7">
+                            <legend>Step 7</legend>
+                            <table width="98%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td valign="top" align="left">
+                                        <br />
+                                        <table width="98%" border="0" align="left" cellpadding="5" cellspacing="0">
+                                            <tr>
+                                                <td align="left" class="formText" width="100">
+                                                    Registration No
+                                                </td>
+                                                <td width="300" align="left">
+                                                    <h3>
+                                                        <asp:Label ID="LblAppNo7" runat="server"></asp:Label></h3>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="100%" colspan="2">
+                                                    <fieldset class="field4" runat="server" id="AddCheckLists">
+                                                        <br />
+                                                        <legend>Check & Upload Documents<sup style="color: Red">*</sup></legend>
+                                                        <br />
+                                                        <table>
+                                                            <tr>
+                                                                <td colspan="2">
+                                                                  Note:you have only one option for send document(please first confirm and select)
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    Send Document<sup style="color: Red">*</sup>
+                                                                </td>
+                                                                <td>
+                                                                    <asp:RadioButtonList ID="ddlUploadOption" runat="server" AutoPostBack="true" RepeatDirection="Horizontal"
+                                                                        RepeatLayout="Flow">
+                                                                        <asp:ListItem Value="C">Through Courier</asp:ListItem>
+                                                                        <asp:ListItem Value="O">Through Online</asp:ListItem>
+                                                                    </asp:RadioButtonList>
+                                                                    &nbsp
+                                                                    <asp:RequiredFieldValidator ID="rfvddlUploadOption" runat="server" ControlToValidate="ddlUploadOption"
+                                                                        ErrorMessage="Select Document Upload Choice!" ForeColor="Red" Font-Bold="true">
+                                                                    </asp:RequiredFieldValidator>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                        <br />
+                                                        <asp:CheckBoxList ID="chkDocuementCheckList" runat="server" Visible="false">
+                                                        </asp:CheckBoxList>
+                                                        <br />
+                                                        <asp:GridView ID="grdChecklistsDocument" runat="server" AutoGenerateColumns="False"
+                                                            CellPadding="4" SkinID="Masters" GridLines="None" ShowFooter="True" Width="100%"
+                                                            Visible="false">
+                                                            <Columns>
+                                                                <asp:TemplateField>
+                                                                    <ItemTemplate>
+                                                                        <asp:Label ID="lblchecklist_code" Text='<%#Eval("checklist_code") %>' runat="server"
+                                                                            Visible="false"></asp:Label>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="Document Checklist">
+                                                                    <ItemTemplate>
+                                                                        <asp:CheckBox ID="chkCheckListName" runat="server" Text='<%# Eval("checklist_name") %>'
+                                                                            AutoPostBack="true" OnCheckedChanged="chkCheckListName_CheckedChanged" />
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="Upload Documents">
+                                                                    <ItemTemplate>
+                                                                        <asp:UpdatePanel runat="server" UpdateMode="Conditional" RenderMode="Inline" ID="updFU">
+                                                                            <ContentTemplate>
+                                                                                <asp:FileUpload ID="fuDocuments" runat="server" Visible="false" />
+                                                                                <asp:Button ID="btnUpload" runat="server" Text="Upload" Visible="false" CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>"
+                                                                                    CommandName="Upload" />
+                                                                            </ContentTemplate>
+                                                                            <Triggers>
+                                                                                <asp:PostBackTrigger ControlID="btnUpload" />
+                                                                            </Triggers>
+                                                                        </asp:UpdatePanel>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                            </Columns>
+                                                        </asp:GridView>
+                                                    </fieldset>
+                        </td> </tr> </table> </td> </tr>
+                        <tr>
+                            <td>
+                                <asp:GridView ID="grdDocumentList" runat="server" AutoGenerateColumns="False" CellPadding="4"
+                                    SkinID="Masters" GridLines="Both" ShowFooter="false" Width="80%" Visible="false"
+                                    HeaderStyle-Font-Bold="true">
+                                    <EmptyDataTemplate>
+                                        <b>No Document Uploaded</b>
+                                    </EmptyDataTemplate>
+                                    <Columns>
+                                        <asp:TemplateField>
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblCheckListCode" runat="server" Text='<%#Eval("checklist_code") %>'
+                                                    Visible="false"></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="RNR" HeaderStyle-HorizontalAlign="Center">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblRNR" runat="server" Text='<%#Eval("rnr") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Document Name" HeaderStyle-HorizontalAlign="Center">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblChecklistName" runat="server" Text='<%#Eval("checklist_name") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="File Name" HeaderStyle-HorizontalAlign="Center">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblFileName" runat="server" Text='<%#Eval("file_name") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Delete" HeaderStyle-HorizontalAlign="Center">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="lblDeleteDocument" CommandName="DocumentDelete" runat="server"
+                                                    CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>" Text="Delete"
+                                                    OnClientClick="return confirm('Are you sure you want to delete this document?');" />
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+                                    </Columns>
+                                    <HeaderStyle Font-Bold="True" />
+                                </asp:GridView>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br />
+                                <b>Note:</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>1. Upload online file formats are accept only PDF and Image</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>2. Accepted file formats are .jpg, .jpeg, .png, .pdf</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>3. file size should be below 500 KB</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                &nbsp;
+                            </td>
+                        </tr>
+                        </table> </fieldset>
+                    </asp:WizardStep>--%>
+                </WizardSteps>
+            </asp:Wizard>
+        </ContentTemplate>
+        <Triggers>
+            <%--<asp:PostBackTrigger ControlID="btnUpload" />--%>
+            <%--<asp:PostBackTrigger ControlID="grdChecklistsDocument" />--%>
+            <%--<asp:PostBackTrigger ControlID="grdChecklistsDocument." />--%>
+        </Triggers>
+    </asp:UpdatePanel>
+</asp:Content>

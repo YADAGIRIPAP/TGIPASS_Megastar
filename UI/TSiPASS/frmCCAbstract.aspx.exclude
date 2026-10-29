@@ -1,0 +1,438 @@
+<%@ Page Language="C#" MasterPageFile="MasterPage.master" AutoEventWireup="true" CodeFile="frmCCAbstract.aspx.cs" Inherits="FrmUsers" Title="::Greater Visakhapatnam Municipal Corporation:: Citizen Charter - Abstract Report" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<%@ Register namespace="AjaxControlToolkit" tagprefix="AjaxControlToolkit" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+
+
+<script language="javascript" type="text/javascript">
+
+    function PrintPage() {
+    window.print()
+    }
+</script>
+
+<%--<script type="text/javascript">
+
+
+function isValidDate(dateStr) {
+// Checks for the following valid date formats:
+// MM/DD/YY   MM/DD/YYYY   MM-DD-YY   MM-DD-YYYY
+// Also separates date into month, day, and year variables
+
+//var datePat = /^(\d{1,2})(\/|-)(\d{1,2})\2(\d{2}|\d{4})$/;
+var datePat = /^(\d{1,2})(\/|-)(\d{1,2})\2(\d{4})$/;
+
+// To require a 4 digit year entry, use this line instead:
+// var datePat = /^(\d{1,2})(\/|-)(\d{1,2})\2(\d{4})$/;
+
+var matchArray = dateStr.match(datePat); // is the format ok?
+if (matchArray == null) {
+alert("Date is not in a valid format.")
+return false;
+}
+day = matchArray[1]; // parse date into variables
+month = matchArray[3];
+year = matchArray[4];
+if (month < 1 || month > 12) { // check month range
+alert("Month must be between 1 and 12.");
+return false;
+}
+if (day < 1 || day > 31) {
+alert("Day must be between 1 and 31.");
+return false;
+}
+if ((month==4 || month==6 || month==9 || month==11) && day==31) {
+alert("Month "+month+" doesn't have 31 days!")
+return false
+}
+if (month == 2) { // check for february 29th
+var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
+if (day>29 || (day==29 && !isleap)) {
+alert("February " + year + " doesn't have " + day + " days!");
+return false;
+   }
+}
+
+var sekhDate = new Date();
+sekhDate.setFullYear(year,month-1,day);
+var sekhToday = new Date();
+
+if(sekhDate > sekhToday)
+{
+alert("Chalana Date is Greater than Current Date");
+return false;
+}
+
+return true;  // date is valid
+
+
+}
+
+ function CheckFromDate()
+    {
+    var vdate = isValidDate(document.getElementById("ctl00_ContentPlaceHolder1_txtFrom").value);
+        
+        if(vdate == false)
+        {
+        alert("Enter a Valid Date");
+        return false;
+        }
+         //document.forms[0].submit();
+     } 
+     function CheckToDate()
+    {
+    var vdate = isValidDate(document.getElementById("ctl00_ContentPlaceHolder1_txtTo").value);
+        
+        if(vdate == false)
+        {
+        alert("Enter a Valid Date");
+        return false;
+        }
+         //document.forms[0].submit();
+     }     
+//  End -->
+</script>--%>
+
+<script language="javascript" type="text/javascript">
+
+    function isValidDate(dateStr, textstr) {
+        // Checks for the following valid date formats:
+        // MM/DD/YY   MM/DD/YYYY   MM-DD-YY   MM-DD-YYYY
+        // Also separates date into month, day, and year variables
+
+        //var datePat = /^(\d{1,2})(\/|-)(\d{1,2})\2(\d{2}|\d{4})$/;
+        var datePat = /^(\d{4})(\/|-)(\d{1,2})\2(\d{1,2})$/;
+
+        // To require a 4 digit year entry, use this line instead:
+        // var datePat = /^(\d{1,2})(\/|-)(\d{1,2})\2(\d{4})$/;
+
+        var matchArray = dateStr.match(datePat); // is the format ok?
+        if (matchArray == null) {
+            alert("Date is not in a valid format.")
+            return false;
+        }
+        day = matchArray[4]; // parse date into variables
+        month = matchArray[3];
+        year = matchArray[1];
+        if (month < 1 || month > 12) { // check month range
+            alert("Month must be between 1 and 12.");
+            return false;
+        }
+        if (day < 1 || day > 31) {
+            alert("Day must be between 1 and 31.");
+            return false;
+        }
+        if ((month == 4 || month == 6 || month == 9 || month == 11) && day == 31) {
+            alert("Month " + month + " doesn't have 31 days!")
+            return false
+        }
+        if (month == 2) { // check for february 29th
+            var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
+            if (day > 29 || (day == 29 && !isleap)) {
+                alert("February " + year + " doesn't have " + day + " days!");
+                return false;
+            }
+        }
+
+        var sekhDate = new Date();
+        sekhDate.setFullYear(year, month - 1, day);
+        var sekhToday = new Date();
+
+        if (sekhDate > sekhToday) {
+            alert(textstr + "is Greater than Current Date");
+            return false;
+        }
+
+        return true;  // date is valid
+
+    }
+
+    function txtFrom() {
+        var trdat = document.getElementById("ctl00_ContentPlaceHolder1_txtFrom").value;
+        if (trdat != "" || trdat != null || trdat != '') {
+            var tranDate = isValidDate(document.getElementById("ctl00_ContentPlaceHolder1_txtFrom").value, 'From Date ');
+            if (tranDate == false) {
+                document.getElementById("ctl00_ContentPlaceHolder1_txtFrom").value = '';
+                document.getElementById("ctl00_ContentPlaceHolder1_txtFrom").focus();
+
+                //alert("Enter a Valid Date of Appeal");
+
+                return false;
+            }
+        }
+    }
+
+
+    function isValidActualDate1(dateStr, textstr, dateStr1, textstr1) {
+        // Checks for the following valid date formats:
+        // MM/DD/YY   MM/DD/YYYY   MM-DD-YY   MM-DD-YYYY
+        // Also separates date into month, day, and year variables
+
+        //var datePat = /^(\d{1,2})(\/|-)(\d{1,2})\2(\d{2}|\d{4})$/;
+        //var datePat = /^(\d{1,2})(\/|-)(\d{1,2})\2(\d{4})$/;
+        var datePat = /^(\d{4})(\/|-)(\d{1,2})\2(\d{1,2})$/;
+
+
+        // To require a 4 digit year entry, use this line instead:
+        // var datePat = /^(\d{1,2})(\/|-)(\d{1,2})\2(\d{4})$/;
+        var ActualStartDate = dateStr1;
+        var matchArray = dateStr.match(datePat); // is the format ok?
+        if (matchArray == null) {
+            alert(textstr + " is not in a valid format.(yyyy-mm-dd)")
+            return false;
+        }
+        var matchArray1 = ActualStartDate.match(datePat); // is the format ok?
+        if (matchArray1 == null) {
+            alert(textstr1 + " is not in a valid format.(yyyy-mm-dd)")
+            return false;
+        }
+        day = matchArray[4]; // parse date into variables
+        month = matchArray[3];
+        year = matchArray[1];
+        day1 = matchArray1[4]; // parse date into variables
+        month1 = matchArray1[3];
+        year1 = matchArray1[1];
+        if (month1 < 1 || month1 > 12) { // check month range
+            alert("Month must be between 1 and 12.");
+            return false;
+        }
+        if (day1 < 1 || day1 > 31) {
+            alert("Day must be between 1 and 31.");
+            return false;
+        }
+        if ((month1 == 4 || month1 == 6 || month1 == 9 || month1 == 11) && day1 == 31) {
+            alert("Month " + month1 + " doesn't have 31 days!")
+            return false
+        }
+        if (month1 == 2) { // check for february 29th
+            var isleap1 = (year1 % 4 == 0 && (year1 % 100 != 0 || year1 % 400 == 0));
+            if (day1 > 29 || (day1 == 29 && !isleap1)) {
+                alert("February " + year1 + " doesn't have " + day1 + " days!");
+                return false;
+            }
+        }
+
+        var sekhDate = new Date();
+        sekhDate.setFullYear(year1, month1 - 1, day1);
+        var sekhToday = new Date();
+
+        //if(  sekhToday < sekhDate)
+        //{
+        //alert( textstr1 + " must be less than "+textstr);
+        //return false;
+        //}
+        // Year Start
+
+        if (year > year1) {
+            alert(textstr1 + " is Must be greater than " + textstr);
+            return false;
+        }
+        else if (year < year1) {
+            return true;
+        }
+        else if (year == year1) {
+
+            //MOnth
+            if (month == month1) {
+                if (day <= day1) {
+                    return true;
+                }
+                else {
+                    alert(textstr1 + " is Must be greater than " + textstr);
+                    return false;
+                }
+            }
+            else if (month < month1) {
+                return true;
+            }
+            else {
+                alert(textstr1 + " is Must be greater than " + textstr);
+                return false;
+            }
+            // MOnth
+        }
+
+        //return true;
+
+        //Year End
+
+    }
+
+    function txtTo() {
+
+        var trdat1 = document.getElementById("ctl00_ContentPlaceHolder1_txtTo").value;
+        if (trdat1 != "" || trdat1 != null || trdat1 != '') {
+            var tranDate1 = isValidDate(document.getElementById("ctl00_ContentPlaceHolder1_txtTo").value, 'To Date ');
+            if (tranDate1 == false) {
+                document.getElementById("ctl00_ContentPlaceHolder1_txtTo").value = '';
+                document.getElementById("ctl00_ContentPlaceHolder1_txtTo").focus();
+                return false;
+            }
+        }
+        var trdat2 = document.getElementById("ctl00_ContentPlaceHolder1_txtTo").value;
+        if (trdat2 != "" || trdat2 != null || trdat2 != '') {
+            var trdat = document.getElementById("ctl00_ContentPlaceHolder1_txtFrom").value;
+            if (trdat != "" || trdat != null || trdat != '') {
+                var tranDate = isValidActualDate1(document.getElementById("ctl00_ContentPlaceHolder1_txtFrom").value, 'From Date', document.getElementById("ctl00_ContentPlaceHolder1_txtTo").value, 'To Date');
+                if (tranDate == false) {
+                    document.getElementById("ctl00_ContentPlaceHolder1_txtTo").focus();
+                    document.getElementById("ctl00_ContentPlaceHolder1_txtTo").value = '';
+                }
+            }
+        }
+    }
+    </script>
+
+
+<%--<script type="text/javascript" src="../resources/scripts/PopUpCalenderLeft.js"></script>--%>
+<div>
+<br />
+                        
+    <table id="table67" align="center" border="0" cellpadding="0" cellspacing="0" height="158" style="width: 81%">
+            <tr>
+                     <td background="../Resources/Images/TableImages/table_BgTop.png" style="height: 23px" width="29">
+                    <img alt="" height="23" src="../Resources/Images/TableImages/table_LTop.png" width="29" /></td>
+                    <td background="../Resources/Images/TableImages/table_BgTop.png"  
+                     style="width: 688px; text-align: center; vertical-align: middle;">
+                            <b><font color="#ffffff" face="Verdana" size="1"><span style="font-size: 8pt; vertical-align: top; text-align: center;">CITIZEN CHARTER REPORT</span></font></b></td>
+                    <td  background="../Resources/Images/TableImages/table_BgTop.png" style="height: 23px; width: 10%; text-align: right;" width="28">
+                    <img alt="" height="23" src="../Resources/Images/TableImages/table_RTop.png" width="28" /></td>
+            </tr>
+            <tr>
+               <td bordercolor="#83BE00" colspan="3" 
+                    style="border: 1px solid #83BE00; text-align: center;">
+                     
+                </td>
+            </tr>
+            <tr>
+               <td bordercolor="#83BE00" colspan="3" style="border-right: #83BE00 1px solid;
+                    border-top: #83BE00 1px solid; border-left: #83BE00 1px solid;
+                    padding-top: 10px; border-bottom: #83BE00 1px solid">
+                     
+                    <div align="center">
+                        <table visible ="true" runat="server" id="table84"  cellpadding="0" cellspacing="0" class="caption.Mytable" 
+                            style="width: 76%; height: 4%" bordercolordark="#545073">
+                            <tr>
+                                <td align="left" style="width: 56px; height: 22px; text-align: left; padding-right: 5px; padding-left: 5px; padding-bottom: 5px; vertical-align: top; padding-top: 5px;">
+                                    <asp:Label ID="Label2" runat="server" CssClass="LBLBLACK" Font-Bold="False" Text="From (DD-MMM-YYYY)"
+                                        Width="149px" Font-Size="12px"></asp:Label></td>
+                                <td align="left" style="width: 15px; height: 22px; padding-right: 5px; padding-left: 5px; padding-bottom: 5px; vertical-align: top; padding-top: 5px; text-align: left;">
+                                    <asp:TextBox ID="txtFrom" runat="server" CssClass="TXTBOX" 
+                                                                                            MaxLength="50" 
+                                        onkeypress="AlphaNumericOnly()" tabIndex="3" onchange="return txtFrom();" 
+                                                                                            
+                                        ToolTip="Please Enter The From Date" ValidationGroup="group" 
+                                                                                            Width="160px"></asp:TextBox>
+                                                                                        <cc1:CalendarExtender ID="txtFrom_CalendarExtender" runat="server" 
+                                                                                            Format="yyyy-MM-dd" TargetControlID="txtFrom">
+                                                                                        </cc1:CalendarExtender>
+                                </td>
+                                <td align="left" style="width: 15px; height: 22px; padding-right: 5px; padding-left: 5px; padding-bottom: 5px; vertical-align: top; padding-top: 5px; text-align: left;">
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
+                                        ControlToValidate="txtFrom" ErrorMessage="Enter From Date" 
+                                        ValidationGroup="group" Visible="False">*</asp:RequiredFieldValidator>
+                                </td>
+                                <td align="left" style="width: 59px; height: 22px; padding-right: 5px; padding-left: 5px; padding-bottom: 5px; vertical-align: top; padding-top: 5px; text-align: left;">
+                                    <asp:Label ID="Label1" runat="server" CssClass="LBLBLACK" Font-Bold="False" Text="To (DD-MMM-YYYY)"
+                                        Width="131px" Font-Size="12px"></asp:Label></td>
+                                <td align="left" style="width: 81px; height: 22px; padding-right: 5px; padding-left: 5px; padding-bottom: 5px; vertical-align: top; padding-top: 5px; text-align: left;">
+                                    <asp:TextBox ID="txtTo" runat="server" CssClass="TXTBOX" 
+                                                                                            MaxLength="50" 
+                                        onkeypress="AlphaNumericOnly()" tabIndex="4" onchange="return txtTo();"
+                                                                                            
+                                        ToolTip="Please Enter The To Date" ValidationGroup="group" 
+                                                                                            Width="164px" 
+                                        Height="17px"></asp:TextBox>
+                                                                <cc1:CalendarExtender ID="txtTo_CalendarExtender" runat="server" 
+                                                                    Format="yyyy-MM-dd" TargetControlID="txtTo">
+                                                                </cc1:CalendarExtender>
+                                </td>
+                                <td align="left" style="width: 81px; height: 22px; padding-right: 5px; padding-left: 5px; padding-bottom: 5px; vertical-align: top; padding-top: 5px; text-align: left;">
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
+                                        ControlToValidate="txtFrom" ErrorMessage="Enter From Date" 
+                                        ValidationGroup="group" Visible="False">*</asp:RequiredFieldValidator>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" style="padding-right: 5px; padding-left: 5px; padding-bottom: 5px;
+                                    vertical-align: top; width: 56px; padding-top: 5px; height: 22px; text-align: left">
+                                    <asp:Label ID="Label4" runat="server" CssClass="LBLBLACK" Font-Bold="False" Font-Size="12px"
+                                        Text="Zone" Width="149px"></asp:Label></td>
+                                <td align="left" style="padding-right: 5px; padding-left: 5px; padding-bottom: 5px;
+                                    vertical-align: top; width: 15px; padding-top: 5px; height: 22px; text-align: left">
+                                    <asp:DropDownList ID="ddlZone" runat="server" AutoPostBack="True" CssClass="DROPDOWN"
+                                        Font-Names="Verdana" onChange="return ServiceListOnChange()" Width="124px">
+                                    </asp:DropDownList></td>
+                                <td align="left" style="padding-right: 5px; padding-left: 5px; padding-bottom: 5px;
+                                    vertical-align: top; width: 15px; padding-top: 5px; height: 22px; text-align: left">
+                                    &nbsp;</td>
+                                <td align="left" 
+                                    style="padding: 5px; vertical-align: top; height: 22px; text-align: left" 
+                                    colspan="3">
+                                    <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="BTN_Login"  
+                                        Height="21px"  TabIndex="6" OnClick="btnSubmit_Click" Width="61px"  />
+                                &nbsp;<input type="button" value="Print" onclick="PrintPage()" class="BTN_Login"></td>
+                            </tr>
+                            <tr>
+                                <td align="left" 
+                                    style="padding: 5px; vertical-align: top; height: 22px; text-align: center" 
+                                    colspan="6">
+                     
+                    <asp:HyperLink ID="HyperLink2" runat="server" 
+                        NavigateUrl="~/Admin/ZoneGVMCCCAbstract.aspx">Back</asp:HyperLink>
+                                </td>
+                            </tr>
+                        </table>
+                                    <asp:Label ID="Label3" runat="server" CssClass="LBLBLACK" Font-Bold="True" ForeColor="Firebrick" Font-Size="12px">Ex : 15-Aug-1947</asp:Label>
+                        <asp:Label ID="LblStatus" runat="server" CssClass="LBLBLACK" Font-Bold="True" ForeColor="Red" Font-Size="12px"></asp:Label><br />
+                        <br />
+                                    <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Visible="False" OnRowDataBound="GridView1_RowDataBound" ShowFooter="True" AutoGenerateColumns="False">
+                                        <FooterStyle BackColor="#83BE00" Font-Bold="True" ForeColor="White" />
+                                        <RowStyle BackColor="#E6EDF7" HorizontalAlign="Left" />
+                                        <EditRowStyle BackColor="#B9D684" />
+                                        <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                                        <PagerStyle BackColor="#B9D684" ForeColor="White" HorizontalAlign="Center" />
+                                        <HeaderStyle BackColor="#83BE00" Font-Bold="True" ForeColor="White" />
+                                        <AlternatingRowStyle BackColor="White" />
+                                         <Columns>                                            
+                                            <asp:BoundField DataField="SERVICE_NAME" HeaderText="Service" ReadOnly="True" />
+                                            <asp:BoundField DataField="DEPARTMENT" HeaderText="Department" >
+                                                <ItemStyle HorizontalAlign="Center" />
+                                            </asp:BoundField>                                            
+                                            <asp:BoundField DataField="total" HeaderText="Total Received" >
+                                              <ItemStyle HorizontalAlign="Center" />
+                                            </asp:BoundField> 
+                                            <asp:BoundField DataField="beforeclose" HeaderText="DisposedBefore" >
+                                              <ItemStyle HorizontalAlign="Center" />
+                                            </asp:BoundField>                                               
+                                            <asp:BoundField DataField="afterclose" HeaderText="DisposedAfter" >
+                                              <ItemStyle HorizontalAlign="Center" />
+                                            </asp:BoundField>                                                                       
+                                            <asp:BoundField DataField="beforeopen" HeaderText="PendingBefore" >
+                                              <ItemStyle HorizontalAlign="Center" />                                              
+                                            </asp:BoundField>  
+                                            <asp:BoundField DataField="afteropen" HeaderText="PendingAfter" >
+                                              <ItemStyle HorizontalAlign="Center" />
+                                            </asp:BoundField>
+                                            <asp:BoundField DataField="Rejected" HeaderText="Rejected" >
+                                              <ItemStyle HorizontalAlign="Center" />
+                                            </asp:BoundField>                                               
+                                        </Columns>
+                                    </asp:GridView>
+                                    <table id="tbl1" runat="server" border="1" bordercolor="#54503A" style="color: black">
+                                          
+                    </table>
+                        <asp:ScriptManager ID="ScriptManager1" runat="server">
+                        </asp:ScriptManager>
+                        <asp:ValidationSummary ID="vg" runat="server" ShowMessageBox="True" 
+                            ShowSummary="False" ValidationGroup="group" />
+                        <br />
+                    </div>
+                </td>
+            </tr>
+        </table>
+                                       
+</div>
+</asp:Content>
+

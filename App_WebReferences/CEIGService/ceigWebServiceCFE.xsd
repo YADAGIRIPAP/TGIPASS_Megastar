@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tsceigws.cgg.gov.in/" targetNamespace="http://tsceigws.cgg.gov.in/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="insertIntoInstallationApproval" type="tns:insertIntoInstallationApproval" />
+  <xs:element name="insertIntoInstallationApprovalResponse" type="tns:insertIntoInstallationApprovalResponse" />
+  <xs:element name="updatePayment" type="tns:updatePayment" />
+  <xs:element name="updatePaymentResponse" type="tns:updatePaymentResponse" />
+  <xs:element name="updateQueryReply" type="tns:updateQueryReply" />
+  <xs:element name="updateQueryReplyResponse" type="tns:updateQueryReplyResponse" />
+  <xs:complexType name="insertIntoInstallationApproval">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Installation" type="tns:installationApplication" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="installationApplication">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="aadhar_number" type="xs:string" />
+      <xs:element minOccurs="0" name="applicationID" type="xs:string" />
+      <xs:element minOccurs="0" name="atc" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="checkListUploads" nillable="true" type="tns:checkListUploads" />
+      <xs:element minOccurs="0" name="cli_already_installed" type="xs:string" />
+      <xs:element minOccurs="0" name="cli_proposed" type="xs:string" />
+      <xs:element minOccurs="0" name="cmd_already_installed" type="xs:string" />
+      <xs:element minOccurs="0" name="cmd_proposed" type="xs:string" />
+      <xs:element minOccurs="0" name="customer_remarks" type="xs:string" />
+      <xs:element minOccurs="0" name="district_id" type="xs:string" />
+      <xs:element minOccurs="0" name="email_id" type="xs:string" />
+      <xs:element minOccurs="0" name="entrepreneurID" type="xs:string" />
+      <xs:element minOccurs="0" name="file_number" type="xs:string" />
+      <xs:element minOccurs="0" name="first_name" type="xs:string" />
+      <xs:element minOccurs="0" name="hno" type="xs:string" />
+      <xs:element minOccurs="0" name="industry_district_id" type="xs:string" />
+      <xs:element minOccurs="0" name="industry_hno" type="xs:string" />
+      <xs:element minOccurs="0" name="industry_mandal_id" type="xs:string" />
+      <xs:element minOccurs="0" name="industry_pincode" type="xs:string" />
+      <xs:element minOccurs="0" name="industry_plot_no" type="xs:string" />
+      <xs:element minOccurs="0" name="industry_street_name" type="xs:string" />
+      <xs:element minOccurs="0" name="industry_sy_no" type="xs:string" />
+      <xs:element minOccurs="0" name="industry_village_id" type="xs:string" />
+      <xs:element minOccurs="0" name="last_name" type="xs:string" />
+      <xs:element minOccurs="0" name="loction_district_id" type="xs:string" />
+      <xs:element minOccurs="0" name="mandal_id" type="xs:string" />
+      <xs:element minOccurs="0" name="mobile_no" type="xs:string" />
+      <xs:element minOccurs="0" name="name_of_industry" type="xs:string" />
+      <xs:element minOccurs="0" name="name_of_promoter" type="xs:string" />
+      <xs:element minOccurs="0" name="pan_number" type="xs:string" />
+      <xs:element minOccurs="0" name="password" type="xs:string" />
+      <xs:element minOccurs="0" name="pincode" type="xs:string" />
+      <xs:element minOccurs="0" name="plant_slno" type="xs:string" />
+      <xs:element minOccurs="0" name="plot_no" type="xs:string" />
+      <xs:element minOccurs="0" name="proposal_for" type="xs:string" />
+      <xs:element minOccurs="0" name="questionaireID" type="xs:string" />
+      <xs:element minOccurs="0" name="regulation_slno" type="xs:string" />
+      <xs:element minOccurs="0" name="so_do_wo" type="xs:string" />
+      <xs:element minOccurs="0" name="street_name" type="xs:string" />
+      <xs:element minOccurs="0" name="sy_no" type="xs:string" />
+      <xs:element minOccurs="0" name="system_ip" type="xs:string" />
+      <xs:element minOccurs="0" name="type_of_industry" type="xs:string" />
+      <xs:element minOccurs="0" name="type_of_industry_others" type="xs:string" />
+      <xs:element minOccurs="0" name="UID" type="xs:string" />
+      <xs:element minOccurs="0" name="user_name" type="xs:string" />
+      <xs:element minOccurs="0" name="village_id" type="xs:string" />
+      <xs:element minOccurs="0" name="voltage_slno" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="checkListUploads">
+    <xs:sequence>
+      <xs:element name="documentId" type="xs:int" />
+      <xs:element minOccurs="0" name="documentName" type="xs:string" />
+      <xs:element minOccurs="0" name="documentPath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertIntoInstallationApprovalResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateQueryReply">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="UpdateQueryReply" type="tns:querReply" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="querReply">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="applicationID" type="xs:string" />
+      <xs:element minOccurs="0" name="entrepreneurID" type="xs:string" />
+      <xs:element minOccurs="0" name="questionaireID" type="xs:string" />
+      <xs:element minOccurs="0" name="reply_document" type="xs:string" />
+      <xs:element minOccurs="0" name="reply_remarks" type="xs:string" />
+      <xs:element minOccurs="0" name="system_ip" type="xs:string" />
+      <xs:element minOccurs="0" name="UID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateQueryReplyResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updatePayment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="UpdatePayment" type="tns:payment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="payment">
+    <xs:sequence>
+      <xs:element name="amount" type="xs:double" />
+      <xs:element minOccurs="0" name="bank_id" type="xs:string" />
+      <xs:element minOccurs="0" name="branch_name" type="xs:string" />
+      <xs:element minOccurs="0" name="challan_copy" type="xs:string" />
+      <xs:element minOccurs="0" name="challan_date" type="xs:string" />
+      <xs:element minOccurs="0" name="challan_no" type="xs:string" />
+      <xs:element minOccurs="0" name="entrepreneurID" type="xs:string" />
+      <xs:element minOccurs="0" name="payment_type" type="xs:string" />
+      <xs:element minOccurs="0" name="questionaireID" type="xs:string" />
+      <xs:element minOccurs="0" name="reply_document" type="xs:string" />
+      <xs:element minOccurs="0" name="reply_remarks" type="xs:string" />
+      <xs:element minOccurs="0" name="system_ip" type="xs:string" />
+      <xs:element minOccurs="0" name="tx_id" type="xs:string" />
+      <xs:element minOccurs="0" name="UID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updatePaymentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

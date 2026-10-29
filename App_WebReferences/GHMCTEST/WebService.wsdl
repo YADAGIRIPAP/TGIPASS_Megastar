@@ -1,0 +1,1979 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="TRADECIRCLES">
+        <s:complexType />
+      </s:element>
+      <s:element name="TRADECIRCLESResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TRADECIRCLESResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TRADELOCALITIES">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="circlecode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TRADELOCALITIESResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TRADELOCALITIESResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TRADEWARDS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="circlecode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TRADEWARDSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TRADEWARDSResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TRADECATEGORYDETAILS">
+        <s:complexType />
+      </s:element>
+      <s:element name="TRADECATEGORYDETAILSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TRADECATEGORYDETAILSResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TRADESUBCATEGORYDETAILS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CATEGORY" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TRADESUBCATEGORYDETAILSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TRADESUBCATEGORYDETAILSResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TRADEUNITRATES">
+        <s:complexType />
+      </s:element>
+      <s:element name="TRADEUNITRATESResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TRADEUNITRATESResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TRADEFEECALCULATION">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="unitrateid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PLINTHAREA" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TRADEFEECALCULATIONResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TRADEFEECALCULATIONResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TRADESUBCATEGORYDOCUMENTS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CATEGORY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SUBCATEGORY" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TRADESUBCATEGORYDOCUMENTSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TRADESUBCATEGORYDOCUMENTSResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TRADEUPLOAD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="straplnno" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ducumenttypeid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="base64" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TRADEUPLOADResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TRADEUPLOADResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TRADENEWAPPLICATION">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="circleNo" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Ward" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="LocalityNo" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="AppName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Age" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Contact" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Fath_Hus_Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AppAddress1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AppAddress2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AppAddress3" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nature" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TradeDesc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PermisesNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PermisesType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TradeAddress1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TradeAddress2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TradeAddress3" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="PTaxAssesmentNo" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PlinthArea" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CTGY_Code" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Sub_CTGY_Code" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="User_Id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="AadharNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AppAt" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Arrears" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Penaltyonarrears" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="UNITRATEID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="PROPRTYTYPE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PLOT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Ip" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Macaddress" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="QUESSIONAIREID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ENTREPRENEURID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TRADENEWAPPLICATIONResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TRADENEWAPPLICATIONResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TRADENEWAPPLICATIONPAYMENT">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="REFNO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Paidat" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MODEOFPAY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MerchantId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TransactionId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="PAID_AMOUNT" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PAID_LICENSE_FEE" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PAID_GARBAGE_CHARGES" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="USER_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Ip" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Macaddress" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="QUESSIONAIREID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ENTREPRENEURID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TRADENEWAPPLICATIONPAYMENTResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TRADENEWAPPLICATIONPAYMENTResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TRADEPROPERTYTYPE">
+        <s:complexType />
+      </s:element>
+      <s:element name="TRADEPROPERTYTYPEResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TRADEPROPERTYTYPEResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TRADEGETPTINDETAILS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="circleNo" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="PTaxAssesmentNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PROPRTYTYPE" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TRADEGETPTINDETAILSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TRADEGETPTINDETAILSResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TRADEGETTINDETAILS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TINNO" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TRADEGETTINDETAILSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TRADEGETTINDETAILSResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TRADERENEWALPAYMENT">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TINNO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Paidat" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MODEOFPAY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MerchantId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TransactionId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="PaidCurrentFee" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PaidCurrentFeeInterest" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PaidArrearFee" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PaidArrearFeeInterest" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PaidGarbageFee" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PaidGarbageFeeInterest" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PAID_AMOUNT" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="mobile" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="USER_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Ip" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Macaddress" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="QUESSIONAIREID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ENTREPRENEURID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TRADERENEWALPAYMENTResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TRADERENEWALPAYMENTResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdvtGetArea">
+        <s:complexType />
+      </s:element>
+      <s:element name="AdvtGetAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AdvtGetAreaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdvtArea">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Locality" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdvtAreaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AdvtAreaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdvtTradeLicense">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TIN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdvtTradeLicenseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AdvtTradeLicenseResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdvtProvisionalTradeLicense">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TIN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdvtProvisionalTradeLicenseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AdvtProvisionalTradeLicenseResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdvtDATA">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AdvtType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LicenseNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TradeAppNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FrontageHt" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FrontageWidth" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TRADE_PREMISE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TRADE_NAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LICENSE_HOLDER_NAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ADDRESS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LOCALITY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="STREET_NAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MOBILE_NUMBER" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="APPLICANT_NAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AREA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Advt_Address" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Advt_Locality" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ADVT_TYPENAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CONTENT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LOCATION" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CATEGORY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ALREADY_EXISTS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="WIDTH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="HEIGHT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ADVT_PHOTO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="INTQUESSIONAIREID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="INTCFEENTERPID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="charge" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdvtDATAResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AdvtDATAResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdvtPaymentDATA">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AdvtID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CHARGE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MOBILE_NO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="USERID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdvtPaymentDATAResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AdvtPaymentDATAResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdvtInspectorPaymentDATA">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AdvtID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DEVIATION" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="INSPECTORREMARK" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DIVIATION_AMT_STATUS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DEVIATION_AMT" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CHARGE" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="MOBILE_NO" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdvtInspectorPaymentDATAResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AdvtInspectorPaymentDATAResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdvtDownloadSearch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdvtDownloadSearchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AdvtDownloadSearchResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CELEREGADDRESS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CELEREGADDRESSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CELEREGADDRESSResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CELCIRCLE">
+        <s:complexType />
+      </s:element>
+      <s:element name="CELCIRCLEResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CELCIRCLEResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CELPROPOSALLIST">
+        <s:complexType />
+      </s:element>
+      <s:element name="CELPROPOSALLISTResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CELPROPOSALLISTResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CELDISTRICTLIST">
+        <s:complexType />
+      </s:element>
+      <s:element name="CELDISTRICTLISTResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CELDISTRICTLISTResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CELNETWROKTPLIST">
+        <s:complexType />
+      </s:element>
+      <s:element name="CELNETWROKTPLISTResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CELNETWROKTPLISTResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CELLOCALITYLIST">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="circleid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CELLOCALITYLISTResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CELLOCALITYLISTResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CELMANDALLIST">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="districtid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CELMANDALLISTResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CELMANDALLISTResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CELWHETHERPROPOSEDLIST">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="proposedid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CELWHETHERPROPOSEDLISTResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CELWHETHERPROPOSEDLISTResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CELNEWAPPLICATIONS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="P_AGOBJID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_PLOTNO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SANCTIONLYTNO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SURVEYNO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_DNRNO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_RWDNO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_RBLCKNO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_RDSTNO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_EWDNO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_EENBLCKNO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_ULBOBJID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_LCTYOBJID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_AREA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_DISTRCTOBJID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_MNDLOBJID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_GPSCRDNDD" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_GPSCRDNMI" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_GPSCRDNSS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_STAAASPRDOC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_STAAASPRSUBPLN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_STAARDWDNG" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_NTSTAAA" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SETBACKRMTWET" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SETBACKRMTWWT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SETBACKRMTWNT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SETBACKRMTWST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_PPSLOBJID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_ASSRYRM" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_GNRTRRM" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_WPPSDOBJID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_VLTNO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_ASMTNO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_BLDGPRMTNO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_OPNCYCRTNO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_ONRNM" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_NETWRKTPOBJID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_LESSEE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_LEASEYR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_AUTHORISEDAGT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_AUTHORISEDAGTNM" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_MODOFPAY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_RTNFTDDNO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_RTNFTDDDT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_BNKNM" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_BNKBRNCHNM" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_IFSCCD" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_FEEAMT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_ARCNM" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_ARCLNSNO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_ARCADD" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_ENGNM" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_ENGLNSNO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_ENGADD" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SRYRNM" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SRYRLNSNO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SRYRADD" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_STRLENGNM" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_STRLENGLNSNO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SUBSNOFAPPLFRPMT_I" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SUBSNOFAPPLFRPMT_II" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SUBSNOFAPPLFRPMT_III" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SUBSNOFAPPLFRPMT_IV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SUBSNOFAPPLFRPMT_V" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SUBSNOFAPPLFRPMT_VI" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SUBSNOFAPPLFRPMT_VII" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SUBSNOFAPPLFRPMT_VIII" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SUBSNOFAPPLFRPMT_IX" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SUBSNOFAPPLFRPMT_X" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SUBSNOFAPPLFRPMT_XI" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SUBSNOFAPPLFRPMT_XII" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SUBSNOFAPPLFRPMT_XIII" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SUBSNOFAPPLFRPMT_XIV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SUBSNOFAPPLFRPMT_XV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SUBSNOFAPPLFRPMT_XVI" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SUBSNOFAPPLFRPMT_XVII" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SUBSNOFAPPLFRPMT_XVIII" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_CNTTWR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_USRID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SYSUSR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SYSIPADD" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_SYSMACADD" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="QUESSIONAIREID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ENTREPRENEURID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CELNEWAPPLICATIONSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CELNEWAPPLICATIONSResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CELPAYMENT">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="P_MERCHREFNO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_MODEOFPAY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_AMOUNT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_EMAILID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_MOBILENO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_USERID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_RECEIPTNO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_PAYAMT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_MERCHANTID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_Marchant_TranctNO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_IPADDRESS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_MACADD" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_HOST" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CELPAYMENTResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CELPAYMENTResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CELPAYMENTUPDATE">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="appid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="paymentid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="transno" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="reason" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pgdata" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_TYPE" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CELPAYMENTUPDATEResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CELPAYMENTUPDATEResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CELAPPLICATIONPRINT">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="appno" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CELAPPLICATIONPRINTResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CELAPPLICATIONPRINTResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CELPAYMENTSEARCH">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="appno" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CELPAYMENTSEARCHResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CELPAYMENTSEARCHResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CELTRACKAPPLICATIONSEARCH">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="appno" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="circleid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CELTRACKAPPLICATIONSEARCHResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CELTRACKAPPLICATIONSEARCHResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CELDOCUMENTUPLOAD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="P_REFNO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_DOCID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="base64" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="P_REMARKS" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CELDOCUMENTUPLOADResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CELDOCUMENTUPLOADResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="TRADECIRCLESSoapIn">
+    <wsdl:part name="parameters" element="tns:TRADECIRCLES" />
+  </wsdl:message>
+  <wsdl:message name="TRADECIRCLESSoapOut">
+    <wsdl:part name="parameters" element="tns:TRADECIRCLESResponse" />
+  </wsdl:message>
+  <wsdl:message name="TRADELOCALITIESSoapIn">
+    <wsdl:part name="parameters" element="tns:TRADELOCALITIES" />
+  </wsdl:message>
+  <wsdl:message name="TRADELOCALITIESSoapOut">
+    <wsdl:part name="parameters" element="tns:TRADELOCALITIESResponse" />
+  </wsdl:message>
+  <wsdl:message name="TRADEWARDSSoapIn">
+    <wsdl:part name="parameters" element="tns:TRADEWARDS" />
+  </wsdl:message>
+  <wsdl:message name="TRADEWARDSSoapOut">
+    <wsdl:part name="parameters" element="tns:TRADEWARDSResponse" />
+  </wsdl:message>
+  <wsdl:message name="TRADECATEGORYDETAILSSoapIn">
+    <wsdl:part name="parameters" element="tns:TRADECATEGORYDETAILS" />
+  </wsdl:message>
+  <wsdl:message name="TRADECATEGORYDETAILSSoapOut">
+    <wsdl:part name="parameters" element="tns:TRADECATEGORYDETAILSResponse" />
+  </wsdl:message>
+  <wsdl:message name="TRADESUBCATEGORYDETAILSSoapIn">
+    <wsdl:part name="parameters" element="tns:TRADESUBCATEGORYDETAILS" />
+  </wsdl:message>
+  <wsdl:message name="TRADESUBCATEGORYDETAILSSoapOut">
+    <wsdl:part name="parameters" element="tns:TRADESUBCATEGORYDETAILSResponse" />
+  </wsdl:message>
+  <wsdl:message name="TRADEUNITRATESSoapIn">
+    <wsdl:part name="parameters" element="tns:TRADEUNITRATES" />
+  </wsdl:message>
+  <wsdl:message name="TRADEUNITRATESSoapOut">
+    <wsdl:part name="parameters" element="tns:TRADEUNITRATESResponse" />
+  </wsdl:message>
+  <wsdl:message name="TRADEFEECALCULATIONSoapIn">
+    <wsdl:part name="parameters" element="tns:TRADEFEECALCULATION" />
+  </wsdl:message>
+  <wsdl:message name="TRADEFEECALCULATIONSoapOut">
+    <wsdl:part name="parameters" element="tns:TRADEFEECALCULATIONResponse" />
+  </wsdl:message>
+  <wsdl:message name="TRADESUBCATEGORYDOCUMENTSSoapIn">
+    <wsdl:part name="parameters" element="tns:TRADESUBCATEGORYDOCUMENTS" />
+  </wsdl:message>
+  <wsdl:message name="TRADESUBCATEGORYDOCUMENTSSoapOut">
+    <wsdl:part name="parameters" element="tns:TRADESUBCATEGORYDOCUMENTSResponse" />
+  </wsdl:message>
+  <wsdl:message name="TRADEUPLOADSoapIn">
+    <wsdl:part name="parameters" element="tns:TRADEUPLOAD" />
+  </wsdl:message>
+  <wsdl:message name="TRADEUPLOADSoapOut">
+    <wsdl:part name="parameters" element="tns:TRADEUPLOADResponse" />
+  </wsdl:message>
+  <wsdl:message name="TRADENEWAPPLICATIONSoapIn">
+    <wsdl:part name="parameters" element="tns:TRADENEWAPPLICATION" />
+  </wsdl:message>
+  <wsdl:message name="TRADENEWAPPLICATIONSoapOut">
+    <wsdl:part name="parameters" element="tns:TRADENEWAPPLICATIONResponse" />
+  </wsdl:message>
+  <wsdl:message name="TRADENEWAPPLICATIONPAYMENTSoapIn">
+    <wsdl:part name="parameters" element="tns:TRADENEWAPPLICATIONPAYMENT" />
+  </wsdl:message>
+  <wsdl:message name="TRADENEWAPPLICATIONPAYMENTSoapOut">
+    <wsdl:part name="parameters" element="tns:TRADENEWAPPLICATIONPAYMENTResponse" />
+  </wsdl:message>
+  <wsdl:message name="TRADEPROPERTYTYPESoapIn">
+    <wsdl:part name="parameters" element="tns:TRADEPROPERTYTYPE" />
+  </wsdl:message>
+  <wsdl:message name="TRADEPROPERTYTYPESoapOut">
+    <wsdl:part name="parameters" element="tns:TRADEPROPERTYTYPEResponse" />
+  </wsdl:message>
+  <wsdl:message name="TRADEGETPTINDETAILSSoapIn">
+    <wsdl:part name="parameters" element="tns:TRADEGETPTINDETAILS" />
+  </wsdl:message>
+  <wsdl:message name="TRADEGETPTINDETAILSSoapOut">
+    <wsdl:part name="parameters" element="tns:TRADEGETPTINDETAILSResponse" />
+  </wsdl:message>
+  <wsdl:message name="TRADEGETTINDETAILSSoapIn">
+    <wsdl:part name="parameters" element="tns:TRADEGETTINDETAILS" />
+  </wsdl:message>
+  <wsdl:message name="TRADEGETTINDETAILSSoapOut">
+    <wsdl:part name="parameters" element="tns:TRADEGETTINDETAILSResponse" />
+  </wsdl:message>
+  <wsdl:message name="TRADERENEWALPAYMENTSoapIn">
+    <wsdl:part name="parameters" element="tns:TRADERENEWALPAYMENT" />
+  </wsdl:message>
+  <wsdl:message name="TRADERENEWALPAYMENTSoapOut">
+    <wsdl:part name="parameters" element="tns:TRADERENEWALPAYMENTResponse" />
+  </wsdl:message>
+  <wsdl:message name="AdvtGetAreaSoapIn">
+    <wsdl:part name="parameters" element="tns:AdvtGetArea" />
+  </wsdl:message>
+  <wsdl:message name="AdvtGetAreaSoapOut">
+    <wsdl:part name="parameters" element="tns:AdvtGetAreaResponse" />
+  </wsdl:message>
+  <wsdl:message name="AdvtAreaSoapIn">
+    <wsdl:part name="parameters" element="tns:AdvtArea" />
+  </wsdl:message>
+  <wsdl:message name="AdvtAreaSoapOut">
+    <wsdl:part name="parameters" element="tns:AdvtAreaResponse" />
+  </wsdl:message>
+  <wsdl:message name="AdvtTradeLicenseSoapIn">
+    <wsdl:part name="parameters" element="tns:AdvtTradeLicense" />
+  </wsdl:message>
+  <wsdl:message name="AdvtTradeLicenseSoapOut">
+    <wsdl:part name="parameters" element="tns:AdvtTradeLicenseResponse" />
+  </wsdl:message>
+  <wsdl:message name="AdvtProvisionalTradeLicenseSoapIn">
+    <wsdl:part name="parameters" element="tns:AdvtProvisionalTradeLicense" />
+  </wsdl:message>
+  <wsdl:message name="AdvtProvisionalTradeLicenseSoapOut">
+    <wsdl:part name="parameters" element="tns:AdvtProvisionalTradeLicenseResponse" />
+  </wsdl:message>
+  <wsdl:message name="AdvtDATASoapIn">
+    <wsdl:part name="parameters" element="tns:AdvtDATA" />
+  </wsdl:message>
+  <wsdl:message name="AdvtDATASoapOut">
+    <wsdl:part name="parameters" element="tns:AdvtDATAResponse" />
+  </wsdl:message>
+  <wsdl:message name="AdvtPaymentDATASoapIn">
+    <wsdl:part name="parameters" element="tns:AdvtPaymentDATA" />
+  </wsdl:message>
+  <wsdl:message name="AdvtPaymentDATASoapOut">
+    <wsdl:part name="parameters" element="tns:AdvtPaymentDATAResponse" />
+  </wsdl:message>
+  <wsdl:message name="AdvtInspectorPaymentDATASoapIn">
+    <wsdl:part name="parameters" element="tns:AdvtInspectorPaymentDATA" />
+  </wsdl:message>
+  <wsdl:message name="AdvtInspectorPaymentDATASoapOut">
+    <wsdl:part name="parameters" element="tns:AdvtInspectorPaymentDATAResponse" />
+  </wsdl:message>
+  <wsdl:message name="AdvtDownloadSearchSoapIn">
+    <wsdl:part name="parameters" element="tns:AdvtDownloadSearch" />
+  </wsdl:message>
+  <wsdl:message name="AdvtDownloadSearchSoapOut">
+    <wsdl:part name="parameters" element="tns:AdvtDownloadSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="CELEREGADDRESSSoapIn">
+    <wsdl:part name="parameters" element="tns:CELEREGADDRESS" />
+  </wsdl:message>
+  <wsdl:message name="CELEREGADDRESSSoapOut">
+    <wsdl:part name="parameters" element="tns:CELEREGADDRESSResponse" />
+  </wsdl:message>
+  <wsdl:message name="CELCIRCLESoapIn">
+    <wsdl:part name="parameters" element="tns:CELCIRCLE" />
+  </wsdl:message>
+  <wsdl:message name="CELCIRCLESoapOut">
+    <wsdl:part name="parameters" element="tns:CELCIRCLEResponse" />
+  </wsdl:message>
+  <wsdl:message name="CELPROPOSALLISTSoapIn">
+    <wsdl:part name="parameters" element="tns:CELPROPOSALLIST" />
+  </wsdl:message>
+  <wsdl:message name="CELPROPOSALLISTSoapOut">
+    <wsdl:part name="parameters" element="tns:CELPROPOSALLISTResponse" />
+  </wsdl:message>
+  <wsdl:message name="CELDISTRICTLISTSoapIn">
+    <wsdl:part name="parameters" element="tns:CELDISTRICTLIST" />
+  </wsdl:message>
+  <wsdl:message name="CELDISTRICTLISTSoapOut">
+    <wsdl:part name="parameters" element="tns:CELDISTRICTLISTResponse" />
+  </wsdl:message>
+  <wsdl:message name="CELNETWROKTPLISTSoapIn">
+    <wsdl:part name="parameters" element="tns:CELNETWROKTPLIST" />
+  </wsdl:message>
+  <wsdl:message name="CELNETWROKTPLISTSoapOut">
+    <wsdl:part name="parameters" element="tns:CELNETWROKTPLISTResponse" />
+  </wsdl:message>
+  <wsdl:message name="CELLOCALITYLISTSoapIn">
+    <wsdl:part name="parameters" element="tns:CELLOCALITYLIST" />
+  </wsdl:message>
+  <wsdl:message name="CELLOCALITYLISTSoapOut">
+    <wsdl:part name="parameters" element="tns:CELLOCALITYLISTResponse" />
+  </wsdl:message>
+  <wsdl:message name="CELMANDALLISTSoapIn">
+    <wsdl:part name="parameters" element="tns:CELMANDALLIST" />
+  </wsdl:message>
+  <wsdl:message name="CELMANDALLISTSoapOut">
+    <wsdl:part name="parameters" element="tns:CELMANDALLISTResponse" />
+  </wsdl:message>
+  <wsdl:message name="CELWHETHERPROPOSEDLISTSoapIn">
+    <wsdl:part name="parameters" element="tns:CELWHETHERPROPOSEDLIST" />
+  </wsdl:message>
+  <wsdl:message name="CELWHETHERPROPOSEDLISTSoapOut">
+    <wsdl:part name="parameters" element="tns:CELWHETHERPROPOSEDLISTResponse" />
+  </wsdl:message>
+  <wsdl:message name="CELNEWAPPLICATIONSSoapIn">
+    <wsdl:part name="parameters" element="tns:CELNEWAPPLICATIONS" />
+  </wsdl:message>
+  <wsdl:message name="CELNEWAPPLICATIONSSoapOut">
+    <wsdl:part name="parameters" element="tns:CELNEWAPPLICATIONSResponse" />
+  </wsdl:message>
+  <wsdl:message name="CELPAYMENTSoapIn">
+    <wsdl:part name="parameters" element="tns:CELPAYMENT" />
+  </wsdl:message>
+  <wsdl:message name="CELPAYMENTSoapOut">
+    <wsdl:part name="parameters" element="tns:CELPAYMENTResponse" />
+  </wsdl:message>
+  <wsdl:message name="CELPAYMENTUPDATESoapIn">
+    <wsdl:part name="parameters" element="tns:CELPAYMENTUPDATE" />
+  </wsdl:message>
+  <wsdl:message name="CELPAYMENTUPDATESoapOut">
+    <wsdl:part name="parameters" element="tns:CELPAYMENTUPDATEResponse" />
+  </wsdl:message>
+  <wsdl:message name="CELAPPLICATIONPRINTSoapIn">
+    <wsdl:part name="parameters" element="tns:CELAPPLICATIONPRINT" />
+  </wsdl:message>
+  <wsdl:message name="CELAPPLICATIONPRINTSoapOut">
+    <wsdl:part name="parameters" element="tns:CELAPPLICATIONPRINTResponse" />
+  </wsdl:message>
+  <wsdl:message name="CELPAYMENTSEARCHSoapIn">
+    <wsdl:part name="parameters" element="tns:CELPAYMENTSEARCH" />
+  </wsdl:message>
+  <wsdl:message name="CELPAYMENTSEARCHSoapOut">
+    <wsdl:part name="parameters" element="tns:CELPAYMENTSEARCHResponse" />
+  </wsdl:message>
+  <wsdl:message name="CELTRACKAPPLICATIONSEARCHSoapIn">
+    <wsdl:part name="parameters" element="tns:CELTRACKAPPLICATIONSEARCH" />
+  </wsdl:message>
+  <wsdl:message name="CELTRACKAPPLICATIONSEARCHSoapOut">
+    <wsdl:part name="parameters" element="tns:CELTRACKAPPLICATIONSEARCHResponse" />
+  </wsdl:message>
+  <wsdl:message name="CELDOCUMENTUPLOADSoapIn">
+    <wsdl:part name="parameters" element="tns:CELDOCUMENTUPLOAD" />
+  </wsdl:message>
+  <wsdl:message name="CELDOCUMENTUPLOADSoapOut">
+    <wsdl:part name="parameters" element="tns:CELDOCUMENTUPLOADResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WebServiceSoap">
+    <wsdl:operation name="TRADECIRCLES">
+      <wsdl:input message="tns:TRADECIRCLESSoapIn" />
+      <wsdl:output message="tns:TRADECIRCLESSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TRADELOCALITIES">
+      <wsdl:input message="tns:TRADELOCALITIESSoapIn" />
+      <wsdl:output message="tns:TRADELOCALITIESSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TRADEWARDS">
+      <wsdl:input message="tns:TRADEWARDSSoapIn" />
+      <wsdl:output message="tns:TRADEWARDSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TRADECATEGORYDETAILS">
+      <wsdl:input message="tns:TRADECATEGORYDETAILSSoapIn" />
+      <wsdl:output message="tns:TRADECATEGORYDETAILSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TRADESUBCATEGORYDETAILS">
+      <wsdl:input message="tns:TRADESUBCATEGORYDETAILSSoapIn" />
+      <wsdl:output message="tns:TRADESUBCATEGORYDETAILSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TRADEUNITRATES">
+      <wsdl:input message="tns:TRADEUNITRATESSoapIn" />
+      <wsdl:output message="tns:TRADEUNITRATESSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TRADEFEECALCULATION">
+      <wsdl:input message="tns:TRADEFEECALCULATIONSoapIn" />
+      <wsdl:output message="tns:TRADEFEECALCULATIONSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TRADESUBCATEGORYDOCUMENTS">
+      <wsdl:input message="tns:TRADESUBCATEGORYDOCUMENTSSoapIn" />
+      <wsdl:output message="tns:TRADESUBCATEGORYDOCUMENTSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TRADEUPLOAD">
+      <wsdl:input message="tns:TRADEUPLOADSoapIn" />
+      <wsdl:output message="tns:TRADEUPLOADSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TRADENEWAPPLICATION">
+      <wsdl:input message="tns:TRADENEWAPPLICATIONSoapIn" />
+      <wsdl:output message="tns:TRADENEWAPPLICATIONSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TRADENEWAPPLICATIONPAYMENT">
+      <wsdl:input message="tns:TRADENEWAPPLICATIONPAYMENTSoapIn" />
+      <wsdl:output message="tns:TRADENEWAPPLICATIONPAYMENTSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TRADEPROPERTYTYPE">
+      <wsdl:input message="tns:TRADEPROPERTYTYPESoapIn" />
+      <wsdl:output message="tns:TRADEPROPERTYTYPESoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TRADEGETPTINDETAILS">
+      <wsdl:input message="tns:TRADEGETPTINDETAILSSoapIn" />
+      <wsdl:output message="tns:TRADEGETPTINDETAILSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TRADEGETTINDETAILS">
+      <wsdl:input message="tns:TRADEGETTINDETAILSSoapIn" />
+      <wsdl:output message="tns:TRADEGETTINDETAILSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TRADERENEWALPAYMENT">
+      <wsdl:input message="tns:TRADERENEWALPAYMENTSoapIn" />
+      <wsdl:output message="tns:TRADERENEWALPAYMENTSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AdvtGetArea">
+      <wsdl:input message="tns:AdvtGetAreaSoapIn" />
+      <wsdl:output message="tns:AdvtGetAreaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AdvtArea">
+      <wsdl:input message="tns:AdvtAreaSoapIn" />
+      <wsdl:output message="tns:AdvtAreaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AdvtTradeLicense">
+      <wsdl:input message="tns:AdvtTradeLicenseSoapIn" />
+      <wsdl:output message="tns:AdvtTradeLicenseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AdvtProvisionalTradeLicense">
+      <wsdl:input message="tns:AdvtProvisionalTradeLicenseSoapIn" />
+      <wsdl:output message="tns:AdvtProvisionalTradeLicenseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AdvtDATA">
+      <wsdl:input message="tns:AdvtDATASoapIn" />
+      <wsdl:output message="tns:AdvtDATASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AdvtPaymentDATA">
+      <wsdl:input message="tns:AdvtPaymentDATASoapIn" />
+      <wsdl:output message="tns:AdvtPaymentDATASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AdvtInspectorPaymentDATA">
+      <wsdl:input message="tns:AdvtInspectorPaymentDATASoapIn" />
+      <wsdl:output message="tns:AdvtInspectorPaymentDATASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AdvtDownloadSearch">
+      <wsdl:input message="tns:AdvtDownloadSearchSoapIn" />
+      <wsdl:output message="tns:AdvtDownloadSearchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CELEREGADDRESS">
+      <wsdl:input message="tns:CELEREGADDRESSSoapIn" />
+      <wsdl:output message="tns:CELEREGADDRESSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CELCIRCLE">
+      <wsdl:input message="tns:CELCIRCLESoapIn" />
+      <wsdl:output message="tns:CELCIRCLESoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CELPROPOSALLIST">
+      <wsdl:input message="tns:CELPROPOSALLISTSoapIn" />
+      <wsdl:output message="tns:CELPROPOSALLISTSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CELDISTRICTLIST">
+      <wsdl:input message="tns:CELDISTRICTLISTSoapIn" />
+      <wsdl:output message="tns:CELDISTRICTLISTSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CELNETWROKTPLIST">
+      <wsdl:input message="tns:CELNETWROKTPLISTSoapIn" />
+      <wsdl:output message="tns:CELNETWROKTPLISTSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CELLOCALITYLIST">
+      <wsdl:input message="tns:CELLOCALITYLISTSoapIn" />
+      <wsdl:output message="tns:CELLOCALITYLISTSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CELMANDALLIST">
+      <wsdl:input message="tns:CELMANDALLISTSoapIn" />
+      <wsdl:output message="tns:CELMANDALLISTSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CELWHETHERPROPOSEDLIST">
+      <wsdl:input message="tns:CELWHETHERPROPOSEDLISTSoapIn" />
+      <wsdl:output message="tns:CELWHETHERPROPOSEDLISTSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CELNEWAPPLICATIONS">
+      <wsdl:input message="tns:CELNEWAPPLICATIONSSoapIn" />
+      <wsdl:output message="tns:CELNEWAPPLICATIONSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CELPAYMENT">
+      <wsdl:input message="tns:CELPAYMENTSoapIn" />
+      <wsdl:output message="tns:CELPAYMENTSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CELPAYMENTUPDATE">
+      <wsdl:input message="tns:CELPAYMENTUPDATESoapIn" />
+      <wsdl:output message="tns:CELPAYMENTUPDATESoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CELAPPLICATIONPRINT">
+      <wsdl:input message="tns:CELAPPLICATIONPRINTSoapIn" />
+      <wsdl:output message="tns:CELAPPLICATIONPRINTSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CELPAYMENTSEARCH">
+      <wsdl:input message="tns:CELPAYMENTSEARCHSoapIn" />
+      <wsdl:output message="tns:CELPAYMENTSEARCHSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CELTRACKAPPLICATIONSEARCH">
+      <wsdl:input message="tns:CELTRACKAPPLICATIONSEARCHSoapIn" />
+      <wsdl:output message="tns:CELTRACKAPPLICATIONSEARCHSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CELDOCUMENTUPLOAD">
+      <wsdl:input message="tns:CELDOCUMENTUPLOADSoapIn" />
+      <wsdl:output message="tns:CELDOCUMENTUPLOADSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebServiceSoap" type="tns:WebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="TRADECIRCLES">
+      <soap:operation soapAction="http://tempuri.org/TRADECIRCLES" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TRADELOCALITIES">
+      <soap:operation soapAction="http://tempuri.org/TRADELOCALITIES" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TRADEWARDS">
+      <soap:operation soapAction="http://tempuri.org/TRADEWARDS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TRADECATEGORYDETAILS">
+      <soap:operation soapAction="http://tempuri.org/TRADECATEGORYDETAILS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TRADESUBCATEGORYDETAILS">
+      <soap:operation soapAction="http://tempuri.org/TRADESUBCATEGORYDETAILS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TRADEUNITRATES">
+      <soap:operation soapAction="http://tempuri.org/TRADEUNITRATES" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TRADEFEECALCULATION">
+      <soap:operation soapAction="http://tempuri.org/TRADEFEECALCULATION" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TRADESUBCATEGORYDOCUMENTS">
+      <soap:operation soapAction="http://tempuri.org/TRADESUBCATEGORYDOCUMENTS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TRADEUPLOAD">
+      <soap:operation soapAction="http://tempuri.org/TRADEUPLOAD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TRADENEWAPPLICATION">
+      <soap:operation soapAction="http://tempuri.org/TRADENEWAPPLICATION" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TRADENEWAPPLICATIONPAYMENT">
+      <soap:operation soapAction="http://tempuri.org/TRADENEWAPPLICATIONPAYMENT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TRADEPROPERTYTYPE">
+      <soap:operation soapAction="http://tempuri.org/TRADEPROPERTYTYPE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TRADEGETPTINDETAILS">
+      <soap:operation soapAction="http://tempuri.org/TRADEGETPTINDETAILS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TRADEGETTINDETAILS">
+      <soap:operation soapAction="http://tempuri.org/TRADEGETTINDETAILS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TRADERENEWALPAYMENT">
+      <soap:operation soapAction="http://tempuri.org/TRADERENEWALPAYMENT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdvtGetArea">
+      <soap:operation soapAction="http://tempuri.org/AdvtGetArea" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdvtArea">
+      <soap:operation soapAction="http://tempuri.org/AdvtArea" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdvtTradeLicense">
+      <soap:operation soapAction="http://tempuri.org/AdvtTradeLicense" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdvtProvisionalTradeLicense">
+      <soap:operation soapAction="http://tempuri.org/AdvtProvisionalTradeLicense" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdvtDATA">
+      <soap:operation soapAction="http://tempuri.org/AdvtDATA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdvtPaymentDATA">
+      <soap:operation soapAction="http://tempuri.org/AdvtPaymentDATA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdvtInspectorPaymentDATA">
+      <soap:operation soapAction="http://tempuri.org/AdvtInspectorPaymentDATA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdvtDownloadSearch">
+      <soap:operation soapAction="http://tempuri.org/AdvtDownloadSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CELEREGADDRESS">
+      <soap:operation soapAction="http://tempuri.org/CELEREGADDRESS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CELCIRCLE">
+      <soap:operation soapAction="http://tempuri.org/CELCIRCLE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CELPROPOSALLIST">
+      <soap:operation soapAction="http://tempuri.org/CELPROPOSALLIST" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CELDISTRICTLIST">
+      <soap:operation soapAction="http://tempuri.org/CELDISTRICTLIST" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CELNETWROKTPLIST">
+      <soap:operation soapAction="http://tempuri.org/CELNETWROKTPLIST" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CELLOCALITYLIST">
+      <soap:operation soapAction="http://tempuri.org/CELLOCALITYLIST" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CELMANDALLIST">
+      <soap:operation soapAction="http://tempuri.org/CELMANDALLIST" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CELWHETHERPROPOSEDLIST">
+      <soap:operation soapAction="http://tempuri.org/CELWHETHERPROPOSEDLIST" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CELNEWAPPLICATIONS">
+      <soap:operation soapAction="http://tempuri.org/CELNEWAPPLICATIONS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CELPAYMENT">
+      <soap:operation soapAction="http://tempuri.org/CELPAYMENT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CELPAYMENTUPDATE">
+      <soap:operation soapAction="http://tempuri.org/CELPAYMENTUPDATE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CELAPPLICATIONPRINT">
+      <soap:operation soapAction="http://tempuri.org/CELAPPLICATIONPRINT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CELPAYMENTSEARCH">
+      <soap:operation soapAction="http://tempuri.org/CELPAYMENTSEARCH" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CELTRACKAPPLICATIONSEARCH">
+      <soap:operation soapAction="http://tempuri.org/CELTRACKAPPLICATIONSEARCH" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CELDOCUMENTUPLOAD">
+      <soap:operation soapAction="http://tempuri.org/CELDOCUMENTUPLOAD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebServiceSoap12" type="tns:WebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="TRADECIRCLES">
+      <soap12:operation soapAction="http://tempuri.org/TRADECIRCLES" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TRADELOCALITIES">
+      <soap12:operation soapAction="http://tempuri.org/TRADELOCALITIES" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TRADEWARDS">
+      <soap12:operation soapAction="http://tempuri.org/TRADEWARDS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TRADECATEGORYDETAILS">
+      <soap12:operation soapAction="http://tempuri.org/TRADECATEGORYDETAILS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TRADESUBCATEGORYDETAILS">
+      <soap12:operation soapAction="http://tempuri.org/TRADESUBCATEGORYDETAILS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TRADEUNITRATES">
+      <soap12:operation soapAction="http://tempuri.org/TRADEUNITRATES" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TRADEFEECALCULATION">
+      <soap12:operation soapAction="http://tempuri.org/TRADEFEECALCULATION" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TRADESUBCATEGORYDOCUMENTS">
+      <soap12:operation soapAction="http://tempuri.org/TRADESUBCATEGORYDOCUMENTS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TRADEUPLOAD">
+      <soap12:operation soapAction="http://tempuri.org/TRADEUPLOAD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TRADENEWAPPLICATION">
+      <soap12:operation soapAction="http://tempuri.org/TRADENEWAPPLICATION" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TRADENEWAPPLICATIONPAYMENT">
+      <soap12:operation soapAction="http://tempuri.org/TRADENEWAPPLICATIONPAYMENT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TRADEPROPERTYTYPE">
+      <soap12:operation soapAction="http://tempuri.org/TRADEPROPERTYTYPE" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TRADEGETPTINDETAILS">
+      <soap12:operation soapAction="http://tempuri.org/TRADEGETPTINDETAILS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TRADEGETTINDETAILS">
+      <soap12:operation soapAction="http://tempuri.org/TRADEGETTINDETAILS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TRADERENEWALPAYMENT">
+      <soap12:operation soapAction="http://tempuri.org/TRADERENEWALPAYMENT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdvtGetArea">
+      <soap12:operation soapAction="http://tempuri.org/AdvtGetArea" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdvtArea">
+      <soap12:operation soapAction="http://tempuri.org/AdvtArea" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdvtTradeLicense">
+      <soap12:operation soapAction="http://tempuri.org/AdvtTradeLicense" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdvtProvisionalTradeLicense">
+      <soap12:operation soapAction="http://tempuri.org/AdvtProvisionalTradeLicense" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdvtDATA">
+      <soap12:operation soapAction="http://tempuri.org/AdvtDATA" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdvtPaymentDATA">
+      <soap12:operation soapAction="http://tempuri.org/AdvtPaymentDATA" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdvtInspectorPaymentDATA">
+      <soap12:operation soapAction="http://tempuri.org/AdvtInspectorPaymentDATA" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdvtDownloadSearch">
+      <soap12:operation soapAction="http://tempuri.org/AdvtDownloadSearch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CELEREGADDRESS">
+      <soap12:operation soapAction="http://tempuri.org/CELEREGADDRESS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CELCIRCLE">
+      <soap12:operation soapAction="http://tempuri.org/CELCIRCLE" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CELPROPOSALLIST">
+      <soap12:operation soapAction="http://tempuri.org/CELPROPOSALLIST" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CELDISTRICTLIST">
+      <soap12:operation soapAction="http://tempuri.org/CELDISTRICTLIST" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CELNETWROKTPLIST">
+      <soap12:operation soapAction="http://tempuri.org/CELNETWROKTPLIST" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CELLOCALITYLIST">
+      <soap12:operation soapAction="http://tempuri.org/CELLOCALITYLIST" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CELMANDALLIST">
+      <soap12:operation soapAction="http://tempuri.org/CELMANDALLIST" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CELWHETHERPROPOSEDLIST">
+      <soap12:operation soapAction="http://tempuri.org/CELWHETHERPROPOSEDLIST" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CELNEWAPPLICATIONS">
+      <soap12:operation soapAction="http://tempuri.org/CELNEWAPPLICATIONS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CELPAYMENT">
+      <soap12:operation soapAction="http://tempuri.org/CELPAYMENT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CELPAYMENTUPDATE">
+      <soap12:operation soapAction="http://tempuri.org/CELPAYMENTUPDATE" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CELAPPLICATIONPRINT">
+      <soap12:operation soapAction="http://tempuri.org/CELAPPLICATIONPRINT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CELPAYMENTSEARCH">
+      <soap12:operation soapAction="http://tempuri.org/CELPAYMENTSEARCH" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CELTRACKAPPLICATIONSEARCH">
+      <soap12:operation soapAction="http://tempuri.org/CELTRACKAPPLICATIONSEARCH" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CELDOCUMENTUPLOAD">
+      <soap12:operation soapAction="http://tempuri.org/CELDOCUMENTUPLOAD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebService">
+    <wsdl:port name="WebServiceSoap" binding="tns:WebServiceSoap">
+      <soap:address location="http://testghmc.cgg.gov.in/GHMC_TSIPASS_WS/WebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebServiceSoap12" binding="tns:WebServiceSoap12">
+      <soap12:address location="http://testghmc.cgg.gov.in/GHMC_TSIPASS_WS/WebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
