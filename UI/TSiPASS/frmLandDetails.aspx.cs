@@ -14,6 +14,7 @@ using System.Text;
 using System.Globalization;
 using System.Net.Http;
 using System.Threading.Tasks;
+using CoolBlueAdmin.Utilities;
 //created by suresh as on 13-1-2016 
 //tables is td_BDCDet,tbl_Users
 //procedures CheckUserid,insrtBDC,deleteBDC,getBDCbyID
@@ -3917,17 +3918,7 @@ else
             string sFileName = System.IO.Path.GetFileName(FileUpload1.PostedFile.FileName);
             try
             {
-                //if (FileUpload1.PostedFile.ContentLength <= lMaxFileSize)
-                //{
-                //    //Save File on disk
-
-
-                //if (FileUpload1.FileContent.Length > 102400 * 18)
-                //{
-                //     lblmsg0.Text = "size should be less than 600KB";
-                //     Response.Write("<script>alert('size should be less than 600KB')</script> ");
-                //    return;
-                //}
+                
 
                 string[] fileType = FileUpload1.PostedFile.FileName.Split('.');
                 int i = fileType.Length;
@@ -3937,6 +3928,8 @@ else
                     //Create a new subfolder under the current active folder
                     newPath = System.IO.Path.Combine(sFileDir, Request.QueryString[0].ToString() + "\\CommonAffidavit");
 
+                    var results = AWSUtility.Instance.UploadFileToAWS(FileUpload1.PostedFile.InputStream, sFileName, newPath);
+                    /*
                     // Create the subfolder
                     if (!Directory.Exists(newPath))
 
@@ -3958,7 +3951,7 @@ else
                             FileUpload1.PostedFile.SaveAs(newPath + "\\" + sFileName);
                         }
                     }
-
+                    */
                     int result = 0;
                     result = t1.InsertImagedata(Session["Applid"].ToString(), Request.QueryString[0].ToString(), fileType[i - 1].ToUpper(), newPath, sFileName, "Common Affidavit", "", Session["uid"].ToString(), DateTime.Now.ToString(), "1000", DateTime.Now.ToString());
                     if (result > 0)
